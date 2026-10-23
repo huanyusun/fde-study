@@ -1,0 +1,196 @@
+{
+  "contract_version": "w01-0.2.1",
+  "product_version": "0.2.0-w1",
+  "capability_matrix_version": "w1-capabilities-0.2.0",
+  "items": [
+    {
+      "id": "GAP-001",
+      "request": "沈总要止住复购率连续四个季度下滑的局面。提升幅度与验收口径，等复购算法、活跃会员定义核实后再一起确定；验收标准定稿前，不承诺复购数字回升。",
+      "category": "暂不承诺",
+      "capability_ids": [],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "01_沈总立项邮件.md（MAIL-W01-001）",
+          "locator": "第 2 段",
+          "note": "业务目标原文：「复购率已经连续四个季度下滑」；复购口径与验收形式当时都未定义。"
+        },
+        {
+          "source": "docs/w01/interview_transcript.md",
+          "locator": "MSG-00949",
+          "note": "沈总定性目标：三个月看到效果、复购率止跌回升、向董事会交代；他明说硬数给不了，提升幅度、计算口径、交付范围三件未定。"
+        },
+        {
+          "source": "docs/w01/interview_transcript.md",
+          "locator": "MSG-00951",
+          "note": "复购口径给不出准数，内部按 80 万活跃会员口径看数；「这个口径不确认，验收就没法谈」。"
+        }
+      ],
+      "next_step": "W2 约老周核实复购算法与活跃会员定义；带硬线草案做第二次访谈收口。复购口径是验收前提，必须先落实。"
+    },
+    {
+      "id": "GAP-002",
+      "request": "三个月是沈总希望看到效果的时间，非定死的验收硬线（本人当场确认）；同时要求成熟产品尽快上线用起来（上次项目「供应商没交付好」的教训，细节待核实）。效果时间不承诺；部署快速可用有产品开箱运行证据支撑（样例环境）。",
+      "category": "暂不承诺",
+      "capability_ids": [],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "01_沈总立项邮件.md（MAIL-W01-001）",
+          "locator": "第 2 段",
+          "note": "「三个月能看到效果，也好向董事会有个交代」：时间期望与动机原文。"
+        },
+        {
+          "source": "docs/w01/interview_transcript.md",
+          "locator": "MSG-00949",
+          "note": "三个月看到效果、向董事会交代，是他给出的时间点。"
+        },
+        {
+          "source": "docs/w01/interview_transcript.md",
+          "locator": "MSG-00961、MSG-00963",
+          "note": "沈总当场确认：三个月是希望看到效果的时间，不是定死的验收硬线；提升幅度和验收口径等核实后再一起定。"
+        },
+        {
+          "source": "docs/w01/interview_transcript.md",
+          "locator": "MSG-00957",
+          "note": "快速上线动机：上次项目「供应商没交付好」，这次更关心成熟产品尽快用起来把复购止跌回升；败因细节他表示给不出、不凭印象细说。"
+        },
+        {
+          "source": "artifacts/w01/environment_check.json",
+          "locator": "9 项检查",
+          "note": "本地部署 9 项检查全部通过、模型 live 模式，标准产品开箱可运行；样例环境验证，青禾上线仍待数据接入（见 GAP-004）。"
+        },
+        {
+          "source": "artifacts/w01/runtime_evidence.json",
+          "locator": "11 个用例",
+          "note": "澄清、退款解释、分析、缺失覆盖、只读、HTTP 执行、幂等、撤销、日期文本/按钮、拒绝变更等 11 个用例全部通过，产品闭环可交付；样例环境验证。"
+        }
+      ],
+      "next_step": "复购口径落实后（GAP-003）与沈总共定验收时间线；「快速用起来优先」写进验收避坑条款；上次项目败因细节列入 W2 老周核实清单，不按单方归因下结论。"
+    },
+    {
+      "id": "GAP-003",
+      "request": "复购率计算口径与活跃会员定义需先行确认。沈总明说「这个口径不确认，验收就没法谈」，两项他本人都给不出准数，要相关同事核实；这是 GAP-001 验收标准与 GAP-002 时间线的共同前提。",
+      "category": "待判断",
+      "capability_ids": [],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "docs/w01/interview_transcript.md",
+          "locator": "MSG-00951",
+          "note": "复购口径他给不出准数，要相关同事核实；「这个口径不确认，验收就没法谈」。"
+        },
+        {
+          "source": "docs/w01/interview_transcript.md",
+          "locator": "MSG-00953",
+          "note": "80 万是内部看数的活跃会员口径，「活跃」怎么定他给不出准数；「这个不确认，复购率和验收都没法往下谈」。"
+        },
+        {
+          "source": "docs/w01/interview_transcript.md",
+          "locator": "MSG-00961、MSG-00963",
+          "note": "沈总确认：提升幅度和验收口径，等复购算法、活跃会员定义核实后再和他一起确定。"
+        }
+      ],
+      "next_step": "W2 约老周核实复购算法、统计时间窗、活跃会员定义；核实结果回填后，与沈总共定验收标准与时间线。"
+    },
+    {
+      "id": "GAP-004",
+      "request": "从约 80 万活跃会员中识别需要重点经营的人群。第一版名单按沈总认可的「老会员占比偏高、新客补给跟不上」标准筛选；「老化」是他本人看数后的判断，是否有数据支持待核实。",
+      "category": "系统适配",
+      "capability_ids": [
+        "CAP-003",
+        "CAP-004",
+        "CAP-006"
+      ],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "01_沈总立项邮件.md（MAIL-W01-001）",
+          "locator": "第 3 段",
+          "note": "诉求本体：「我们有 80 万活跃会员，希望助手能帮运营识别哪些人需要重点经营」。"
+        },
+        {
+          "source": "01_沈总立项邮件.md（MAIL-W01-001）",
+          "locator": "第 3 段",
+          "note": "单方归因：「我的判断是会员老化比较明显」，是否成立待核实。"
+        },
+        {
+          "source": "artifacts/w01/evidence/analysis.json",
+          "locator": "observations.compare_spending",
+          "note": "样例验证「老会员+下降阈值」识别可用：declining_members=[M001,M004,M007]，缺失覆盖标未知不计零；松果样例与青禾无关，不作效果证据。"
+        },
+        {
+          "source": "product/capabilities.json",
+          "locator": "CAP-006 scope",
+          "note": "官方能力边界：青禾语义与数据适配由后续开发，不自动支持任意指标；数据接入与口径适配属系统适配工作。"
+        },
+        {
+          "source": "docs/w01/interview_transcript.md",
+          "locator": "MSG-00955",
+          "note": "沈总对「老化」定性：老会员占比偏高、新客补给跟不上；自认「只是我的感觉」，有无数据支持待核实。"
+        },
+        {
+          "source": "docs/w01/interview_transcript.md",
+          "locator": "MSG-00963",
+          "note": "沈总当场确认第一版名单按「老会员占比偏高、新客补给跟不上」筛选，答复「可以」。"
+        }
+      ],
+      "next_step": "活跃口径核实见 GAP-003；W2 约老周核实老化判断有无数据支持，以及青禾订单与会员数据的可用性、接入方式，再评估数据接入与口径适配的工作量。"
+    },
+    {
+      "id": "GAP-005",
+      "request": "按识别结果生成运营人员可直接使用的建议，并给出可核查的依据。",
+      "category": "产品已有",
+      "capability_ids": [
+        "CAP-001",
+        "CAP-003"
+      ],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "01_沈总立项邮件.md（MAIL-W01-001）",
+          "locator": "第 3 段",
+          "note": "诉求原文：「识别出来之后，最好能直接给小林一些运营建议，别又让她多整理一套表」。"
+        },
+        {
+          "source": "artifacts/w01/evidence/analysis.json",
+          "locator": "result.recommendations",
+          "note": "样例运行输出含 member_id/suggestion/rationale，金额与订单明细来自工具结果并引用 evidence_id（CMP-29dcd590e6429c3a）。"
+        }
+      ],
+      "next_step": "保留「建议与依据分离、引用 evidence_id、金额只来自工具结果」的输出结构；W2 与小林确认建议类型与格式是否匹配实际工作。"
+    },
+    {
+      "id": "GAP-006",
+      "request": "建议要直达运营人员（小林）的工作载体，不再人工整理一套表。",
+      "category": "待判断",
+      "capability_ids": [
+        "CAP-006"
+      ],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "product/API.md 与 product/capabilities.json",
+          "locator": "CAP-006/CAP-007 scope",
+          "note": "当前输出为会话内结构化结果，样例标签系统是独立教学 HTTP 服务；无客户工作台集成，青禾触达连接器 W8 才开发。输出载体未确认。"
+        }
+      ],
+      "next_step": "W2 约小林确认当前圈人与触达工作流、建议送达载体，再在客户配置、系统适配、产品缺口中重新分类。"
+    },
+    {
+      "id": "GAP-007",
+      "request": "本期交付范围与验收程度待与沈总确认，他明说「交付范围我现在确实定不了」；要结合复购口径和活跃会员定义一起谈。结果层面诉求见 GAP-001/002。",
+      "category": "待判断",
+      "capability_ids": [],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "docs/w01/interview_transcript.md",
+          "locator": "MSG-00959",
+          "note": "沈总原话：「交付范围我现在确实定不了，能说清的是我要的结果：用会员运营助手把复购率止跌回升，三个月内看到效果」「得结合复购口径和活跃会员定义一起谈」。"
+        }
+      ],
+      "next_step": "口径核实后（W2）与沈总确定本期交付范围和验收程度；范围与责任边界 W3 SOW 收口。"
+    }
+  ]
+}

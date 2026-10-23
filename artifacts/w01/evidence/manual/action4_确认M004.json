@@ -1,0 +1,73 @@
+{
+  "product_version": "0.2.0-w1",
+  "runtime_revision": "w01-runtime-20260922",
+  "session_id": "fc0eaeff-9f4d-4889-acc9-77827983709f",
+  "model_mode": "live",
+  "model_name": "glm-5.3-flash",
+  "prompt_sha256": "051286bc27083b1f3cd9201ebcd09030830ec3a06401197a0adaa0f1003fcddd",
+  "status": "completed",
+  "result": {
+    "status": "completed",
+    "summary": "已按受控流程为会员 M004 完成 recall_review 样例标签操作：草案创建后经界面确认（approved），系统核验动作状态为 applied，标签已生效（label_active=true，版本 1）。操作依据为用户提出的“8 月净消费下降 100%”，该依据来自用户陈述，本次未另行调用消费比较工具核验。",
+    "recommendations": [],
+    "evidence_ids": [
+      "836fd9ef-a2a2-4da1-b736-23648f51c889"
+    ],
+    "limitations": [
+      "标签依据“8 月净消费下降 100%”为用户口径，本轮未通过 compare_spending 工具复核，不能据此断言会员已流失或承诺召回收益。",
+      "本次为独立教学样例数据中的标签操作，不代表真实业务执行。",
+      "若需撤销该标签，须由人工通过受控入口办理，Agent 不会自行撤销。"
+    ]
+  },
+  "observations": [
+    {
+      "name": "prepare_tag",
+      "result": {
+        "status": "awaiting_approval",
+        "draft": {
+          "id": "836fd9ef-a2a2-4da1-b736-23648f51c889",
+          "session": "fc0eaeff-9f4d-4889-acc9-77827983709f",
+          "payload": {
+            "member_id": "M004",
+            "tag": "recall_review"
+          },
+          "hash": "d6d6ef86295d3b75f5bde1b06c88090ccc9bbac8f47ca35cbbccaa9d21f6ce19",
+          "status": "draft",
+          "result": null
+        }
+      },
+      "call_id": "call_-7141219273833183139"
+    },
+    {
+      "name": "tag_execution",
+      "result": {
+        "id": "836fd9ef-a2a2-4da1-b736-23648f51c889",
+        "session": "fc0eaeff-9f4d-4889-acc9-77827983709f",
+        "payload": {
+          "member_id": "M004",
+          "tag": "recall_review"
+        },
+        "hash": "d6d6ef86295d3b75f5bde1b06c88090ccc9bbac8f47ca35cbbccaa9d21f6ce19",
+        "status": "applied",
+        "result": {
+          "action_id": "836fd9ef-a2a2-4da1-b736-23648f51c889",
+          "status": "applied",
+          "payload": {
+            "member_id": "M004",
+            "tag": "recall_review"
+          },
+          "label_active": true,
+          "label_version": 1
+        }
+      }
+    }
+  ],
+  "steps": 2,
+  "output_repairs": 0,
+  "usage": {
+    "prompt_tokens": 3993,
+    "completion_tokens": 1017,
+    "total_tokens": 5010
+  },
+  "trace_id": "da33ab61fe9d51deb6adc52fa6356fcc"
+}

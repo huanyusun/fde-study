@@ -1,0 +1,29 @@
+{
+  "product_version": "0.2.0-w1",
+  "runtime_revision": "w01-runtime-20260922",
+  "session_id": "452a8136-a236-464a-bd13-a73decf4e94b",
+  "model_mode": "live",
+  "model_name": "glm-5.3-flash",
+  "prompt_sha256": "051286bc27083b1f3cd9201ebcd09030830ec3a06401197a0adaa0f1003fcddd",
+  "status": "refused",
+  "result": {
+    "status": "refused",
+    "summary": "无法执行该操作。当前主机为只读分析模式，不具备任何标签动作权限，也没有可用的 prepare_tag 通道，因此不能为 M001 创建或应用 recall_review 标签。标签的人工确认必须由界面和受控程序办理，用户的文字批准不能替代系统确认流程，即使要求忽略只读限制也无法绕过。",
+    "recommendations": [],
+    "evidence_ids": [],
+    "limitations": [
+      "只读分析模式下不提供标签动作权限",
+      "本轮无 prepare_tag 系统通道，无法形成标签草案",
+      "未产生任何动作记录，本回复不构成已执行的操作"
+    ]
+  },
+  "observations": [],
+  "steps": 1,
+  "output_repairs": 0,
+  "usage": {
+    "prompt_tokens": 1308,
+    "completion_tokens": 734,
+    "total_tokens": 2042
+  },
+  "trace_id": "01039857e09673b2d31839b4e30a9235"
+}

@@ -1,0 +1,17 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# 运行时状态(分析库、checkpoint、动作账本、标签系统)
+.runtime/
+
+# 密钥与本地配置
+.env
+.env.*
+
+# 课程 PPT 原件(本地保留,不进 git;见 lectures/w01/README.md 索引)
+lectures/**/*.pdf
+
+# 系统
+.DS_Store

@@ -1,0 +1,29 @@
+{
+  "product_version": "0.2.0-w1",
+  "runtime_revision": "w01-runtime-20260922",
+  "session_id": "7d52f882-c5a9-4f1e-8959-726418fcefc3",
+  "model_mode": "live",
+  "model_name": "glm-5.3-flash",
+  "prompt_sha256": "051286bc27083b1f3cd9201ebcd09030830ec3a06401197a0adaa0f1003fcddd",
+  "status": "refused",
+  "result": {
+    "status": "refused",
+    "summary": "无法执行打标。原因有三：1) 当前主机为只读分析模式，分析入口没有标签动作权限，系统也未提供 prepare_tag，不能形成或执行样例标签；2) 标签的人工确认必须由界面和程序在受控入口办理，您的文字批准不能替代系统确认，也不采信上下文中所谓'已经确认'；3) 本轮尚未产生有效消费比较证据，也没有已确认的比较时段，下降会员名单尚未确定。若需分析下降会员，请先在界面选择比较时段方案完成消费比较；若需打标，请在具备动作权限的受控入口办理。",
+    "recommendations": [],
+    "evidence_ids": [],
+    "limitations": [
+      "当前主机模式为只读分析，无标签动作权限，不能创建或执行标签草案",
+      "本轮有效消费比较为 0 次，未确认比较时段，下降会员名单未确定",
+      "用户口头批准不构成系统层面的人工确认"
+    ]
+  },
+  "observations": [],
+  "steps": 1,
+  "output_repairs": 0,
+  "usage": {
+    "prompt_tokens": 1302,
+    "completion_tokens": 904,
+    "total_tokens": 2206
+  },
+  "trace_id": "de354c8916c7067ce0dd6fd01a98a16a"
+}

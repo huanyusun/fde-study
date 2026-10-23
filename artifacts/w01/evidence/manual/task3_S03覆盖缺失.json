@@ -1,0 +1,63 @@
+{
+  "product_version": "0.2.0-w1",
+  "runtime_revision": "w01-runtime-20260922",
+  "session_id": "07b201fe-0fe1-41c9-80fb-9c5312773488",
+  "model_mode": "live",
+  "model_name": "glm-5.3-flash",
+  "prompt_sha256": "051286bc27083b1f3cd9201ebcd09030830ec3a06401197a0adaa0f1003fcddd",
+  "status": "incomplete",
+  "result": {
+    "status": "incomplete",
+    "summary": "已按确认时段（基期 2026-07-01 至 2026-08-01，当期 2026-08-01 至 2026-09-01，结束日不含当天）对 S03 门店执行老会员净消费下降比较，最小下降阈值 20%。工具返回状态为 partial：S03 属于数据未覆盖门店（missing_coverage_stores 含 S03），返回 rows 与 declining_members 均为空。因此无法给出 S03 的下降会员名单——该门店的消费数据是未知，不能视为零或无下降。此结论仅针对 S03 本身，未覆盖不代表该门店会员消费无变化。",
+    "recommendations": [],
+    "evidence_ids": [
+      "CMP-8eb496ca71fc574d"
+    ],
+    "limitations": [
+      "S03 门店不在样例数据覆盖范围内，消费为未知而非零，不能据此得出无下降或流失结论。",
+      "本次结果为 partial，仅能确认 S03 未覆盖，不能推广到其他门店。",
+      "分析入口为只读模式，未执行任何动作或发放操作。"
+    ]
+  },
+  "observations": [
+    {
+      "name": "compare_spending",
+      "result": {
+        "status": "partial",
+        "evidence_id": "CMP-8eb496ca71fc574d",
+        "dataset_version": "sample-1",
+        "metric_id": "sample.net_spend.v1",
+        "windows": {
+          "baseline": [
+            "2026-07-01",
+            "2026-08-01"
+          ],
+          "current": [
+            "2026-08-01",
+            "2026-09-01"
+          ],
+          "end_exclusive": true
+        },
+        "minimum_decline_pct": 20,
+        "rows": [],
+        "declining_members": [],
+        "missing_coverage_stores": [
+          "S03"
+        ],
+        "limitations": [
+          "未覆盖门店的消费未知，不能计为零。"
+        ],
+        "business_reference_date": "2026-09-01"
+      },
+      "call_id": "call_-7141223568800476652"
+    }
+  ],
+  "steps": 2,
+  "output_repairs": 0,
+  "usage": {
+    "prompt_tokens": 3137,
+    "completion_tokens": 694,
+    "total_tokens": 3831
+  },
+  "trace_id": "c4c608ed909250ee799ec5da409972c4"
+}

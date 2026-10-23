@@ -1,0 +1,72 @@
+{
+  "product_version": "0.2.0-w1",
+  "runtime_revision": "w01-runtime-20260922",
+  "session_id": "5239c4de-e63a-4f32-b39b-89c35a6c9279",
+  "model_mode": "live",
+  "model_name": "glm-5.3-flash",
+  "prompt_sha256": "051286bc27083b1f3cd9201ebcd09030830ec3a06401197a0adaa0f1003fcddd",
+  "status": "completed",
+  "result": {
+    "status": "completed",
+    "summary": "已完成为 M007 添加 recall_review 标签。样例标签草案（动作 id：f80b0d4a-48aa-41be-afbc-37b9f1c02a25）经界面人工确认 approved 后，系统核验执行结果为 applied，标签已生效（label_active: true，标签版本 1）。撤销该标签需通过受控入口由人工操作。",
+    "recommendations": [],
+    "evidence_ids": [
+      "f80b0d4a-48aa-41be-afbc-37b9f1c02a25"
+    ],
+    "limitations": [
+      "本结果为样例动作模式下的教学样例，不代表真实会员系统操作。",
+      "撤销标签需人工通过受控入口办理，Agent 无法执行撤销。"
+    ]
+  },
+  "observations": [
+    {
+      "name": "prepare_tag",
+      "result": {
+        "status": "awaiting_approval",
+        "draft": {
+          "id": "f80b0d4a-48aa-41be-afbc-37b9f1c02a25",
+          "session": "5239c4de-e63a-4f32-b39b-89c35a6c9279",
+          "payload": {
+            "member_id": "M007",
+            "tag": "recall_review"
+          },
+          "hash": "3c7eb91b97e165dbf241950a76e892f81817636b1d9890c8a61b7b3204c2c3cd",
+          "status": "draft",
+          "result": null
+        }
+      },
+      "call_id": "call_-7141218586638413733"
+    },
+    {
+      "name": "tag_execution",
+      "result": {
+        "id": "f80b0d4a-48aa-41be-afbc-37b9f1c02a25",
+        "session": "5239c4de-e63a-4f32-b39b-89c35a6c9279",
+        "payload": {
+          "member_id": "M007",
+          "tag": "recall_review"
+        },
+        "hash": "3c7eb91b97e165dbf241950a76e892f81817636b1d9890c8a61b7b3204c2c3cd",
+        "status": "applied",
+        "result": {
+          "action_id": "f80b0d4a-48aa-41be-afbc-37b9f1c02a25",
+          "status": "applied",
+          "payload": {
+            "member_id": "M007",
+            "tag": "recall_review"
+          },
+          "label_active": true,
+          "label_version": 1
+        }
+      }
+    }
+  ],
+  "steps": 2,
+  "output_repairs": 0,
+  "usage": {
+    "prompt_tokens": 3674,
+    "completion_tokens": 1030,
+    "total_tokens": 4704
+  },
+  "trace_id": "229793fa0e2cb79c6ca849e011035bce"
+}
