@@ -1,0 +1,28 @@
+{
+  "version": "w02-materials-0.3.7",
+  "date": "2026-10-23",
+  "state": "packaged_not_distributed",
+  "entry": "00_使用说明.md",
+  "versions": {
+    "materials": "w02-materials-0.3.7",
+    "task": "v0.17",
+    "engineering": "w02-agent-0.5.4",
+    "w01_checkpoint": "w01-0.2.1 fit-gap / product 0.2.0-w1 / revised 2026-10-23"
+  },
+  "files": {
+    "00_使用说明.md": "09fb42d61723bad9a31cbdde7f67a6efe18fd1ce5882d9fca3b836629d4510e5",
+    "01_智能营销平台项目阶段结项汇报.pptx": "33d10010bf6dd984f9b5292f864db549324078dd29369c7bf976cc57f2b236f5",
+    "02_旧项目背景补充.md": "adb70164d5920bf5676ecf783f0d017f9a3db12992b18a99b883f31b0948b599",
+    "03_本周访谈对象.md": "a661d06d52a9d926a47744fd693ec8da2f899a3a2de57331e3369051d06f4c34",
+    "05_作业任务书.md": "e3d3acfb3f10df629e6b65f845473bf49d9c644c40a1525d8ac60504b847e482",
+    "06_访谈与核查记录模板.md": "e97b83f49187bd115df9c6c950aab78aff24feff731ebca71ec68c3949ab88d6",
+    "07_业务模型说明模板.md": "7ed286b3212b66472c776978adaf04a4f88b4e330457ba955d2ba07bdd915969",
+    "W01_checkpoint/README.md": "a382c4beb3319581fd8663bc2737684bdbb9597a94f69c643b243c721e1ee958",
+    "W01_checkpoint/artifacts/w01/product_fit_gap.json": "68bba8a4e093761f2bbef26208d7f1f6a6b86c7bc58c7bb88eac221be39be776",
+    "W01_checkpoint/artifacts/w01/product_fit_gap.xlsx": "b846f4eaec58767567013d206f5b38de0b5874f6cbdfcd9419f64ab10f00000b",
+    "W01_checkpoint/docs/w01/project_assessment.md": "2def5fa00682bc0042563d7b523d7a5e7ea680a48dc6b61c5143c978edac070b",
+    "工程/fde-student-w02-0.5.4.zip": "1c3589d30bff16f035015d23ec8f83ea4e8db8acdc85d8a3c94398abfee3e360",
+    "案例手册/C02_AIG.md": "1fa11cda8c87fbfe29e0c751103b1cf269863862aadacba5acd6e4c02b31f1da"
+  },
+  "manifest_scope": "All package payload files except this manifest; hashes use SHA-256."
+}
