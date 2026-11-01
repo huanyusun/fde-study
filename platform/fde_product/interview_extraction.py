@@ -146,7 +146,7 @@ CONFIG_SCHEMA = {
         "batch_chars": {"type": "integer", "minimum": 1000, "maximum": 64000},
         "max_batches": {"type": "integer", "minimum": 1, "maximum": 24},
         "reconcile_chars": {"type": "integer", "minimum": 1000, "maximum": 128000},
-        "profile": {"enum": ["compatible", "json-object", "deepseek-json", "gateway-json"]},
+        "profile": {"enum": ["compatible", "json-object", "deepseek-json", "gateway-json", "deepseek-low"]},
     },
 }
 
@@ -191,7 +191,7 @@ class ExtractionModel(CompatibleModel):
     def __init__(self, *, profile="compatible", extraction_thinking="enabled", **kwargs):
         require(extraction_thinking in ("enabled", "disabled"), "THINKING_POLICY_INVALID")
         self.extraction_thinking, self.phase = extraction_thinking, None
-        require(profile in ("compatible", "json-object", "deepseek-json", "gateway-json"), "PROFILE_INVALID")
+        require(profile in ("compatible", "json-object", "deepseek-json", "gateway-json", "deepseek-low"), "PROFILE_INVALID")
         self.profile, self.record_request = profile, None
         super().__init__(request_profile=kwargs.pop("request_profile",None if profile=="compatible" else profile),**kwargs)
 
