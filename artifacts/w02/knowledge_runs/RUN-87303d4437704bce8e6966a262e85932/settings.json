@@ -1,0 +1,20 @@
+{
+  "adapter": "w02-natural-0.1.0",
+  "config_path": "customer/w02/knowledge.json",
+  "question": "评审青禾本次项目投入时，怎样结合财务要求和旧项目经历形成继续推进的判断？",
+  "expected": "须写王经理三块判断和四类准备材料，金额指标未谈妥标待确认；财务效果与费用对应可量化有记录，功能清单不等于效果但也不代表认定功能无效；不能推断王经理最终审批权；应保留PPT需求完善与老周返工的解释差异、沈总交付评价、小林使用印象的限定，不裁定旧项目根因，给出对齐版本时间的证据计划；三个月非硬线。",
+  "include_knowledge": false,
+  "pair_id": "PAIR-8e6a0d151e38446c916fa33b4df88481",
+  "profile": "deepseek-json",
+  "model_policy": {
+    "gateway_cache_bypass": true,
+    "wire_format": "gateway-extra-body-v1",
+    "request_profile": "deepseek-json",
+    "max_tokens": 8192,
+    "retry_max_tokens": 16384,
+    "timeout": 90.0,
+    "retry_timeout": 180.0,
+    "token_limit_field": "max_tokens",
+    "extraction_thinking": "enabled"
+  }
+}

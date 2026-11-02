@@ -1,56 +1,25 @@
-# FDE Study — 青禾优选 W1 沙盘
+# W1 基础评估与调优
 
-FDE(Forward Deployed Engineer)课程的完整学习仓库。本仓库根目录同时是课程要求的**客户交付工作目录**:标准产品工程包解压于此,四份 JSON 作业契约与立项报告按固定路径产出,后续各周继续沿用本仓库与条目编号。
+默认使用 Promptfoo 调用真正的产品入口。配置好自己的 `FDE_MODEL_URL`、`FDE_MODEL_KEY`、`FDE_MODEL_NAME`，安装 Node.js 22.22.0 或更高版本，从 `evals/` 执行 `npx --yes promptfoo@0.122.2 eval --config promptfooconfig.yaml --no-cache --output ../artifacts/w01/promptfoo-results.json`。Python 路径按自己的虚拟环境调整；Windows 使用 `.venv/Scripts/python.exe`。发布包记录实际验证过的 Promptfoo 版本。
 
-- 课程产品:`0.2.0-w1`,能力矩阵 `w1-capabilities-0.2.0`
-- 契约:fit-gap `w01-0.2.1`,其余三份 JSON `w01-0.2.0`
-- 客户:青禾优选(连锁零售,虚构沙盘);发起人沈总,诉求「复购下滑 + 识别重点会员 + 直接给运营建议」
-
-## 目录结构
-
-```
-├── artifacts/w01/          # W1 四份 JSON 交付物 + fit-gap 填写稿(任务书固定路径)
-├── contracts/w01/          # 作业 JSON Schema(字段定义唯一来源)
-├── platform/fde_product/   # 标准产品源码(LangGraph Agent、业务、动作、交互、观测)
-├── product/                # capabilities.json 能力矩阵、API.md、语义、系统提示词
-├── tools/                  # product.py、check_product.py、verify_product.py 等
-├── sample_data/            # 松果生活样例数据(与青禾无关,勿用于推算客户)
-├── evals/                  # Promptfoo 基础评估
-├── tests/                  # 产品回归测试
-├── docs/w01/               # project_assessment.md 立项报告(交付物)落此
-├── course-materials/w01/   # 课程材料包:邮件/协作/指引/任务书/fit-gap 空白表/案例手册/访谈准备
-├── lectures/w01/           # W1 八讲 PPT(PDF 本地保留不进 git,索引见其中 README)
-├── notes/w01/              # 我的学习笔记(按 V01–V08 一讲一文件)
-└── README.md
-```
-
-## W1 交付物(任务书契约)
-
-| 固定路径 | 内容 |
-| --- | --- |
-| `artifacts/w01/environment_check.json` | 9 项环境检查(runtime/database/tool_registry/product/model_api/checker/label_api/evaluation/trace) |
-| `artifacts/w01/product_fit_gap.json` | 逐项诉求适配判断(五类分类 + 待判断)、证据状态、依据与下一步 |
-| `artifacts/w01/model_baseline.json` | 真实模型基线:≥4 次场景运行、失败分类与下一步 |
-| `artifacts/w01/runtime_evidence.json` | 7 类行为证据文件路径 + SHA-256 |
-| `docs/w01/project_assessment.md` | 立项报告:诉求拆解、事实/转述区分、适配判断、风险、下一阶段建议 |
-
-## 常用命令(工程根目录)
+Promptfoo 0.122.2 依赖的 esbuild 0.28.2 需要 macOS 12 或更高版本。在 macOS 11 上，`npx` 会因 esbuild 安装失败而直接退出，不打印原因。这时在工程目录之外本地安装，并把 esbuild 固定为 0.25.12：
 
 ```sh
-python3 -m venv .venv && .venv/bin/python -m pip --isolated install -r requirements.txt
-.venv/bin/python tools/product.py init
-.venv/bin/python tools/check_product.py --dry-run
-FDE_MODEL_URL=... FDE_MODEL_NAME=... FDE_MODEL_KEY=... .venv/bin/python tools/product.py start --actions
-.venv/bin/python tools/verify_product.py --live          # 生成模型基线与运行证据
-.venv/bin/python tools/check_product.py --root .         # 公开预检
+mkdir -p ~/fde-tools && cd ~/fde-tools
+cat > package.json <<'EOF'
+{"private": true, "dependencies": {"promptfoo": "0.122.2"}, "overrides": {"esbuild": "0.25.12"}}
+EOF
+npm install
 ```
 
-模型配置:`FDE_MODEL_URL`(完整 Chat Completions 地址)+ `FDE_MODEL_NAME` + `FDE_MODEL_KEY`,课程网关用 `FDE_MODEL_PROFILE=gateway-low`;详见 `docs/model-configuration.md`。
+之后在 `evals/` 用 `~/fde-tools/node_modules/.bin/promptfoo eval` 代替 `npx --yes promptfoo@0.122.2 eval`，其余参数不变。
 
-## 学习路线(W1)
+默认包含 7 个场景：明确日期分析、缺日期澄清、只读约束、文字确认日期、按钮确认日期、拒绝后更换目标，以及退款说明。后 3 类交互通过真实模型继续同一任务；标签回归只生成并拒绝草案，样例 API 不应产生写入。
 
-1. 读材料包(`course-materials/w01/00–05` 顺序)+ 八讲 PPT,笔记落 `notes/w01/`
-2. 装环境、跑通松果样例四类分析任务与标签动作闭环,留运行记录
-3. `verify_product.py --live` 生成基线与证据 → Promptfoo 评估 → `finalize_evaluation.py`
-4. fit-gap 空白表填写 → 转换 JSON;写立项报告
-5. `check_product.py --root .` 预检,提交
+输出结构检查、业务工具的人群结果和只读约束可以自动判断；建议是否贴合目标、依据是否充分，以及是否过度承诺需要人工复核。仅有平均分不能覆盖安全失败。评估不会自动读取教师配置。
+
+W1 保存实际模型基线。W5 开始把客户任务纳入持续调优，W7 完整构建黄金、异常、安全集合及保留集。每次记录模型、数据、语义、提示词、配置和实现版本，保留失败输入与 trace。写明问题假设、修改位置、修改前后、关键样本重复结果、保留集与回归、保留或回退理由。
+
+Eval Harness 是测量系统；Agent Harness 是组织模型、上下文、工具和恢复的运行机制。后者可以成为调优对象。协议、数据和 SQL 错误应先修复，不能统称“prompt 不好”。
+
+如首次安装耗时较长，可以预先设置 `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`；W1 Python provider 不需要下载浏览器。该变量只跳过可选浏览器安装。设 `PROMPTFOO_DISABLE_TELEMETRY=1` 可关闭框架使用统计，评估报告仍保存在本地。`--no-cache` 关闭本机评估缓存，不保证上游模型服务没有缓存。

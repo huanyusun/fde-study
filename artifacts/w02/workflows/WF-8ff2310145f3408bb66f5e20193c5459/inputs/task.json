@@ -1,0 +1,9 @@
+{
+  "version": "w02-workflow-0.1.0",
+  "goal": "从W2五人访谈提取会员运营业务知识:口径定义、活动流程与角色分工、痛点期望、投入效果判断标准、旧项目使用情况;保留分歧(120万全量vs活跃、复购下滑无统计)与未知(Excel内容、标签维护、审批权限),供业务建模与Agent验证使用。",
+  "extraction_config": "customer/w02/extraction.json",
+  "skill": "customer/w02/skills/extract-business/SKILL.md",
+  "business_model": "docs/w02/business_model.md",
+  "notes": "docs/w02/interview_notes.md",
+  "max_steps": 24
+}

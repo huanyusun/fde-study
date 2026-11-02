@@ -1,0 +1,20 @@
+{
+  "adapter": "w02-natural-0.1.0",
+  "config_path": "customer/w02/knowledge.json",
+  "question": "青禾运营助手已整理出一批需关注会员及建议。小林接下来怎样把建议落实到门店，并向项目组说明结果？",
+  "expected": "须采用小林与陈姐的协作关系，先明确会员范围与内容、确认参与门店及门店任务、配合与答疑，业务人员确认人群与方案；范围不清先澄清、考核受影响先调整，线上可见不代表门店适用；当前未授权自动发券联系会员改记录，不等于不要能力；执行中反馈核对、具体记录载体未知，不能把执行反馈当财务效果或声称已执行。",
+  "include_knowledge": true,
+  "pair_id": "PAIR-d0067174959c4c33bce3f196f5639a4f",
+  "profile": "deepseek-json",
+  "model_policy": {
+    "gateway_cache_bypass": true,
+    "wire_format": "gateway-extra-body-v1",
+    "request_profile": "deepseek-json",
+    "max_tokens": 8192,
+    "retry_max_tokens": 16384,
+    "timeout": 90.0,
+    "retry_timeout": 180.0,
+    "token_limit_field": "max_tokens",
+    "extraction_thinking": "enabled"
+  }
+}

@@ -4,6 +4,7 @@ Only the configured endpoint is used. Credentials and private reasoning are neve
 included in public call records. A truncated response never reaches tool execution.
 """
 from copy import deepcopy
+import http.client
 import json
 import os
 import socket
@@ -169,6 +170,9 @@ class CompatibleModel:
             except error.URLError as exc:
                 code="MODEL_TIMEOUT" if isinstance(exc.reason,(TimeoutError,socket.timeout)) else "MODEL_NETWORK_ERROR"
                 attempt["error"]=code;raise ModelError(code) from None
+            except (ConnectionError,http.client.HTTPException):
+                # The connection dropped while reading the response, outside urllib's URLError wrapping.
+                attempt["error"]="MODEL_NETWORK_ERROR";raise ModelError("MODEL_NETWORK_ERROR") from None
             except (ValueError,KeyError,IndexError,TypeError,AttributeError):
                 attempt["error"]="MODEL_INVALID_RESPONSE";raise ModelError("MODEL_INVALID_RESPONSE") from None
             except ModelError as exc:

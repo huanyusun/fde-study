@@ -1,0 +1,852 @@
+{
+  "contract_version": "w02-0.1.0-draft",
+  "artifact_id": "FACTS-RUN-a7f219c38c2e425f950212bc06f30b31",
+  "revision": 1,
+  "scope_id": "qinghe",
+  "origin_run": {
+    "run_id": "RUN-a7f219c38c2e425f950212bc06f30b31",
+    "path": "artifacts/w02/runs/RUN-a7f219c38c2e425f950212bc06f30b31/run.json"
+  },
+  "sources": [
+    {
+      "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+      "file": {
+        "path": "artifacts/w02/runs/RUN-a7f219c38c2e425f950212bc06f30b31/snapshot/artifacts/w02/workflows/WF-71dff09ab4114337a13587b718dc4ccd/sources/0.json",
+        "sha256": "d297864f601ef0275ca37d5f69ed820c62f6fb09db20a4917d84292aa2edef91"
+      }
+    },
+    {
+      "meeting_id": "642deab6-4d44-573e-b93f-39b6e8b0e24a",
+      "file": {
+        "path": "artifacts/w02/runs/RUN-a7f219c38c2e425f950212bc06f30b31/snapshot/artifacts/w02/workflows/WF-71dff09ab4114337a13587b718dc4ccd/sources/1.json",
+        "sha256": "06a1c3c4f512bcb3566f6d411c7470c87a1aca365097f670e39c9ef2d3fb9f98"
+      }
+    },
+    {
+      "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+      "file": {
+        "path": "artifacts/w02/runs/RUN-a7f219c38c2e425f950212bc06f30b31/snapshot/artifacts/w02/workflows/WF-71dff09ab4114337a13587b718dc4ccd/sources/2.json",
+        "sha256": "2c1c508cd50021fb087dc0b78c0d51cf64e548f1c89bc65895fb723d2d0dec7d"
+      }
+    },
+    {
+      "meeting_id": "00c3e9c2-eded-59e5-9618-223e33547eea",
+      "file": {
+        "path": "artifacts/w02/runs/RUN-a7f219c38c2e425f950212bc06f30b31/snapshot/artifacts/w02/workflows/WF-71dff09ab4114337a13587b718dc4ccd/sources/3.json",
+        "sha256": "343a59e02d60303a7b3a6836d63f4579cb04b61a8bb4858fbc91d8d267ffd726"
+      }
+    },
+    {
+      "meeting_id": "13d28200-6062-5bad-b395-521b6888e56f",
+      "file": {
+        "path": "artifacts/w02/runs/RUN-a7f219c38c2e425f950212bc06f30b31/snapshot/artifacts/w02/workflows/WF-71dff09ab4114337a13587b718dc4ccd/sources/4.json",
+        "sha256": "bde135c8ecd9956ff42074c09786a982919757ad04a4382406fba011a28df2c4"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "CLM-001-0001",
+      "statement": "小林手工维护一份 Excel，实际工作时会绕开系统、用这份账来做",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：小林（assistant=ROLE-LIN），week2 访谈自述",
+        "Excel 具体记录内容本人表示需对记录核对才能确认"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02937",
+          "quote": "我能确认的是，我自己手工维护一份 Excel，实际工作时会绕开系统，用这份账来做事。"
+        },
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02953",
+          "quote": "我自己确实手工维护着一份 Excel，平时干活会绕开系统，用这份账来做"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0002",
+      "statement": "小林表示 Excel 具体记录哪些内容目前说不准，需对着记录本身逐项核对，未答应提供脱敏表格",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：小林本人",
+        "Excel 内容未核实；提供表格为待跟进事项"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02937",
+          "quote": "至于平时具体记哪些内容，我现在没法逐项说准，得对着这份记录本身核对才行，不能拿平时做事的步骤来代替它。"
+        },
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02953",
+          "quote": "准备或提供一份现用表格这件事，我这次没法答应。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0003",
+      "statement": "小林认为做会员优惠券活动最费力的环节是整理名单和执行记录、找同事确认对不上的信息、反复跟进进度，且未量化耗时",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：小林个人感受",
+        "本人明确表示没量过具体时间",
+        "本人声明不能直接说它是复购下降原因"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02935",
+          "quote": "比较费力的是整理名单和执行记录、找同事确认对不上的信息，还有反复跟进进度。这些是我觉得麻烦的地方，我没量过具体花多少时间，也不能直接说它就是复购下降的原因。"
+        },
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02939",
+          "quote": "整理名单和执行记录、找同事确认对不上的信息、反复跟进进度，这几样最费劲。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0004",
+      "statement": "小林的会员优惠券活动流程：先看未完成运营任务和反馈、确定面向哪些会员，再与相关同事确认线上或门店执行安排；执行中记录进度和问题，结束后整理反馈和未核实的效果信息",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：小林自述工作路子",
+        "具体筛选条件本人表示需对实际记录核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02935",
+          "quote": "先看没做完的运营任务和反馈，明确这次面向哪些会员、准备做什么，再和相关同事确认线上或门店的执行安排；执行时记录进度和问题，结束后整理反馈和还没核实的效果信息。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0005",
+      "statement": "门店执行安排小林一般找陈姐确认；线上渠道具体对接谁小林无法确认",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：小林",
+        "线上渠道对接人属未知项，待核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02943",
+          "quote": "门店那边的执行安排，我一般找陈姐确认。线上渠道具体对接谁，我这边没法确认。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0006",
+      "statement": "小林与陈姐确认门店执行时，通常先说清面向哪些会员、准备做什么，再确认门店如何执行、谁来配合；执行中跟进进度反馈，记录对不上时找陈姐核对",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：小林"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02945",
+          "quote": "通常先把这次面向哪些会员、准备做什么说清楚，再跟她确认门店怎么执行、谁来配合；执行过程中进度和反馈要跟进，遇到执行记录或信息对不上，也找她核对。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0007",
+      "statement": "小林希望会员运营助手先帮忙整理需关注的会员、每条建议写清依据，减少重复整理核对；人群与执行方案仍需业务人员确认；不授权自动发券、联系会员、改记录",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：小林个人期望"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02947",
+          "quote": "我最希望它先帮我把需要关注的会员整理出来，每条建议都写清楚依据，省得我一遍遍重复整理和核对。人群怎么定、执行方案怎么走，还是得业务人员确认；自动发券、联系会员、改记录这些我没授权它做。"
+        },
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02949",
+          "quote": "为什么把这位会员列进来、依据的是哪些情况，让我能照着整理需要关注的会员，少一遍遍重复整理和核对。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0008",
+      "statement": "小林对上一个智能营销项目的说法：最后没人用，界面让操作又多了三步；但本人实际是否使用过表示说不准",
+      "kind": "fact",
+      "evidence_status": "conflicting",
+      "qualifiers": [
+        "陈述主体：小林",
+        "「没人用」「多三步」为本人说法，未提供依据；本人自用情况不确定"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02951",
+          "quote": "说实话，上一个项目最后没人用，那个界面让我们的操作又多了三步。我自己实际有没有用过，这场访谈里我说不准"
+        }
+      ],
+      "conflict_ids": [
+        "CONFLICT-001"
+      ],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0009",
+      "statement": "陈姐收到小林的活动安排后，一般先核对三件事：面向哪些会员、哪些门店参与、门店具体要做什么，随后向门店同事说明并确认人员与执行安排",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：陈姐（assistant=ROLE-CHEN）"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "642deab6-4d44-573e-b93f-39b6e8b0e24a",
+          "message_id": "MSG-02956",
+          "quote": "我一般先核对三件事：面向哪些会员、哪些门店参与、门店具体要做什么。核清楚后再跟门店同事说明，把人员和执行安排确认下来。"
+        },
+        {
+          "meeting_id": "642deab6-4d44-573e-b93f-39b6e8b0e24a",
+          "message_id": "MSG-02968",
+          "quote": "我一般先核对三件事：这项活动面向哪些会员、哪些门店参与、门店具体要做什么。核清楚适用范围，再跟顾客说明。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0010",
+      "statement": "陈姐的执行中处理：收集顾客问题和门店反馈，不清楚的找运营核对，结束后整理执行情况；活动安排和现场反馈平时跟小林对接",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：陈姐",
+        "具体反馈记录方式与发送渠道本人表示需按实际沟通记录核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "642deab6-4d44-573e-b93f-39b6e8b0e24a",
+          "message_id": "MSG-02956",
+          "quote": "执行过程中收集顾客问题和门店反馈，有不清楚的就找运营核对，结束后整理执行情况。活动安排和现场反馈这块，我平时就是跟小林对接。"
+        },
+        {
+          "meeting_id": "642deab6-4d44-573e-b93f-39b6e8b0e24a",
+          "message_id": "MSG-02964",
+          "quote": "具体怎么记、通过什么方式发给她，这项具体细节我不掌握，得按实际沟通记录核实。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0011",
+      "statement": "陈姐认为门店最犯难的是活动要求不清楚，门店需边接待顾客边来回找人确认；希望提前说清适用范围、门店要做的事、出问题找谁答",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：陈姐个人感受",
+        "本人明确未量化耽误时间与损失"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "642deab6-4d44-573e-b93f-39b6e8b0e24a",
+          "message_id": "MSG-02958",
+          "quote": "最犯难的是活动要求不清楚。门店一边接待顾客，一边还得来回找人确认，很耽误事。我希望把适用范围、门店要做的事、出了问题找谁答，都提前说清楚，少些反复沟通。不过这只是我自己的感受，具体耽误多少时间、造成多少损失，我没算过。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0012",
+      "statement": "顾客在线等时陈姐先让门店照常接待、核清适用范围并找运营确认后才向顾客说明；不能因线上看到就认定所有门店能执行",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：陈姐自述做法"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "642deab6-4d44-573e-b93f-39b6e8b0e24a",
+          "message_id": "MSG-02960",
+          "quote": "我一般先让门店同事照常接待，同时把活动适用范围核清楚，再找运营确认，确认后才跟顾客说明。不能因为线上看到了，就认定所有门店都能执行。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0013",
+      "statement": "若适用范围、门店具体要做多少、现场问题由谁答不清楚，陈姐会先要求澄清、不默认门店已接受；影响门店考核的安排需先调整再执行",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：陈姐"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "642deab6-4d44-573e-b93f-39b6e8b0e24a",
+          "message_id": "MSG-02960",
+          "quote": "要是适用范围、门店具体要做多少、现场问题由谁答这些还不清楚，我会先要求澄清，不默认门店已经接受。尤其会影响门店考核的安排，得先调整好再往下走。"
+        },
+        {
+          "meeting_id": "642deab6-4d44-573e-b93f-39b6e8b0e24a",
+          "message_id": "MSG-02962",
+          "quote": "碰到要求不清或者会影响门店考核的，我会先要求澄清、调整安排，不能默认门店已经接受。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0014",
+      "statement": "陈姐最担心线上安排下来门店考核受影响，活动要求不清导致门店边接待边找人确认、执行费劲；未量化",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：陈姐个人感受",
+        "本人明确没算过具体耽误与损失"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "642deab6-4d44-573e-b93f-39b6e8b0e24a",
+          "message_id": "MSG-02962",
+          "quote": "我最担心的是线上安排下来，门店这边的考核跟着受影响。比如活动要求不清楚，门店一边接待顾客、一边还得来回找人确认，执行起来费劲。这只是我自己的感受，具体耽误多少、损失多少我没算过。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0015",
+      "statement": "陈姐表示智能营销项目在门店的具体使用情况和结果不掌握，无法给出可确认说法",
+      "kind": "fact",
+      "evidence_status": "conflicting",
+      "qualifiers": [
+        "陈述主体：陈姐",
+        "本人明确区分日常做法与项目使用情况；项目使用情况未知"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "642deab6-4d44-573e-b93f-39b6e8b0e24a",
+          "message_id": "MSG-02966",
+          "quote": "上次那个智能营销项目在门店具体用得怎么样、结果如何，这项具体细节我不掌握，没法给你一个可确认的说法。前面聊的是门店平时接活动、执行和反馈的日常做法，不能拿来当那个项目的使用情况。"
+        }
+      ],
+      "conflict_ids": [
+        "CONFLICT-001"
+      ],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0016",
+      "statement": "老周最常遇到的问题：问题、数据范围、用途和需谁配合没说清；他先记下逐项核对，材料不够或口径对不上就退回继续确认，不先把系统数字当最终答案",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：老周（assistant=ROLE-ZHOU）自述做法"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02971",
+          "quote": "平时最常碰到的，是问题、数据范围、用途和需要谁配合没说清。我这边一般先把这些记下来逐项核对，材料不够或口径对不上，就退回具体问题继续确认，不会先把一个系统数字当最终答案。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0017",
+      "statement": "会员数据易对不上的几处：全量会员数与活跃会员不是同一口径；会员分付费会员卡与免费注册会员；订单分线上与门店渠道；优惠券分发放与核销两环节，发放记录不能替代核销记录",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：老周",
+        "经 MSG-02985 复述确认「没出入」",
+        "均为口径区分陈述，具体状态仍待核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02973",
+          "quote": "第一，全量会员数和活跃会员不是同一个口径，我这边说的 120 万是系统全量会员数，不能拿它当活跃会员数。第二，会员里既有付费会员卡，也有免费注册会员，描述会员时得把这两类分开。第三，订单涉及线上和门店渠道，谈订单范围要先说清看的是哪个渠道。第四，优惠券有发放和核销两个环节，发放记录不能替代核销记录"
+        },
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02985",
+          "quote": "120 万是系统全量会员数，不是活跃会员数；会员要分付费会员卡和免费注册会员；订单要分线上和门店渠道；券的发放记录不能当核销记录。这几条没出入。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0018",
+      "statement": "老周所说的 120 万是系统全量会员数，不能当活跃会员数；目前没有可确认的活跃会员统计",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：老周",
+        "120万数字未独立核实",
+        "活跃会员口径需按核查对象和用途对应实际记录确定"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02977",
+          "quote": "我这边说的 120 万是系统全量会员数，不是活跃会员数，这两个不能混着看。活跃会员具体按什么口径算，得先看你们要核查的对象和用途，再对应实际记录核实；目前我没有可以确认的活跃会员统计。"
+        },
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02973",
+          "quote": "我这边说的 120 万是系统全量会员数，不能拿它当活跃会员数"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0019",
+      "statement": "系统里有会员标签字段，但字段具体含义需结合实际填写方式继续核实；标签平时主要由谁维护老周不掌握",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：老周",
+        "标签含义与维护人属未知项"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02975",
+          "quote": "系统里确实有会员标签字段，但每个标签具体是什么意思，还得结合实际填写方式继续核实。至于平时主要由谁维护，这个我不掌握，不好替你推断，也不便直接指到某个人。"
+        },
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02985",
+          "quote": "标签字段的含义还得结合实际填写方式继续核实，平时主要由谁维护，我不掌握。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0020",
+      "statement": "老周对旧项目最头疼的是需求一直变，范围一变已核口径和取数可能返工；现在会先问清变化内容和用途",
+      "kind": "opinion",
+      "evidence_status": "conflicting",
+      "qualifiers": [
+        "陈述主体：老周",
+        "本人声明这是自己的观察，不是已核实的原因结论",
+        "具体哪些需求在变的历史细节本人不掌握"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02979",
+          "quote": "上次那个项目，我最头疼的是需求一直在变。范围一变，前面核过的口径和取数就可能得返工，所以我现在会先把变化内容和用途问清楚。这是我自己的观察，不是已经核实过的原因结论。"
+        },
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02985",
+          "quote": "上次项目需求一直在变，是我的观察，具体历史变更我不掌握。"
+        }
+      ],
+      "conflict_ids": [
+        "CONFLICT-001"
+      ],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0021",
+      "statement": "老周表示「复购率连续四个季度下滑」的计算口径需项目组核实，目前没有可确认的统计",
+      "kind": "fact",
+      "evidence_status": "conflicting",
+      "qualifiers": [
+        "陈述主体：老周",
+        "复购下滑判断的统计依据未核实",
+        "待取材料：核实问题、数据范围、用途、配合清单、对应统计说明或记录"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02983",
+          "quote": "复购率连续四个季度下滑这个判断，具体计算口径还得项目组核实，我目前没有可以确认的统计。"
+        },
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02985",
+          "quote": "活跃会员统计和复购下滑的计算依据，我目前也没有可以确认的统计。"
+        }
+      ],
+      "conflict_ids": [
+        "CONFLICT-002"
+      ],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0022",
+      "statement": "王经理判断投入主要看三块：业务要做什么、钱准备花在哪些地方、效果怎么说明；功能数量与财务效果分开看",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：王经理（assistant=ROLE-WANG）"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "00c3e9c2-eded-59e5-9618-223e33547eea",
+          "message_id": "MSG-02989",
+          "quote": "我主要看三块：业务要做什么、钱准备花在哪些地方、效果怎么说明。功能做了多少是一回事，财务上能说明什么效果是另一回事，这两样我会分开看。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0023",
+      "statement": "王经理要求的材料：试点范围说明、费用构成及依据、双方工作与责任草案、打算用什么记录说明效果；金额和指标未谈妥的列为待确认",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：王经理"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "00c3e9c2-eded-59e5-9618-223e33547eea",
+          "message_id": "MSG-02989",
+          "quote": "先看试点范围说明、费用构成及依据、双方工作与责任的草案，以及打算用什么记录说明效果。金额和指标还没谈妥的，明确列为待确认就行，不用先写成承诺。"
+        },
+        {
+          "meeting_id": "00c3e9c2-eded-59e5-9618-223e33547eea",
+          "message_id": "MSG-02993",
+          "quote": "按试点范围来列，费用构成要能看出钱花在哪些地方，并附上依据。金额还没谈妥的，先标成待确认，不用写成承诺。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0024",
+      "statement": "王经理的权限边界：能对预算和合同材料提核查意见，依据不充分或费用范围不清可要求补充、暂缓财务确认；但预算额度、签约、验收和续约不能凭访谈承诺，审批人和授权额度待另行核实",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：王经理",
+        "审批人与授权额度属待核实项"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "00c3e9c2-eded-59e5-9618-223e33547eea",
+          "message_id": "MSG-02989",
+          "quote": "我这边能对预算和合同材料提核查意见；依据不充分或费用范围没说清，我会要求补充、暂缓财务确认。预算额度、签约、验收和续约，我不能凭这次访谈替公司承诺，具体审批人和授权额度还要另行核实。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0025",
+      "statement": "王经理说的财务效果指能与投入费用对应、可量化、留下记录的效果，不是功能清单数量；具体指标和计算口径还没定",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：王经理",
+        "本人声明这是核查时看什么，不代表已认定某功能无效",
+        "指标与口径待双方谈定"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "00c3e9c2-eded-59e5-9618-223e33547eea",
+          "message_id": "MSG-02991",
+          "quote": "是指能和投入的费用对应起来、可以量化、并且留下记录的效果，不是列了多少功能。比如方案只给功能清单时，我会请业务方补充费用构成和效果记录方案；这说的是我核查时看什么，不代表我已经认定某项功能无效。具体指标和计算口径现在还没定，得双方谈清楚。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0026",
+      "statement": "沈总最希望先看到复购率止跌回升，希望三个月内看到进展，向董事会有交代；具体提升幅度和口径还没定",
+      "kind": "fact",
+      "evidence_status": "conflicting",
+      "qualifiers": [
+        "陈述主体：沈总（assistant=ROLE-SHEN）",
+        "提升幅度与口径待双方商定"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "13d28200-6062-5bad-b395-521b6888e56f",
+          "message_id": "MSG-02995",
+          "quote": "我最想先看到的是复购率止跌回升，这是这个项目要解决的核心问题。时间上，我希望三个月内能看到进展，董事会那边也需要有个交代。至于具体提升多少、按什么口径算，现在还没定，得双方谈下来。"
+        }
+      ],
+      "conflict_ids": [
+        "CONFLICT-002"
+      ],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0027",
+      "statement": "沈总安排：复购口径核对由老周牵头，运营侧小林配合，具体算法由项目组一起核实，沈总不替他们定",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：沈总对口径核对的牵头安排（访谈中提出，待确认落实）"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "13d28200-6062-5bad-b395-521b6888e56f",
+          "message_id": "MSG-02997",
+          "quote": "复购口径涉及系统和数据条件，这块得请老周牵头核对，运营侧让小林配合。具体怎么算，由项目组一起核实，我不替他们定。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0028",
+      "statement": "沈总希望三个月内看到阶段性进展，具体核对排期和出结果时间由老周牵头、小林配合来提",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：沈总"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "13d28200-6062-5bad-b395-521b6888e56f",
+          "message_id": "MSG-02999",
+          "quote": "我希望三个月内能看到阶段性进展，董事会那边也得有个交代。具体核对怎么排、什么时候出结果，得由老周牵头、小林配合来提，我不替他们定这个时间。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0029",
+      "statement": "沈总的叫停条件：业务问题、依据与待核项说不清；试点范围与配合没说法；几方对同一问题各说各话且无人讲清依据、说好谁补材料",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "陈述主体：沈总个人提出的条件，非已确立的正式规则"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "13d28200-6062-5bad-b395-521b6888e56f",
+          "message_id": "MSG-03001",
+          "quote": "一是要验证的业务问题、已有依据和待核项说不清楚；二是试点准备覆盖什么范围、需要谁配合都还没个说法；三是几方对同一个问题各说各的，又没人能讲清依据、说好下一步谁补材料。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0030",
+      "statement": "待核事项汇总：活跃会员统计口径、复购率四季度下滑的统计依据、Excel 具体内容、线上渠道对接人、标签含义与维护人，目前均未核实",
+      "kind": "question",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "来源：老周（标签、活跃会员、复购）、小林（Excel、线上渠道对接人）访谈表述",
+        "下一步取证：向老周提交核实问题、数据范围、用途、配合清单及对应统计记录；向小林索取脱敏现用表格；查标签字段实际填写方式"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02977",
+          "quote": "目前我没有可以确认的活跃会员统计。"
+        },
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02983",
+          "quote": "具体计算口径还得项目组核实，我目前没有可以确认的统计。"
+        },
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02937",
+          "quote": "至于平时具体记哪些内容，我现在没法逐项说准，得对着这份记录本身核对才行"
+        },
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02943",
+          "quote": "线上渠道具体对接谁，我这边没法确认。"
+        },
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02975",
+          "quote": "至于平时主要由谁维护，这个我不掌握，不好替你推断，也不便直接指到某个人。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0031",
+      "statement": "智能营销旧项目使用情况：小林称「最后没人用、界面多三步」但自用情况说不准，陈姐不掌握门店使用情况，老周只谈需求变化为个人观察——各角色说法来源不同，均未独立核实",
+      "kind": "question",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "来源：小林 MSG-02951、陈姐 MSG-02966、老周 MSG-02979",
+        "下一步取证：查询系统使用日志与项目交付记录，区分本人观察与他人使用情况"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "66d2d587-1306-5439-a562-cdf1c0632f4f",
+          "message_id": "MSG-02951",
+          "quote": "上一个项目最后没人用，那个界面让我们的操作又多了三步。我自己实际有没有用过，这场访谈里我说不准"
+        },
+        {
+          "meeting_id": "642deab6-4d44-573e-b93f-39b6e8b0e24a",
+          "message_id": "MSG-02966",
+          "quote": "上次那个智能营销项目在门店具体用得怎么样、结果如何，这项具体细节我不掌握"
+        },
+        {
+          "meeting_id": "ca570288-a0cc-5466-b798-0b7e88dc7b6a",
+          "message_id": "MSG-02979",
+          "quote": "这是我自己的观察，不是已经核实过的原因结论。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    }
+  ],
+  "conflicts": [
+    {
+      "id": "CONFLICT-001",
+      "claim_ids": [
+        "CLM-001-0008",
+        "CLM-001-0015",
+        "CLM-001-0020"
+      ],
+      "question": "智能营销旧项目的实际使用情况各说法不一：小林称「最后没人用、界面让操作多了三步」（本人自用情况说不准，未提供依据）；陈姐表示门店具体使用情况不掌握；老周只提「需求一直在变」且声明是个人观察。三者针对同一问题但内容与证据状态不同，需核实实际使用情况。",
+      "next_step": "查询系统使用日志与项目交付/验收记录，区分本人观察与他人使用情况；分别向小林、陈姐、老周确认其说法的信息来源，保留各自角色与证据状态。"
+    },
+    {
+      "id": "CONFLICT-002",
+      "claim_ids": [
+        "CLM-001-0026",
+        "CLM-001-0021"
+      ],
+      "question": "沈总将「复购率止跌回升」作为项目核心目标并期望三个月内见进展，但老周表示「复购率连续四个季度下滑」的计算口径需项目组核实、目前没有可确认的统计。目标的下滑前提与现有可确认统计之间存在口径与依据差异，需核实复购率下滑的实际统计依据。",
+      "next_step": "由老周牵头、小林配合（沈总 MSG-02997 的安排），向老周提交核实问题、数据范围、用途与配合清单，调取对应季度复购统计记录，明确计算口径后再与沈总商定提升幅度与口径。"
+    }
+  ]
+}
