@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "反馈收到：四条采用，合并链含三条边界。继续核查痛点与期望组。",
+    "tool_calls": [
+      {
+        "function": {
+          "arguments": "{\"claim_ids\":[\"CLM-001-0003\", \"CLM-001-0006\", \"CLM-001-0009\", \"CLM-001-0010\"]}",
+          "name": "show_evidence"
+        },
+        "id": "call_-7120674211873416427",
+        "index": 0,
+        "type": "function"
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 21926,
+    "completion_tokens": 195,
+    "total_tokens": 22121
+  }
+}
