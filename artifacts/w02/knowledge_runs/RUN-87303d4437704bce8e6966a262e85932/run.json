@@ -1,0 +1,91 @@
+{
+  "contract_version": "w02-natural-0.1.0",
+  "run_id": "RUN-87303d4437704bce8e6966a262e85932",
+  "stage": "context",
+  "scope_id": "qinghe",
+  "mode": "live",
+  "status": "succeeded",
+  "model": {
+    "provider": "api.z.ai",
+    "name": "glm-5.3-flash",
+    "adapter_version": "w02-natural-0.1.0"
+  },
+  "implementation": [
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/implementation/platform/fde_product/natural_knowledge.py",
+      "sha256": "35c51ae51efeac68a4c35420d0ae0b79c70a4af85edff84353a4413e4e8dcd40"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/implementation/platform/fde_product/knowledge_io.py",
+      "sha256": "bd317c47e8f8fb0ebfaebab2c4babc6b70f0479301249a1b2ca5e435811b051c"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/implementation/platform/fde_product/interview_extraction.py",
+      "sha256": "feccec4ac17206b68aaaa491d666ee3607581e820ec8fae2c9d0f1744b921df6"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/implementation/platform/fde_product/models.py",
+      "sha256": "17cac712394ede304b9d57f2c3adcf4cb5739bbd6264880efb9603bc5dacb223"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/implementation/platform/fde_product/agent.py",
+      "sha256": "2d3b397b3b54a0d9555c82777e5785e334d0fd0fa6d248f92211a4a1c87e9383"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/implementation/platform/fde_product/observability.py",
+      "sha256": "a7bfdbb457c5c069d78d6e296bb5ecfaff4fe4aafe25147cca9c8e85df1e7cd5"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/implementation/tools/w02_knowledge.py",
+      "sha256": "791375c450ba87926509812d220fb0d66a96c707b677a7474d9ee5f85a156a80"
+    }
+  ],
+  "configuration": [
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/source_manifest.json",
+      "sha256": "d7a4a3bef1f712997a44a4bcf07cd8c7ba00f5d61c15e0e03c98fdf94baffd75"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/settings.json",
+      "sha256": "3e8ca628f90c24795bd15cbc0dec57234c8501a07b96e1bd288f8796de448d4f"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/snapshot/docs/w02/business_model.md",
+      "sha256": "e97f45d154ec958af44e165a46e9370d69718a47ae0da328465bf9a5aabaa07e"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/snapshot/artifacts/w02/runs/RUN-a7f219c38c2e425f950212bc06f30b31/run.json",
+      "sha256": "fa76e48e0be54ebd3d0edc8f4cb5a0e4b6d78a9996c8678a2858a8d709a65caf"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/request.json",
+      "sha256": "f6bfe7e6fc42b124dff89b6ee142ee5e0392977c5ffdb397dbffea4b6874ea81"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/attempts.json",
+      "sha256": "89b32742bccf3242ccf8ac328c3076cef7ec2f6f2398655cae8d8316d404cf04"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/response.json",
+      "sha256": "2f1082dc1f09a4ab5a864fbe95db7382dbb21321d7136b88f935fcc55b6d5005"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/answer.json",
+      "sha256": "25e78ace8531fce0fd42cd405ed6a9d97d1de380acfb7edaea7ccf6bb77c9db7"
+    }
+  ],
+  "semantic_review": "needs_review",
+  "error": null,
+  "request": {
+    "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/request.json",
+    "sha256": "f6bfe7e6fc42b124dff89b6ee142ee5e0392977c5ffdb397dbffea4b6874ea81"
+  },
+  "response": {
+    "path": "artifacts/w02/knowledge_runs/RUN-87303d4437704bce8e6966a262e85932/response.json",
+    "sha256": "2f1082dc1f09a4ab5a864fbe95db7382dbb21321d7136b88f935fcc55b6d5005"
+  }
+}

@@ -17,7 +17,7 @@
 ## 怎样接到 W2
 
 1. 把 `artifacts/w01/` 下的两个文件和 `docs/w01/project_assessment.md` 复制到自己客户仓库的同名路径。
-2. W2 第 5 步需要修订 fit-gap 时，按 W1 任务书的做法，把 `product_fit_gap.xlsx` 另存为 `artifacts/w02/product_fit_gap.xlsx`，沿用原编号修改，再用 `--week w02` 转换。转换工具是 W1 材料包里的 `07_fit_gap_to_json.py`，复制到 W2 工程的 `tools/` 下即可运行。W1 的两个文件保持不动。
+2. W2 第 5 步需要修订 fit-gap 时，把 `artifacts/w01/product_fit_gap.json` 复制为 `artifacts/w02/product_fit_gap.json`，沿用原编号直接修改；W1 的原文件保留不动。
 3. 在 W2 的访谈与核查记录中写明：W1 起点采用了本参考答案，以及采用了哪些部分。
 
 ## 使用时注意
