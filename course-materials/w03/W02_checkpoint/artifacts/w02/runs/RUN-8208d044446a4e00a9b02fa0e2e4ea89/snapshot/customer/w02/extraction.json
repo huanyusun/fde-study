@@ -1,0 +1,24 @@
+{
+  "version": "w02-extractor-0.1.0",
+  "scope_id": "qinghe",
+  "sources": [
+    "artifacts/w02/sources/w02-zhou.json",
+    "artifacts/w02/sources/w02-lin.json",
+    "artifacts/w02/sources/w02-lin-2.json",
+    "artifacts/w02/sources/w02-chen.json",
+    "artifacts/w02/sources/w02-shen.json",
+    "artifacts/w02/sources/w02-wang.json"
+  ],
+  "prompt": "customer/w02/extraction_prompt.txt",
+  "focus_questions": [
+    "会员数有哪些说法：各是谁说的、指什么范围（系统全量、活跃会员或其他）、是否已经核实、下一步向谁核对？",
+    "会员、订单、优惠券、会员标签等业务对象各自要区分什么（付费会员卡与免费注册会员、线上与门店渠道、发放与核销），哪些含义还待核实？",
+    "老周、小林、陈姐、王经理、沈总各自实际负责什么、怎样开展工作、和谁协作，能自己决定什么、需要谁确认？",
+    "各角色对复购下滑原因和上一个项目问题的判断是什么，依据和限定是什么？",
+    "各角色希望助手做什么、不允许它自动做什么；数据接入、试点和预算核查前需要说清哪些条件和材料？"
+  ],
+  "batch_chars": 16000,
+  "max_batches": 24,
+  "reconcile_chars": 96000,
+  "profile": "compatible"
+}

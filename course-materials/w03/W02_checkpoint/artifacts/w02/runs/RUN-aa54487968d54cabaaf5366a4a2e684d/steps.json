@@ -1,0 +1,57 @@
+[
+  {
+    "phase": "extract",
+    "request": {
+      "path": "artifacts/w02/runs/RUN-aa54487968d54cabaaf5366a4a2e684d/step-001.request.json",
+      "sha256": "eeed5afed88f85426dae826e6e83e15905958259e374025db3f85f14177267a0"
+    },
+    "response": {
+      "path": "artifacts/w02/runs/RUN-aa54487968d54cabaaf5366a4a2e684d/step-001.response.json",
+      "sha256": "59c0c76f94c98e44371444d0a6a05daef93c1db00fb447d868c27c614c78e1dc"
+    }
+  },
+  {
+    "phase": "extract",
+    "request": {
+      "path": "artifacts/w02/runs/RUN-aa54487968d54cabaaf5366a4a2e684d/step-002.request.json",
+      "sha256": "fa982ee3bd8d5729827a41c7559e2bfa90b219e0c46497f4075c73f04bcd6482"
+    },
+    "response": {
+      "path": "artifacts/w02/runs/RUN-aa54487968d54cabaaf5366a4a2e684d/step-002.response.json",
+      "sha256": "7a594365c28babf5f82a79c74c38683f13aad7af0b9c72c5fe1843e6561e54ba"
+    }
+  },
+  {
+    "phase": "extract",
+    "request": {
+      "path": "artifacts/w02/runs/RUN-aa54487968d54cabaaf5366a4a2e684d/step-003.request.json",
+      "sha256": "ee6b721b95648fa2ea3c8aa88a984e963637d248ae8201e4770154a88a967d1c"
+    },
+    "response": {
+      "path": "artifacts/w02/runs/RUN-aa54487968d54cabaaf5366a4a2e684d/step-003.response.json",
+      "sha256": "3d5152fc68579e8b23ebf63eeedb61ad4e7c7b39ec2c9415248f7adec8c10b19"
+    }
+  },
+  {
+    "phase": "extract",
+    "request": {
+      "path": "artifacts/w02/runs/RUN-aa54487968d54cabaaf5366a4a2e684d/step-004.request.json",
+      "sha256": "84837efbc2ec02abc6bb0fb3095ed1ddc56c1339971a251f0fbb5b2e885d0b5b"
+    },
+    "response": {
+      "path": "artifacts/w02/runs/RUN-aa54487968d54cabaaf5366a4a2e684d/step-004.response.json",
+      "sha256": "04f6a8bb3db731fae1f9ca5d5b0524a89bcfb9c35439c968526d5d8558849851"
+    }
+  },
+  {
+    "phase": "conflicts",
+    "request": {
+      "path": "artifacts/w02/runs/RUN-aa54487968d54cabaaf5366a4a2e684d/step-005.request.json",
+      "sha256": "d5b12a7e6fa7ba0d8c7cb29dac9afbb6081a53a9bb6b475b020cb9c48ef164b4"
+    },
+    "response": {
+      "path": "artifacts/w02/runs/RUN-aa54487968d54cabaaf5366a4a2e684d/step-005.response.json",
+      "sha256": "2855e32e7457088e427b64053e34758f863a3a8f29580f4eb668ad52046adddb"
+    }
+  }
+]

@@ -29,7 +29,11 @@ def main():
     from fde_product.actions import ActionError
     try:
         model=CompatibleModel(timeout=90)
-        agent=Agent(home,model,mock_url=('http://127.0.0.1:'+str(mock.server_port)) if mock else os.getenv('FDE_MOCK_URL','http://127.0.0.1:8766'),mock_token=os.getenv('FDE_MOCK_TOKEN','training-demo-token'),role='operator' if args.actions else 'analyst')
+        agent_class=Agent;extension={}
+        if (home/'metrics-binding.json').exists():
+            from fde_product.metrics.integration import UpgradedAgent,active_project
+            agent_class=UpgradedAgent;extension={'metrics_project':active_project(home)}
+        agent=agent_class(home,model,**extension,mock_url=('http://127.0.0.1:'+str(mock.server_port)) if mock else os.getenv('FDE_MOCK_URL','http://127.0.0.1:8766'),mock_token=os.getenv('FDE_MOCK_TOKEN','training-demo-token'),role='operator' if args.actions else 'analyst')
         if args.command in ('serve','start'):
             from fde_product.web import serve
             serve(agent,args.port if args.port is not None else 8765,args.actions)

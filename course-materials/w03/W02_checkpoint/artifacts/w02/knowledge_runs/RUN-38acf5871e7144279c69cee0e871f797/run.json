@@ -1,0 +1,91 @@
+{
+  "contract_version": "w02-natural-0.1.0",
+  "run_id": "RUN-38acf5871e7144279c69cee0e871f797",
+  "stage": "context",
+  "scope_id": "qinghe",
+  "mode": "live",
+  "status": "succeeded",
+  "model": {
+    "provider": "course-gateway",
+    "name": "deepseek-v4.1-flash-1017-baidu",
+    "adapter_version": "w02-natural-0.1.0"
+  },
+  "implementation": [
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/implementation/platform/fde_product/natural_knowledge.py",
+      "sha256": "35c51ae51efeac68a4c35420d0ae0b79c70a4af85edff84353a4413e4e8dcd40"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/implementation/platform/fde_product/knowledge_io.py",
+      "sha256": "bd317c47e8f8fb0ebfaebab2c4babc6b70f0479301249a1b2ca5e435811b051c"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/implementation/platform/fde_product/interview_extraction.py",
+      "sha256": "5c4d649d0d83558cc9ddd071496efddd6b501437b46ebc9ffc9b71cf3bc13fee"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/implementation/platform/fde_product/models.py",
+      "sha256": "17cac712394ede304b9d57f2c3adcf4cb5739bbd6264880efb9603bc5dacb223"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/implementation/platform/fde_product/agent.py",
+      "sha256": "2d3b397b3b54a0d9555c82777e5785e334d0fd0fa6d248f92211a4a1c87e9383"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/implementation/platform/fde_product/observability.py",
+      "sha256": "a7bfdbb457c5c069d78d6e296bb5ecfaff4fe4aafe25147cca9c8e85df1e7cd5"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/implementation/tools/w02_knowledge.py",
+      "sha256": "791375c450ba87926509812d220fb0d66a96c707b677a7474d9ee5f85a156a80"
+    }
+  ],
+  "configuration": [
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/source_manifest.json",
+      "sha256": "d099e84bd28e0a49322451eea1b9b10177e2906501316d41f3067de2d404554e"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/settings.json",
+      "sha256": "952a3889c041e91792fa82e893df76a67e68129de7c1f24f4a15624601260699"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/snapshot/docs/w02/business_model.md",
+      "sha256": "f92a9d22780a8545d34286421d07806c6eba8a5a35ad682b52709c33c3f99f3a"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/snapshot/artifacts/w02/runs/RUN-a064dbb41d7e468b9f6c35f590fa4407/run.json",
+      "sha256": "e0ee842b0a16662ac98f697fc51e9568ab2a050313beff3a0563e40083352fcd"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/request.json",
+      "sha256": "94764aaabe5adb42597d35684b970d2fba5bccfc3abf2df1134df090811c1671"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/attempts.json",
+      "sha256": "9763506b5ea0a2d77ecd6a5d316cf3f23a213e4c3f5a1451f9b5a5a6dbb996f4"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/response.json",
+      "sha256": "ebd9baa72427750ebfb5000e2518cf51f48eb83d9c2c7b0ac8a1f6feb74800d7"
+    },
+    {
+      "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/answer.json",
+      "sha256": "c9d3a4e992f83db9fa17c3e6a676979cbe2e10a3d4e4b44ef62b9ed568ef87d9"
+    }
+  ],
+  "semantic_review": "needs_review",
+  "error": null,
+  "request": {
+    "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/request.json",
+    "sha256": "94764aaabe5adb42597d35684b970d2fba5bccfc3abf2df1134df090811c1671"
+  },
+  "response": {
+    "path": "artifacts/w02/knowledge_runs/RUN-38acf5871e7144279c69cee0e871f797/response.json",
+    "sha256": "ebd9baa72427750ebfb5000e2518cf51f48eb83d9c2c7b0ac8a1f6feb74800d7"
+  }
+}

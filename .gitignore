@@ -15,3 +15,10 @@ lectures/**/*.pdf
 
 # 系统
 .DS_Store
+
+# W03 本地课程归档与规模数据
+materials/data/large/
+course-materials/w03/**/*.zip
+lectures/**/*.zip
+lectures/**/*.ppt
+lectures/**/*.pptx

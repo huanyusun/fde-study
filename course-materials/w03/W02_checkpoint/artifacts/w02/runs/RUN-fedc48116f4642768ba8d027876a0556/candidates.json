@@ -1,0 +1,2509 @@
+{
+  "contract_version": "w02-0.1.0-draft",
+  "artifact_id": "FACTS-RUN-fedc48116f4642768ba8d027876a0556",
+  "revision": 1,
+  "scope_id": "qinghe",
+  "origin_run": {
+    "run_id": "RUN-fedc48116f4642768ba8d027876a0556",
+    "path": "artifacts/w02/runs/RUN-fedc48116f4642768ba8d027876a0556/run.json"
+  },
+  "sources": [
+    {
+      "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+      "file": {
+        "path": "artifacts/w02/runs/RUN-fedc48116f4642768ba8d027876a0556/snapshot/artifacts/w02/sources/w02-zhou.json",
+        "sha256": "c38beadb28b1a44a13282f0d1689ae71ab9d10f095aece18656cdc9c10bdc3ce"
+      }
+    },
+    {
+      "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+      "file": {
+        "path": "artifacts/w02/runs/RUN-fedc48116f4642768ba8d027876a0556/snapshot/artifacts/w02/sources/w02-lin.json",
+        "sha256": "2aa24c8d6ae8cf68a730a03725ae0e7120ea08154d209e7717249459e80a383f"
+      }
+    },
+    {
+      "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+      "file": {
+        "path": "artifacts/w02/runs/RUN-fedc48116f4642768ba8d027876a0556/snapshot/artifacts/w02/sources/w02-lin-2.json",
+        "sha256": "f7933b4d7c6a5fbab897cb3c9316e307a38ae17a69988646b5632883022e58a5"
+      }
+    },
+    {
+      "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+      "file": {
+        "path": "artifacts/w02/runs/RUN-fedc48116f4642768ba8d027876a0556/snapshot/artifacts/w02/sources/w02-chen.json",
+        "sha256": "8510983b2adbd0de3f95d7f7e6c94216166e2fc4f1d0066344e7a69d2c5acc9f"
+      }
+    },
+    {
+      "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+      "file": {
+        "path": "artifacts/w02/runs/RUN-fedc48116f4642768ba8d027876a0556/snapshot/artifacts/w02/sources/w02-shen.json",
+        "sha256": "8432d437f8d1f4c161c98e636580dbca1994fc5f1f0feab84a5f33abd52ae533"
+      }
+    },
+    {
+      "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+      "file": {
+        "path": "artifacts/w02/runs/RUN-fedc48116f4642768ba8d027876a0556/snapshot/artifacts/w02/sources/w02-wang.json",
+        "sha256": "7ce5bd33b30cbad2e0873992a29ab08cdbc3c68177c5860fd049f13ae970d038"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "CLM-001-0001",
+      "statement": "老周表示，他这边系统里的全量会员数是120万，这个数和活跃会员不是同一个口径。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "口径为系统全量会员数，不是活跃会员口径",
+        "120万是否按付费会员卡与免费注册会员分开统计、统计用哪个时间范围，尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00003",
+          "quote": "我这边系统里的全量会员数是120万，这个数和活跃会员不是同一个口径。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0002",
+      "statement": "老周表示，访谈者转述的沈总所说的80万活跃会员，他不能直接确认是不是和自己系统里的会员数同一个范围，尚未核实。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "复述访谈者问题中的说法，原说法见沈总会议",
+        "下一步：先说明核查对象和用途，再由他和运营一起确认会员范围，核对系统统计用的范围、时间和统计说明"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00003",
+          "quote": "沈总说的80万活跃会员，我这边不能直接确认是不是同一个范围"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0003",
+      "statement": "老周表示，会员体系里既有付费会员卡，也有免费注册会员，描述会员时这两类要分清。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "未说明付费会员卡和免费注册会员各自的人数"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00005",
+          "quote": "会员体系里既有付费会员卡，也有免费注册会员，描述会员时这两类要分清。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0004",
+      "statement": "老周表示，这120万是否按付费会员卡和免费注册会员分开统计、统计用的是哪个时间范围，他目前还没核实，不能确认。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "下一步由他和运营一起核对系统统计用的范围、时间和统计说明"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00005",
+          "quote": "不过，这 120 万是否按这两类分开统计、统计用的是哪个时间范围，我目前还没核实，不能给你确认。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0005",
+      "statement": "老周表示，要核查会员口径，得先跟他说清楚核查对象和用途，他再和运营一起确认所说的会员范围，核对系统统计用的范围、时间和统计说明。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "这是配合核查的前置说明与协作步骤，不代表数据已经交付，也不代表人数已经核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00003",
+          "quote": "要核实的话，可以先跟我说清楚核查对象和用途，我再和运营一起确认她说的会员范围，核对系统统计用的范围、时间和统计说明。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0006",
+      "statement": "老周表示，订单涉及线上和门店两类渠道，谈订单范围或复购时，得先说清楚看的是哪个渠道。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "只说到线上与门店两类渠道，未细分线上商城、小程序"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00007",
+          "quote": "订单这块涉及线上和门店两类渠道，谈订单范围或复购时，得先说清楚看的是哪个渠道。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0007",
+      "statement": "老周表示，线上商城、小程序和门店订单在系统里具体怎么区分，他现在说不准，得按实际系统记录核实过才能确认。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "下一步按实际系统记录核实渠道区分方式"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00007",
+          "quote": "至于线上商城、小程序和门店订单在系统里具体怎么区分，我现在说不准，得按实际系统记录核实过才能确认。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0008",
+      "statement": "老周表示，优惠券在系统里分发放和核销两个环节，是两条记录，发放记录不能当核销记录用。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "具体状态和统计口径他还要核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00009",
+          "quote": "优惠券这块，系统里分发放和核销两个环节，是两条记录。发放记录不能当核销记录用"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0009",
+      "statement": "老周表示，优惠券发放和核销的具体状态和统计口径，他这边还得核实。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "下一步核实优惠券发放与核销的状态和统计口径"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00009",
+          "quote": "具体状态和统计口径我这边还得核实。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0010",
+      "statement": "老周表示，会员标签系统里是有的，但每个标签字段到底代表什么，得结合实际填写方式再看，现在还不能说准。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "下一步结合标签的实际填写方式核实字段含义"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00009",
+          "quote": "会员标签系统里是有的，但每个标签字段到底代表什么，得结合实际填写方式再看，现在还不能给你说准。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0011",
+      "statement": "老周表示，复购率连续四个季度下滑这件事他知道，但具体怎么算还需要项目组核实，他不能拿一个数就当定论。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "下滑说法源自访谈者提问的前提，本人只确认知道这件事",
+        "复购率的算法待项目组核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00011",
+          "quote": "复购率连续四个季度下滑，这事我知道；但具体怎么算，还需要项目组核实，我这边不能拿一个数就当定论。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0012",
+      "statement": "老周个人判断，复购下滑的主要原因是运营做得不够精细；他说这只是个人看法、还需要核实，说不清这个判断是怎么来的，也没有从统计记录里得出的依据。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人判断，未核实",
+        "本人表示说不清判断依据，没有从统计记录得出的依据",
+        "真正原因还得结合统计记录去核，他目前没有能确认的结论"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00011",
+          "quote": "要说主要原因，这是我个人的判断：运营做得不够精细。这只是我的看法，还需要核实。这个判断是怎么来的，我现在说不清楚，也没有从统计记录里得出的依据。真正的原因还得结合统计记录去核，我目前没有能确认的结论。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0013",
+      "statement": "老周表示，上一个智能营销项目，他看出的问题是需求一直在变；项目里具体哪天、怎么操作、结果如何，他现在说不准，需要查过记录再确认。",
+      "kind": "opinion",
+      "evidence_status": "conflicting",
+      "qualifiers": [
+        "本人判断，未核实",
+        "具体时间、操作和结果尚未核实，需查记录"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00013",
+          "quote": "上一个项目，我看到的问题是需求一直在变。"
+        },
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00013",
+          "quote": "项目里具体哪天、怎么操作、结果如何，我现在说不准，需要查过记录再确认。"
+        }
+      ],
+      "conflict_ids": [
+        "CONFLICT-002"
+      ],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0014",
+      "statement": "老周举了一个用来说明协作方式的场景：原本只核实一种会员范围，后来核查范围改了，他会要求先说清变化内容和用途，再确认技术上要补什么；他强调这只是例子，不是某次事故，也不是复购下滑的原因证据。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人明确限定为说明配合方式的例子，不是事故，也不是复购下滑的原因证据",
+        "照原意保留这层限定，不当作原因判断或已发生事件"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00013",
+          "quote": "举个用来说明协作方式的场景：原本只核实一种会员范围，后来核查范围改了，我会要求先说清变化内容和用途，再确认技术上要补什么。这只是我拿来说明配合方式的例子，不是某次事故，也不是复购下滑的原因证据。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0015",
+      "statement": "老周表示，要把会员运营助手接到青禾数据上，接入前得先说清楚：要核实的具体问题是什么、准备用哪些数据、数据拿来做什么、需要谁配合，以及安全上怎么保证、责任怎么分；说明白了，他才能判断取数或接入需要什么条件。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "这是接入前的说明条件，不代表已批准接入或数据已交付"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00015",
+          "quote": "接入前，你们得先把这几件事说清楚：要核实的具体问题是什么、准备用哪些数据、数据拿来做什么、需要谁配合，以及安全上怎么保证、责任怎么分。这些说明白了，我才能判断取数或接入需要什么条件。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0016",
+      "statement": "老周表示，如果安全要求、数据用途或责任没讲清楚，他会要求先暂缓技术接入，补齐后再评估。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人可以要求暂缓技术接入，补齐后再评估",
+        "本次访谈中没有实际作出暂缓决定，也没有接到相关批准"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00015",
+          "quote": "如果安全要求、数据用途或责任没讲清楚，我会要求先暂缓技术接入，补齐后再评估。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-001-0017",
+      "statement": "老周表示，前面说的核查步骤只是配合核对，不代表数据已经交付。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对交付状态的明确限定"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00015",
+          "quote": "前面说的核查步骤只是配合核对，不代表数据已经交付。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0018",
+      "statement": "老周表示，自己能安排的是他负责的技术核查工作，以及提出接入条件。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对职责范围的陈述；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00017",
+          "quote": "我能自己安排的是我负责的技术核查工作，以及提出接入条件。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0019",
+      "statement": "老周表示，安全要求、数据用途或责任没讲清楚时，他可以要求先暂缓技术接入，补齐后再评估。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对授权边界的陈述；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00017",
+          "quote": "安全要求、数据用途或责任没讲清楚时，我可以要求先暂缓技术接入，补齐后再评估。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0020",
+      "statement": "老周表示，运营上的事找小林，门店情况找陈姐，预算和合同要王经理参与。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对协作确认对象的陈述；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00017",
+          "quote": "需要别人确认的：运营上的事找小林，门店情况找陈姐，预算和合同要王经理参与。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0021",
+      "statement": "老周表示，他不能替业务确定效果口径。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对职责限制的陈述；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00017",
+          "quote": "我不能替业务确定效果口径、批准活动费用或代公司签合同"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0022",
+      "statement": "老周表示，他不能批准活动费用。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对职责限制的陈述；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00017",
+          "quote": "我不能替业务确定效果口径、批准活动费用或代公司签合同"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0023",
+      "statement": "老周表示，他不能代公司签合同。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对职责限制的陈述；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00017",
+          "quote": "我不能替业务确定效果口径、批准活动费用或代公司签合同"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0024",
+      "statement": "老周表示，这次访谈中没有批准具体的数据权限。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "“这次访谈”限定；本人陈述；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00017",
+          "quote": "这次访谈里我也没有批准具体的数据权限。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0025",
+      "statement": "老周表示，120 万是他这边系统里的全量会员数，和活跃会员不是同一个口径；该数的实际范围尚未核实。",
+      "kind": "fact",
+      "evidence_status": "conflicting",
+      "qualifiers": [
+        "数字口径：老周系统的全量会员数；与活跃会员非同一口径；该数实际范围尚未核实；下一步与运营确认会员范围并核对系统统计用的范围、时间和统计说明"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00019",
+          "quote": "120 万是我这边系统里的全量会员数，和活跃会员不是同一个口径；"
+        }
+      ],
+      "conflict_ids": [
+        "CONFLICT-001"
+      ],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0026",
+      "statement": "老周表示，80 万是沈总所说的活跃会员；他目前不判断这个数对不对，因为它的实际范围和统计说明还没核实。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "沈总说法见老周陈述；本人表示尚未核实；下一步向小林核对会员范围、统计方法和统计说明"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00019",
+          "quote": "80 万是沈总说的活跃会员，这两个数各自的实际范围现在都还没核实。"
+        },
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00021",
+          "quote": "80 万活跃会员这个数对不对，我目前不判断，因为它的实际范围和统计说明还没核实。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0027",
+      "statement": "老周表示，下一步核查需带具体问题、准备使用的数据范围、用途，以及需要谁配合的清单；有疑点还要带对应记录或统计说明。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人提出的核查条件；尚未核实；不代表数据已经交付或人数已经核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00019",
+          "quote": "下一步你们来，带这几样：要核实的具体问题、准备使用的数据范围、用途，以及需要谁配合的清单。有疑点的话，把对应记录或统计说明一起带来，方便逐项核对。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0028",
+      "statement": "老周表示，运营应先说明她说的会员范围、这个数怎么统计和统计说明；他拿到后会和运营一起确认范围，再核对系统统计用的范围、时间和统计说明。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人提出的配合核查步骤；不代表数据已经交付或人数已经核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "26acbf27-eeb1-5cf4-8610-bc5f80a7045e",
+          "message_id": "MSG-00019",
+          "quote": "运营那边，先请她说明她说的会员范围，以及这个数是怎么统计的、统计说明是什么。我拿到后会和运营一起确认范围，再核对系统统计用的范围、时间和统计说明。这是配合核查的步骤，不代表数据已经交付或人数已经核实。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0029",
+      "statement": "小林表示，他主要负责整理会员运营任务、准备活动安排，协调线上和门店执行，跟进进度、收集反馈。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对职责范围的陈述；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00024",
+          "quote": "我主要负责整理会员运营任务、准备活动安排，协调线上和门店执行，跟进进度、收集反馈。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0030",
+      "statement": "小林表示，这些日常安排和问题整理他能自己来，运营建议也会提。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对可自行安排事项的陈述；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00024",
+          "quote": "这些日常安排和问题整理我能自己来，运营建议也会提。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0031",
+      "statement": "小林表示，活动费用、跨部门资源、项目验收和合同不是他一个人说了算，得找相应负责人确认。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对需别人确认事项的陈述；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00024",
+          "quote": "但活动费用、跨部门资源、项目验收和合同这些，不是我一个人说了算，得找相应负责人确认。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0032",
+      "statement": "小林表示，系统管理和全公司数据口径也不是他一个人能定的。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对不能自行决定事项的陈述；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00024",
+          "quote": "系统管理和全公司数据口径也不是我一个人能定的。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0033",
+      "statement": "小林表示，他通常先看没做完的运营任务和反馈，明确这次面向哪些会员、准备做什么，再和相关同事确认线上或门店的执行安排。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对通常做法的陈述，不指某一次；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00026",
+          "quote": "我通常先看没做完的运营任务和反馈，明确这次面向哪些会员、准备做什么，再和相关同事确认线上或门店的执行安排。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0034",
+      "statement": "小林表示，执行时记录进度和问题，结束后整理反馈，以及还需要核实的效果信息。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对通常做法的陈述，不指某一次；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00026",
+          "quote": "执行时记录进度和问题，结束后整理反馈，以及还需要核实的效果信息。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0035",
+      "statement": "小林表示，他经手会员优惠券活动，但只能按这类活动的通常做法讲，不能把哪一次当成现成例子；具体某次的面向人群、日期和效果数字都得查对应记录。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人明确限定：只能按通常做法讲，不能指某一次；具体某次信息需查记录；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00028",
+          "quote": "会员优惠券活动我确实经手，不过只能按这类活动的通常做法讲，不能把哪一次当成现成例子；具体某次的面向人群、日期和效果数字，都得查对应记录。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0036",
+      "statement": "小林表示，优惠券活动做法上先明确这次面向哪类会员、准备做什么，再和相关同事确认执行方式和协作分工，人群和执行方案最后还要业务人员确认。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对通常做法的陈述；人群和执行方案需业务人员确认；尚未核实是否已确认"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00028",
+          "quote": "做法上，先明确这次面向哪类会员、准备做什么，再和相关同事确认执行方式和协作分工，人群和执行方案最后还要业务人员确认。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0037",
+      "statement": "小林表示，之后跟进发放情况和使用反馈，收尾时整理结果和还没核实的问题。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对通常做法的陈述，不指某一次；尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00028",
+          "quote": "之后跟进发放情况和使用反馈，收尾时整理结果和还没核实的问题。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0038",
+      "statement": "小林表示，发放和核销是两个环节，发放记录替代不了核销记录。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对业务环节的陈述；具体状态和口径尚未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00028",
+          "quote": "发放和核销是两个环节，发放记录替代不了核销记录，具体状态和口径也得核。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0039",
+      "statement": "小林表示，优惠券发放和核销的具体状态和口径还得核，尚未核实。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "本人表示尚未核实；下一步查对应发放、核销记录"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00028",
+          "quote": "发放和核销是两个环节，发放记录替代不了核销记录，具体状态和口径也得核。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-002-0040",
+      "statement": "小林表示，他希望这次能少一点重复操作。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人希望／目标；未核实；未说明具体指哪些操作"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00022",
+          "quote": "我希望这次能少一点重复操作。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0041",
+      "statement": "小林（会员运营经理）表示，除优惠券活动外，自己还经手会员权益说明。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人陈述",
+        "未说明具体次数或效果"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00030",
+          "quote": "除了优惠券活动，我还经手会员权益说明，以及面向一段时间没购买的会员做回访。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0042",
+      "statement": "小林（会员运营经理）表示，会员权益说明主要是把会员能享受什么、怎么用讲清楚，针对的是会员对权益不清楚、需要解释的情况。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对工作内容的说明"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00030",
+          "quote": "权益说明主要是把会员能享受什么、怎么用讲清楚，针对的是会员对权益不清楚、需要解释的情况。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0043",
+      "statement": "小林（会员运营经理）表示，自己会面向一段时间没购买的会员做回访，了解他们的情况和反馈。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对工作内容的说明"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00030",
+          "quote": "回访则是针对一段时间没来购买的会员，了解他们的情况和反馈。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0044",
+      "statement": "小林（会员运营经理）表示，具体哪次做了多少、效果怎样尚未核实，需看相应记录。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "本人未提供次数、数量或效果数据",
+        "下一步查相应执行记录"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00030",
+          "quote": "具体哪次做了多少、效果怎样，得看相应记录。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0045",
+      "statement": "小林（会员运营经理）认为，自己工作中最费力的是整理名单和执行记录、找同事确认对不上的信息，以及反复跟进进度。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人判断",
+        "未量化耗时",
+        "依据为本人日常运营工作感受"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00032",
+          "quote": "最费力的是整理名单和执行记录、找同事确认对不上的信息，还有反复跟进进度。"
+        },
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00049",
+          "quote": "从我自己的运营工作看，比较费力的是整理名单和执行记录、找同事确认对不上的信息，还有反复跟进进度。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0046",
+      "statement": "小林（会员运营经理）表示，具体花多少时间自己没有量过，给不出时间数字。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "本人未量化",
+        "下一步可查工作记录或另行计时"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00032",
+          "quote": "具体花多少时间我没量过，给不出时间数字。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0047",
+      "statement": "小林（会员运营经理）表示，自己说的“会员”要先分付费会员卡和免费注册会员，做名单时这两类不能混在一起说。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对术语的区分",
+        "原文限定为做名单场景"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00035",
+          "quote": "我说的“会员”得先分清楚：一种是付费会员卡，一种是免费注册会员，做名单时这两类不能混在一起说。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0048",
+      "statement": "小林（会员运营经理）表示，自己做名单时不直接拿活跃会员数或系统全量来当范围，而是看这次任务面向哪类会员、要做什么，再定这次圈哪部分人。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人当前做法",
+        "未说明具体任务实例"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00035",
+          "quote": "名单范围我不直接拿活跃会员数或系统全量来当，而是看这次任务面向哪类会员、要做什么，再定这次圈哪部分人。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0049",
+      "statement": "小林（会员运营经理）表示，访谈中提到的“80万活跃会员”和“120万系统全量”两个数各自怎么算、统计到哪一步，自己目前没法确认，得核实。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "复述访谈者问题中的说法，原说法见对方会议",
+        "访谈者问题提到沈总与IT方面的数；本人未核实",
+        "下一步系统全量可向老周核对；全公司数据口径非本人一人能定"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00035",
+          "quote": "80万活跃会员和120万系统全量这两个数，各自怎么算、统计到哪一步，我目前没法确认，得核实。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0050",
+      "statement": "小林（会员运营经理）表示，系统全量这块可以问老周。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人建议的核对方向",
+        "待向老周核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00035",
+          "quote": "系统全量这块可以问老周；全公司数据口径也不是我一个人能定的。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0051",
+      "statement": "小林（会员运营经理）表示，全公司数据口径不是自己一个人能定的。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对授权边界的说明",
+        "未说明需谁共同确定"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "bc373546-f8fe-55a1-82c7-6dc1a2cfaa1c",
+          "message_id": "MSG-00035",
+          "quote": "全公司数据口径也不是我一个人能定的。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0052",
+      "statement": "小林（会员运营经理）希望助手先帮自己把需要关注的会员整理出来，并把建议的依据讲清楚，以减少反复整理名单、核对不一致信息的时间。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人期望",
+        "未试点，未量化能省多少时间"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00047",
+          "quote": "我最希望它先帮我把需要关注的会员整理出来，并且把建议的依据讲清楚，这样我能少花些时间反复整理名单、核对不一致的信息。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0053",
+      "statement": "小林（会员运营经理）表示，人群和执行方案还是得由业务人员确认。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对职责边界的说明",
+        "未说明具体由哪位业务人员确认"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00047",
+          "quote": "人群和执行方案还是得由业务人员确认"
+        },
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00051",
+          "quote": "人群和执行方案还是得由业务人员确认"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0054",
+      "statement": "小林（会员运营经理）表示，自己没有授权助手自动发券、联系会员或修改记录。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对授权边界的说明",
+        "明确不能由助手自动执行"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00047",
+          "quote": "我没有授权它自动发券、联系会员或修改记录。"
+        },
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00051",
+          "quote": "我没有授权它自动发券、联系会员或修改记录。"
+        },
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00053",
+          "quote": "它不能自己发券、联系会员或改记录。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0055",
+      "statement": "小林（会员运营经理）表示，复购率连续四个季度在下滑这个情况自己看到了。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人看到该情况",
+        "具体算法与统计尚未核实，本人手上没有能确认的统计"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00049",
+          "quote": "复购率确实连续四个季度在下滑，这个情况我这边是看到的；"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0056",
+      "statement": "小林（会员运营经理）表示，复购率具体怎么算还得项目组核实，自己手上没有能确认的统计。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "本人未核实统计口径",
+        "下一步由项目组核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00049",
+          "quote": "不过具体怎么算的，还得项目组核实，我手上没有能确认的统计。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0057",
+      "statement": "小林（会员运营经理）表示，自己不能直接说整理名单、核对信息、跟进进度这些工作就是复购下滑的原因。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人明确限定，未把上述工作当作原因判断",
+        "原因尚待核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00049",
+          "quote": "这些我确实觉得麻烦，但没量过具体花多少时间，也不能直接说它就是复购下滑的原因。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0058",
+      "statement": "小林（会员运营经理）表示，复购下滑核实后的原因和统计还得再补查。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "本人未给出核实后的原因或统计",
+        "下一步由项目组补查"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00049",
+          "quote": "核实后的原因和统计，还得再补查。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0059",
+      "statement": "小林（会员运营经理）表示，费用和跨部门资源得找相应负责人确认授权。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对协作与授权路径的说明",
+        "未点名具体负责人"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00051",
+          "quote": "费用和跨部门资源，得找相应负责人确认授权；"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0060",
+      "statement": "小林（会员运营经理）表示，预算和合同这块要王经理参与。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对协作对象的说明",
+        "具体参与方式待王经理确认"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00051",
+          "quote": "预算和合同这块要王经理参与。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0061",
+      "statement": "小林（会员运营经理）表示，判断助手是否真的减轻了工作，会看它是否真能先整理需要关注的会员、把建议依据讲清楚，并让自己少花时间反复整理名单、核对对不上的信息、跟进进度。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人给出的判断标准",
+        "未试点，未量化"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00053",
+          "quote": "我会看它是不是真能先帮我把需要关注的会员整理出来，把建议依据讲清楚，让我少花时间反复整理名单、核对对不上的信息、跟进进度。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-003-0062",
+      "statement": "小林（会员运营经理）表示，具体能省多少时间自己没有量过，现在也说不出已经见效。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "本人未量化",
+        "未试点或未看到见效证据"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "6442ee9a-2ea0-5f77-8c41-d90f0276ab9e",
+          "message_id": "MSG-00053",
+          "quote": "具体能省多少时间我没量过，现在也说不出已经见效。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-004-0063",
+      "statement": "陈姐表示自己是青禾优选的大区门店店长，门店这边的工作和考核问题都可以找她聊。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "角色自述"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00038",
+          "quote": "我是青禾优选的大区门店店长，门店这边的工作和考核问题都可以找我聊。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-004-0064",
+      "statement": "陈姐表示会员方面她负责安排和跟进：让门店同事了解活动、把权益说明白，接待会员咨询，配合会员注册和活动执行，现场碰到的问题再反馈给运营。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "职责自述"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00038",
+          "quote": "会员这块，我负责安排和跟进：让门店同事了解活动、把权益说明白，接待会员咨询，配合会员注册和活动执行，现场碰到的问题再反馈给运营。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-004-0065",
+      "statement": "陈姐表示收到活动安排后，她一般先核对三件事：这项活动面向哪些会员、哪些门店参与、门店具体要做什么；核对清楚后再向门店同事说明并确认人员和执行安排，执行中收集顾客问题和门店反馈、不清楚的找运营核对，活动结束后整理执行情况。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "描述其通常做法"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00040",
+          "quote": "收到活动安排后，我一般先核对三件事：这项活动面向哪些会员、哪些门店参与、门店具体要做什么。核对清楚后，我再向门店同事说明，把人员和执行安排确认下来。\n\n执行过程中，我会收集顾客的问题和门店的反馈；有不清楚的地方，就找运营核对。活动结束后，再整理执行情况。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-004-0066",
+      "statement": "陈姐表示她和小林对接活动安排和现场反馈。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "协作关系自述"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00042",
+          "quote": "我和小林对接活动安排和现场反馈。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-004-0067",
+      "statement": "陈姐表示会员拿着线上活动来门店问能不能参加时，她先核对活动适用范围再给会员说明；不能只因为线上看到了，就认定所有门店都能执行。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "描述其处理方式"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00042",
+          "quote": "会员拿着线上活动来门店问能不能参加，我们先核对活动适用范围，再给会员说明；不能只因为在线上看到了，就认定所有门店都能执行。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-004-0068",
+      "statement": "陈姐认为执行会员活动最费力的是活动要求不清楚的时候，门店一边接待顾客一边还得来回找人确认，很耽误事；她希望把活动适用范围、门店具体要做什么、有问题找谁答这三件事说清楚。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人感受",
+        "本人说没算过具体耗时，也没统计过业务损失",
+        "未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00044",
+          "quote": "最费力的是活动要求不清楚的时候。门店一边要接待顾客，一边还得来回找人确认，很耽误事。我希望把三件事说清楚：活动适用范围、门店具体要做什么、有问题找谁答。这样执行时能少些反复沟通。这只是我自己的感受，没算过具体耗时，也没统计过业务损失。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-004-0069",
+      "statement": "陈姐表示她负责范围内的门店日常执行和人员配合，这些她可以安排。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "职责范围内"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00055",
+          "quote": "我负责范围内的门店日常执行和人员配合，这些我可以安排。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-004-0070",
+      "statement": "陈姐表示活动要求不清楚，或者会影响门店考核的，她会先要求澄清、调整安排，不能默认门店已经接受。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "描述其处理方式"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00055",
+          "quote": "但活动要求不清楚，或者会影响门店考核的，我会先要求澄清、调整安排，不能默认门店已经接受。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-004-0071",
+      "statement": "陈姐表示考核规则她不能单独改，跨部门预算和项目验收也不是她能承诺的。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人说明授权边界"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00055",
+          "quote": "考核规则我不能单独改，跨部门预算和项目验收也不是我能承诺的。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-004-0072",
+      "statement": "陈姐表示要判断门店怎么配合，她得先知道活动适用范围、具体工作量、现场问题由谁处理，以及门店付出的工作怎么记录；这些不清楚，她没法替门店应下来。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人提出的信息前提"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00055",
+          "quote": "要判断门店怎么配合，我得先知道活动适用范围、具体工作量、现场问题由谁处理，以及门店付出的工作怎么记录。"
+        },
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00059",
+          "quote": "这些不清楚，我没法替门店应下来。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-004-0073",
+      "statement": "陈姐表示她最担心线上会员运营的做法压到门店考核上，认为线上怎么安排不能让门店这边的考核受冲击。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人担心/判断",
+        "未提供考核数据或核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00057",
+          "quote": "我最担心的是线上会员运营的做法压到门店考核上。线上怎么安排，不能让门店这边的考核受冲击。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-004-0074",
+      "statement": "陈姐希望有个助手先把活动适用范围、门店具体要做多少活、现场问题由谁处理、门店付出的工作怎么记录这些信息和待办整理清楚，让门店一眼看明白要做什么、找谁；具体执行还是得门店人员自己确认。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人期望",
+        "未涉及由助手自动执行"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00059",
+          "quote": "要是有个助手，我希望它先把这些信息和待办整理清楚，让门店一眼看明白要做什么、找谁。具体执行还是得门店人员自己确认。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-004-0075",
+      "statement": "陈姐表示她看到会员复购率连续四个季度下滑这一结果，但具体怎么算得项目组核实；门店具体观察到什么、下滑是什么原因，她现在没法确认，还得再核实。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "下一步向项目组核实复购率计算口径",
+        "门店具体观察与下滑原因待核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00061",
+          "quote": "会员复购率连续四个季度下滑，这个结果我看到了。不过具体怎么算的，得项目组核实。门店这边具体观察到什么、下滑是什么原因，我现在没法确认，还得再核实。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0076",
+      "statement": "陈姐（大区门店店长）表示，门店配合会员注册和活动执行，在她负责的范围内，由她安排和确认人员与执行。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对职责范围的说明；范围限定为“在我负责的范围内”"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00063",
+          "quote": "门店配合会员注册和活动执行，在我负责的范围内，由我来安排和确认人员与执行。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0077",
+      "statement": "陈姐（大区门店店长）表示，活动要求不清楚，或者会影响门店考核的，她会先要求澄清、调整安排，不会默认门店已经接受。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人做法说明；未说明已发生具体事例"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00063",
+          "quote": "活动要求不清楚，或者会影响门店考核的，我会先要求澄清、调整安排，不会默认门店已经接受。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0078",
+      "statement": "陈姐（大区门店店长）表示，公司层面的考核规则她不能单独调整。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "明确不能单独调整；未说明可调整路径"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "cb392ea7-dae4-5544-855d-75b4ca30b438",
+          "message_id": "MSG-00063",
+          "quote": "公司层面的考核规则我不能单独调整。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0079",
+      "statement": "沈总（增长副总裁）表示，80 万是“我们现在按活跃会员来看的一个业务口径”，这是他目前的说法。",
+      "kind": "fact",
+      "evidence_status": "conflicting",
+      "qualifiers": [
+        "本人当前说法，未称已核实",
+        "“活跃”的具体界定与数据来源见下条待核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00066",
+          "quote": "80 万是我们现在按活跃会员来看的一个业务口径，这是我目前的说法；“活跃”具体怎么界定、这个数从哪里来，我没法确认，得找老周按系统统计口径核对。80 万和 120 万先别当成同一个口径来裁定。"
+        }
+      ],
+      "conflict_ids": [
+        "CONFLICT-001"
+      ],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0080",
+      "statement": "沈总（增长副总裁）表示，“活跃”具体怎么界定、这个 80 万的数从哪里来，他没法确认，需找老周按系统统计口径核对。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "本人明确没法确认；下一步向老周按系统统计口径核对",
+        "未核实前不把 80 万与系统全量数当成同一口径"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00066",
+          "quote": "“活跃”具体怎么界定、这个数从哪里来，我没法确认，得找老周按系统统计口径核对。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0081",
+      "statement": "沈总（增长副总裁）表示，80 万和 120 万先别当成同一个口径来裁定。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "复述访谈者问题中的说法，原说法见对方会议：访谈者转述老周称系统全量为 120 万并称两者不是同一口径",
+        "本人处理意见；未裁定哪个数已经核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00066",
+          "quote": "80 万和 120 万先别当成同一个口径来裁定。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0082",
+      "statement": "沈总（增长副总裁）表示，会员老化是他目前对复购下滑原因的判断，不是已经核实的结论；他目前没有能说明具体年龄结构变化、也没有能证明因果的材料，可以将此列为待验证的问题。",
+      "kind": "opinion",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "本人判断；本人明确不是已经核实的结论",
+        "本人称没有年龄结构变化材料、也没有因果材料；列为待验证问题",
+        "本人要求不要拿临时想出来的顾客故事当证据"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00068",
+          "quote": "会员老化是我目前对下滑原因的判断，不是已经核实的结论。我现在没有能说明具体年龄结构变化、也没有能证明因果的材料，你们可以把它列为待验证的问题，别拿临时想出来的顾客故事当证据。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0083",
+      "statement": "沈总（增长副总裁）表示，几方说法不一致时，他会让各自说明依据、还缺什么，再定下一步由谁补材料、一起核对；不会先裁定哪个人数已经核实。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人处理原则；非对具体会员数已核实的结论",
+        "提到会员范围没说清时，把业务说法和系统统计分别记下来"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00068",
+          "quote": "几方说法不一致时，我会让各自说明依据、还缺什么，再定下一步由谁补材料、一起核对。比如会员范围没说清，就把业务说法和系统统计分别记下来，不是我先裁定哪个人数已经核实。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0084",
+      "statement": "沈总（增长副总裁）表示，他认为上次智能营销项目是供应商没有交付好，这是他现在的判断。",
+      "kind": "opinion",
+      "evidence_status": "conflicting",
+      "qualifiers": [
+        "本人判断；未称已核实",
+        "未说明具体凭据"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00072",
+          "quote": "上次那个智能营销项目，我认为是供应商没有交付好，这是我现在的判断。"
+        }
+      ],
+      "conflict_ids": [
+        "CONFLICT-002"
+      ],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0085",
+      "statement": "沈总（增长副总裁）表示，具体需求变了哪些、项目结果有什么凭据，他现在说不准，得查过记录再确认。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "本人说不准；下一步查过记录再确认",
+        "复述访谈者问题中的说法，原说法见对方会议：访谈者转述老周称需求一直在变；本条目只记沈总对具体变化与结果凭据的未知"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00072",
+          "quote": "老周说需求一直在变，那是他的说法；具体变了哪些、结果有什么凭据，我现在说不准，得查过记录再确认。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0086",
+      "statement": "沈总（增长副总裁）表示，作为项目发起人，他定业务问题的优先级，把相关负责人召集起来讨论资源和分歧，看各阶段的发现，推动卡住的事往前走；具体操作不替各部门安排。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对职责范围的说明",
+        "“具体操作我不替各部门安排”"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00083",
+          "quote": "我这边定的是业务问题的优先级，把相关负责人召集起来讨论资源和分歧，看各阶段的发现，推动卡住的事往前走。具体操作我不替各部门安排。\n\n系统统计和数据条件得老周确认，运营安排找小林，门店配合找陈姐，预算和合同让王经理参与。这些部门的专业确认，不能因为我说了句期待就算数。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0087",
+      "statement": "沈总（增长副总裁）表示，系统统计和数据条件得老周确认。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人说明的协作确认关系；需老周确认",
+        "本会议没有老周确认记录"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00083",
+          "quote": "系统统计和数据条件得老周确认，运营安排找小林，门店配合找陈姐，预算和合同让王经理参与。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0088",
+      "statement": "沈总（增长副总裁）表示，运营安排找小林。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人说明的协作确认关系；需小林确认",
+        "本会议没有小林确认记录"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00083",
+          "quote": "系统统计和数据条件得老周确认，运营安排找小林，门店配合找陈姐，预算和合同让王经理参与。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0089",
+      "statement": "沈总（增长副总裁）表示，门店配合找陈姐。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人说明的协作确认关系；需陈姐确认",
+        "本会议没有陈姐确认记录"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00083",
+          "quote": "系统统计和数据条件得老周确认，运营安排找小林，门店配合找陈姐，预算和合同让王经理参与。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0090",
+      "statement": "沈总（增长副总裁）表示，预算和合同让王经理参与。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人说明的协作关系；需王经理参与",
+        "本会议没有王经理参与记录"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00083",
+          "quote": "系统统计和数据条件得老周确认，运营安排找小林，门店配合找陈姐，预算和合同让王经理参与。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0091",
+      "statement": "沈总（增长副总裁）表示，这些部门的专业确认，不能因为他说了句期待就算数。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人对授权边界的说明；部门专业确认不等同于本人期待"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00083",
+          "quote": "这些部门的专业确认，不能因为我说了句期待就算数。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0092",
+      "statement": "沈总（增长副总裁）表示，下次讨论试点，他希望看到一份能拿来讨论的方案：要验证的业务问题是什么、准备覆盖哪些范围、现在已经有哪些依据、哪些还没核、需要谁配合，以及阶段结果怎么观察。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人期望；供讨论",
+        "不代表试点已经获批；未要求先承诺改善数字"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00085",
+          "quote": "下次讨论试点，我希望看到一份能拿来讨论的方案：要验证的业务问题是什么、准备覆盖哪些范围、现在已经有哪些依据、哪些还没核、需要谁配合，以及阶段结果怎么观察。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-005-0093",
+      "statement": "沈总（增长副总裁）表示，这些是供讨论的内容，不代表试点已经获批，也不是要你们先承诺改善数字。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人明确限定；本次访谈中没有批准试点",
+        "不要求先承诺改善数字"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "1b105170-e1d0-51a7-b81c-c3c44f684945",
+          "message_id": "MSG-00085",
+          "quote": "这些是供讨论的内容，不代表试点已经获批，也不是要你们先承诺改善数字。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0094",
+      "statement": "王经理参与这个项目的预算和合同核查。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人说明的职责范围"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00090",
+          "quote": "我参与这个项目的预算和合同核查。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0095",
+      "statement": "王经理表示涉及预算、合同和效果的部分，他需要看到依据。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人核查要求",
+        "未说明具体依据标准"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00088",
+          "quote": "先说这次要核实什么，涉及预算、合同和效果的部分，我需要看到依据。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0096",
+      "statement": "王经理说明其核查顺序是：先看业务要做什么、钱准备花在哪些地方、预期效果怎么说明；再核对预算依据、合同里的责任划分，以及效果怎么留证。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人描述的核查顺序"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00090",
+          "quote": "顺序上，先看业务要做什么、钱准备花在哪些地方、预期效果怎么说明；再核对预算依据、合同里的责任划分，以及效果怎么留证。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0097",
+      "statement": "王经理表示材料不齐时，他会列出缺项让对方补充，条件谈清楚后再看审批安排。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人描述的处理方式"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00090",
+          "quote": "材料不齐的，我会列出缺项让对方补充，条件谈清楚后再看审批安排。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0098",
+      "statement": "王经理表示这只是他的核查顺序，不是公司已经定下的审批制度。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人判断",
+        "公司审批制度状态未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00090",
+          "quote": "这只是我的核查顺序，不是公司已经定下的审批制度。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0099",
+      "statement": "王经理表示他能对预算和合同材料提核查意见；依据不充分或费用范围没说清，他会要求补充或暂缓财务确认。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人说明的核查权限",
+        "未说明最终审批权"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00090",
+          "quote": "我能对预算和合同材料提核查意见，依据不充分或费用范围没说清，我会要求补充或暂缓财务确认"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0100",
+      "statement": "王经理表示预算额度、签约、验收这些他不能替公司承诺。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人明确不能承诺的事项"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00090",
+          "quote": "预算额度、签约、验收这些我不能替公司承诺"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0101",
+      "statement": "王经理表示具体审批人和授权额度还要另行核实。",
+      "kind": "fact",
+      "evidence_status": "unknown",
+      "qualifiers": [
+        "下一步另行核实",
+        "未说明向谁核对"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00090",
+          "quote": "具体审批人和授权额度还要另行核实"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0102",
+      "statement": "王经理表示对小范围试点，他会先看试点范围、费用构成和预期效果，再核对预算依据、合同里的责任划分，以及效果打算怎么留证。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人描述的试点核查顺序"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00092",
+          "quote": "小范围试点，我会先看试点范围、费用构成和预期效果，再核对预算依据、合同里的责任划分，以及效果打算怎么留证。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0103",
+      "statement": "王经理明确表示这只是他的财务核查顺序，不是公司已定的审批制度，也不表示他已经批准试点。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人判断",
+        "试点未获其批准",
+        "公司审批制度状态未核实"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00092",
+          "quote": "这只是我的财务核查顺序，不是公司已定的审批制度，也不表示我已经批准试点。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0104",
+      "statement": "王经理表示他比较在意预算别超、效果能说清楚。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人关注点",
+        "未给出量化标准"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00092",
+          "quote": "我比较在意预算别超、效果能说清楚。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0105",
+      "statement": "王经理表示如果方案列了很多功能，却没讲清投入哪些费用、怎么留下效果依据，他会请业务方补上费用构成和效果记录方案。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人描述的处理方式"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00092",
+          "quote": "如果方案列了很多功能，却没讲清投入哪些费用、怎么留下效果依据，我会请业务方补上费用构成和效果记录方案。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0106",
+      "statement": "王经理表示下次可以带试点范围说明、费用构成及依据、双方工作与责任的草案，以及打算用什么记录说明效果。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人提出的下次材料清单"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00094",
+          "quote": "下次带四样：试点范围说明、费用构成及依据、双方工作与责任的草案，以及打算用什么记录说明效果。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0107",
+      "statement": "王经理表示金额和指标还没谈妥的，直接列为待确认，不用为了凑材料先写成承诺。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人处理建议"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00094",
+          "quote": "金额和指标还没谈妥的，直接列为待确认，不用为了凑材料先写成承诺。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0108",
+      "statement": "王经理认为功能清单只说明做了哪些功能，不等于财务上能说明效果。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人判断",
+        "未核实具体功能效果"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00096",
+          "quote": "功能清单只说明做了哪些功能，不等于财务上能说明效果。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0109",
+      "statement": "王经理表示他这边看的是准备投入哪些费用、预算依据是什么、效果用什么记录留下来。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人核查关注点"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00096",
+          "quote": "我这边看的是：准备投入哪些费用、预算依据是什么、效果用什么记录留下来。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0110",
+      "statement": "王经理表示如果方案只有功能清单，他会请业务方补充费用构成和效果记录方案。",
+      "kind": "fact",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人描述的处理方式"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00096",
+          "quote": "如果方案只有功能清单，我会请业务方补充费用构成和效果记录方案"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    },
+    {
+      "id": "CLM-006-0111",
+      "statement": "王经理表示这只是他的核查关注点，不代表他认定某项功能无效。",
+      "kind": "opinion",
+      "evidence_status": "reported",
+      "qualifiers": [
+        "本人明确限定",
+        "不对功能有效性作判断"
+      ],
+      "evidence": [
+        {
+          "meeting_id": "e347fd40-1c04-50be-928f-4d352863a5ad",
+          "message_id": "MSG-00096",
+          "quote": "这只是我的核查关注点，不代表我认定某项功能无效。"
+        }
+      ],
+      "conflict_ids": [],
+      "review": {
+        "status": "pending",
+        "note": ""
+      }
+    }
+  ],
+  "conflicts": [
+    {
+      "id": "CONFLICT-001",
+      "claim_ids": [
+        "CLM-002-0025",
+        "CLM-005-0079"
+      ],
+      "question": "会员数存在两个不同口径的说法：老周称120万是其系统的全量会员数，并说明与活跃会员不是同一口径、实际范围尚未核实；沈总称80万是当前按活跃会员看的业务口径，未称已核实。两者分别涉及系统全量与活跃会员，数量、范围、统计说明和是否可同时成立仍需核实，不能直接认定为同一指标下的事实矛盾。",
+      "next_step": "分别核对两个口径：请老周与运营一起确认系统全量会员的统计范围、时间、付费会员卡与免费注册会员是否分开统计及统计说明；请沈总补充“活跃会员”的业务界定和数据来源，再由老周按系统统计口径核对。比较前先明确时间范围、渠道范围、会员类型和统计说明，未核实前不裁定哪个数为准。"
+    },
+    {
+      "id": "CONFLICT-002",
+      "claim_ids": [
+        "CLM-001-0013",
+        "CLM-005-0084"
+      ],
+      "question": "对上一个智能营销项目的问题判断不同：老周看到的问题是需求一直在变；沈总判断是供应商没有交付好。两种说法均为个人判断，均未提供已核实的依据，且具体需求变了哪些、项目结果有什么凭据仍待查。",
+      "next_step": "调取该项目的需求变更记录、交付与验收材料、合同责任条款，分别请老周和沈总说明其判断依据；由王经理核对合同责任与验收相关材料。在记录和凭据核实前，不把任一判断作为定论。"
+    }
+  ]
+}

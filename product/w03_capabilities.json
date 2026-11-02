@@ -1,0 +1,39 @@
+{
+  "version": "w03-0.1.0-candidate",
+  "same_chat_entry": true,
+  "retains": [
+    "W01 松果消费分析与受控样例标签",
+    "W02 业务模型提取及知识验证"
+  ],
+  "adds": [
+    "加载客户指标库",
+    "指标目录驱动的自然语言理解",
+    "原生 MetricFlow 编译和 DuckDB 执行",
+    "澄清、边界校验、结果与 SQL 证据",
+    "指标构建及校验 CLI 框架"
+  ],
+  "learner_must_develop": [
+    "构建 Skill 或转换逻辑",
+    "独立测试与确定性判定代码"
+  ],
+  "supported_query": [
+    "已定义指标",
+    "ISO 半开日期",
+    "可达维度",
+    "eq/in AND 筛选",
+    "整月约束按目录元数据执行"
+  ],
+  "not_yet_supported": [
+    "青禾自然语言人群圈选",
+    "生产 CRM 清洗导入",
+    "跨系统身份合并",
+    "青禾触达动作",
+    "业务收益归因"
+  ],
+  "data_tables": [
+    "members",
+    "orders",
+    "stores",
+    "cards"
+  ]
+}

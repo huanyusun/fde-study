@@ -1,0 +1,96 @@
+{
+  "contract_version": "w02-0.1.0-draft",
+  "run_id": "RUN-b90f59bf124d47ba8a03c250318b5f9c",
+  "stage": "extraction",
+  "mode": "live",
+  "status": "failed",
+  "model": {
+    "provider": "course-gateway",
+    "name": "deepseek-v4.1-flash-1017-baidu",
+    "adapter_version": "w02-extractor-0.1.0"
+  },
+  "implementation": [
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/implementation/platform/fde_product/interview_extraction.py",
+      "sha256": "4158dd8cf48092fbd515c562e326d403e60d15feb76511dd04b9991c77de6e53"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/implementation/platform/fde_product/models.py",
+      "sha256": "17cac712394ede304b9d57f2c3adcf4cb5739bbd6264880efb9603bc5dacb223"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/implementation/tools/w02_interviews.py",
+      "sha256": "7dc6d6e55add4179c10f6cd41944606ee0a7a722ca2e5bc30b25ca4db31a3e00"
+    }
+  ],
+  "configuration": [
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/snapshot/customer/w02/extraction.json",
+      "sha256": "db423539c58c9f59f2bbf4ddb929bb314ff1a4ed27e95715cdf0c3783d3f0c1d"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/snapshot/customer/w02/extraction_prompt.txt",
+      "sha256": "f287d1329a1e00a041bae3cb0ae674c66fb57f19f43aef2d36be7c1f9932d091"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/contracts/transcript.schema.json",
+      "sha256": "855f84b576d3f0b7bea82eac6b817fc0c8c723040f131f43075380110a823f9f"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/contracts/interview_facts.schema.json",
+      "sha256": "34358b1f9cca39f17f3d7b74abda732460be0beaba2f93b8e8f8bcaa3d2e0a80"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/contracts/run_evidence.schema.json",
+      "sha256": "4fed42abba5d6f9a727c52d6e3097e965ffa3b02ef855aadb2387ab1f890ebce"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/settings.json",
+      "sha256": "0ceb5965786dd2901b8f2d360b59e4249423990b2b3ddb41420a7bd6248b2ef2"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/snapshot/artifacts/w02/sources/w02-zhou.json",
+      "sha256": "c38beadb28b1a44a13282f0d1689ae71ab9d10f095aece18656cdc9c10bdc3ce"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/snapshot/artifacts/w02/sources/w02-lin.json",
+      "sha256": "2aa24c8d6ae8cf68a730a03725ae0e7120ea08154d209e7717249459e80a383f"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/snapshot/artifacts/w02/sources/w02-lin-2.json",
+      "sha256": "f7933b4d7c6a5fbab897cb3c9316e307a38ae17a69988646b5632883022e58a5"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/snapshot/artifacts/w02/sources/w02-chen.json",
+      "sha256": "8510983b2adbd0de3f95d7f7e6c94216166e2fc4f1d0066344e7a69d2c5acc9f"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/snapshot/artifacts/w02/sources/w02-shen.json",
+      "sha256": "8432d437f8d1f4c161c98e636580dbca1994fc5f1f0feab84a5f33abd52ae533"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/snapshot/artifacts/w02/sources/w02-wang.json",
+      "sha256": "7ce5bd33b30cbad2e0873992a29ab08cdbc3c68177c5860fd049f13ae970d038"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/step-001.request.json",
+      "sha256": "97ae9cd130be95806137c9d1ac087dc35c888047f51c62742cb300505a0a0b06"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/step-001.attempts.json",
+      "sha256": "aca14147e2a2ea70d45aa27b0237d7f3543f6ad1eaec12710154cfd0019356ca"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-b90f59bf124d47ba8a03c250318b5f9c/steps.json",
+      "sha256": "d568047945bcfe86dc27dfaf68384e1747ebbba152ca123eddbc41dc4c6b3e92"
+    }
+  ],
+  "error": {
+    "code": "MODEL_OUTPUT_TRUNCATED",
+    "message": "本次失败；保留已有请求与公开响应，核对后创建新运行。"
+  }
+}

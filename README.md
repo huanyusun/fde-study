@@ -1,56 +1,37 @@
-# FDE Study — 青禾优选 W1 沙盘
+# FDE Study — 青禾优选 W03
 
-FDE(Forward Deployed Engineer)课程的完整学习仓库。本仓库根目录同时是课程要求的**客户交付工作目录**:标准产品工程包解压于此,四份 JSON 作业契约与立项报告按固定路径产出,后续各周继续沿用本仓库与条目编号。
+FDE 交付实战营学习与客户交付仓库。当前 W03 工作目录已升级到 `fde-student-w03-0.1.0-c16` 工程，配套材料为 `w03-0.1.0`（2026-11-01 重打包）、任务书 v0.3。W01 学习笔记、访谈记录和交付物保留原路径。
 
-- 课程产品:`0.2.0-w1`,能力矩阵 `w1-capabilities-0.2.0`
-- 契约:fit-gap `w01-0.2.1`,其余三份 JSON `w01-0.2.0`
-- 客户:青禾优选(连锁零售,虚构沙盘);发起人沈总,诉求「复购下滑 + 识别重点会员 + 直接给运营建议」
+## 从这里开始
 
-## 目录结构
-
-```
-├── artifacts/w01/          # W1 四份 JSON 交付物 + fit-gap 填写稿(任务书固定路径)
-├── contracts/w01/          # 作业 JSON Schema(字段定义唯一来源)
-├── platform/fde_product/   # 标准产品源码(LangGraph Agent、业务、动作、交互、观测)
-├── product/                # capabilities.json 能力矩阵、API.md、语义、系统提示词
-├── tools/                  # product.py、check_product.py、verify_product.py 等
-├── sample_data/            # 松果生活样例数据(与青禾无关,勿用于推算客户)
-├── evals/                  # Promptfoo 基础评估
-├── tests/                  # 产品回归测试
-├── docs/w01/               # project_assessment.md 立项报告(交付物)落此
-├── course-materials/w01/   # 课程材料包:邮件/协作/指引/任务书/fit-gap 空白表/案例手册/访谈准备
-├── lectures/w01/           # W1 八讲 PPT(PDF 本地保留不进 git,索引见其中 README)
-├── notes/w01/              # 我的学习笔记(按 V01–V08 一讲一文件)
-└── README.md
-```
-
-## W1 交付物(任务书契约)
-
-| 固定路径 | 内容 |
-| --- | --- |
-| `artifacts/w01/environment_check.json` | 9 项环境检查(runtime/database/tool_registry/product/model_api/checker/label_api/evaluation/trace) |
-| `artifacts/w01/product_fit_gap.json` | 逐项诉求适配判断(五类分类 + 待判断)、证据状态、依据与下一步 |
-| `artifacts/w01/model_baseline.json` | 真实模型基线:≥4 次场景运行、失败分类与下一步 |
-| `artifacts/w01/runtime_evidence.json` | 7 类行为证据文件路径 + SHA-256 |
-| `docs/w01/project_assessment.md` | 立项报告:诉求拆解、事实/转述区分、适配判断、风险、下一阶段建议 |
-
-## 常用命令(工程根目录)
+1. 阅读 [W03 材料说明](course-materials/w03/00_使用说明.md)和[作业任务书](course-materials/w03/05_作业任务书.md)，按任务书中的 12 步作业路线执行。
+2. 按 [W03 安装与使用](docs/w03/README.md)新建 Python 3.11 虚拟环境并安装 `requirements-w03.txt`，配置方式见[模型配置](docs/model-configuration.md)。
+3. 先跑梧桐独立样例，再准备自己的 W03 业务模型、访谈、指标构建 Skill 和独立判定程序。
 
 ```sh
-python3 -m venv .venv && .venv/bin/python -m pip --isolated install -r requirements.txt
-.venv/bin/python tools/product.py init
-.venv/bin/python tools/check_product.py --dry-run
-FDE_MODEL_URL=... FDE_MODEL_NAME=... FDE_MODEL_KEY=... .venv/bin/python tools/product.py start --actions
-.venv/bin/python tools/verify_product.py --live          # 生成模型基线与运行证据
-.venv/bin/python tools/check_product.py --root .         # 公开预检
+python3.11 -m venv .venv
+.venv/bin/python -m pip --isolated install -r requirements-w03.txt
+.venv/bin/python tools/w03.py doctor
 ```
 
-模型配置:`FDE_MODEL_URL`(完整 Chat Completions 地址)+ `FDE_MODEL_NAME` + `FDE_MODEL_KEY`,课程网关用 `FDE_MODEL_PROFILE=gateway-low`;详见 `docs/model-configuration.md`。
+本目录已执行 `tools/w03.py init --workspace .`，不要重复初始化。`customer/w03/` 和 `docs/w03/` 中的作业文件目前是课程模板，尚未实现、核定或完成；规模数据已解压到 `materials/data/large/`。依赖安装与样例闭环尚未执行。
 
-## 学习路线(W1)
+## 目录索引
 
-1. 读材料包(`course-materials/w01/00–05` 顺序)+ 八讲 PPT,笔记落 `notes/w01/`
-2. 装环境、跑通松果样例四类分析任务与标签动作闭环,留运行记录
-3. `verify_product.py --live` 生成基线与证据 → Promptfoo 评估 → `finalize_evaluation.py`
-4. fit-gap 空白表填写 → 转换 JSON;写立项报告
-5. `check_product.py --root .` 预检,提交
+| 路径 | 内容 |
+| --- | --- |
+| [lectures/w03/](lectures/w03/README.md) | V01–V09 九份 PDF 课件，本地保留、不进入 Git |
+| [course-materials/w03/](course-materials/w03/00_使用说明.md) | 最新任务书、客户资料、访谈参考、案例与原始 ZIP |
+| [course-materials/w03/W02_checkpoint/](course-materials/w03/W02_checkpoint/README.md) | 课程提供的 W02 参考答案，单独保存，不代表本人完成的作业 |
+| [materials/w03/](materials/w03/00_材料说明.md) | 工程读取的青禾业务资料 |
+| `materials/data/small/`、`materials/data/large/` | 青禾小样本与规模数据；规模 CSV 不进入 Git |
+| [docs/w03/](docs/w03/README.md) | 工程说明、构建与测试指南、W03 作业文档模板 |
+| `customer/w03/` | 构建配置、38 项指标目标、12 项维度查询目标、Skill 和判定程序模板 |
+| `artifacts/w03/` | 后续指标构建和测试产物目录 |
+| `platform/fde_product/`、`tools/` | 升级后的运营 Agent、W02 工具与 W03 构建/加载/测试命令 |
+| `examples/w03/` | 梧桐独立样例，仅用于环境验证和方法参考 |
+| [docs/w01/](docs/w01/README.md)、[notes/w01/](notes/w01/README.md)、[artifacts/w01/](artifacts/w01/README.md) | 保留的 W01 个人成果 |
+
+W03 交付要求与边界以任务书为准。业务规则由自己的指标构建 Skill 从资料与业务模型生成；接入层仅原样读取 CSV。课程 W02 checkpoint 必须标明参考来源，不能作为本人访谈记录。
+
+导入来源、压缩包 SHA-256 和工程/课件文件清单见 [import-manifest.json](course-materials/w03/import-manifest.json)。原 W01 仓库说明保存在 [docs/w01/repository-readme.md](docs/w01/repository-readme.md)，工程版本说明见 [RELEASE.md](RELEASE.md)。

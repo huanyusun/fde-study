@@ -1,0 +1,18 @@
+{
+  "orders": [
+    "order_id"
+  ],
+  "members": [
+    "member_id"
+  ],
+  "stores": [
+    "store_id"
+  ],
+  "stores_home": [
+    "store_id"
+  ],
+  "monthly_member_receipts": [
+    "member_id",
+    "month_start"
+  ]
+}

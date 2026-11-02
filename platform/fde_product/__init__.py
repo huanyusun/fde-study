@@ -1,3 +1,3 @@
-"""W1 standard membership Agent."""
-VERSION = "0.2.0-w1"
-CONTRACT_VERSION = "w01-0.2.0"
+"""W03 upgraded membership Agent, with retained W01 and W02 workflows."""
+VERSION="w03-0.1.0-candidate"
+CONTRACT_VERSION="w03-0.1.0"

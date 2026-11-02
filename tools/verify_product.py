@@ -16,7 +16,7 @@ def verify(root,home):
     import_sample(ROOT/'sample_data',home/'sample.sqlite')
     model=CompatibleModel(timeout=90);a=Agent(home,model);cases=[];runs=[];hashes={};failures=[]
     def record(name,result,expected,passed,duration=0):
-        p=evidence/(name+'.json');p.write_text(json.dumps(result,ensure_ascii=False,indent=2));rel=str(p.relative_to(root));hashes[rel]=hashlib.sha256(p.read_bytes()).hexdigest()
+        p=evidence/(name+'.json');p.write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8',newline='\n');rel=p.relative_to(root).as_posix();hashes[rel]=hashlib.sha256(p.read_bytes()).hexdigest()
         cases.append({'case_id':name,'passed':bool(passed),'evidence':rel})
         if 'trace_id' in result:runs.append({'case_id':name,'run_id':rel,'expected_status':expected,'actual_status':result['status'],'passed':bool(passed),'trace_id':result['trace_id'],'duration_seconds':round(duration,3)})
         if not passed:failures.append({'case_id':name,'category':'behavior','evidence':rel,'next_step':'检查该次工具事实、最终输出与 trace，再定位协议或行为原因。'})
@@ -52,8 +52,8 @@ def verify(root,home):
     for scenario in ('date_text','date_button','reject_change'):
         start=time.monotonic();r=run_scenario(home,model,scenario)
         record(scenario,r,'rejected' if scenario=='reject_change' else 'completed',r['scenario_passed'],time.monotonic()-start)
-    trace=evidence/'trace.jsonl';trace.write_bytes((home/'trace.jsonl').read_bytes());hashes[str(trace.relative_to(root))]=hashlib.sha256(trace.read_bytes()).hexdigest()
-    def save(name,value):(out/(name+'.json')).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
+    trace=evidence/'trace.jsonl';trace.write_bytes((home/'trace.jsonl').read_bytes().replace(b'\r\n',b'\n'));hashes[trace.relative_to(root).as_posix()]=hashlib.sha256(trace.read_bytes()).hexdigest()
+    def save(name,value):(out/(name+'.json')).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
     base={'contract_version':CONTRACT,'product_version':VERSION}
     save('model_baseline',base|{'model_name':model.model,'protocol':'chat_completions','prompt_sha256':prompt_hash,'dataset_version':'sample-1','runs':runs,'failures':failures})
     save('runtime_evidence',base|{'implementation':'official','model_mode':'live','cases':cases,'artifact_hashes':hashes,'limits':['Synthetic sample only; Windows and target-learner trial not covered.','Model performance must be rechecked for each student model.']})

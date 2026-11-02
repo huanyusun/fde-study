@@ -1,0 +1,86 @@
+{
+  "skill_sha256": "dce240af0207e374c207a33380ea4f85aae8e4163bc7741001a7aa899b0b0efe",
+  "input_hashes": {
+    "business_model.md": "a1a84c03c430bd6045c1a0e41f3ff3698014ca511cabe053649af3623ad4e449",
+    "data_dictionary.md": "3a94b8ab04d80fe91e69714221781dbd47b8439cf336533eaa49fb8d21c53c3e",
+    "report.md": "ba7d790896d521a7b3deb55b86f0ec151b6eef35eddfd079f93c147d28e9b6c2"
+  },
+  "defined": [
+    "receipt_count",
+    "gross_receipts_cents",
+    "returned_cents",
+    "net_receipts_cents",
+    "return_ratio",
+    "monthly_large_buyer_count"
+  ],
+  "unresolved": [],
+  "business_model_usage": [
+    {
+      "quote": "订单归属于一个会员账户和一个成交门店，订单表一行一单。",
+      "used_for": [
+        {
+          "kind": "semantic_model",
+          "name": "orders"
+        },
+        {
+          "kind": "semantic_model",
+          "name": "members"
+        },
+        {
+          "kind": "semantic_model",
+          "name": "stores"
+        },
+        {
+          "kind": "dimension",
+          "name": "member"
+        },
+        {
+          "kind": "dimension",
+          "name": "store"
+        }
+      ]
+    },
+    {
+      "quote": "本例按下单日期统计原订单的收入与退回金额；具体报表规则见 report.md。",
+      "used_for": [
+        {
+          "kind": "semantic_model",
+          "name": "orders"
+        },
+        {
+          "kind": "metric",
+          "name": "receipt_count"
+        },
+        {
+          "kind": "metric",
+          "name": "gross_receipts_cents"
+        },
+        {
+          "kind": "metric",
+          "name": "returned_cents"
+        },
+        {
+          "kind": "metric",
+          "name": "net_receipts_cents"
+        }
+      ]
+    },
+    {
+      "quote": "月内大额会员数：同一自然月扣退后收入累计达到 10000 分（含等于）的会员数。只计 paid 订单，扣退后收入＝实付－退回，按原订单日期归月，取消单不计。只支持整月查询；覆盖内没有达到门槛的会员时结果为 0。",
+      "used_for": [
+        {
+          "kind": "derived_model",
+          "name": "monthly_member_receipts"
+        },
+        {
+          "kind": "metric",
+          "name": "monthly_large_buyer_count"
+        },
+        {
+          "kind": "dimension",
+          "name": "metric_time__month"
+        }
+      ]
+    }
+  ]
+}

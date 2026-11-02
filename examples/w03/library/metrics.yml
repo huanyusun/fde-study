@@ -1,0 +1,134 @@
+version: 2
+semantic_models:
+- name: orders
+  model: ref('orders')
+  defaults:
+    agg_time_dimension: ordered_at
+  entities:
+  - name: order
+    type: primary
+    expr: order_id
+  - name: member
+    type: foreign
+    expr: member_id
+  - name: store
+    type: foreign
+    expr: store_id
+  dimensions:
+  - name: ordered_at
+    type: time
+    type_params:
+      time_granularity: day
+  - name: channel
+    type: categorical
+  - name: status
+    type: categorical
+  measures:
+  - name: receipt_count_measure
+    expr: CASE WHEN status = 'paid' THEN 1 ELSE 0 END
+    agg: sum
+  - name: gross_receipts_cents_measure
+    expr: CASE WHEN status = 'paid' THEN paid_cents ELSE 0 END
+    agg: sum
+  - name: returned_cents_measure
+    expr: CASE WHEN status = 'paid' THEN refund_cents ELSE 0 END
+    agg: sum
+  - name: net_receipts_cents_measure
+    expr: CASE WHEN status = 'paid' THEN paid_cents - refund_cents ELSE 0 END
+    agg: sum
+- name: members
+  model: ref('members')
+  entities:
+  - name: member
+    type: primary
+    expr: member_id
+  - name: home_store
+    type: foreign
+    expr: home_store_id
+  dimensions:
+  - name: tier
+    type: categorical
+  measures: []
+- name: stores
+  model: ref('stores')
+  entities:
+  - name: store
+    type: primary
+    expr: store_id
+  dimensions:
+  - name: region
+    type: categorical
+  - name: store_name
+    type: categorical
+  measures: []
+- name: stores_home
+  model: ref('stores')
+  entities:
+  - name: home_store
+    type: primary
+    expr: store_id
+  dimensions:
+  - name: region
+    type: categorical
+  - name: store_name
+    type: categorical
+  measures: []
+- name: monthly_member_receipts
+  model: ref('monthly_member_receipts')
+  defaults:
+    agg_time_dimension: month_start
+  entities:
+  - name: member_month
+    type: primary
+    expr: member_month_key
+  - name: member
+    type: foreign
+    expr: member_id
+  dimensions:
+  - name: month_start
+    type: time
+    type_params:
+      time_granularity: month
+  measures:
+  - name: monthly_large_buyer_count_measure
+    expr: CASE WHEN net_receipts_cents >= 10000 THEN 1 ELSE 0 END
+    agg: sum
+metrics:
+- name: receipt_count
+  label: 收款单数
+  description: paid 订单数。
+  type: simple
+  type_params:
+    measure: receipt_count_measure
+- name: gross_receipts_cents
+  label: 到账总额
+  description: paid 订单实付分之和。
+  type: simple
+  type_params:
+    measure: gross_receipts_cents_measure
+- name: returned_cents
+  label: 退回金额
+  description: paid 订单退款分之和。
+  type: simple
+  type_params:
+    measure: returned_cents_measure
+- name: net_receipts_cents
+  label: 扣退后收入
+  description: 到账总额减退回金额。
+  type: simple
+  type_params:
+    measure: net_receipts_cents_measure
+- name: return_ratio
+  label: 退回占比
+  description: 退回金额除以到账总额，零分母未定义。
+  type: ratio
+  type_params:
+    numerator: returned_cents
+    denominator: gross_receipts_cents
+- name: monthly_large_buyer_count
+  label: 月内大额会员数
+  description: 同一自然月扣退后收入累计达到 10000 分（含等于）的会员数。只计 paid 订单，扣退后收入＝实付－退回，按原订单日期归月，取消单不计。只支持整月查询；覆盖内没有达到门槛的会员时结果为
+    0。
+  type: simple
+  type_params:
+    measure: monthly_large_buyer_count_measure
