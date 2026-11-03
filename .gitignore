@@ -22,3 +22,6 @@ course-materials/w03/**/*.zip
 lectures/**/*.zip
 lectures/**/*.ppt
 lectures/**/*.pptx
+
+# 视频字幕稿(课程原文,本地保留不进 git;来源见各笔记头部)
+notes/**/transcripts/
