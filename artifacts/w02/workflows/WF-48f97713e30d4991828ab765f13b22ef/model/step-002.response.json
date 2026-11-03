@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "材料与现有认识已读取。当前模型与核查记录均为模板起点，本轮目标明确：从五人访谈提取口径、流程、痛点、投入判断与旧项目使用情况，并保留分歧与未知。接下来调用提取工具取得候选。",
+    "tool_calls": [
+      {
+        "function": {
+          "arguments": "{}",
+          "name": "extract_candidates"
+        },
+        "id": "call_-7120669298430830169",
+        "index": 0,
+        "type": "function"
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 8458,
+    "completion_tokens": 177,
+    "total_tokens": 8635
+  }
+}

@@ -150,6 +150,15 @@ def start(ws,task_path=DEFAULT_TASK,previous=None):
     return folder+"/session.json"
 
 
+COMPLETED_POINTER = "artifacts/w02/workflow_completed.json"
+
+
+def resolve_previous(ws,path="latest"):
+    # An unfinished later task must not hide the last confirmed round.
+    if path=="latest" and ws.path(COMPLETED_POINTER).exists(): return ws.load(COMPLETED_POINTER)["session"]
+    return resolve_session(ws,path)
+
+
 def resolve_session(ws,path="latest"):
     return ws.load("artifacts/w02/workflow_current.json")["session"] if path=="latest" else path
 
@@ -291,7 +300,10 @@ def advance(ws,path,model,extractor):
         if s["status"]=="active": raise CheckError("STEP_LIMIT")
     except (CheckError,ModelError,OSError,UnicodeError) as exc:
         s["status"]="failed";s["error"]=getattr(exc,"code","FILE_OPERATION_FAILED")
-    finally: save(ws,path,s)
+    finally:
+        if s["status"]=="active" and interrupted(s):
+            s["status"]="failed";s["error"]="SESSION_INTERRUPTED"
+        save(ws,path,s)
     return s
 
 
@@ -315,7 +327,9 @@ def revise(ws,path,feedback):
 
 def apply(ws,path):
     s=load_session(ws,path)
-    if s["status"]=="completed": return s
+    if s["status"]=="completed":
+        if not ws.path(COMPLETED_POINTER).exists(): save(ws,COMPLETED_POINTER,{"session":path})
+        return s
     require(s["status"] in ("awaiting_apply","applying"),"NO_PENDING_PROPOSAL")
     require(digest(ws.raw(s.get("proposal_path",s["folder"]+"/proposal.json")))==s["proposal_hash"],"PROPOSAL_CHANGED")
     proposal=ws.load(s.get("proposal_path",s["folder"]+"/proposal.json"))
@@ -345,6 +359,7 @@ def apply(ws,path):
         require(not tmp.exists(),"PENDING_WRITE_EXISTS")
         tmp.write_bytes(ws.raw(item["after"]["path"]));os.replace(tmp,target)
     s["status"]="completed";save(ws,path,s)
+    save(ws,COMPLETED_POINTER,{"session":path})
     return s
 
 

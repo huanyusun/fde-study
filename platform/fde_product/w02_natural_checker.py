@@ -28,7 +28,8 @@ RUBRIC = {
 HINTS = {**HINTS,
  'COMPARISON_REQUIRED':'用 w02_knowledge.py compare 对本人问题运行同题对照；检查失败记录后再运行。',
  'CURRENT_MODEL_REQUIRED':'提交的业务模型或提取版本已改变，重新运行受影响的问题；旧运行保留。',
- 'EXTRACTION_REQUIRED':'先运行自己的提取配置，使用成功候选，核查后再完善业务模型。'}
+ 'EXTRACTION_REQUIRED':'先运行自己的提取配置，使用成功候选，核查后再完善业务模型。',
+ 'RUN_LIMIT_EXCEEDED':'运行记录超过 100 条，未逐条检查；用重复的 --run 指定实际采用的同题对照 run.json，旧记录保留不删。'}
 
 
 def precheck(workspace,*,runs=None,knowledge_config=CONFIG,
@@ -70,9 +71,11 @@ def precheck(workspace,*,runs=None,knowledge_config=CONFIG,
         attempt('D04',w2_fit_gap,continuity)
     selected=(sorted(p.relative_to(ws.root).as_posix() for p in ws.path('artifacts/w02/knowledge_runs').glob('*/run.json'))
               if runs is None else list(dict.fromkeys(runs)))
-    require(len(selected)<=100,'RUN_LIMIT_EXCEEDED')
     pairs={};seen=set()
-    for path in selected:
+    # Too many runs is reported like other issues, so the rest of the precheck stays visible.
+    over_limit=len(selected)>100
+    if over_limit:attempt('T04',f'{len(selected)} 条运行记录',lambda:require(False,'RUN_LIMIT_EXCEEDED',f'{len(selected)} 条运行记录'))
+    for path in ([] if over_limit else selected):
         def inspect():
             run,settings,config,_=check_run(ws,path)
             require(run['run_id'] not in seen,'DUPLICATE_RUN_ID',path);seen.add(run['run_id'])
@@ -95,7 +98,8 @@ def precheck(workspace,*,runs=None,knowledge_config=CONFIG,
             return result
         result=attempt('T04',path,inspect)
         if result is not None:runtime.append(result)
-    attempt('T05','本人同题对照',lambda:require(any(v=={False,True} for v in pairs.values()),'COMPARISON_REQUIRED'))
+    if not over_limit:
+        attempt('T05','本人同题对照',lambda:require(any(v=={False,True} for v in pairs.values()),'COMPARISON_REQUIRED'))
     return {'checker_version':'w02-checker-0.2.0','contract_version':VERSION,'workflow':'natural-language',
             'status':'needs_revision' if issues else 'ready_for_review','final_gate':'not_determined',
             'options':{'format':'natural','runs':selected,'knowledge_config':knowledge_config,

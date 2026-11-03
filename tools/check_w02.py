@@ -62,9 +62,14 @@ def main():
     try:
         result = precheck(a.workspace, knowledge_config=a.config, runs=a.run,
                           w1_fit_gap=a.w1_fit_gap, w2_fit_gap=a.w2_fit_gap)
-        if a.output:
-            Workspace(a.workspace).write(a.output, result)
         print(json.dumps(result, ensure_ascii=False, indent=2), flush=True)
+        if a.output:
+            try:
+                Workspace(a.workspace).write(a.output, result)
+            except CheckError as e:
+                print(json.dumps({'status':'error', 'code':e.code, 'path':e.location,
+                    'message':'本次预检结果已在标准输出显示，但报告没有保存。请换一个新路径重新运行。'}, ensure_ascii=False), file=sys.stderr)
+                return 2
         show_summary(result)
         return int(result['status'] != 'ready_for_review')
     except CheckError as e:

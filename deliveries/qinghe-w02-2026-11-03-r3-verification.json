@@ -1,0 +1,15 @@
+{
+  "archive": "deliveries/qinghe-w02-2026-11-03-r3.zip",
+  "sha256": "21076cbaf7e233a1e45de012641832a4d905fb28bf19afa6d55f56fda45e25be",
+  "file_count": 908,
+  "size_bytes": 5013806,
+  "workspace_precheck": "artifacts/w02/precheck-2026-11-03-v4.json",
+  "unpacked_precheck": {
+    "status": "ready_for_review",
+    "issues": [],
+    "coverage": {
+      "comparison_pairs": 3
+    },
+    "final_gate": "not_determined"
+  }
+}

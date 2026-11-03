@@ -1,0 +1,92 @@
+{
+  "contract_version": "w02-0.1.0-draft",
+  "run_id": "RUN-fcbaf1cc12484eb093b187603aa7bbdb",
+  "stage": "extraction",
+  "mode": "live",
+  "status": "failed",
+  "model": {
+    "provider": "api.z.ai",
+    "name": "glm-5.3-flash",
+    "adapter_version": "w02-extractor-0.1.0"
+  },
+  "implementation": [
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/implementation/platform/fde_product/interview_extraction.py",
+      "sha256": "4158dd8cf48092fbd515c562e326d403e60d15feb76511dd04b9991c77de6e53"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/implementation/platform/fde_product/models.py",
+      "sha256": "17cac712394ede304b9d57f2c3adcf4cb5739bbd6264880efb9603bc5dacb223"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/implementation/tools/w02_interviews.py",
+      "sha256": "7dc6d6e55add4179c10f6cd41944606ee0a7a722ca2e5bc30b25ca4db31a3e00"
+    }
+  ],
+  "configuration": [
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/snapshot/artifacts/w02/workflows/WF-05de772808244ccfbdcd713dd5c7b2d1/extraction.json",
+      "sha256": "1617cb906316a54dcad9c91bcbd25b7f619e7fd4ac63077c303c3b306e008f3e"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/snapshot/artifacts/w02/workflows/WF-05de772808244ccfbdcd713dd5c7b2d1/inputs/prompt.md",
+      "sha256": "f287d1329a1e00a041bae3cb0ae674c66fb57f19f43aef2d36be7c1f9932d091"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/contracts/transcript.schema.json",
+      "sha256": "855f84b576d3f0b7bea82eac6b817fc0c8c723040f131f43075380110a823f9f"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/contracts/interview_facts.schema.json",
+      "sha256": "34358b1f9cca39f17f3d7b74abda732460be0beaba2f93b8e8f8bcaa3d2e0a80"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/contracts/run_evidence.schema.json",
+      "sha256": "4fed42abba5d6f9a727c52d6e3097e965ffa3b02ef855aadb2387ab1f890ebce"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/settings.json",
+      "sha256": "9b58d08e7aec3471cf21108e9b84134571755424d042dcc9984aef27ef48c7de"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/snapshot/artifacts/w02/workflows/WF-05de772808244ccfbdcd713dd5c7b2d1/sources/0.json",
+      "sha256": "d297864f601ef0275ca37d5f69ed820c62f6fb09db20a4917d84292aa2edef91"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/snapshot/artifacts/w02/workflows/WF-05de772808244ccfbdcd713dd5c7b2d1/sources/1.json",
+      "sha256": "06a1c3c4f512bcb3566f6d411c7470c87a1aca365097f670e39c9ef2d3fb9f98"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/snapshot/artifacts/w02/workflows/WF-05de772808244ccfbdcd713dd5c7b2d1/sources/2.json",
+      "sha256": "2c1c508cd50021fb087dc0b78c0d51cf64e548f1c89bc65895fb723d2d0dec7d"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/snapshot/artifacts/w02/workflows/WF-05de772808244ccfbdcd713dd5c7b2d1/sources/3.json",
+      "sha256": "343a59e02d60303a7b3a6836d63f4579cb04b61a8bb4858fbc91d8d267ffd726"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/snapshot/artifacts/w02/workflows/WF-05de772808244ccfbdcd713dd5c7b2d1/sources/4.json",
+      "sha256": "bde135c8ecd9956ff42074c09786a982919757ad04a4382406fba011a28df2c4"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/step-001.request.json",
+      "sha256": "feddf28a57a99a3572c40c16aabc718c5d17c1f6d9ef1a946ef9a00fc02a3f36"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/step-001.attempts.json",
+      "sha256": "7c719fa832f2d87da73d75099619561f13f38f1a4887ad7423b56e628d25a53e"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-fcbaf1cc12484eb093b187603aa7bbdb/steps.json",
+      "sha256": "1d93a177fb6fa29fa0f7e70462c96575cdeb50a6134426858bc693649da0fd6b"
+    }
+  ],
+  "error": {
+    "code": "MODEL_TIMEOUT",
+    "message": "本次失败；保留已有请求与公开响应，核对后创建新运行。"
+  }
+}

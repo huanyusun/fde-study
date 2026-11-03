@@ -1,6 +1,5 @@
 {
   "version": "w02-natural-0.1.0",
-  "status": "local_candidate",
   "base_product_version": "0.2.0-w1",
   "contract_version": "w02-natural-0.1.0",
   "entry": "tools/w02_knowledge.py",
@@ -41,7 +40,6 @@
     "human_confirmed_write": true,
     "resume_after_review": true,
     "next_round": true,
-    "guide": "docs/w02_workflow/README.md",
-    "status": "local_candidate"
+    "guide": "docs/w02_workflow/README.md"
   }
 }

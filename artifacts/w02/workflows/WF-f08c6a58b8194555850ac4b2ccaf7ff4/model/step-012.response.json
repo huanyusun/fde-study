@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "反馈收到：六条均采用，0024 标注为沈总单方安排未回传。继续核查口径定义与 Excel 组。",
+    "tool_calls": [
+      {
+        "function": {
+          "arguments": "{\"claim_ids\":[\"CLM-001-0001\", \"CLM-001-0002\", \"CLM-001-0015\", \"CLM-001-0016\"]}",
+          "name": "show_evidence"
+        },
+        "id": "call_-7120619098853073634",
+        "index": 0,
+        "type": "function"
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 27881,
+    "completion_tokens": 365,
+    "total_tokens": 28246
+  }
+}

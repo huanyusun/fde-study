@@ -15,7 +15,7 @@ from fde_product.models import ModelError
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--workspace',type=Path,default=Path.cwd())
     sub=p.add_subparsers(dest='action',required=True)
-    c=sub.add_parser('init');c.add_argument('--from-extraction')
+    c=sub.add_parser('init');c.add_argument('--from-extraction');c.add_argument('--replace',action='store_true',help='已有配置时改用指定提取，重写 knowledge.json；不改两份文档。')
     for action in ('inspect','run','compare'):
         c=sub.add_parser(action);c.add_argument('--config',default=CONFIG)
         c.add_argument('--question',required=action!='inspect');c.add_argument('--expected',default='')
@@ -23,7 +23,7 @@ def main():
     c=sub.add_parser('check-run');c.add_argument('path')
     args=p.parse_args();ws=Workspace(args.workspace)
     try:
-        if args.action=='init':result=initialize(ws,args.from_extraction)
+        if args.action=='init':result=initialize(ws,args.from_extraction,replace=args.replace)
         elif args.action=='check-run':
             run,*_=check_run(ws,args.path);result={'status':'structure_checked','run_status':run['status'],
                 'mode':run['mode'],'semantic_review':'required'}

@@ -212,3 +212,32 @@ def test_session_failed_under_earlier_package_resumes_and_failed_step_is_free(sa
     s["status"]="failed";s["error"]="MODEL_NETWORK_ERROR";save(ws,p,s)
     s=advance(ws,p,NativeFixture([("show_evidence",{"claim_ids":["CLM-001-0001"]})]),ExtractFixture())
     assert len(s["resumed_failures"])==1 and s["calls"][-1]["response"] and s["error"]=="STEP_LIMIT" and not can_resume(s)
+
+def test_previous_latest_skips_failed_later_round(sample):
+    ws=sample;p,_=proposal(ws);apply(ws,p)
+    q=start(ws,previous=resolve_previous(ws,"latest"))
+    s=advance(ws,q,NativeFixture([ModelError("MODEL_TIMEOUT")]),ExtractFixture());assert s["status"]=="failed"
+    assert resolve_session(ws,"latest")==q and resolve_previous(ws,"latest")==p
+    assert load_session(ws,start(ws,previous=resolve_previous(ws,"latest")))["previous"]==p
+
+def test_previous_latest_without_completed_pointer_keeps_old_behaviour(sample):
+    p=start(sample)
+    assert resolve_previous(sample,"latest")==p and resolve_previous(sample,p)==p
+    with pytest.raises(CheckError,match="PREVIOUS_ROUND_INCOMPLETE"): start(sample,previous=resolve_previous(sample,"latest"))
+
+class InterruptingExtractor(ExtractFixture):
+    def complete(self,messages,tools):raise KeyboardInterrupt
+
+def test_interrupt_inside_tool_marks_session_failed(sample):
+    ws=sample;p=start(ws)
+    with pytest.raises(KeyboardInterrupt):
+        advance(ws,p,NativeFixture([("inspect_materials",{}),("extract_candidates",{})]),InterruptingExtractor())
+    s=load_session(ws,p)
+    assert s["status"]=="failed" and s["error"]=="SESSION_INTERRUPTED" and s["messages"][-1].get("tool_calls")
+    assert "start" in public_status(s,p)["next"]
+    with pytest.raises(CheckError,match="HUMAN_ACTION_REQUIRED"): advance(ws,p,NativeFixture([]),ExtractFixture())
+
+def test_interrupt_during_model_call_keeps_session_resumable(sample):
+    ws=sample;p=start(ws)
+    with pytest.raises(KeyboardInterrupt): advance(ws,p,InterruptingExtractor(),ExtractFixture())
+    s=load_session(ws,p);assert s["status"]=="active" and not interrupted(s)

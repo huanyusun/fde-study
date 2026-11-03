@@ -2,6 +2,7 @@
 from copy import deepcopy
 import hashlib
 import json
+import os
 from pathlib import PurePosixPath
 from urllib.parse import urlsplit
 from uuid import uuid4
@@ -31,7 +32,7 @@ ANSWER_SCHEMA = {'type':'object','additionalProperties':False,'required':['answe
                  'properties':{'answer':{'type':'string','minLength':1,'maxLength':30000}}}
 
 
-def initialize(ws, extraction_path=None):
+def initialize(ws, extraction_path=None, replace=False):
     if extraction_path is None:
         paths=sorted(ws.path('artifacts/w02/runs').glob('*/run.json'))
         valid=[]
@@ -49,13 +50,26 @@ def initialize(ws, extraction_path=None):
     config={'version':VERSION,'scope_id':candidate['scope_id'],'business_model':'docs/w02/business_model.md',
             'extraction_run':extraction_path,'prompt':'customer/w02/knowledge_prompt.txt',
             'profile':settings['config']['profile'],'max_context_chars':96000}
-    require(not ws.path(CONFIG).exists(),'OUTPUT_EXISTS',CONFIG)
+    existed=ws.path(CONFIG).exists()
+    # Switching to another extraction (e.g. after a demo) rewrites scope_id, profile and run together, only on request.
+    require(replace or not existed,'OUTPUT_EXISTS',CONFIG)
+    if existed:
+        try:old=ws.load(CONFIG)
+        except CheckError:old=None  # an unreadable config is simply rewritten
+        if isinstance(old,dict):config.update({k:old[k] for k in ('business_model','prompt','max_context_chars') if k in old})
     # Existing student documents are never replaced when adding the run entry.
     created=[]
     for source,target in [('templates/w02_delivery/business_model.md',config['business_model']),
                           ('templates/w02_delivery/interview_notes.md','docs/w02/interview_notes.md'),
                           ('templates/w02_natural/knowledge_prompt.txt',config['prompt'])]:
         if not ws.path(target).exists(): ws.write(target,(ROOT/source).read_bytes(),raw=True);created.append(target)
+    if existed:
+        target=ws.path(CONFIG);temp=target.with_name(target.name+'.'+uuid4().hex+'.tmp')
+        try:
+            temp.write_text(json.dumps(config,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n');os.replace(temp,target)
+        finally:temp.unlink(missing_ok=True)
+        return {'status':'initialized','created':created,'replaced':[CONFIG],'extraction_run':extraction_path,'scope_id':config['scope_id'],
+                'next':'配置已改用这次提取；两份文档未改动，请按新材料核查和修改后再用 compare 提问。'}
     ws.write(CONFIG,config);created.append(CONFIG)
     return {'status':'initialized','created':created,'next':'核查候选并编辑两份 Markdown 文档，再用 compare 提问；无需填写 YAML 或复核枚举。'}
 

@@ -1,0 +1,10 @@
+[
+  {
+    "phase": "extract",
+    "request": {
+      "path": "artifacts/w02/runs/RUN-c5c67ef67c2c4a82b85a3c1fa3eac9cf/step-001.request.json",
+      "sha256": "feddf28a57a99a3572c40c16aabc718c5d17c1f6d9ef1a946ef9a00fc02a3f36"
+    },
+    "response": null
+  }
+]

@@ -134,7 +134,8 @@ def test_direct_cli_external_workspace_and_non_overwrite(ws):
     result=subprocess.run(command,cwd=ws.root,capture_output=True,text=True)
     assert result.returncode==0,result.stdout+result.stderr
     again=subprocess.run(command,cwd=ws.root,capture_output=True,text=True)
-    assert again.returncode==2 and json.loads(again.stdout)['code']=='OUTPUT_EXISTS'
+    assert again.returncode==2 and json.loads(again.stdout)['status']=='ready_for_review'
+    assert json.loads(again.stderr)['code']=='OUTPUT_EXISTS'
     inspect=subprocess.run([sys.executable,str(ROOT/'tools/w02_knowledge.py'),'--workspace',str(ws.root),'inspect'],cwd=ws.root,capture_output=True,text=True)
     assert inspect.returncode==0,inspect.stdout+inspect.stderr
     assert json.loads(inspect.stdout)['planned_model_calls']==0
@@ -166,3 +167,25 @@ def test_knowledge_init_and_comparison_reuse_historical_extraction(ws, monkeypat
     for result in pair(ws):
         assert result['status'] == 'succeeded'
         assert check_run(ws, result['run'])[0]['status'] == 'succeeded'
+
+def test_init_replace_switches_extraction_with_scope_and_profile(ws):
+    put(ws,'docs/w02/business_model.md','示例之后自己的模型。');before=ws.raw('docs/w02/business_model.md')
+    cfg=ws.load(CONFIG);cfg.update(scope_id='fictional-library',profile='compatible',max_context_chars=50000);ws.path(CONFIG).write_text(json.dumps(cfg))
+    with pytest.raises(CheckError,match='SCOPE_MISMATCH'):load_task(ws)
+    with pytest.raises(CheckError,match='OUTPUT_EXISTS'):initialize(ws,cfg['extraction_run'])
+    r=initialize(ws,cfg['extraction_run'],replace=True)
+    assert r['replaced']==[CONFIG] and not r['created'] and ws.raw('docs/w02/business_model.md')==before
+    new=ws.load(CONFIG);assert new['scope_id']=='qinghe' and new['profile']=='gateway-json' and new['extraction_run']==cfg['extraction_run']
+    assert new['max_context_chars']==50000 and new['prompt']==cfg['prompt']
+    load_task(ws)
+    command=[sys.executable,str(ROOT/'tools/w02_knowledge.py'),'--workspace',str(ws.root),'init','--from-extraction',cfg['extraction_run'],'--replace']
+    result=subprocess.run(command,cwd=ws.root,capture_output=True,text=True)
+    assert result.returncode==0 and json.loads(result.stdout)['replaced']==[CONFIG],result.stdout+result.stderr
+
+def test_run_limit_is_reported_as_issue_with_hint(ws):
+    pair(ws)
+    runs=[f'artifacts/w02/knowledge_runs/RUN-{i}/run.json' for i in range(101)]
+    r=precheck(ws.root,runs=runs)
+    codes=[(i['item'],i['code']) for i in r['issues']]
+    assert r['status']=='needs_revision' and codes==[('T04','RUN_LIMIT_EXCEEDED')] and '--run' in r['issues'][0]['next_step']
+    assert any(c['item']=='D01' for c in r['completed']) and r['runtime']==[]
