@@ -1,0 +1,1 @@
+select member_id || '-' || strftime(stat_month, '%Y-%m') as member_month_key, member_id, stat_month, count(*) as valid_order_cnt from (select member_id, date_trunc('month', ordered_at)::date as stat_month from {{ ref('member_purchase_seq') }}) t group by member_id, stat_month

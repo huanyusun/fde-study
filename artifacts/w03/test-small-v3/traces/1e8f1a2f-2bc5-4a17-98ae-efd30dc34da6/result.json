@@ -1,0 +1,24 @@
+{
+  "status": "clarify",
+  "reason": "已识别指标为有效订单数（valid_order_count）。您提到的\"青禾\"是当前数据集（客户）名称，整个查询已在青禾数据范围内，不会作为门店筛选条件。但问题未指定统计时间范围，有效订单数必须限定日期区间才能计算，请补充希望统计的时间范围（例如某个自然月、某周或某日期区间）。",
+  "intent": {
+    "status": "clarify",
+    "reason": "已识别指标为有效订单数（valid_order_count）。您提到的\"青禾\"是当前数据集（客户）名称，整个查询已在青禾数据范围内，不会作为门店筛选条件。但问题未指定统计时间范围，有效订单数必须限定日期区间才能计算，请补充希望统计的时间范围（例如某个自然月、某周或某日期区间）。",
+    "metrics": [
+      "valid_order_count"
+    ],
+    "start": null,
+    "end": null,
+    "group_by": [],
+    "filters": []
+  },
+  "question": "青禾的有效订单数是多少?",
+  "trace_id": "1e8f1a2f-2bc5-4a17-98ae-efd30dc34da6",
+  "elapsed_seconds": 9.528,
+  "model_usage": {
+    "prompt_tokens": 8716,
+    "completion_tokens": 472,
+    "total_tokens": 9188
+  },
+  "model_calls_with_usage": 1
+}

@@ -1,0 +1,50 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "first_buyer_count",
+      "first_order_count",
+      "repeat_order_count",
+      "valid_order_count"
+    ],
+    "start": "2026-07-01",
+    "end": "2026-08-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  MAX(subq_10.first_buyer_count) AS first_buyer_count\n  , MAX(subq_10.first_order_count) AS first_order_count\n  , MAX(subq_10.repeat_order_count) AS repeat_order_count\n  , MAX(subq_17.valid_order_count) AS valid_order_count\nFROM (\n  SELECT\n    COUNT(DISTINCT case when is_first_order then member_id end) AS first_buyer_count\n    , SUM(CASE WHEN case when is_first_order then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS first_order_count\n    , SUM(CASE WHEN case when not is_first_order then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS repeat_order_count\n  FROM \"data\".\"main\".\"order_validity\" order_validity_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-07-01' AND '2026-07-31'\n) subq_10\nCROSS JOIN (\n  SELECT\n    SUM(CASE WHEN case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS valid_order_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-07-01' AND '2026-07-31'\n) subq_17",
+  "columns": [
+    "first_buyer_count",
+    "first_order_count",
+    "repeat_order_count",
+    "valid_order_count"
+  ],
+  "rows": [
+    [
+      473,
+      473,
+      29524,
+      29997
+    ]
+  ],
+  "seconds": 0.117,
+  "units": {
+    "first_buyer_count": "count",
+    "first_order_count": "count",
+    "repeat_order_count": "count",
+    "valid_order_count": "count"
+  },
+  "data_version": "qinghe-w03-20260923-large",
+  "data_sha256": "0074e7f764c63e836617aecb0e217aa3b5cc0cf9ede557179ad46b077dcf8ba8",
+  "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+  "answer": "2026年7月（统计窗口2026-07-01至2026-08-01，青禾合成测试数据，统计单位为CRM会员账户，未额外按门店等条件筛选）：观测期首购会员数为473个账户；观测期首单数为473单；观测期后续购买订单数为29,524单；有效订单数为29,997单。口径说明：有效订单指已支付且实付金额减退款金额大于零的订单，取消和全额退款不计；首购会员数为首次有效订单落在7月内的不同CRM账户数（不代表终身首购）；首单数为各账户第一笔有效订单落入7月的单数；后续购买订单数为各账户第二笔及以后的有效订单按订单日期落入7月计数的单数。",
+  "question": "2026年7月青禾的观测期首购会员数、观测期首单数、观测期后续购买订单数、有效订单数分别是多少?",
+  "trace_id": "313c4019-db96-4df0-a64a-01a54ba8f969",
+  "elapsed_seconds": 52.376,
+  "model_usage": {
+    "prompt_tokens": 344256,
+    "completion_tokens": 1317,
+    "total_tokens": 345573
+  },
+  "model_calls_with_usage": 2
+}

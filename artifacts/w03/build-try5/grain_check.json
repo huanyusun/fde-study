@@ -1,0 +1,30 @@
+{
+  "passed": false,
+  "items": [
+    {
+      "model": "orders",
+      "check": "primary_key",
+      "columns": [
+        "order_id"
+      ],
+      "rows": 48,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "orders",
+      "entity": "member",
+      "check": "foreign_key",
+      "passed": false,
+      "reason": "FOREIGN_TARGET_MISSING_OR_AMBIGUOUS"
+    },
+    {
+      "model": "orders",
+      "entity": "store",
+      "check": "foreign_key",
+      "passed": false,
+      "reason": "FOREIGN_TARGET_MISSING_OR_AMBIGUOUS"
+    }
+  ]
+}

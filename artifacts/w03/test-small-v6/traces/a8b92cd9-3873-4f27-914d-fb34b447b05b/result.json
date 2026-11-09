@@ -1,0 +1,24 @@
+{
+  "status": "clarify",
+  "reason": "已识别指标为有效订单数（valid_order_count），数据集为青禾当前加载的测试库，但问题未指定统计时间范围，无法确定查询窗口。请提供开始与结束日期（ISO 格式，end 不含），例如某个自然月或某周；也可说明是否需要按日/按月展示。",
+  "intent": {
+    "status": "clarify",
+    "reason": "已识别指标为有效订单数（valid_order_count），数据集为青禾当前加载的测试库，但问题未指定统计时间范围，无法确定查询窗口。请提供开始与结束日期（ISO 格式，end 不含），例如某个自然月或某周；也可说明是否需要按日/按月展示。",
+    "metrics": [
+      "valid_order_count"
+    ],
+    "start": null,
+    "end": null,
+    "group_by": [],
+    "filters": []
+  },
+  "question": "青禾的有效订单数是多少?",
+  "trace_id": "a8b92cd9-3873-4f27-914d-fb34b447b05b",
+  "elapsed_seconds": 9.742,
+  "model_usage": {
+    "prompt_tokens": 9659,
+    "completion_tokens": 320,
+    "total_tokens": 9979
+  },
+  "model_calls_with_usage": 1
+}

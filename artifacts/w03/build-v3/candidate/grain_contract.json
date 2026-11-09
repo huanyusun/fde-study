@@ -1,0 +1,29 @@
+{
+  "order_facts": [
+    "order_id"
+  ],
+  "member_accounts": [
+    "member_id"
+  ],
+  "selling_stores": [
+    "store_id"
+  ],
+  "home_stores": [
+    "store_id"
+  ],
+  "member_cards": [
+    "card_id"
+  ],
+  "first_order_per_member": [
+    "member_id"
+  ],
+  "repeat_valid_orders": [
+    "order_id"
+  ],
+  "member_month_valid_orders": [
+    "member_month"
+  ],
+  "paid_member_month": [
+    "member_month"
+  ]
+}

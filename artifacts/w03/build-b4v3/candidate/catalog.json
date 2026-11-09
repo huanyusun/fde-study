@@ -1,0 +1,59 @@
+[
+  {
+    "id": "monthly_buyer_count",
+    "name": "月内购买会员数",
+    "aliases": [],
+    "unit": "count",
+    "constraints": [
+      "仅完整自然月",
+      "全门店全渠道"
+    ],
+    "sources": [
+      {
+        "file": "03_会员运营周报.md",
+        "quote": "同一自然月有至少一笔有效订单的账户数，仅整月、全门店口径；允许连续整月按月分别展示，不能跨月直接加总当人数。"
+      }
+    ],
+    "query_policy": {
+      "full_month_only": true
+    }
+  },
+  {
+    "id": "monthly_repeat_buyer_count",
+    "name": "月内复购会员数",
+    "aliases": [],
+    "unit": "count",
+    "constraints": [
+      "仅完整自然月",
+      "全门店全渠道"
+    ],
+    "sources": [
+      {
+        "file": "03_会员运营周报.md",
+        "quote": "同一自然月有至少两笔有效订单的账户数，仅整月、全门店口径；不能由全量订单行上的简单条件代替。"
+      }
+    ],
+    "query_policy": {
+      "full_month_only": true
+    }
+  },
+  {
+    "id": "monthly_repeat_rate",
+    "name": "月内复购率",
+    "aliases": [],
+    "unit": "ratio",
+    "constraints": [
+      "仅完整自然月",
+      "全门店全渠道"
+    ],
+    "sources": [
+      {
+        "file": "03_会员运营周报.md",
+        "quote": "同一自然月的月内复购会员数除以月内购买会员数，仅整月、全门店口径；分母零时未定义；跨多月查询必须按月展示。"
+      }
+    ],
+    "query_policy": {
+      "full_month_only": true
+    }
+  }
+]

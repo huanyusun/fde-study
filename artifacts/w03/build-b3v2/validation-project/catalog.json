@@ -1,0 +1,82 @@
+[
+  {
+    "id": "first_buyer_count",
+    "name": "观测期首购会员数",
+    "aliases": [
+      "首购会员数"
+    ],
+    "unit": "count",
+    "constraints": [
+      "以测试覆盖期全期历史确定首次，再按查询窗口筛选"
+    ],
+    "sources": [
+      {
+        "file": "03_会员运营周报.md",
+        "quote": "在测试覆盖期内首次有效订单落入查询窗口的不同 CRM 账户数；不代表终身首购。先用全覆盖历史确定首次，再按窗口筛选。"
+      }
+    ],
+    "query_policy": {
+      "full_month_only": false
+    }
+  },
+  {
+    "id": "first_order_sales_cents",
+    "name": "观测期首单净销售额",
+    "aliases": [
+      "首单净销售额"
+    ],
+    "unit": "cents",
+    "constraints": [
+      "按首单日期归属；相同日期按订单号排序"
+    ],
+    "sources": [
+      {
+        "file": "03_会员运营周报.md",
+        "quote": "每个账户在测试覆盖期内第一笔有效订单的净销售额，按该单日期归属；相同日期按订单号排序；单位分。"
+      }
+    ],
+    "query_policy": {
+      "full_month_only": false
+    }
+  },
+  {
+    "id": "first_order_count",
+    "name": "观测期首单数",
+    "aliases": [
+      "首单数"
+    ],
+    "unit": "count",
+    "constraints": [
+      "按日期、订单号排序取第一笔有效订单"
+    ],
+    "sources": [
+      {
+        "file": "03_会员运营周报.md",
+        "quote": "在全测试覆盖期内先为每个账户按日期、订单号排序，其第一笔有效订单落入窗口的单数。"
+      }
+    ],
+    "query_policy": {
+      "full_month_only": false
+    }
+  },
+  {
+    "id": "repeat_order_count",
+    "name": "观测期后续购买订单数",
+    "aliases": [
+      "后续购买订单数"
+    ],
+    "unit": "count",
+    "constraints": [
+      "第二笔及以后有效订单，按订单日期落入窗口计数"
+    ],
+    "sources": [
+      {
+        "file": "03_会员运营周报.md",
+        "quote": "账户全测试覆盖期内第二笔及以后的有效订单，按订单日期落入窗口计数。不是月内复购人数。"
+      }
+    ],
+    "query_policy": {
+      "full_month_only": false
+    }
+  }
+]

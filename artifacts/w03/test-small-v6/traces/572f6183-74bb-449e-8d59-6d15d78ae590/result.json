@@ -1,0 +1,51 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "valid_order_count",
+      "net_sales_cents"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [
+      "store"
+    ],
+    "filters": []
+  },
+  "sql": "SELECT\n  store\n  , SUM(__valid_order_count) AS valid_order_count\n  , SUM(__net_sales_cents) AS net_sales_cents\nFROM (\n  SELECT\n    store_id AS store\n    , CASE WHEN case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END AS __valid_order_count\n    , case when status = 'paid' then paid_cents - refund_cents else 0 end AS __net_sales_cents\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_6\nGROUP BY\n  store",
+  "columns": [
+    "store",
+    "valid_order_count",
+    "net_sales_cents"
+  ],
+  "rows": [
+    [
+      "S01",
+      13,
+      54650
+    ],
+    [
+      "S02",
+      14,
+      45650
+    ]
+  ],
+  "seconds": 0.053,
+  "units": {
+    "valid_order_count": "count",
+    "net_sales_cents": "cents"
+  },
+  "data_version": "qinghe-w03-20260923-small",
+  "data_sha256": "8a295969ec24556ebd7f818506633919e71f840fc86488d53efc185f9768cfe6",
+  "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+  "answer": "2026年8月（按原订单下单日期归属），青禾成交门店共列出两家：门店 S01 有效订单 13 笔，净销售额 546.50 元；门店 S02 有效订单 14 笔，净销售额 456.50 元。口径说明：有效订单数指已支付且“实付金额－退款金额”大于零的订单，取消单和全额退款单不计；净销售额为已支付订单实付金额减退款后的合计。本次统计范围为青禾（本周合成测试库）数据，结果按成交门店分组，仅列出了上述两家门店，未列出的门店表示该月无符合口径的成交被列出。",
+  "question": "2026年8月青禾各成交门店的有效订单数和净销售额分别是多少?",
+  "trace_id": "572f6183-74bb-449e-8d59-6d15d78ae590",
+  "elapsed_seconds": 34.531,
+  "model_usage": {
+    "prompt_tokens": 10841,
+    "completion_tokens": 1126,
+    "total_tokens": 11967
+  },
+  "model_calls_with_usage": 2
+}

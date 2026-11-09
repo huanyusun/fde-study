@@ -1,0 +1,6 @@
+[0m02:52:50  Running with dbt=1.12.5
+[0m02:52:50  Registered adapter: duckdb=1.11.0
+[0m02:52:51  Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m02:52:52  [[31mERROR[0m]: Encountered an error:
+Parsing Error
+  Invalid metrics config given in FilePath(searched_path='models', relative_path='metrics.yml', modification_time=1794192767.5641937, project_root='/Users/sunhuanyu/orca/workspaces/fde-study/w03/artifacts/w03/build-v3/validation-project') @ metrics: {'name': 'monthly_buyer_count', 'label': '月内购买会员数', 'description': '同一自然月有至少一笔有效订单的账户数，仅整月、全门店口径', 'type': 'simple', 'type_params': {'measure': 'm_buyer_cnt'}, 'query_policy': {'full_month_only': True}, 'constraints': ['仅完整自然月、全门店全渠道']} - at path []: Additional properties are not allowed ('constraints', 'query_policy' were unexpected)

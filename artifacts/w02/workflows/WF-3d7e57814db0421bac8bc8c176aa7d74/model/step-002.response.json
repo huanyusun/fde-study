@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "已读取本轮目标、W3 四场访谈材料、W2 旧模型和核查记录。材料与小林/陈姐/老周/王经理四场访谈对应，缺口清单里已列出六项付费月度指标的口径缺口。现在按已确认配置提取候选。",
+    "tool_calls": [
+      {
+        "function": {
+          "arguments": "{}",
+          "name": "extract_candidates"
+        },
+        "id": "call_-7108827489480205431",
+        "index": 0,
+        "type": "function"
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 11626,
+    "completion_tokens": 131,
+    "total_tokens": 11757
+  }
+}

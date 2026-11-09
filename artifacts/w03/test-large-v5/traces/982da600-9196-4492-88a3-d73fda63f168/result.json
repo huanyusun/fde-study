@@ -1,0 +1,46 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "buyer_count",
+      "new_member_count",
+      "selling_store_count"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  MAX(subq_9.buyer_count) AS buyer_count\n  , MAX(subq_9.selling_store_count) AS selling_store_count\n  , MAX(subq_16.new_member_count) AS new_member_count\nFROM (\n  SELECT\n    COUNT(DISTINCT case when status = 'paid' and paid_cents - refund_cents > 0 then member_id end) AS buyer_count\n    , COUNT(DISTINCT case when status = 'paid' and paid_cents - refund_cents > 0 then store_id end) AS selling_store_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_9\nCROSS JOIN (\n  SELECT\n    COUNT(DISTINCT member_id) AS new_member_count\n  FROM \"data\".\"main\".\"members\" members_src_10000\n  WHERE DATE_TRUNC('day', registered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_16",
+  "columns": [
+    "buyer_count",
+    "selling_store_count",
+    "new_member_count"
+  ],
+  "rows": [
+    [
+      16504,
+      24,
+      0
+    ]
+  ],
+  "seconds": 0.082,
+  "units": {
+    "buyer_count": "count",
+    "new_member_count": "count",
+    "selling_store_count": "count"
+  },
+  "data_version": "qinghe-w03-20260923-large",
+  "data_sha256": "0074e7f764c63e836617aecb0e217aa3b5cc0cf9ede557179ad46b077dcf8ba8",
+  "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+  "answer": "2026年8月（统计窗口2026-08-01至2026-09-01，均为有效订单口径）：\n- 购买会员数：16,504 个 CRM 会员账户（窗口内有成交的不同账户数，不按自然人去重）；\n- 注册会员数：0（8月无新注册账户。该时间在数据覆盖范围内，属于真实为零，非数据缺失）；\n- 成交门店数：24 家（全部24家门店在窗口内均有成交）。\n统计范围为当前客户青禾的合成测试库数据，未额外按门店或地区筛选。",
+  "question": "2026年8月青禾的购买会员数、注册会员数、成交门店数分别是多少?",
+  "trace_id": "982da600-9196-4492-88a3-d73fda63f168",
+  "elapsed_seconds": 58.362,
+  "model_usage": {
+    "prompt_tokens": 344083,
+    "completion_tokens": 1006,
+    "total_tokens": 345089
+  },
+  "model_calls_with_usage": 2
+}

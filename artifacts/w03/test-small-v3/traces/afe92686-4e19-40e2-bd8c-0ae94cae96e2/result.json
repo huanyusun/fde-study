@@ -1,0 +1,46 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "buyer_count",
+      "selling_store_count",
+      "valid_order_items"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  COUNT(DISTINCT case when status = 'paid' and paid_cents - refund_cents > 0 then member_id end) AS buyer_count\n  , COUNT(DISTINCT case when status = 'paid' and paid_cents - refund_cents > 0 then store_id end) AS selling_store_count\n  , SUM(case when status = 'paid' and paid_cents - refund_cents > 0 then quantity else 0 end) AS valid_order_items\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+  "columns": [
+    "buyer_count",
+    "selling_store_count",
+    "valid_order_items"
+  ],
+  "rows": [
+    [
+      15,
+      2,
+      33
+    ]
+  ],
+  "seconds": 0.06,
+  "units": {
+    "buyer_count": "count",
+    "selling_store_count": "count",
+    "valid_order_items": "count"
+  },
+  "data_version": "qinghe-w03-20260923-small",
+  "data_sha256": "8a295969ec24556ebd7f818506633919e71f840fc86488d53efc185f9768cfe6",
+  "catalog_sha256": "a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef",
+  "answer": "2026年8月，青禾（本周合成测试库）范围内：购买会员数为15个CRM会员账户（按有有效订单的不同账户统计，未做跨系统自然人去重）；成交门店数为2家（指订单实际成交门店，统计窗口内至少有一笔有效订单，不代表会员归属门店）；有效订单商品件数为33件（有效订单的原始购买件数合计，因退款不能推算退货件数，该数字不等于净商品销量）。统计范围为2026-08-01至2026-08-31的有效订单，未附加额外门店或会员筛选。",
+  "question": "2026年8月青禾的购买会员数、成交门店数、有效订单商品件数分别是多少?",
+  "trace_id": "afe92686-4e19-40e2-bd8c-0ae94cae96e2",
+  "elapsed_seconds": 18.904,
+  "model_usage": {
+    "prompt_tokens": 9966,
+    "completion_tokens": 775,
+    "total_tokens": 10741
+  },
+  "model_calls_with_usage": 2
+}

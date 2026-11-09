@@ -1,0 +1,50 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "refund_order_count",
+      "partial_refund_order_count",
+      "full_refund_order_count",
+      "refund_buyer_count"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  SUM(CASE WHEN case when status = 'paid' and refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS refund_order_count\n  , SUM(CASE WHEN case when status = 'paid' and refund_cents > 0 and refund_cents < paid_cents then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS partial_refund_order_count\n  , SUM(CASE WHEN case when status = 'paid' and paid_cents > 0 and refund_cents = paid_cents then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS full_refund_order_count\n  , COUNT(DISTINCT case when status = 'paid' and refund_cents > 0 then member_id end) AS refund_buyer_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+  "columns": [
+    "refund_order_count",
+    "partial_refund_order_count",
+    "full_refund_order_count",
+    "refund_buyer_count"
+  ],
+  "rows": [
+    [
+      4,
+      1,
+      3,
+      4
+    ]
+  ],
+  "seconds": 0.058,
+  "units": {
+    "refund_order_count": "count",
+    "partial_refund_order_count": "count",
+    "full_refund_order_count": "count",
+    "refund_buyer_count": "count"
+  },
+  "data_version": "qinghe-w03-20260923-small",
+  "data_sha256": "8a295969ec24556ebd7f818506633919e71f840fc86488d53efc185f9768cfe6",
+  "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+  "answer": "青禾在2026年8月（8月1日至9月1日，按下单时间统计）的退款相关指标如下：退款订单共4笔，其中全额退款3笔、部分退款1笔（两者合计正好等于4笔）；发生退款的会员为4个CRM会员账户，即平均每笔退款订单对应一个不同的退款会员。统计范围为已支付状态且产生退款金额的订单，覆盖青禾本周合成测试库中的全部成交数据；本次未额外按门店、地区等维度筛选或分组，为整体汇总结果。",
+  "question": "2026年8月青禾的退款订单数、部分退款订单数、全额退款订单数、退款会员数分别是多少?",
+  "trace_id": "0740bb3e-18ca-4f8e-88d4-5c59f198e259",
+  "elapsed_seconds": 24.793,
+  "model_usage": {
+    "prompt_tokens": 11042,
+    "completion_tokens": 778,
+    "total_tokens": 11820
+  },
+  "model_calls_with_usage": 2
+}

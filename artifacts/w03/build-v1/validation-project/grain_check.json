@@ -1,0 +1,136 @@
+{
+  "passed": true,
+  "items": [
+    {
+      "model": "orders",
+      "check": "primary_key",
+      "columns": [
+        "order_id"
+      ],
+      "rows": 48,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "orders",
+      "entity": "member",
+      "target": "members",
+      "check": "foreign_key",
+      "unmatched_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "orders",
+      "entity": "store",
+      "target": "stores_selling",
+      "check": "foreign_key",
+      "unmatched_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "members",
+      "check": "primary_key",
+      "columns": [
+        "member_id"
+      ],
+      "rows": 20,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "members",
+      "entity": "home_store",
+      "target": "stores_home",
+      "check": "foreign_key",
+      "unmatched_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "stores_selling",
+      "check": "primary_key",
+      "columns": [
+        "store_id"
+      ],
+      "rows": 3,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "stores_home",
+      "check": "primary_key",
+      "columns": [
+        "store_id"
+      ],
+      "rows": 3,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "cards",
+      "check": "primary_key",
+      "columns": [
+        "card_id"
+      ],
+      "rows": 22,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "cards",
+      "entity": "member",
+      "target": "members",
+      "check": "foreign_key",
+      "unmatched_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "orders_valid_ranked",
+      "check": "primary_key",
+      "columns": [
+        "order_id"
+      ],
+      "rows": 42,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "member_first_valid_order",
+      "check": "primary_key",
+      "columns": [
+        "member_id"
+      ],
+      "rows": 18,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "account_month_general",
+      "check": "primary_key",
+      "columns": [
+        "account_month_key"
+      ],
+      "rows": 29,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "account_month_paid",
+      "check": "primary_key",
+      "columns": [
+        "account_month_key"
+      ],
+      "rows": 85,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,515 @@
+version: 2
+semantic_models:
+- name: orders
+  model: ref('orders')
+  description: 订单表，一行一笔订单。
+  defaults:
+    agg_time_dimension: ordered_at
+  entities:
+  - name: order
+    type: primary
+    expr: order_id
+  - name: member
+    type: foreign
+    expr: member_id
+  - name: store
+    type: foreign
+    expr: store_id
+  dimensions:
+  - name: ordered_at
+    type: time
+    type_params:
+      time_granularity: day
+  - name: status
+    type: categorical
+  - name: channel
+    type: categorical
+  measures:
+  - name: order_count_measure
+    expr: order_id
+    agg: count
+  - name: paid_order_count_measure
+    expr: case when status = 'paid' then order_id end
+    agg: count
+  - name: valid_order_count_measure
+    expr: case when status = 'paid' and paid_cents - refund_cents > 0 then order_id
+      end
+    agg: count
+  - name: cancelled_order_count_measure
+    expr: case when status = 'cancelled' then order_id end
+    agg: count
+  - name: refund_order_count_measure
+    expr: case when status = 'paid' and refund_cents > 0 then order_id end
+    agg: count
+  - name: partial_refund_order_count_measure
+    expr: case when status = 'paid' and refund_cents > 0 and refund_cents < paid_cents
+      then order_id end
+    agg: count
+  - name: full_refund_order_count_measure
+    expr: case when status = 'paid' and paid_cents > 0 and refund_cents = paid_cents
+      then order_id end
+    agg: count
+  - name: payment_cents_measure
+    expr: case when status = 'paid' then paid_cents else 0 end
+    agg: sum
+  - name: refund_cents_measure
+    expr: case when status = 'paid' then refund_cents else 0 end
+    agg: sum
+  - name: net_sales_cents_measure
+    expr: case when status = 'paid' then paid_cents - refund_cents else 0 end
+    agg: sum
+  - name: gross_cents_measure
+    expr: case when status = 'paid' then gross_cents else 0 end
+    agg: sum
+  - name: discount_cents_measure
+    expr: case when status = 'paid' then gross_cents - paid_cents else 0 end
+    agg: sum
+  - name: buyer_count_measure
+    expr: case when status = 'paid' and paid_cents - refund_cents > 0 then member_id
+      end
+    agg: count_distinct
+  - name: refund_buyer_count_measure
+    expr: case when status = 'paid' and refund_cents > 0 then member_id end
+    agg: count_distinct
+  - name: selling_store_count_measure
+    expr: case when status = 'paid' and paid_cents - refund_cents > 0 then store_id
+      end
+    agg: count_distinct
+  - name: valid_order_items_measure
+    expr: case when status = 'paid' and paid_cents - refund_cents > 0 then quantity
+      else 0 end
+    agg: sum
+- name: members
+  model: ref('members')
+  description: 会员账户表，一行一个 CRM 账户。
+  defaults:
+    agg_time_dimension: registered_at
+  entities:
+  - name: member
+    type: primary
+    expr: member_id
+  - name: home_store
+    type: foreign
+    expr: home_store_id
+  dimensions:
+  - name: registered_at
+    type: time
+    type_params:
+      time_granularity: day
+  - name: tier
+    type: categorical
+  measures:
+  - name: new_member_count_measure
+    expr: member_id
+    agg: count
+- name: stores_selling
+  model: ref('stores')
+  description: 门店表，成交门店角色。
+  entities:
+  - name: store
+    type: primary
+    expr: store_id
+  dimensions:
+  - name: region
+    type: categorical
+  - name: store_name
+    type: categorical
+  measures: []
+- name: stores_home
+  model: ref('stores')
+  description: 门店表，会员归属门店角色。
+  entities:
+  - name: home_store
+    type: primary
+    expr: store_id
+  dimensions:
+  - name: region
+    type: categorical
+  - name: store_name
+    type: categorical
+  measures: []
+- name: cards
+  model: ref('cards')
+  description: 会员卡表，一行一张卡。
+  defaults:
+    agg_time_dimension: valid_from
+  entities:
+  - name: card
+    type: primary
+    expr: card_id
+  - name: member
+    type: foreign
+    expr: member_id
+  dimensions:
+  - name: valid_from
+    type: time
+    type_params:
+      time_granularity: day
+  - name: card_type
+    type: categorical
+  measures: []
+- name: orders_valid_ranked
+  model: ref('orders_valid_ranked')
+  description: 有效订单排序表，一行一笔有效订单，first_seq 为该账户按下单日期、订单号排序的购买序号。
+  defaults:
+    agg_time_dimension: ordered_at
+  entities:
+  - name: first_ranked_order
+    type: primary
+    expr: order_id
+  dimensions:
+  - name: ordered_at
+    type: time
+    type_params:
+      time_granularity: day
+  measures:
+  - name: repeat_order_count_measure
+    expr: case when first_seq > 1 then order_id end
+    agg: count
+- name: member_first_valid_order
+  model: ref('member_first_valid_order')
+  description: 账户首单表，一行一个账户在覆盖期内的第一笔有效订单。
+  defaults:
+    agg_time_dimension: first_ordered_at
+  entities:
+  - name: member_first_order
+    type: primary
+    expr: member_id
+  dimensions:
+  - name: first_ordered_at
+    type: time
+    type_params:
+      time_granularity: day
+  measures:
+  - name: first_buyer_count_measure
+    expr: member_id
+    agg: count
+  - name: first_order_count_measure
+    expr: member_id
+    agg: count
+  - name: first_order_sales_cents_measure
+    expr: first_net_cents
+    agg: sum
+- name: account_month_general
+  model: ref('account_month_general')
+  description: 账户月度有效订单表，一行一个账户一个自然月，account_month_key 为账户与月起点拼接的代理键。
+  defaults:
+    agg_time_dimension: month_start
+  entities:
+  - name: account_month
+    type: primary
+    expr: account_month_key
+  dimensions:
+  - name: month_start
+    type: time
+    type_params:
+      time_granularity: month
+  - name: member_id
+    type: categorical
+  measures:
+  - name: monthly_buyer_count_measure
+    expr: member_id
+    agg: count
+  - name: monthly_repeat_buyer_count_measure
+    expr: case when valid_order_cnt >= 2 then member_id end
+    agg: count
+- name: account_month_paid
+  model: ref('account_month_paid')
+  description: 月末付费资格账户月度表，一行一个有资格账户一个自然月，account_month_key 为代理键；资格在自然月最后一天判定，账户名下任一张悦享年卡或家庭季卡在判定日处于有效状态即有资格，多卡不重复。
+  defaults:
+    agg_time_dimension: month_start
+  entities:
+  - name: account_month_paid
+    type: primary
+    expr: account_month_key
+  dimensions:
+  - name: month_start
+    type: time
+    type_params:
+      time_granularity: month
+  - name: member_id
+    type: categorical
+  measures:
+  - name: monthly_paid_buyer_count_measure
+    expr: case when valid_order_cnt >= 1 then member_id end
+    agg: count
+  - name: monthly_paid_order_count_measure
+    expr: valid_order_cnt
+    agg: sum
+  - name: monthly_paid_sales_cents_measure
+    expr: net_cents_sum
+    agg: sum
+  - name: monthly_paid_repeat_buyer_count_measure
+    expr: case when valid_order_cnt >= 2 then member_id end
+    agg: count
+metrics:
+- name: order_count
+  label: 创建订单数
+  type: simple
+  type_params:
+    measure: order_count_measure
+  description: 按下单日期统计全部订单，每个订单号一次，包含取消单。
+- name: paid_order_count
+  label: 支付订单数
+  type: simple
+  type_params:
+    measure: paid_order_count_measure
+  description: 状态为 paid 的订单数，包括后来全部退款的订单。
+- name: valid_order_count
+  label: 有效订单数
+  type: simple
+  type_params:
+    measure: valid_order_count_measure
+  description: 状态为 paid 且实付金额减退款金额大于零的订单数；取消和全退不计。
+- name: cancelled_order_count
+  label: 取消订单数
+  type: simple
+  type_params:
+    measure: cancelled_order_count_measure
+  description: 状态为 cancelled 的订单数。
+- name: refund_order_count
+  label: 退款订单数
+  type: simple
+  type_params:
+    measure: refund_order_count_measure
+  description: paid 状态且退款金额大于零的订单数，包括部分退款与全部退款。
+- name: partial_refund_order_count
+  label: 部分退款订单数
+  type: simple
+  type_params:
+    measure: partial_refund_order_count_measure
+  description: paid 状态且退款大于零、小于实付金额的订单数。
+- name: full_refund_order_count
+  label: 全额退款订单数
+  type: simple
+  type_params:
+    measure: full_refund_order_count_measure
+  description: paid 状态且实付大于零、退款等于实付的订单数。
+- name: payment_cents
+  label: 实付金额
+  type: simple
+  type_params:
+    measure: payment_cents_measure
+  description: paid 订单实付金额合计，尚未扣退款；单位分。
+- name: refund_cents
+  label: 退款金额
+  type: simple
+  type_params:
+    measure: refund_cents_measure
+  description: paid 订单退款金额合计，按原订单下单日期归属，不是现金退款发生日；单位分。
+- name: net_sales_cents
+  label: 净销售额
+  type: simple
+  type_params:
+    measure: net_sales_cents_measure
+  description: paid 订单实付减退款后合计；取消单不计；按原订单下单日期归属；单位分。
+- name: gross_cents
+  label: 支付订单原价金额
+  type: simple
+  type_params:
+    measure: gross_cents_measure
+  description: paid 订单折扣前原价金额合计；单位分。
+- name: discount_cents
+  label: 优惠金额
+  type: simple
+  type_params:
+    measure: discount_cents_measure
+  description: paid 订单原价减实付的金额合计；退款不冲减原优惠金额；单位分。
+- name: buyer_count
+  label: 购买会员数
+  type: simple
+  type_params:
+    measure: buyer_count_measure
+  description: 统计窗口及筛选条件内有有效订单的不同 CRM 会员账户数，不做跨系统自然人去重。
+- name: refund_buyer_count
+  label: 退款会员数
+  type: simple
+  type_params:
+    measure: refund_buyer_count_measure
+  description: 统计窗口内发生退款的 paid 订单关联的不同 CRM 会员账户数。
+- name: selling_store_count
+  label: 成交门店数
+  type: simple
+  type_params:
+    measure: selling_store_count_measure
+  description: 窗口内至少有一笔有效订单的不同订单归属门店数。
+- name: valid_order_items
+  label: 有效订单商品件数
+  type: simple
+  type_params:
+    measure: valid_order_items_measure
+  description: 有效订单中的原始购买件数合计；退款金额不能推算退货件数，此项不是净商品销量。
+- name: avg_order_value
+  label: 有效订单均额
+  type: derived
+  type_params:
+    expr: case when valid_order_count = 0 then null else net_sales_cents / valid_order_count
+      end
+    metrics:
+    - net_sales_cents
+    - valid_order_count
+  description: 净销售额除以有效订单数，单位分／单；分母为零时未定义，显式置 null。
+- name: avg_buyer_value
+  label: 购买会员人均消费
+  type: derived
+  type_params:
+    expr: case when buyer_count = 0 then null else net_sales_cents / buyer_count end
+    metrics:
+    - net_sales_cents
+    - buyer_count
+  description: 净销售额除以购买会员数，单位分／账户；分母为零时未定义，显式置 null。
+- name: purchase_frequency
+  label: 购买频次
+  type: derived
+  type_params:
+    expr: case when buyer_count = 0 then null else valid_order_count / buyer_count
+      end
+    metrics:
+    - valid_order_count
+    - buyer_count
+  description: 有效订单数除以购买会员数，单位单／账户；分母为零时未定义，显式置 null。
+- name: refund_amount_rate
+  label: 退款金额占比
+  type: derived
+  type_params:
+    expr: case when payment_cents = 0 then null else refund_cents / payment_cents
+      end
+    metrics:
+    - refund_cents
+    - payment_cents
+  description: 退款金额除以实付金额；分母为零时未定义，显式置 null。
+- name: cancel_rate
+  label: 取消率
+  type: derived
+  type_params:
+    expr: case when order_count = 0 then null else cancelled_order_count / order_count
+      end
+    metrics:
+    - cancelled_order_count
+    - order_count
+  description: 取消订单数除以创建订单数；分母为零时未定义，显式置 null。
+- name: refund_order_rate
+  label: 退款订单率
+  type: derived
+  type_params:
+    expr: case when paid_order_count = 0 then null else refund_order_count / paid_order_count
+      end
+    metrics:
+    - refund_order_count
+    - paid_order_count
+  description: 退款订单数除以支付订单数；分母为零时未定义，显式置 null。
+- name: discount_rate
+  label: 优惠率
+  type: derived
+  type_params:
+    expr: case when gross_cents = 0 then null else discount_cents / gross_cents end
+    metrics:
+    - discount_cents
+    - gross_cents
+  description: 优惠金额除以支付订单原价金额；分母为零时未定义，显式置 null。
+- name: items_per_order
+  label: 单均商品件数
+  type: derived
+  type_params:
+    expr: case when valid_order_count = 0 then null else valid_order_items / valid_order_count
+      end
+    metrics:
+    - valid_order_items
+    - valid_order_count
+  description: 有效订单商品件数除以有效订单数；分母为零时未定义，显式置 null。
+- name: new_member_count
+  label: 注册会员数
+  type: simple
+  type_params:
+    measure: new_member_count_measure
+  description: 按注册日期统计新注册 CRM 账户数；可按归属门店和会员等级分组，不等于自然人数。
+- name: first_buyer_count
+  label: 观测期首购会员数
+  type: simple
+  type_params:
+    measure: first_buyer_count_measure
+  description: 在测试覆盖期内首次有效订单落入查询窗口的不同 CRM 账户数；不代表终身首购。先用全覆盖历史确定首次，再按窗口筛选。
+- name: first_order_sales_cents
+  label: 观测期首单净销售额
+  type: simple
+  type_params:
+    measure: first_order_sales_cents_measure
+  description: 每个账户在测试覆盖期内第一笔有效订单的净销售额，按该单日期归属；相同日期按订单号排序；单位分。
+- name: first_order_count
+  label: 观测期首单数
+  type: simple
+  type_params:
+    measure: first_order_count_measure
+  description: 在全测试覆盖期内先为每个账户按日期、订单号排序，其第一笔有效订单落入窗口的单数。
+- name: repeat_order_count
+  label: 观测期后续购买订单数
+  type: simple
+  type_params:
+    measure: repeat_order_count_measure
+  description: 账户全测试覆盖期内第二笔及以后的有效订单，按订单日期落入窗口计数。不是月内复购人数。
+- name: monthly_buyer_count
+  label: 月内购买会员数
+  type: simple
+  type_params:
+    measure: monthly_buyer_count_measure
+  description: 同一自然月有至少一笔有效订单的账户数，仅整月、全门店口径；不能跨月直接加总当人数。
+- name: monthly_repeat_buyer_count
+  label: 月内复购会员数
+  type: simple
+  type_params:
+    measure: monthly_repeat_buyer_count_measure
+  description: 同一自然月有至少两笔有效订单的账户数，仅整月、全门店口径。
+- name: monthly_repeat_rate
+  label: 月内复购率
+  type: derived
+  type_params:
+    expr: case when monthly_buyer_count = 0 then null else monthly_repeat_buyer_count
+      / monthly_buyer_count end
+    metrics:
+    - monthly_repeat_buyer_count
+    - monthly_buyer_count
+  description: 同一自然月的月内复购会员数除以月内购买会员数；分母为零时未定义，显式置 null；跨多月查询必须按月展示。
+- name: monthly_paid_buyer_count
+  label: 月末付费会员购买人数
+  type: simple
+  type_params:
+    measure: monthly_paid_buyer_count_measure
+  description: 自然月内有至少一笔有效订单、且月末符合付费资格的不同账户数；按账户去重，多卡不重复计人。
+- name: monthly_paid_order_count
+  label: 月末付费会员有效订单数
+  type: simple
+  type_params:
+    measure: monthly_paid_order_count_measure
+  description: 月末符合付费资格的账户在该自然月的全部有效订单数，按账户资格筛选，不按卡重复。
+- name: monthly_paid_sales_cents
+  label: 月末付费会员净销售额
+  type: simple
+  type_params:
+    measure: monthly_paid_sales_cents_measure
+  description: 月末符合付费资格的账户在该自然月的有效订单净销售额合计，单位分。
+- name: monthly_paid_repeat_buyer_count
+  label: 月末付费会员复购人数
+  type: simple
+  type_params:
+    measure: monthly_paid_repeat_buyer_count_measure
+  description: 月末符合付费资格，且同一自然月至少有两笔有效订单的不同账户数。
+- name: monthly_paid_repeat_rate
+  label: 月末付费会员复购率
+  type: derived
+  type_params:
+    expr: case when monthly_paid_buyer_count = 0 then null else monthly_paid_repeat_buyer_count
+      / monthly_paid_buyer_count end
+    metrics:
+    - monthly_paid_repeat_buyer_count
+    - monthly_paid_buyer_count
+  description: 月末付费会员复购人数除以月末付费会员购买人数；分母为零时未定义，显式置 null。
+- name: monthly_paid_avg_order_value
+  label: 月末付费会员订单均额
+  type: derived
+  type_params:
+    expr: case when monthly_paid_order_count = 0 then null else monthly_paid_sales_cents
+      / monthly_paid_order_count end
+    metrics:
+    - monthly_paid_sales_cents
+    - monthly_paid_order_count
+  description: 月末付费会员净销售额除以月末付费会员有效订单数；单位分／单，分母零时未定义，显式置 null。

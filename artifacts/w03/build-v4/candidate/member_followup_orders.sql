@@ -1,0 +1,1 @@
+SELECT order_id, member_id, ordered_at FROM (SELECT order_id, member_id, ordered_at, ROW_NUMBER() OVER (PARTITION BY member_id ORDER BY ordered_at, order_id) AS rn FROM {{ ref('orders') }} WHERE status = 'paid' AND paid_cents - refund_cents > 0) t WHERE rn >= 2

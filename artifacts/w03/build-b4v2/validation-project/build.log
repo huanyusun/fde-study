@@ -1,0 +1,6 @@
+[0m18:08:08  Running with dbt=1.12.5
+[0m18:08:08  Registered adapter: duckdb=1.11.0
+[0m18:08:08  Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m18:08:10  [[31mERROR[0m]: Encountered an error:
+Parsing Error
+  Invalid metrics config given in FilePath(searched_path='models', relative_path='metrics.yml', modification_time=1794161286.5192554, project_root='/Users/sunhuanyu/orca/workspaces/fde-study/w03/artifacts/w03/build-b4v2/validation-project') @ metrics: {'name': 'monthly_repeat_rate', 'label': '月内复购率', 'description': '同一自然月的月内复购会员数除以月内购买会员数，仅完整自然月、全门店全渠道口径；分母为零时未定义，输出 NULL。', 'type': 'derived', 'type_params': {'expr': 'case when monthly_buyer_count = 0 then null else monthly_repeat_buyer_count / monthly_buyer_count end', 'input_metrics': ['monthly_repeat_buyer_count', 'monthly_buyer_count']}} - at path ['type_params']: Additional properties are not allowed ('input_metrics' was unexpected)

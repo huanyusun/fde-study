@@ -1,0 +1,1 @@
+SELECT member_id || '-' || CAST(DATE_TRUNC('month', ordered_at) AS VARCHAR) AS member_month_key, member_id, DATE_TRUNC('month', ordered_at) AS month_first_day, COUNT(*) AS valid_order_cnt, SUM(paid_cents - refund_cents) AS valid_net_cents FROM {{ ref('orders') }} WHERE status = 'paid' AND paid_cents - refund_cents > 0 GROUP BY 1, 2, 3

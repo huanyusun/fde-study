@@ -1,0 +1,46 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "monthly_buyer_count",
+      "monthly_repeat_buyer_count",
+      "monthly_repeat_rate"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "WITH sma_10001_cte AS (\n  SELECT\n    DATE_TRUNC('month', month_start) AS metric_time__month\n    , case when valid_order_cnt >= 1 then member_id end AS __monthly_buyer_count\n    , case when valid_order_cnt >= 2 then member_id end AS __monthly_repeat_buyer_count\n  FROM \"data\".\"main\".\"member_month_stats\" member_month_stats_src_10000\n)\n\nSELECT\n  MAX(subq_8.monthly_buyer_count) AS monthly_buyer_count\n  , MAX(subq_8.monthly_repeat_buyer_count) AS monthly_repeat_buyer_count\n  , MAX(subq_15.monthly_repeat_rate) AS monthly_repeat_rate\nFROM (\n  SELECT\n    COUNT(DISTINCT __monthly_buyer_count) AS monthly_buyer_count\n    , COUNT(DISTINCT __monthly_repeat_buyer_count) AS monthly_repeat_buyer_count\n  FROM sma_10001_cte\n  WHERE metric_time__month BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_8\nCROSS JOIN (\n  SELECT\n    case when monthly_buyer_count = 0 then null else monthly_repeat_buyer_count / monthly_buyer_count end AS monthly_repeat_rate\n  FROM (\n    SELECT\n      COUNT(DISTINCT __monthly_repeat_buyer_count) AS monthly_repeat_buyer_count\n      , COUNT(DISTINCT __monthly_buyer_count) AS monthly_buyer_count\n    FROM sma_10001_cte\n    WHERE metric_time__month BETWEEN '2026-08-01' AND '2026-08-31'\n  ) subq_14\n) subq_15",
+  "columns": [
+    "monthly_buyer_count",
+    "monthly_repeat_buyer_count",
+    "monthly_repeat_rate"
+  ],
+  "rows": [
+    [
+      16504,
+      7302,
+      0.44243819680077556
+    ]
+  ],
+  "seconds": 0.124,
+  "units": {
+    "monthly_buyer_count": "count",
+    "monthly_repeat_buyer_count": "count",
+    "monthly_repeat_rate": "ratio"
+  },
+  "data_version": "qinghe-w03-20260923-large",
+  "data_sha256": "0074e7f764c63e836617aecb0e217aa3b5cc0cf9ede557179ad46b077dcf8ba8",
+  "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+  "answer": "2026年8月（自然月，全门店全渠道口径）青禾的会员购买与复购情况如下：\n- 月内购买会员数：16,504 个会员账户（当月有至少一笔有效订单的账户数）\n- 月内复购会员数：7,302 个会员账户（当月有至少两笔有效订单的账户数）\n- 月内复购率：44.24%（7,302 ÷ 16,504，四舍五入到两位小数）\n\n说明：统计单位为 CRM 会员账户，未按自然人去重；本月未附加任何门店或地区筛选，结果覆盖全部成交门店与渠道。8月为完整自然月，符合该指标的整月口径，数据范围在本客户测试库覆盖期内。",
+  "question": "2026年8月青禾的月内购买会员数、月内复购会员数、月内复购率是多少?",
+  "trace_id": "c690b3da-7d70-4876-9875-7a3582441f96",
+  "elapsed_seconds": 46.614,
+  "model_usage": {
+    "prompt_tokens": 344241,
+    "completion_tokens": 1059,
+    "total_tokens": 345300
+  },
+  "model_calls_with_usage": 2
+}

@@ -1,0 +1,403 @@
+{
+  "semantic_models": [
+    {
+      "name": "orders",
+      "model": "ref('orders')",
+      "description": "订单表，一行一笔订单。",
+      "defaults": {
+        "agg_time_dimension": "ordered_at"
+      },
+      "entities": [
+        {
+          "name": "order",
+          "type": "primary",
+          "expr": "order_id"
+        },
+        {
+          "name": "member",
+          "type": "foreign",
+          "expr": "member_id"
+        },
+        {
+          "name": "store",
+          "type": "foreign",
+          "expr": "store_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "ordered_at",
+          "type": "time",
+          "type_params": {
+            "time_granularity": "day"
+          }
+        },
+        {
+          "name": "status",
+          "type": "categorical"
+        },
+        {
+          "name": "channel",
+          "type": "categorical"
+        }
+      ],
+      "measures": [
+        {
+          "name": "order_count_measure",
+          "expr": "order_id",
+          "agg": "count"
+        },
+        {
+          "name": "paid_order_count_measure",
+          "expr": "case when status = 'paid' then order_id end",
+          "agg": "count"
+        },
+        {
+          "name": "valid_order_count_measure",
+          "expr": "case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end",
+          "agg": "count"
+        },
+        {
+          "name": "cancelled_order_count_measure",
+          "expr": "case when status = 'cancelled' then order_id end",
+          "agg": "count"
+        },
+        {
+          "name": "refund_order_count_measure",
+          "expr": "case when status = 'paid' and refund_cents > 0 then order_id end",
+          "agg": "count"
+        },
+        {
+          "name": "partial_refund_order_count_measure",
+          "expr": "case when status = 'paid' and refund_cents > 0 and refund_cents < paid_cents then order_id end",
+          "agg": "count"
+        },
+        {
+          "name": "full_refund_order_count_measure",
+          "expr": "case when status = 'paid' and paid_cents > 0 and refund_cents = paid_cents then order_id end",
+          "agg": "count"
+        },
+        {
+          "name": "payment_cents_measure",
+          "expr": "case when status = 'paid' then paid_cents else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "refund_cents_measure",
+          "expr": "case when status = 'paid' then refund_cents else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "net_sales_cents_measure",
+          "expr": "case when status = 'paid' then paid_cents - refund_cents else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "gross_cents_measure",
+          "expr": "case when status = 'paid' then gross_cents else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "discount_cents_measure",
+          "expr": "case when status = 'paid' then gross_cents - paid_cents else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "buyer_count_measure",
+          "expr": "case when status = 'paid' and paid_cents - refund_cents > 0 then member_id end",
+          "agg": "count_distinct"
+        },
+        {
+          "name": "refund_buyer_count_measure",
+          "expr": "case when status = 'paid' and refund_cents > 0 then member_id end",
+          "agg": "count_distinct"
+        },
+        {
+          "name": "selling_store_count_measure",
+          "expr": "case when status = 'paid' and paid_cents - refund_cents > 0 then store_id end",
+          "agg": "count_distinct"
+        },
+        {
+          "name": "valid_order_items_measure",
+          "expr": "case when status = 'paid' and paid_cents - refund_cents > 0 then quantity else 0 end",
+          "agg": "sum"
+        }
+      ]
+    },
+    {
+      "name": "members",
+      "model": "ref('members')",
+      "description": "会员账户表，一行一个 CRM 账户。",
+      "defaults": {
+        "agg_time_dimension": "registered_at"
+      },
+      "entities": [
+        {
+          "name": "member",
+          "type": "primary",
+          "expr": "member_id"
+        },
+        {
+          "name": "home_store",
+          "type": "foreign",
+          "expr": "home_store_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "registered_at",
+          "type": "time",
+          "type_params": {
+            "time_granularity": "day"
+          }
+        },
+        {
+          "name": "tier",
+          "type": "categorical"
+        }
+      ],
+      "measures": [
+        {
+          "name": "new_member_count_measure",
+          "expr": "member_id",
+          "agg": "count"
+        }
+      ]
+    },
+    {
+      "name": "stores_selling",
+      "model": "ref('stores')",
+      "description": "门店表，成交门店角色。",
+      "entities": [
+        {
+          "name": "store",
+          "type": "primary",
+          "expr": "store_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "region",
+          "type": "categorical"
+        },
+        {
+          "name": "store_name",
+          "type": "categorical"
+        }
+      ],
+      "measures": []
+    },
+    {
+      "name": "stores_home",
+      "model": "ref('stores')",
+      "description": "门店表，会员归属门店角色。",
+      "entities": [
+        {
+          "name": "home_store",
+          "type": "primary",
+          "expr": "store_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "region",
+          "type": "categorical"
+        },
+        {
+          "name": "store_name",
+          "type": "categorical"
+        }
+      ],
+      "measures": []
+    },
+    {
+      "name": "cards",
+      "model": "ref('cards')",
+      "description": "会员卡表，一行一张卡。",
+      "defaults": {
+        "agg_time_dimension": "valid_from"
+      },
+      "entities": [
+        {
+          "name": "card",
+          "type": "primary",
+          "expr": "card_id"
+        },
+        {
+          "name": "member",
+          "type": "foreign",
+          "expr": "member_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "valid_from",
+          "type": "time",
+          "type_params": {
+            "time_granularity": "day"
+          }
+        },
+        {
+          "name": "card_type",
+          "type": "categorical"
+        }
+      ],
+      "measures": []
+    }
+  ],
+  "metrics": [
+    {
+      "name": "first_buyer_count",
+      "label": "观测期首购会员数",
+      "description": "在测试覆盖期内首次有效订单落入查询窗口的不同 CRM 账户数；先用全覆盖历史确定首次，再按窗口筛选，不代表终身首购。",
+      "type": "simple",
+      "type_params": {
+        "measure": "first_buyer_count_measure"
+      }
+    },
+    {
+      "name": "first_order_sales_cents",
+      "label": "观测期首单净销售额",
+      "description": "每个账户在测试覆盖期内第一笔有效订单的净销售额合计，按该单日期归属；相同日期按订单号排序；单位分。",
+      "type": "simple",
+      "type_params": {
+        "measure": "first_order_sales_cents_measure"
+      }
+    },
+    {
+      "name": "first_order_count",
+      "label": "观测期首单数",
+      "description": "在全测试覆盖期内先为每个账户按日期、订单号排序，其第一笔有效订单落入查询窗口的单数。",
+      "type": "simple",
+      "type_params": {
+        "measure": "first_order_count_measure"
+      }
+    },
+    {
+      "name": "repeat_order_count",
+      "label": "观测期后续购买订单数",
+      "description": "账户全测试覆盖期内第二笔及以后的有效订单，按订单日期落入窗口计数；不是月内复购人数。",
+      "type": "simple",
+      "type_params": {
+        "measure": "repeat_order_count_measure"
+      }
+    }
+  ],
+  "catalog": [
+    {
+      "id": "first_buyer_count",
+      "name": "观测期首购会员数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "sources": [
+        {
+          "file": "03_会员运营周报.md",
+          "quote": "在测试覆盖期内首次有效订单落入查询窗口的不同 CRM 账户数；不代表终身首购。先用全覆盖历史确定首次，再按窗口筛选。"
+        }
+      ],
+      "query_policy": {
+        "full_month_only": false
+      }
+    },
+    {
+      "id": "first_order_sales_cents",
+      "name": "观测期首单净销售额",
+      "aliases": [],
+      "unit": "cents",
+      "constraints": [],
+      "sources": [
+        {
+          "file": "03_会员运营周报.md",
+          "quote": "每个账户在测试覆盖期内第一笔有效订单的净销售额，按该单日期归属；相同日期按订单号排序；单位分。"
+        }
+      ],
+      "query_policy": {
+        "full_month_only": false
+      }
+    },
+    {
+      "id": "first_order_count",
+      "name": "观测期首单数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "sources": [
+        {
+          "file": "03_会员运营周报.md",
+          "quote": "在全测试覆盖期内先为每个账户按日期、订单号排序，其第一笔有效订单落入窗口的单数。"
+        }
+      ],
+      "query_policy": {
+        "full_month_only": false
+      }
+    },
+    {
+      "id": "repeat_order_count",
+      "name": "观测期后续购买订单数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "sources": [
+        {
+          "file": "03_会员运营周报.md",
+          "quote": "账户全测试覆盖期内第二笔及以后的有效订单，按订单日期落入窗口计数。不是月内复购人数。"
+        }
+      ],
+      "query_policy": {
+        "full_month_only": false
+      }
+    }
+  ],
+  "model_sql": {
+    "orders_valid_ranked": "select order_id, member_id, store_id, ordered_at, status, paid_cents, refund_cents, quantity, channel, row_number() over (partition by member_id order by ordered_at, order_id) as first_seq from {{ ref('orders') }} where status = 'paid' and paid_cents - refund_cents > 0",
+    "member_first_valid_order": "select member_id, ordered_at as first_ordered_at, paid_cents - refund_cents as first_net_cents from {{ ref('orders_valid_ranked') }} where first_seq = 1"
+  },
+  "grain_keys": {
+    "orders": [
+      "order_id"
+    ],
+    "members": [
+      "member_id"
+    ],
+    "stores_selling": [
+      "store_id"
+    ],
+    "stores_home": [
+      "store_id"
+    ],
+    "cards": [
+      "card_id"
+    ],
+    "orders_valid_ranked": [
+      "order_id"
+    ],
+    "member_first_valid_order": [
+      "member_id"
+    ]
+  },
+  "unresolved": [],
+  "business_model_usage": [
+    {
+      "quote": "W2 模型全部有效内容（口径四区分、120万≠活跃、活动流程、角色分工、痛点期望、CONFLICT-001/002 旧项目与复购分歧、建模选择表）继续保留有效",
+      "used_for": [
+        {
+          "kind": "semantic_model",
+          "name": "orders"
+        },
+        {
+          "kind": "semantic_model",
+          "name": "members"
+        },
+        {
+          "kind": "derived_model",
+          "name": "orders_valid_ranked"
+        },
+        {
+          "kind": "derived_model",
+          "name": "member_first_valid_order"
+        }
+      ]
+    }
+  ]
+}

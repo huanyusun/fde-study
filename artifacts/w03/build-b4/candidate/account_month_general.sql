@@ -1,0 +1,1 @@
+select o.member_id, date_trunc('month', o.ordered_at) as month_start, count(o.order_id) as valid_order_cnt from {{ ref('orders') }} o where o.status = 'paid' and o.paid_cents - o.refund_cents > 0 group by o.member_id, date_trunc('month', o.ordered_at)

@@ -1,0 +1,14 @@
+{
+  "status": "error",
+  "code": "Invalid control character at: line 1 column 116 (char 115)",
+  "reason": "本次调用未完成，请查看运行记录；不能把失败当成零。",
+  "question": "2026年8月青禾的有效订单均额、购买会员人均消费、购买频次、退款金额占比、取消率、退款订单率、优惠率、单均商品件数分别是多少?",
+  "trace_id": "1fa44d9b-3c93-4cff-b5f6-db4f8c8e6ee6",
+  "elapsed_seconds": 32.74,
+  "model_usage": {
+    "prompt_tokens": 11501,
+    "completion_tokens": 1170,
+    "total_tokens": 12671
+  },
+  "model_calls_with_usage": 2
+}

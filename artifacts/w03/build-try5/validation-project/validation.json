@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "failures": [
+    "GRAIN_CHECK_FAILED",
+    "DIMENSION_TARGET_COVERAGE_FAILED",
+    "DIMENSION_TARGET_COVERAGE_FAILED"
+  ]
+}

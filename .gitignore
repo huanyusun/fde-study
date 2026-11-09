@@ -25,3 +25,9 @@ lectures/**/*.pptx
 
 # 视频字幕稿(课程原文,本地保留不进 git;来源见各笔记头部)
 notes/**/transcripts/
+
+# W03 构建验证项目:可重建的查询库与编译产物不进 git,保留 build/validation 日志作证据
+artifacts/w03/*/validation-project/**
+!artifacts/w03/*/validation-project/build.log
+!artifacts/w03/*/validation-project/validation.log
+!artifacts/w03/*/validation-project/validation.json

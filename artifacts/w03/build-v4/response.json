@@ -1,0 +1,1550 @@
+{
+  "semantic_models": [
+    {
+      "name": "orders",
+      "model": "ref('orders')",
+      "description": "一行一笔订单",
+      "defaults": {
+        "agg_time_dimension": "ordered_at"
+      },
+      "entities": [
+        {
+          "name": "order",
+          "type": "primary",
+          "expr": "order_id"
+        },
+        {
+          "name": "member",
+          "type": "foreign",
+          "expr": "member_id"
+        },
+        {
+          "name": "store",
+          "type": "foreign",
+          "expr": "store_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "ordered_at",
+          "type": "time",
+          "type_params": {
+            "time_granularity": "day"
+          }
+        },
+        {
+          "name": "status",
+          "type": "categorical"
+        },
+        {
+          "name": "channel",
+          "type": "categorical"
+        }
+      ],
+      "measures": [
+        {
+          "name": "order_cnt",
+          "expr": "order_id",
+          "agg": "count"
+        },
+        {
+          "name": "paid_order_cnt",
+          "expr": "case when status = 'paid' then order_id end",
+          "agg": "count"
+        },
+        {
+          "name": "valid_order_cnt",
+          "expr": "case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end",
+          "agg": "count"
+        },
+        {
+          "name": "cancelled_order_cnt",
+          "expr": "case when status = 'cancelled' then order_id end",
+          "agg": "count"
+        },
+        {
+          "name": "refund_order_cnt",
+          "expr": "case when status = 'paid' and refund_cents > 0 then order_id end",
+          "agg": "count"
+        },
+        {
+          "name": "partial_refund_order_cnt",
+          "expr": "case when status = 'paid' and refund_cents > 0 and refund_cents < paid_cents then order_id end",
+          "agg": "count"
+        },
+        {
+          "name": "full_refund_order_cnt",
+          "expr": "case when status = 'paid' and paid_cents > 0 and refund_cents = paid_cents then order_id end",
+          "agg": "count"
+        },
+        {
+          "name": "payment_cents_sum",
+          "expr": "case when status = 'paid' then paid_cents else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "refund_cents_sum",
+          "expr": "case when status = 'paid' then refund_cents else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "net_sales_sum",
+          "expr": "case when status = 'paid' then paid_cents - refund_cents else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "gross_cents_sum",
+          "expr": "case when status = 'paid' then gross_cents else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "discount_cents_sum",
+          "expr": "case when status = 'paid' then gross_cents - paid_cents else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "buyer_cnt",
+          "expr": "case when status = 'paid' and paid_cents - refund_cents > 0 then member_id end",
+          "agg": "count"
+        },
+        {
+          "name": "refund_buyer_cnt",
+          "expr": "case when status = 'paid' and refund_cents > 0 then member_id end",
+          "agg": "count"
+        },
+        {
+          "name": "selling_store_cnt",
+          "expr": "case when status = 'paid' and paid_cents - refund_cents > 0 then store_id end",
+          "agg": "count_distinct"
+        },
+        {
+          "name": "valid_items_sum",
+          "expr": "case when status = 'paid' and paid_cents - refund_cents > 0 then quantity else 0 end",
+          "agg": "sum"
+        }
+      ]
+    },
+    {
+      "name": "members",
+      "model": "ref('members')",
+      "description": "一行一份 CRM 会员账户",
+      "defaults": {
+        "agg_time_dimension": "registered_at"
+      },
+      "entities": [
+        {
+          "name": "member",
+          "type": "primary",
+          "expr": "member_id"
+        },
+        {
+          "name": "home_store",
+          "type": "foreign",
+          "expr": "home_store_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "registered_at",
+          "type": "time",
+          "type_params": {
+            "time_granularity": "day"
+          }
+        },
+        {
+          "name": "tier",
+          "type": "categorical"
+        }
+      ],
+      "measures": [
+        {
+          "name": "new_member_cnt",
+          "expr": "member_id",
+          "agg": "count"
+        }
+      ]
+    },
+    {
+      "name": "store_model",
+      "model": "ref('stores')",
+      "description": "一行一间门店，承担成交门店角色",
+      "entities": [
+        {
+          "name": "store",
+          "type": "primary",
+          "expr": "store_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "region",
+          "type": "categorical"
+        },
+        {
+          "name": "store_name",
+          "type": "categorical"
+        }
+      ]
+    },
+    {
+      "name": "home_store_model",
+      "model": "ref('stores')",
+      "description": "一行一间门店，承担会员归属门店角色",
+      "entities": [
+        {
+          "name": "home_store",
+          "type": "primary",
+          "expr": "store_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "region",
+          "type": "categorical"
+        },
+        {
+          "name": "store_name",
+          "type": "categorical"
+        }
+      ]
+    },
+    {
+      "name": "cards_model",
+      "model": "ref('cards')",
+      "description": "一行一张会员卡，账户一对多",
+      "entities": [
+        {
+          "name": "card",
+          "type": "primary",
+          "expr": "card_id"
+        },
+        {
+          "name": "member",
+          "type": "foreign",
+          "expr": "member_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "card_type",
+          "type": "categorical"
+        },
+        {
+          "name": "valid_from",
+          "type": "categorical"
+        },
+        {
+          "name": "valid_until",
+          "type": "categorical"
+        },
+        {
+          "name": "ended_at",
+          "type": "categorical"
+        }
+      ]
+    },
+    {
+      "name": "member_first_orders",
+      "model": "ref('member_first_orders')",
+      "description": "一行一个账户在测试覆盖期内的首笔有效订单",
+      "defaults": {
+        "agg_time_dimension": "first_ordered_at"
+      },
+      "entities": [
+        {
+          "name": "first_account",
+          "type": "primary",
+          "expr": "member_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "first_ordered_at",
+          "type": "time",
+          "type_params": {
+            "time_granularity": "day"
+          }
+        }
+      ],
+      "measures": [
+        {
+          "name": "first_buyer_cnt",
+          "expr": "member_id",
+          "agg": "count"
+        },
+        {
+          "name": "first_net_sales_sum",
+          "expr": "first_net_cents",
+          "agg": "sum"
+        }
+      ]
+    },
+    {
+      "name": "member_followup_orders",
+      "model": "ref('member_followup_orders')",
+      "description": "一行一笔账户测试覆盖期内第二笔及以后的有效订单",
+      "defaults": {
+        "agg_time_dimension": "ordered_at"
+      },
+      "entities": [
+        {
+          "name": "followup_order",
+          "type": "primary",
+          "expr": "order_id"
+        },
+        {
+          "name": "member",
+          "type": "foreign",
+          "expr": "member_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "ordered_at",
+          "type": "time",
+          "type_params": {
+            "time_granularity": "day"
+          }
+        }
+      ],
+      "measures": [
+        {
+          "name": "followup_order_cnt",
+          "expr": "order_id",
+          "agg": "count"
+        }
+      ]
+    },
+    {
+      "name": "member_month_agg",
+      "model": "ref('member_month_agg')",
+      "description": "一行一个账户一个自然月的有效订单聚合",
+      "defaults": {
+        "agg_time_dimension": "stat_month"
+      },
+      "entities": [
+        {
+          "name": "member_month_key",
+          "type": "primary",
+          "expr": "member_month"
+        },
+        {
+          "name": "member",
+          "type": "foreign",
+          "expr": "member_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "stat_month",
+          "type": "time",
+          "type_params": {
+            "time_granularity": "month"
+          }
+        }
+      ],
+      "measures": [
+        {
+          "name": "m_buyer_cnt",
+          "expr": "case when valid_order_cnt >= 1 then 1 else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "m_repeat_buyer_cnt",
+          "expr": "case when valid_order_cnt >= 2 then 1 else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "m_valid_order_cnt",
+          "expr": "valid_order_cnt",
+          "agg": "sum"
+        }
+      ]
+    },
+    {
+      "name": "member_month_paid",
+      "model": "ref('member_month_paid')",
+      "description": "一行一个账户一个自然月，带月末付费资格判定",
+      "defaults": {
+        "agg_time_dimension": "stat_month"
+      },
+      "entities": [
+        {
+          "name": "paid_member_month_key",
+          "type": "primary",
+          "expr": "member_month"
+        },
+        {
+          "name": "member",
+          "type": "foreign",
+          "expr": "member_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "stat_month",
+          "type": "time",
+          "type_params": {
+            "time_granularity": "month"
+          }
+        }
+      ],
+      "measures": [
+        {
+          "name": "paid_buyer_cnt",
+          "expr": "case when eligible and valid_order_cnt >= 1 then 1 else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "paid_valid_order_cnt",
+          "expr": "case when eligible then valid_order_cnt else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "paid_net_sales_sum",
+          "expr": "case when eligible then net_sales_cents else 0 end",
+          "agg": "sum"
+        },
+        {
+          "name": "paid_repeat_buyer_cnt",
+          "expr": "case when eligible and valid_order_cnt >= 2 then 1 else 0 end",
+          "agg": "sum"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "name": "order_count",
+      "label": "创建订单数",
+      "description": "按下单日期统计全部订单，每个订单号一次，包含取消单",
+      "type": "simple",
+      "type_params": {
+        "measure": "order_cnt"
+      }
+    },
+    {
+      "name": "paid_order_count",
+      "label": "支付订单数",
+      "description": "状态为 paid 的订单数，包括后来全部退款的订单",
+      "type": "simple",
+      "type_params": {
+        "measure": "paid_order_cnt"
+      }
+    },
+    {
+      "name": "valid_order_count",
+      "label": "有效订单数",
+      "description": "paid 且实付减退款大于零的订单数，取消和全退不计",
+      "type": "simple",
+      "type_params": {
+        "measure": "valid_order_cnt"
+      }
+    },
+    {
+      "name": "cancelled_order_count",
+      "label": "取消订单数",
+      "description": "状态为 cancelled 的订单数",
+      "type": "simple",
+      "type_params": {
+        "measure": "cancelled_order_cnt"
+      }
+    },
+    {
+      "name": "refund_order_count",
+      "label": "退款订单数",
+      "description": "paid 且退款金额大于零的订单数，含部分与全部退款",
+      "type": "simple",
+      "type_params": {
+        "measure": "refund_order_cnt"
+      }
+    },
+    {
+      "name": "partial_refund_order_count",
+      "label": "部分退款订单数",
+      "description": "paid 且退款大于零、小于实付金额的订单数",
+      "type": "simple",
+      "type_params": {
+        "measure": "partial_refund_order_cnt"
+      }
+    },
+    {
+      "name": "full_refund_order_count",
+      "label": "全额退款订单数",
+      "description": "paid 且实付大于零、退款等于实付的订单数",
+      "type": "simple",
+      "type_params": {
+        "measure": "full_refund_order_cnt"
+      }
+    },
+    {
+      "name": "payment_cents",
+      "label": "实付金额",
+      "description": "paid 订单实付金额合计，尚未扣退款，单位分",
+      "type": "simple",
+      "type_params": {
+        "measure": "payment_cents_sum"
+      }
+    },
+    {
+      "name": "refund_cents",
+      "label": "退款金额",
+      "description": "paid 订单退款金额合计，按原订单下单日期归属，单位分",
+      "type": "simple",
+      "type_params": {
+        "measure": "refund_cents_sum"
+      }
+    },
+    {
+      "name": "net_sales_cents",
+      "label": "净销售额",
+      "description": "paid 订单实付减退款合计，取消单不计，按下单日期归属，单位分",
+      "type": "simple",
+      "type_params": {
+        "measure": "net_sales_sum"
+      }
+    },
+    {
+      "name": "gross_cents",
+      "label": "支付订单原价金额",
+      "description": "paid 订单折扣前原价金额合计，单位分",
+      "type": "simple",
+      "type_params": {
+        "measure": "gross_cents_sum"
+      }
+    },
+    {
+      "name": "discount_cents",
+      "label": "优惠金额",
+      "description": "paid 订单原价减实付合计，退款不冲减，单位分",
+      "type": "simple",
+      "type_params": {
+        "measure": "discount_cents_sum"
+      }
+    },
+    {
+      "name": "buyer_count",
+      "label": "购买会员数",
+      "description": "窗口内有有效订单的不同 CRM 会员账户数，不做跨系统自然人去重",
+      "type": "simple",
+      "type_params": {
+        "measure": "buyer_cnt"
+      }
+    },
+    {
+      "name": "refund_buyer_count",
+      "label": "退款会员数",
+      "description": "窗口内发生退款的 paid 订单关联的不同 CRM 会员账户数",
+      "type": "simple",
+      "type_params": {
+        "measure": "refund_buyer_cnt"
+      }
+    },
+    {
+      "name": "selling_store_count",
+      "label": "成交门店数",
+      "description": "窗口内至少一笔有效订单的不同订单归属门店数",
+      "type": "simple",
+      "type_params": {
+        "measure": "selling_store_cnt"
+      }
+    },
+    {
+      "name": "valid_order_items",
+      "label": "有效订单商品件数",
+      "description": "有效订单原始购买件数合计，不是净商品销量",
+      "type": "simple",
+      "type_params": {
+        "measure": "valid_items_sum"
+      }
+    },
+    {
+      "name": "avg_order_value",
+      "label": "有效订单均额",
+      "description": "净销售额除以有效订单数，单位分／单；分母为零时未定义",
+      "type": "derived",
+      "type_params": {
+        "expr": "case when valid_order_count = 0 then null else net_sales_cents / valid_order_count end",
+        "metrics": [
+          "net_sales_cents",
+          "valid_order_count"
+        ]
+      }
+    },
+    {
+      "name": "avg_buyer_value",
+      "label": "购买会员人均消费",
+      "description": "净销售额除以购买会员数，单位分／账户；分母为零时未定义",
+      "type": "derived",
+      "type_params": {
+        "expr": "case when buyer_count = 0 then null else net_sales_cents / buyer_count end",
+        "metrics": [
+          "net_sales_cents",
+          "buyer_count"
+        ]
+      }
+    },
+    {
+      "name": "purchase_frequency",
+      "label": "购买频次",
+      "description": "有效订单数除以购买会员数，单位单／账户；分母为零时未定义",
+      "type": "derived",
+      "type_params": {
+        "expr": "case when buyer_count = 0 then null else valid_order_count / buyer_count end",
+        "metrics": [
+          "valid_order_count",
+          "buyer_count"
+        ]
+      }
+    },
+    {
+      "name": "refund_amount_rate",
+      "label": "退款金额占比",
+      "description": "退款金额除以实付金额；分母为零时未定义",
+      "type": "derived",
+      "type_params": {
+        "expr": "case when payment_cents = 0 then null else refund_cents / payment_cents end",
+        "metrics": [
+          "refund_cents",
+          "payment_cents"
+        ]
+      }
+    },
+    {
+      "name": "cancel_rate",
+      "label": "取消率",
+      "description": "取消订单数除以创建订单数；分母为零时未定义",
+      "type": "derived",
+      "type_params": {
+        "expr": "case when order_count = 0 then null else cancelled_order_count / order_count end",
+        "metrics": [
+          "cancelled_order_count",
+          "order_count"
+        ]
+      }
+    },
+    {
+      "name": "refund_order_rate",
+      "label": "退款订单率",
+      "description": "退款订单数除以支付订单数；分母为零时未定义",
+      "type": "derived",
+      "type_params": {
+        "expr": "case when paid_order_count = 0 then null else refund_order_count / paid_order_count end",
+        "metrics": [
+          "refund_order_count",
+          "paid_order_count"
+        ]
+      }
+    },
+    {
+      "name": "discount_rate",
+      "label": "优惠率",
+      "description": "优惠金额除以支付订单原价金额；分母为零时未定义",
+      "type": "derived",
+      "type_params": {
+        "expr": "case when gross_cents = 0 then null else discount_cents / gross_cents end",
+        "metrics": [
+          "discount_cents",
+          "gross_cents"
+        ]
+      }
+    },
+    {
+      "name": "items_per_order",
+      "label": "单均商品件数",
+      "description": "有效订单商品件数除以有效订单数；分母为零时未定义",
+      "type": "derived",
+      "type_params": {
+        "expr": "case when valid_order_count = 0 then null else valid_order_items / valid_order_count end",
+        "metrics": [
+          "valid_order_items",
+          "valid_order_count"
+        ]
+      }
+    },
+    {
+      "name": "new_member_count",
+      "label": "注册会员数",
+      "description": "按注册日期统计新注册 CRM 账户数，不等于自然人数",
+      "type": "simple",
+      "type_params": {
+        "measure": "new_member_cnt"
+      }
+    },
+    {
+      "name": "first_buyer_count",
+      "label": "观测期首购会员数",
+      "description": "测试覆盖期内首次有效订单落入查询窗口的不同 CRM 账户数，不代表终身首购",
+      "type": "simple",
+      "type_params": {
+        "measure": "first_buyer_cnt"
+      }
+    },
+    {
+      "name": "first_order_sales_cents",
+      "label": "观测期首单净销售额",
+      "description": "每账户覆盖期首笔有效订单的净销售额，按该单日期归属，单位分",
+      "type": "simple",
+      "type_params": {
+        "measure": "first_net_sales_sum"
+      }
+    },
+    {
+      "name": "first_order_count",
+      "label": "观测期首单数",
+      "description": "覆盖期内每账户第一笔有效订单落入窗口的单数",
+      "type": "simple",
+      "type_params": {
+        "measure": "first_buyer_cnt"
+      }
+    },
+    {
+      "name": "repeat_order_count",
+      "label": "观测期后续购买订单数",
+      "description": "账户覆盖期内第二笔及以后的有效订单按订单日期落窗计数",
+      "type": "simple",
+      "type_params": {
+        "measure": "followup_order_cnt"
+      }
+    },
+    {
+      "name": "monthly_buyer_count",
+      "label": "月内购买会员数",
+      "description": "同一自然月有至少一笔有效订单的账户数，仅整月全门店口径，跨月不能加总",
+      "type": "simple",
+      "type_params": {
+        "measure": "m_buyer_cnt"
+      }
+    },
+    {
+      "name": "monthly_repeat_buyer_count",
+      "label": "月内复购会员数",
+      "description": "同一自然月有至少两笔有效订单的账户数，仅整月全门店口径",
+      "type": "simple",
+      "type_params": {
+        "measure": "m_repeat_buyer_cnt"
+      }
+    },
+    {
+      "name": "monthly_repeat_rate",
+      "label": "月内复购率",
+      "description": "月内复购会员数除以月内购买会员数，仅整月全门店口径；分母为零时未定义，跨多月必须按月展示",
+      "type": "derived",
+      "type_params": {
+        "expr": "case when monthly_buyer_count = 0 then null else monthly_repeat_buyer_count / monthly_buyer_count end",
+        "metrics": [
+          "monthly_repeat_buyer_count",
+          "monthly_buyer_count"
+        ]
+      }
+    },
+    {
+      "name": "monthly_paid_buyer_count",
+      "label": "月末付费会员购买人数",
+      "description": "自然月内至少一笔有效订单且月末符合付费资格的不同账户数，按账户去重；分母口径仅完整自然月全渠道全门店",
+      "type": "simple",
+      "type_params": {
+        "measure": "paid_buyer_cnt"
+      }
+    },
+    {
+      "name": "monthly_paid_order_count",
+      "label": "月末付费会员有效订单数",
+      "description": "月末符合付费资格账户当月全部有效订单数，不按卡重复",
+      "type": "simple",
+      "type_params": {
+        "measure": "paid_valid_order_cnt"
+      }
+    },
+    {
+      "name": "monthly_paid_sales_cents",
+      "label": "月末付费会员净销售额",
+      "description": "月末符合付费资格账户当月有效订单净销售额合计，单位分",
+      "type": "simple",
+      "type_params": {
+        "measure": "paid_net_sales_sum"
+      }
+    },
+    {
+      "name": "monthly_paid_repeat_buyer_count",
+      "label": "月末付费会员复购人数",
+      "description": "月末符合付费资格且当月至少两笔有效订单的不同账户数",
+      "type": "simple",
+      "type_params": {
+        "measure": "paid_repeat_buyer_cnt"
+      }
+    },
+    {
+      "name": "monthly_paid_repeat_rate",
+      "label": "月末付费会员复购率",
+      "description": "月末付费会员复购人数除以月末付费会员购买人数；分母为零时未定义",
+      "type": "derived",
+      "type_params": {
+        "expr": "case when monthly_paid_buyer_count = 0 then null else monthly_paid_repeat_buyer_count / monthly_paid_buyer_count end",
+        "metrics": [
+          "monthly_paid_repeat_buyer_count",
+          "monthly_paid_buyer_count"
+        ]
+      }
+    },
+    {
+      "name": "monthly_paid_avg_order_value",
+      "label": "月末付费会员订单均额",
+      "description": "月末付费会员净销售额除以月末付费会员有效订单数，单位分／单；分母为零时未定义",
+      "type": "derived",
+      "type_params": {
+        "expr": "case when monthly_paid_order_count = 0 then null else monthly_paid_sales_cents / monthly_paid_order_count end",
+        "metrics": [
+          "monthly_paid_sales_cents",
+          "monthly_paid_order_count"
+        ]
+      }
+    }
+  ],
+  "catalog": [
+    {
+      "id": "order_count",
+      "name": "创建订单数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "按下单日期统计全部订单，每个订单号一次，包含取消单。"
+        }
+      ]
+    },
+    {
+      "id": "paid_order_count",
+      "name": "支付订单数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "状态为 paid 的订单数，包括后来全部退款的订单。"
+        }
+      ]
+    },
+    {
+      "id": "valid_order_count",
+      "name": "有效订单数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "状态为 paid 且实付金额减退款金额大于零的订单数；取消和全退不计。"
+        }
+      ]
+    },
+    {
+      "id": "cancelled_order_count",
+      "name": "取消订单数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "状态为 cancelled 的订单数。"
+        }
+      ]
+    },
+    {
+      "id": "refund_order_count",
+      "name": "退款订单数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "paid 状态且退款金额大于零的订单数，包括部分退款与全部退款。"
+        }
+      ]
+    },
+    {
+      "id": "partial_refund_order_count",
+      "name": "部分退款订单数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "paid 状态且退款大于零、小于实付金额的订单数。"
+        }
+      ]
+    },
+    {
+      "id": "full_refund_order_count",
+      "name": "全额退款订单数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "paid 状态且实付大于零、退款等于实付的订单数。"
+        }
+      ]
+    },
+    {
+      "id": "payment_cents",
+      "name": "实付金额",
+      "aliases": [],
+      "unit": "cents",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "paid 订单实付金额合计，尚未扣退款；单位分。"
+        }
+      ]
+    },
+    {
+      "id": "refund_cents",
+      "name": "退款金额",
+      "aliases": [],
+      "unit": "cents",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "paid 订单退款金额合计，按原订单下单日期归属，不是现金退款发生日；单位分。"
+        }
+      ]
+    },
+    {
+      "id": "net_sales_cents",
+      "name": "净销售额",
+      "aliases": [],
+      "unit": "cents",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "paid 订单实付减退款后合计；取消单不计；按原订单下单日期归属；单位分。"
+        }
+      ]
+    },
+    {
+      "id": "gross_cents",
+      "name": "支付订单原价金额",
+      "aliases": [],
+      "unit": "cents",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "paid 订单折扣前原价金额合计；单位分。"
+        }
+      ]
+    },
+    {
+      "id": "discount_cents",
+      "name": "优惠金额",
+      "aliases": [],
+      "unit": "cents",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "paid 订单原价减实付的金额合计；退款不冲减原优惠金额；单位分。"
+        }
+      ]
+    },
+    {
+      "id": "buyer_count",
+      "name": "购买会员数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "统计窗口及筛选条件内有有效订单的不同 CRM 会员账户数，不做跨系统自然人去重。"
+        }
+      ]
+    },
+    {
+      "id": "refund_buyer_count",
+      "name": "退款会员数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "统计窗口内发生退款的 paid 订单关联的不同 CRM 会员账户数。"
+        }
+      ]
+    },
+    {
+      "id": "selling_store_count",
+      "name": "成交门店数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "窗口内至少有一笔有效订单的不同订单归属门店数。"
+        }
+      ]
+    },
+    {
+      "id": "valid_order_items",
+      "name": "有效订单商品件数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "01_订单日报说明.md",
+          "quote": "有效订单中的原始购买件数合计；退款金额不能推算退货件数，此项不是净商品销量。"
+        }
+      ]
+    },
+    {
+      "id": "avg_order_value",
+      "name": "有效订单均额",
+      "aliases": [],
+      "unit": "cents",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "02_财务邮件.md",
+          "quote": "净销售额除以有效订单数，单位分／单；分母零时未定义。"
+        }
+      ]
+    },
+    {
+      "id": "avg_buyer_value",
+      "name": "购买会员人均消费",
+      "aliases": [],
+      "unit": "cents",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "02_财务邮件.md",
+          "quote": "净销售额除以购买会员数，单位分／账户；分母零时未定义。"
+        }
+      ]
+    },
+    {
+      "id": "purchase_frequency",
+      "name": "购买频次",
+      "aliases": [],
+      "unit": "ratio",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "02_财务邮件.md",
+          "quote": "有效订单数除以购买会员数，单位单／账户；分母零时未定义。"
+        }
+      ]
+    },
+    {
+      "id": "refund_amount_rate",
+      "name": "退款金额占比",
+      "aliases": [],
+      "unit": "ratio",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "02_财务邮件.md",
+          "quote": "退款金额除以实付金额；分母零时未定义。"
+        }
+      ]
+    },
+    {
+      "id": "cancel_rate",
+      "name": "取消率",
+      "aliases": [],
+      "unit": "ratio",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "02_财务邮件.md",
+          "quote": "取消订单数除以创建订单数；分母零时未定义。"
+        }
+      ]
+    },
+    {
+      "id": "refund_order_rate",
+      "name": "退款订单率",
+      "aliases": [],
+      "unit": "ratio",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "02_财务邮件.md",
+          "quote": "退款订单数除以支付订单数；分母零时未定义。"
+        }
+      ]
+    },
+    {
+      "id": "discount_rate",
+      "name": "优惠率",
+      "aliases": [],
+      "unit": "ratio",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "02_财务邮件.md",
+          "quote": "优惠金额除以支付订单原价金额；分母零时未定义。"
+        }
+      ]
+    },
+    {
+      "id": "items_per_order",
+      "name": "单均商品件数",
+      "aliases": [],
+      "unit": "ratio",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "02_财务邮件.md",
+          "quote": "有效订单商品件数除以有效订单数；分母零时未定义。"
+        }
+      ]
+    },
+    {
+      "id": "new_member_count",
+      "name": "注册会员数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "03_会员运营周报.md",
+          "quote": "按注册日期统计新注册 CRM 账户数；可按归属门店和会员等级分组，不等于自然人数。"
+        }
+      ]
+    },
+    {
+      "id": "first_buyer_count",
+      "name": "观测期首购会员数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "03_会员运营周报.md",
+          "quote": "在测试覆盖期内首次有效订单落入查询窗口的不同 CRM 账户数；不代表终身首购。先用全覆盖历史确定首次，再按窗口筛选。"
+        }
+      ]
+    },
+    {
+      "id": "first_order_sales_cents",
+      "name": "观测期首单净销售额",
+      "aliases": [],
+      "unit": "cents",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "03_会员运营周报.md",
+          "quote": "每个账户在测试覆盖期内第一笔有效订单的净销售额，按该单日期归属；相同日期按订单号排序；单位分。"
+        }
+      ]
+    },
+    {
+      "id": "first_order_count",
+      "name": "观测期首单数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "03_会员运营周报.md",
+          "quote": "在全测试覆盖期内先为每个账户按日期、订单号排序，其第一笔有效订单落入窗口的单数。"
+        }
+      ]
+    },
+    {
+      "id": "repeat_order_count",
+      "name": "观测期后续购买订单数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      },
+      "sources": [
+        {
+          "file": "03_会员运营周报.md",
+          "quote": "账户全测试覆盖期内第二笔及以后的有效订单，按订单日期落入窗口计数。不是月内复购人数。"
+        }
+      ]
+    },
+    {
+      "id": "monthly_buyer_count",
+      "name": "月内购买会员数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [
+        "仅完整自然月、全门店全渠道"
+      ],
+      "query_policy": {
+        "full_month_only": true
+      },
+      "sources": [
+        {
+          "file": "03_会员运营周报.md",
+          "quote": "同一自然月有至少一笔有效订单的账户数，仅整月、全门店口径；允许连续整月按月分别展示，不能跨月直接加总当人数。"
+        }
+      ]
+    },
+    {
+      "id": "monthly_repeat_buyer_count",
+      "name": "月内复购会员数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [
+        "仅完整自然月、全门店全渠道"
+      ],
+      "query_policy": {
+        "full_month_only": true
+      },
+      "sources": [
+        {
+          "file": "03_会员运营周报.md",
+          "quote": "同一自然月有至少两笔有效订单的账户数，仅整月、全门店口径；不能由全量订单行上的简单条件代替。"
+        }
+      ]
+    },
+    {
+      "id": "monthly_repeat_rate",
+      "name": "月内复购率",
+      "aliases": [],
+      "unit": "ratio",
+      "constraints": [
+        "仅完整自然月、全门店全渠道"
+      ],
+      "query_policy": {
+        "full_month_only": true
+      },
+      "sources": [
+        {
+          "file": "03_会员运营周报.md",
+          "quote": "同一自然月的月内复购会员数除以月内购买会员数，仅整月、全门店口径；分母零时未定义；跨多月查询必须按月展示。"
+        }
+      ]
+    },
+    {
+      "id": "monthly_paid_buyer_count",
+      "name": "月末付费会员购买人数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [
+        "仅完整自然月、全渠道全门店，暂不按门店或渠道拆分"
+      ],
+      "query_policy": {
+        "full_month_only": true
+      },
+      "sources": [
+        {
+          "file": "04_本期统计确认邮件.md",
+          "quote": "自然月内有至少一笔有效订单、且月末符合总部运营月报付费资格的不同账户数。"
+        }
+      ]
+    },
+    {
+      "id": "monthly_paid_order_count",
+      "name": "月末付费会员有效订单数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [
+        "仅完整自然月、全渠道全门店，暂不按门店或渠道拆分"
+      ],
+      "query_policy": {
+        "full_month_only": true
+      },
+      "sources": [
+        {
+          "file": "04_本期统计确认邮件.md",
+          "quote": "月末符合付费资格的账户在该自然月的全部有效订单数，按账户资格筛选，不按卡重复。"
+        }
+      ]
+    },
+    {
+      "id": "monthly_paid_sales_cents",
+      "name": "月末付费会员净销售额",
+      "aliases": [],
+      "unit": "cents",
+      "constraints": [
+        "仅完整自然月、全渠道全门店，暂不按门店或渠道拆分"
+      ],
+      "query_policy": {
+        "full_month_only": true
+      },
+      "sources": [
+        {
+          "file": "04_本期统计确认邮件.md",
+          "quote": "月末符合付费资格的账户在该自然月的有效订单净销售额合计，单位分。"
+        }
+      ]
+    },
+    {
+      "id": "monthly_paid_repeat_buyer_count",
+      "name": "月末付费会员复购人数",
+      "aliases": [],
+      "unit": "count",
+      "constraints": [
+        "仅完整自然月、全渠道全门店，暂不按门店或渠道拆分"
+      ],
+      "query_policy": {
+        "full_month_only": true
+      },
+      "sources": [
+        {
+          "file": "04_本期统计确认邮件.md",
+          "quote": "月末符合付费资格，且同一自然月至少有两笔有效订单的不同账户数。"
+        }
+      ]
+    },
+    {
+      "id": "monthly_paid_repeat_rate",
+      "name": "月末付费会员复购率",
+      "aliases": [],
+      "unit": "ratio",
+      "constraints": [
+        "仅完整自然月、全渠道全门店，暂不按门店或渠道拆分"
+      ],
+      "query_policy": {
+        "full_month_only": true
+      },
+      "sources": [
+        {
+          "file": "04_本期统计确认邮件.md",
+          "quote": "月末付费会员复购人数除以月末付费会员购买人数；分母为零时未定义。"
+        }
+      ]
+    },
+    {
+      "id": "monthly_paid_avg_order_value",
+      "name": "月末付费会员订单均额",
+      "aliases": [],
+      "unit": "cents",
+      "constraints": [
+        "仅完整自然月、全渠道全门店，暂不按门店或渠道拆分"
+      ],
+      "query_policy": {
+        "full_month_only": true
+      },
+      "sources": [
+        {
+          "file": "04_本期统计确认邮件.md",
+          "quote": "月末付费会员净销售额除以月末付费会员有效订单数；单位分／单，分母零时未定义。"
+        }
+      ]
+    }
+  ],
+  "model_sql": {
+    "member_first_orders": "SELECT member_id, first_ordered_at, first_net_cents FROM (SELECT member_id, ordered_at AS first_ordered_at, paid_cents - refund_cents AS first_net_cents, ROW_NUMBER() OVER (PARTITION BY member_id ORDER BY ordered_at, order_id) AS rn FROM {{ ref('orders') }} WHERE status = 'paid' AND paid_cents - refund_cents > 0) t WHERE rn = 1",
+    "member_followup_orders": "SELECT order_id, member_id, ordered_at FROM (SELECT order_id, member_id, ordered_at, ROW_NUMBER() OVER (PARTITION BY member_id ORDER BY ordered_at, order_id) AS rn FROM {{ ref('orders') }} WHERE status = 'paid' AND paid_cents - refund_cents > 0) t WHERE rn >= 2",
+    "member_month_agg": "SELECT member_id || '-' || strftime(stat_month, '%Y-%m') AS member_month, member_id, stat_month, COUNT(*) AS valid_order_cnt, SUM(paid_cents - refund_cents) AS net_sales_cents FROM (SELECT member_id, date_trunc('month', ordered_at) AS stat_month, paid_cents, refund_cents FROM {{ ref('orders') }} WHERE status = 'paid' AND paid_cents - refund_cents > 0) v GROUP BY member_id, stat_month",
+    "member_month_paid": "WITH valid_orders AS (SELECT member_id, date_trunc('month', ordered_at) AS stat_month, paid_cents, refund_cents FROM {{ ref('orders') }} WHERE status = 'paid' AND paid_cents - refund_cents > 0), agg AS (SELECT member_id, stat_month, COUNT(*) AS valid_order_cnt, SUM(paid_cents - refund_cents) AS net_sales_cents FROM valid_orders GROUP BY member_id, stat_month), eligible AS (SELECT a.member_id, a.stat_month FROM agg a WHERE EXISTS (SELECT 1 FROM {{ ref('cards') }} c WHERE c.member_id = a.member_id AND c.card_type IN ('悦享年卡','家庭季卡') AND c.valid_from <= last_day(a.stat_month) AND c.valid_until > last_day(a.stat_month) AND (c.ended_at IS NULL OR c.ended_at > last_day(a.stat_month)))) SELECT a.member_id || '-' || strftime(a.stat_month, '%Y-%m') AS member_month, a.member_id, a.stat_month, CASE WHEN e.member_id IS NULL THEN FALSE ELSE TRUE END AS eligible, a.valid_order_cnt, a.net_sales_cents FROM agg a LEFT JOIN eligible e ON a.member_id = e.member_id AND a.stat_month = e.stat_month"
+  },
+  "grain_keys": {
+    "orders": [
+      "order_id"
+    ],
+    "members": [
+      "member_id"
+    ],
+    "store_model": [
+      "store_id"
+    ],
+    "home_store_model": [
+      "store_id"
+    ],
+    "cards_model": [
+      "card_id"
+    ],
+    "member_first_orders": [
+      "member_id"
+    ],
+    "member_followup_orders": [
+      "order_id"
+    ],
+    "member_month_agg": [
+      "member_month"
+    ],
+    "member_month_paid": [
+      "member_month"
+    ]
+  },
+  "unresolved": [],
+  "business_model_usage": [
+    {
+      "quote": "付费会员只算悦享年卡和家庭季卡的持有人；异业联名卡虽收费但由合作方经营、不进自营会员范围，体验卡不算",
+      "used_for": [
+        {
+          "kind": "derived_model",
+          "name": "member_month_paid"
+        },
+        {
+          "kind": "metric",
+          "name": "monthly_paid_buyer_count"
+        },
+        {
+          "kind": "metric",
+          "name": "monthly_paid_order_count"
+        },
+        {
+          "kind": "metric",
+          "name": "monthly_paid_sales_cents"
+        },
+        {
+          "kind": "metric",
+          "name": "monthly_paid_repeat_buyer_count"
+        }
+      ]
+    },
+    {
+      "quote": "门店判断资格按账户看、不按卡张数；账户可无卡或持多张卡，只要有一张卡在判定日有效且属本次业务范围，该账户即有资格，多张有效卡不重复算人",
+      "used_for": [
+        {
+          "kind": "derived_model",
+          "name": "member_month_paid"
+        },
+        {
+          "kind": "metric",
+          "name": "monthly_paid_buyer_count"
+        },
+        {
+          "kind": "metric",
+          "name": "monthly_paid_repeat_buyer_count"
+        }
+      ]
+    },
+    {
+      "quote": "卡从生效日期当天起有效，到有效期结束日期当天已无效（不含结束日），有提前终止日期的从提前终止当天起无效；须对判定日核对",
+      "used_for": [
+        {
+          "kind": "derived_model",
+          "name": "member_month_paid"
+        }
+      ]
+    },
+    {
+      "quote": "先选月末有资格的账户，再统计这些账户当月全渠道、全门店的有效订单，不要求每笔订单发生当天已具备资格",
+      "used_for": [
+        {
+          "kind": "metric",
+          "name": "monthly_paid_buyer_count"
+        },
+        {
+          "kind": "metric",
+          "name": "monthly_paid_order_count"
+        },
+        {
+          "kind": "metric",
+          "name": "monthly_paid_sales_cents"
+        },
+        {
+          "kind": "metric",
+          "name": "monthly_paid_repeat_buyer_count"
+        },
+        {
+          "kind": "metric",
+          "name": "monthly_paid_repeat_rate"
+        },
+        {
+          "kind": "metric",
+          "name": "monthly_paid_avg_order_value"
+        }
+      ]
+    }
+  ]
+}

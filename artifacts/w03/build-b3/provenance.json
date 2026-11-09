@@ -1,0 +1,45 @@
+{
+  "skill_sha256": "fbbcee67946859fb9387ebb2ba4995d0b00313720c223fded4bfa84ddbf4ad1c",
+  "input_hashes": {
+    "business_model.md": "66556681e1450717048663f1fdab0221401a92fe6ee946d51e77aa4c7cce7724",
+    "00_材料说明.md": "c60776a6a1c030b02b1ce89f773327871c80bb34dca9c486df43c9acb0a6dc28",
+    "01_订单日报说明.md": "976fa129493e6bd2861a58d74df2ba3ad4448ea01a2d25651124222a61cebb67",
+    "02_财务邮件.md": "f81e0ddb5c03dd4eb2d01094816716d8375d03fe883b947ec8297edf8d525557",
+    "03_会员运营周报.md": "25ab933556bf34bef21b528d4c7838c9baad33ae289d59f09501e765080bb492",
+    "04_本期统计确认邮件.md": "c4f847fd90fd0765d37ad22f20d4a4eb0bab90f8543ae0f05d7a3cbee104c4be",
+    "05_数据字典.md": "b4c905ae6d2f4c08e139c695a2868b66ee5047b2b8ea94d6eccba55aebb79c16",
+    "06_任务清单.md": "ed414526217320c5e9ef049cfc1cfb56b670a5af57a57a9450a1e264cd71904d",
+    "07_客户内部沟通.md": "916d0f6d78033aff30dc6053cb58d774bfdefe5e3aa9a4e36ca54f143af3b425",
+    "08_业务目标与工作清单.md": "de9d737c423cc31b2f9d60c9ba8693b9d4257a3aa69b9efedb52674aeb2efe97"
+  },
+  "defined": [
+    "first_buyer_count",
+    "first_order_sales_cents",
+    "first_order_count",
+    "repeat_order_count"
+  ],
+  "unresolved": [],
+  "business_model_usage": [
+    {
+      "quote": "W2 模型全部有效内容（口径四区分、120万≠活跃、活动流程、角色分工、痛点期望、CONFLICT-001/002 旧项目与复购分歧、建模选择表）继续保留有效",
+      "used_for": [
+        {
+          "kind": "semantic_model",
+          "name": "orders"
+        },
+        {
+          "kind": "semantic_model",
+          "name": "members"
+        },
+        {
+          "kind": "derived_model",
+          "name": "orders_valid_ranked"
+        },
+        {
+          "kind": "derived_model",
+          "name": "member_first_valid_order"
+        }
+      ]
+    }
+  ]
+}

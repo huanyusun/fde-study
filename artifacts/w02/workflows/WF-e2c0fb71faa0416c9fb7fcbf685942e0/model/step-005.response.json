@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "第1组已采纳。查看第二组（有效期端点规则）原文：",
+    "tool_calls": [
+      {
+        "function": {
+          "arguments": "{\"claim_ids\":[\"CLM-001-0012\", \"CLM-001-0016\", \"CLM-001-0019\", \"CLM-001-0023\"]}",
+          "name": "show_evidence"
+        },
+        "id": "call_-7108684037572524926",
+        "index": 0,
+        "type": "function"
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 20634,
+    "completion_tokens": 92,
+    "total_tokens": 20726
+  }
+}

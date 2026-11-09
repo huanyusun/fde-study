@@ -1,0 +1,5 @@
+
+  
+  create view "data"."main"."member_first_valid_order__dbt_tmp" as (
+    select member_id, ordered_at as first_ordered_at, net_cents as first_net_cents from "data"."main"."orders_valid_ranked" where first_seq = 1
+  );

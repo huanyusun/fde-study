@@ -1,0 +1,22 @@
+{
+  "dimensions": {
+    "metric_time__month": {
+      "id": "metric_time__month",
+      "name": "统计月",
+      "meaning": "按所选指标定义的统计时间逐自然月展示",
+      "kind": "time",
+      "values": []
+    }
+  },
+  "per_metric": {
+    "monthly_buyer_count": {
+      "metric_time__month": "metric_time__month"
+    },
+    "monthly_repeat_buyer_count": {
+      "metric_time__month": "metric_time__month"
+    },
+    "monthly_repeat_rate": {
+      "metric_time__month": "metric_time__month"
+    }
+  }
+}

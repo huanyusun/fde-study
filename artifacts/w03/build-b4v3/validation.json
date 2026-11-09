@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "failures": [
+    "DIMENSION_TARGET_COVERAGE_FAILED"
+  ]
+}

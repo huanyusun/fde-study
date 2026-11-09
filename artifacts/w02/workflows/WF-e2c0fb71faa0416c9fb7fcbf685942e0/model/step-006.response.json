@@ -1,0 +1,22 @@
+{
+  "message": {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "function": {
+          "arguments": "{\"claim_ids\":[\"CLM-001-0012\", \"CLM-001-0016\", \"CLM-001-0019\", \"CLM-001-0023\"],\"question\":\"第2组：有效期端点规则（CONFLICT-001）。陈姐给出明确端点规则：valid_from 当天起有效、valid_until 当天已无效（不含）、ended_at 当天起无效，需对判定日核对不看当前状态；访谈者向老周转述的同一规则（0023，老周未确认）；小林只说\\\"看月底那一刻是否仍处于有效状态\\\"、不 verbalize 端点（0012）；老周不下结论、以记录实测为准（0019）。计划：以陈姐端点规则为当前口径候选写入，标注待老周实测验证字段实际填写是否一致；小林说法与陈姐端点规则在月末判定场景下视为不矛盾，老周为待验证非分歧；0023 仅作转述证据，不独立成立。请确认此写法与 CONFLICT-001 的处理是否妥当，有无遗漏。\"}",
+          "name": "request_review"
+        },
+        "id": "call_-7108717229079783217",
+        "index": 0,
+        "type": "function"
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 22526,
+    "completion_tokens": 246,
+    "total_tokens": 22772
+  }
+}
