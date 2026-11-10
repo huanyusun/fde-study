@@ -31,3 +31,4 @@ artifacts/w03/*/validation-project/**
 !artifacts/w03/*/validation-project/build.log
 !artifacts/w03/*/validation-project/validation.log
 !artifacts/w03/*/validation-project/validation.json
+w03-submit.zip

@@ -13,7 +13,7 @@ sys.path.insert(0, str(HERE))
 import audit_expectations as audit  # noqa: E402
 
 DATA = ROOT / "materials/data/small"
-CATALOGS = [ROOT / "artifacts/w03/build-v1/catalog.json"]
+CATALOGS = [ROOT / "artifacts/w03/build-v10/catalog.json"]
 DATA_VERSION = "qinghe-w03-20260923-small"
 
 cases = []
