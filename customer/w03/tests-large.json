@@ -1,0 +1,435 @@
+[
+ {
+  "id": "large-aug-core",
+  "question": "2026年8月青禾的创建订单数、支付订单数、有效订单数、净销售额分别是多少?",
+  "expected": {
+   "status": "ok",
+   "data_version": "qinghe-w03-20260923-large",
+   "intent": {
+    "metrics": [
+     "order_count",
+     "paid_order_count",
+     "valid_order_count",
+     "net_sales_cents"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+   },
+   "columns": [
+    "order_count",
+    "paid_order_count",
+    "valid_order_count",
+    "net_sales_cents"
+   ],
+   "rows": [
+    [
+     34306,
+     31564,
+     29933,
+     513921320
+    ]
+   ],
+   "units": {
+    "order_count": "count",
+    "paid_order_count": "count",
+    "valid_order_count": "count",
+    "net_sales_cents": "cents"
+   }
+  },
+  "expected_source": "期望由 customer/w03/audit_expectations.py 对 materials/data/large(qinghe-w03-20260923-large,manifest 含 sha256)逐单计算得到,审核程序不导入指标库。 依据01_订单日报说明,审核程序对 materials/data/large(qinghe-w03-20260923-large,manifest 含 sha256)逐单计算。"
+ },
+ {
+  "id": "large-aug-core-rephrase",
+  "question": "青禾2026年8月一共创建了多少订单?",
+  "expected": {
+   "status": "ok",
+   "data_version": "qinghe-w03-20260923-large",
+   "intent": {
+    "metrics": [
+     "order_count"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+   },
+   "columns": [
+    "order_count"
+   ],
+   "rows": [
+    [
+     34306
+    ]
+   ],
+   "units": {
+    "order_count": "count"
+   }
+  },
+  "expected_source": "期望由 customer/w03/audit_expectations.py 对 materials/data/large(qinghe-w03-20260923-large,manifest 含 sha256)逐单计算得到,审核程序不导入指标库。 同 large-aug-core 口径,验证不同问法解析到同一意图。"
+ },
+ {
+  "id": "large-aug-members",
+  "question": "2026年8月青禾的购买会员数、注册会员数、成交门店数分别是多少?",
+  "expected": {
+   "status": "ok",
+   "data_version": "qinghe-w03-20260923-large",
+   "intent": {
+    "metrics": [
+     "buyer_count",
+     "new_member_count",
+     "selling_store_count"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+   },
+   "columns": [
+    "buyer_count",
+    "new_member_count",
+    "selling_store_count"
+   ],
+   "rows": [
+    [
+     16504,
+     0,
+     24
+    ]
+   ],
+   "units": {
+    "buyer_count": "count",
+    "new_member_count": "count",
+    "selling_store_count": "count"
+   }
+  },
+  "expected_source": "期望由 customer/w03/audit_expectations.py 对 materials/data/large(qinghe-w03-20260923-large,manifest 含 sha256)逐单计算得到,审核程序不导入指标库。 依据01_订单日报说明与03_会员运营周报,逐记录去重计算。"
+ },
+ {
+  "id": "large-aug-amounts",
+  "question": "2026年8月青禾的实付金额、退款金额、优惠金额分别是多少?",
+  "expected": {
+   "status": "ok",
+   "data_version": "qinghe-w03-20260923-large",
+   "intent": {
+    "metrics": [
+     "payment_cents",
+     "refund_cents",
+     "discount_cents"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+   },
+   "columns": [
+    "payment_cents",
+    "refund_cents",
+    "discount_cents"
+   ],
+   "rows": [
+    [
+     570270646,
+     56349326,
+     63492599
+    ]
+   ],
+   "units": {
+    "payment_cents": "cents",
+    "refund_cents": "cents",
+    "discount_cents": "cents"
+   }
+  },
+  "expected_source": "期望由 customer/w03/audit_expectations.py 对 materials/data/large(qinghe-w03-20260923-large,manifest 含 sha256)逐单计算得到,审核程序不导入指标库。 依据01_订单日报说明与02_财务邮件,仅 paid 单计入、退款按原订单日期归属。"
+ },
+ {
+  "id": "large-jul-first",
+  "question": "2026年7月青禾的观测期首购会员数、观测期首单数、观测期后续购买订单数、有效订单数分别是多少?",
+  "expected": {
+   "status": "ok",
+   "data_version": "qinghe-w03-20260923-large",
+   "intent": {
+    "metrics": [
+     "first_buyer_count",
+     "first_order_count",
+     "repeat_order_count",
+     "valid_order_count"
+    ],
+    "start": "2026-07-01",
+    "end": "2026-08-01",
+    "group_by": [],
+    "filters": []
+   },
+   "columns": [
+    "first_buyer_count",
+    "first_order_count",
+    "repeat_order_count",
+    "valid_order_count"
+   ],
+   "rows": [
+    [
+     473,
+     473,
+     29524,
+     29997
+    ]
+   ],
+   "units": {
+    "first_buyer_count": "count",
+    "first_order_count": "count",
+    "repeat_order_count": "count",
+    "valid_order_count": "count"
+   }
+  },
+  "expected_source": "期望由 customer/w03/audit_expectations.py 对 materials/data/large(qinghe-w03-20260923-large,manifest 含 sha256)逐单计算得到,审核程序不导入指标库。 依据03_会员运营周报:覆盖期全历史确定首次再按窗口筛选;审核程序按(ordered_at, order_id)排序逐账户确定首单。"
+ },
+ {
+  "id": "large-aug-monthly",
+  "question": "2026年8月青禾的月内购买会员数、月内复购会员数、月内复购率是多少?",
+  "expected": {
+   "status": "ok",
+   "data_version": "qinghe-w03-20260923-large",
+   "intent": {
+    "metrics": [
+     "monthly_buyer_count",
+     "monthly_repeat_buyer_count",
+     "monthly_repeat_rate"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+   },
+   "columns": [
+    "monthly_buyer_count",
+    "monthly_repeat_buyer_count",
+    "monthly_repeat_rate"
+   ],
+   "rows": [
+    [
+     16504,
+     7302,
+     0.44243819680077556
+    ]
+   ],
+   "units": {
+    "monthly_buyer_count": "count",
+    "monthly_repeat_buyer_count": "count",
+    "monthly_repeat_rate": "ratio"
+   }
+  },
+  "expected_source": "期望由 customer/w03/audit_expectations.py 对 materials/data/large(qinghe-w03-20260923-large,manifest 含 sha256)逐单计算得到,审核程序不导入指标库。 依据03_会员运营周报,审核程序按账户×月聚合后判定(≥1、≥2)。"
+ },
+ {
+  "id": "large-aug-paid",
+  "question": "2026年8月青禾的月末付费会员购买人数、月末付费会员有效订单数、月末付费会员净销售额、月末付费会员复购人数、月末付费会员复购率、月末付费会员订单均额分别是多少?",
+  "expected": {
+   "status": "ok",
+   "data_version": "qinghe-w03-20260923-large",
+   "intent": {
+    "metrics": [
+     "monthly_paid_buyer_count",
+     "monthly_paid_order_count",
+     "monthly_paid_sales_cents",
+     "monthly_paid_repeat_buyer_count",
+     "monthly_paid_repeat_rate",
+     "monthly_paid_avg_order_value"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+   },
+   "columns": [
+    "monthly_paid_buyer_count",
+    "monthly_paid_order_count",
+    "monthly_paid_sales_cents",
+    "monthly_paid_repeat_buyer_count",
+    "monthly_paid_repeat_rate",
+    "monthly_paid_avg_order_value"
+   ],
+   "rows": [
+    [
+     3683,
+     6565,
+     113027218,
+     1643,
+     0.4461037197936465,
+     17216.63640517898
+    ]
+   ],
+   "units": {
+    "monthly_paid_buyer_count": "count",
+    "monthly_paid_order_count": "count",
+    "monthly_paid_sales_cents": "cents",
+    "monthly_paid_repeat_buyer_count": "count",
+    "monthly_paid_repeat_rate": "ratio",
+    "monthly_paid_avg_order_value": "cents"
+   }
+  },
+  "expected_source": "期望由 customer/w03/audit_expectations.py 对 materials/data/large(qinghe-w03-20260923-large,manifest 含 sha256)逐单计算得到,审核程序不导入指标库。 依据04_本期统计确认邮件与业务模型付费资格规则(月末判定、悦享年卡+家庭季卡、端点 valid_from 当天起有效/valid_until 当天已无效/ended_at 当天起无效、按账户多卡不重复),审核程序逐卡逐月判定后接回当月有效订单。"
+ },
+ {
+  "id": "large-jul-paid",
+  "question": "2026年7月青禾的月末付费会员购买人数、月末付费会员有效订单数、月末付费会员净销售额分别是多少?",
+  "expected": {
+   "status": "ok",
+   "data_version": "qinghe-w03-20260923-large",
+   "intent": {
+    "metrics": [
+     "monthly_paid_buyer_count",
+     "monthly_paid_order_count",
+     "monthly_paid_sales_cents"
+    ],
+    "start": "2026-07-01",
+    "end": "2026-08-01",
+    "group_by": [],
+    "filters": []
+   },
+   "columns": [
+    "monthly_paid_buyer_count",
+    "monthly_paid_order_count",
+    "monthly_paid_sales_cents"
+   ],
+   "rows": [
+    [
+     3566,
+     6074,
+     103238748
+    ]
+   ],
+   "units": {
+    "monthly_paid_buyer_count": "count",
+    "monthly_paid_order_count": "count",
+    "monthly_paid_sales_cents": "cents"
+   }
+  },
+  "expected_source": "期望由 customer/w03/audit_expectations.py 对 materials/data/large(qinghe-w03-20260923-large,manifest 含 sha256)逐单计算得到,审核程序不导入指标库。 与 large-aug-paid 同一资格规则,7月为对照月。"
+ },
+ {
+  "id": "large-aug-store-group",
+  "question": "2026年8月青禾各成交门店的有效订单数分别是多少?",
+  "expected": {
+   "status": "ok",
+   "data_version": "qinghe-w03-20260923-large",
+   "intent": {
+    "metrics": [
+     "valid_order_count"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [
+     "store"
+    ],
+    "filters": []
+   },
+   "columns": [
+    "store",
+    "valid_order_count"
+   ],
+   "rows": [
+    [
+     "S01",
+     1171
+    ],
+    [
+     "S02",
+     1207
+    ],
+    [
+     "S03",
+     1275
+    ],
+    [
+     "S04",
+     1275
+    ],
+    [
+     "S05",
+     1272
+    ],
+    [
+     "S06",
+     1218
+    ],
+    [
+     "S07",
+     1243
+    ],
+    [
+     "S08",
+     1200
+    ],
+    [
+     "S09",
+     1243
+    ],
+    [
+     "S10",
+     1280
+    ],
+    [
+     "S11",
+     1339
+    ],
+    [
+     "S12",
+     1245
+    ],
+    [
+     "S13",
+     1218
+    ],
+    [
+     "S14",
+     1203
+    ],
+    [
+     "S15",
+     1282
+    ],
+    [
+     "S16",
+     1283
+    ],
+    [
+     "S17",
+     1286
+    ],
+    [
+     "S18",
+     1287
+    ],
+    [
+     "S19",
+     1197
+    ],
+    [
+     "S20",
+     1276
+    ],
+    [
+     "S21",
+     1247
+    ],
+    [
+     "S22",
+     1240
+    ],
+    [
+     "S23",
+     1257
+    ],
+    [
+     "S24",
+     1189
+    ]
+   ],
+   "units": {
+    "valid_order_count": "count"
+   }
+  },
+  "expected_source": "期望由 customer/w03/audit_expectations.py 对 materials/data/large(qinghe-w03-20260923-large,manifest 含 sha256)逐单计算得到,审核程序不导入指标库。 依据01_订单日报说明按订单归属门店分组,审核程序逐门店统计。"
+ }
+]

@@ -1,25 +1,37 @@
-# W1 基础评估与调优
+# FDE Study — 青禾优选 W03
 
-默认使用 Promptfoo 调用真正的产品入口。配置好自己的 `FDE_MODEL_URL`、`FDE_MODEL_KEY`、`FDE_MODEL_NAME`，安装 Node.js 22.22.0 或更高版本，从 `evals/` 执行 `npx --yes promptfoo@0.122.2 eval --config promptfooconfig.yaml --no-cache --output ../artifacts/w01/promptfoo-results.json`。Python 路径按自己的虚拟环境调整；Windows 使用 `.venv/Scripts/python.exe`。发布包记录实际验证过的 Promptfoo 版本。
+FDE 交付实战营学习与客户交付仓库。当前 W03 工作目录已升级到 `fde-student-w03-0.1.0-c16` 工程，配套材料为 `w03-0.1.0`（2026-11-01 重打包）、任务书 v0.3。W01 学习笔记、访谈记录和交付物保留原路径。
 
-Promptfoo 0.122.2 依赖的 esbuild 0.28.2 需要 macOS 12 或更高版本。在 macOS 11 上，`npx` 会因 esbuild 安装失败而直接退出，不打印原因。这时在工程目录之外本地安装，并把 esbuild 固定为 0.25.12：
+## 从这里开始
+
+1. 阅读 [W03 材料说明](course-materials/w03/00_使用说明.md)和[作业任务书](course-materials/w03/05_作业任务书.md)，按任务书中的 12 步作业路线执行。
+2. 按 [W03 安装与使用](docs/w03/README.md)新建 Python 3.11 虚拟环境并安装 `requirements-w03.txt`，配置方式见[模型配置](docs/model-configuration.md)。
+3. 先跑梧桐独立样例，再准备自己的 W03 业务模型、访谈、指标构建 Skill 和独立判定程序。
 
 ```sh
-mkdir -p ~/fde-tools && cd ~/fde-tools
-cat > package.json <<'EOF'
-{"private": true, "dependencies": {"promptfoo": "0.122.2"}, "overrides": {"esbuild": "0.25.12"}}
-EOF
-npm install
+python3.11 -m venv .venv
+.venv/bin/python -m pip --isolated install -r requirements-w03.txt
+.venv/bin/python tools/w03.py doctor
 ```
 
-之后在 `evals/` 用 `~/fde-tools/node_modules/.bin/promptfoo eval` 代替 `npx --yes promptfoo@0.122.2 eval`，其余参数不变。
+本目录已执行 `tools/w03.py init --workspace .`，不要重复初始化。`customer/w03/` 和 `docs/w03/` 中的作业文件目前是课程模板，尚未实现、核定或完成；规模数据已解压到 `materials/data/large/`。依赖安装与样例闭环尚未执行。
 
-默认包含 7 个场景：明确日期分析、缺日期澄清、只读约束、文字确认日期、按钮确认日期、拒绝后更换目标，以及退款说明。后 3 类交互通过真实模型继续同一任务；标签回归只生成并拒绝草案，样例 API 不应产生写入。
+## 目录索引
 
-输出结构检查、业务工具的人群结果和只读约束可以自动判断；建议是否贴合目标、依据是否充分，以及是否过度承诺需要人工复核。仅有平均分不能覆盖安全失败。评估不会自动读取教师配置。
+| 路径 | 内容 |
+| --- | --- |
+| [lectures/w03/](lectures/w03/README.md) | V01–V09 九份 PDF 课件，本地保留、不进入 Git |
+| [course-materials/w03/](course-materials/w03/00_使用说明.md) | 最新任务书、客户资料、访谈参考、案例与原始 ZIP |
+| [course-materials/w03/W02_checkpoint/](course-materials/w03/W02_checkpoint/README.md) | 课程提供的 W02 参考答案，单独保存，不代表本人完成的作业 |
+| [materials/w03/](materials/w03/00_材料说明.md) | 工程读取的青禾业务资料 |
+| `materials/data/small/`、`materials/data/large/` | 青禾小样本与规模数据；规模 CSV 不进入 Git |
+| [docs/w03/](docs/w03/README.md) | 工程说明、构建与测试指南、W03 作业文档模板 |
+| `customer/w03/` | 构建配置、38 项指标目标、12 项维度查询目标、Skill 和判定程序模板 |
+| `artifacts/w03/` | 后续指标构建和测试产物目录 |
+| `platform/fde_product/`、`tools/` | 升级后的运营 Agent、W02 工具与 W03 构建/加载/测试命令 |
+| `examples/w03/` | 梧桐独立样例，仅用于环境验证和方法参考 |
+| [docs/w01/](docs/w01/README.md)、[notes/w01/](notes/w01/README.md)、[artifacts/w01/](artifacts/w01/README.md) | 保留的 W01 个人成果 |
 
-W1 保存实际模型基线。W5 开始把客户任务纳入持续调优，W7 完整构建黄金、异常、安全集合及保留集。每次记录模型、数据、语义、提示词、配置和实现版本，保留失败输入与 trace。写明问题假设、修改位置、修改前后、关键样本重复结果、保留集与回归、保留或回退理由。
+W03 交付要求与边界以任务书为准。业务规则由自己的指标构建 Skill 从资料与业务模型生成；接入层仅原样读取 CSV。课程 W02 checkpoint 必须标明参考来源，不能作为本人访谈记录。
 
-Eval Harness 是测量系统；Agent Harness 是组织模型、上下文、工具和恢复的运行机制。后者可以成为调优对象。协议、数据和 SQL 错误应先修复，不能统称“prompt 不好”。
-
-如首次安装耗时较长，可以预先设置 `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`；W1 Python provider 不需要下载浏览器。该变量只跳过可选浏览器安装。设 `PROMPTFOO_DISABLE_TELEMETRY=1` 可关闭框架使用统计，评估报告仍保存在本地。`--no-cache` 关闭本机评估缓存，不保证上游模型服务没有缓存。
+导入来源、压缩包 SHA-256 和工程/课件文件清单见 [import-manifest.json](course-materials/w03/import-manifest.json)。原 W01 仓库说明保存在 [docs/w01/repository-readme.md](docs/w01/repository-readme.md)，工程版本说明见 [RELEASE.md](RELEASE.md)。

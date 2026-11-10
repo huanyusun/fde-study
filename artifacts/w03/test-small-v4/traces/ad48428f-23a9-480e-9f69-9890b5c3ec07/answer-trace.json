@@ -1,0 +1,79 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "你根据本轮真实执行结果回答问题。解释条件时必须使用字段语义：store、store__region、store__store_name 都表示订单成交门店及其地区/名称；home_store 及其地区/名称才表示会员归属门店。返回 intent 中已有字段筛选就是已经应用的查询条件，不能因没有额外中文同名字段而否认已应用的条件。只能引用结果中的数值；金额以分存储，展示元需除100；比例展示百分数需乘100。用简明业务语言解释统计范围、口径及限制，金额保留两位小数、比例适当四舍五入。不要展示内部 status、intent 等字段名。区分零和未定义。聚合返回零是覆盖内的零；未返回某个分组仅说明该分组未列出，不能称为该指标未定义，也不能推断数据覆盖不足。返回 JSON：{\"answer\":\"...\",\"used_metrics\":[],\"citations\":[\"当前执行结果\"]}。\ncustomer_context 指明当前已加载客户与统计单位，data_context 指明本次测试数据版本和覆盖；本轮成功结果已经处于该客户数据范围。问题中的当前客户名称不是门店筛选值，不能因为没有同名门店筛选而否认结果属于该客户。只说明实际应用的筛选和分组；若用户没有要求某维度，不添加假设性的门店歧义。人数按customer_context统计单位表述为账户，不暗示跨系统自然人已去重。用业务词说明范围，不向用户罗列技术字段ID。\n"
+    },
+    {
+      "role": "user",
+      "content": "{\"question\": \"2026年3月青禾的创建订单数、净销售额、购买会员数、有效订单均额、取消率分别是多少?\", \"customer_context\": {\"customer\": \"青禾\", \"statistics_unit\": \"CRM 会员账户\", \"scope\": \"本周合成测试库\"}, \"data_context\": {\"seed\": 20260923, \"synthetic\": true, \"counts\": {\"members\": 20, \"orders\": 48, \"stores\": 3, \"cards\": 22}, \"coverage\": [\"2024-09-01\", \"2026-09-01\"], \"sha256\": {\"orders.csv\": \"c6e0dee6081e7a6f7782b54de78b3182835c46184c8e7569fc23feab8cf3c4f1\", \"cards.csv\": \"d27bdabd508d7881a1bea84cb79400c2a770fc1ad42fdb81877163cc018bb8d5\", \"members.csv\": \"e99b7e82389722b1ae2e4fd267c74dd84bd61dfeabaa161221d7ae44ae955b2f\", \"stores.csv\": \"e8160804fd485853f6c75d9a095b1ee6f05bbbd40ba851cac84def35488aa41d\"}, \"id\": \"qinghe-w03-20260923-small\", \"timezone\": \"Asia/Shanghai\", \"reference_date\": \"2026-09-01\", \"generator_version\": \"qinghe-w03-v1\", \"base_seed\": 20260922, \"library_sha256\": \"a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef\"}, \"result\": {\"status\": \"ok\", \"intent\": {\"metrics\": [\"order_count\", \"net_sales_cents\", \"buyer_count\", \"avg_order_value\", \"cancel_rate\"], \"start\": \"2026-03-01\", \"end\": \"2026-04-01\", \"group_by\": [], \"filters\": []}, \"columns\": [\"order_count\", \"net_sales_cents\", \"buyer_count\", \"avg_order_value\", \"cancel_rate\"], \"rows\": [[0, 0, 0, null, null]], \"seconds\": 0.1, \"units\": {\"order_count\": \"count\", \"net_sales_cents\": \"cents\", \"buyer_count\": \"count\", \"avg_order_value\": \"cents\", \"cancel_rate\": \"ratio\"}, \"data_version\": \"qinghe-w03-20260923-small\", \"data_sha256\": \"8a295969ec24556ebd7f818506633919e71f840fc86488d53efc185f9768cfe6\", \"catalog_sha256\": \"a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef\"}, \"definitions\": [{\"id\": \"order_count\", \"name\": \"创建订单数\", \"aliases\": [], \"unit\": \"count\", \"constraints\": [], \"sources\": [{\"file\": \"01_订单日报说明.md\", \"quote\": \"按下单日期统计全部订单，每个订单号一次，包含取消单。\"}], \"query_policy\": {\"full_month_only\": false}}, {\"id\": \"net_sales_cents\", \"name\": \"净销售额\", \"aliases\": [], \"unit\": \"cents\", \"constraints\": [], \"sources\": [{\"file\": \"01_订单日报说明.md\", \"quote\": \"paid 订单实付减退款后合计；取消单不计；按原订单下单日期归属；单位分。\"}], \"query_policy\": {\"full_month_only\": false}}, {\"id\": \"buyer_count\", \"name\": \"购买会员数\", \"aliases\": [], \"unit\": \"count\", \"constraints\": [], \"sources\": [{\"file\": \"01_订单日报说明.md\", \"quote\": \"统计窗口及筛选条件内有有效订单的不同 CRM 会员账户数，不做跨系统自然人去重。\"}], \"query_policy\": {\"full_month_only\": false}}, {\"id\": \"avg_order_value\", \"name\": \"有效订单均额\", \"aliases\": [], \"unit\": \"cents\", \"constraints\": [], \"sources\": [{\"file\": \"02_财务邮件.md\", \"quote\": \"净销售额除以有效订单数，单位分／单；分母零时未定义。\"}], \"query_policy\": {\"full_month_only\": false}}, {\"id\": \"cancel_rate\", \"name\": \"取消率\", \"aliases\": [], \"unit\": \"ratio\", \"constraints\": [], \"sources\": [{\"file\": \"02_财务邮件.md\", \"quote\": \"取消订单数除以创建订单数；分母零时未定义。\"}], \"query_policy\": {\"full_month_only\": false}}]}"
+    }
+  ],
+  "model": "glm-5.3-flash",
+  "reply": {
+    "role": "assistant",
+    "content": "{\"answer\":\"统计范围：青禾客户数据范围内、2026年3月（3月1日至3月31日）按下单日期统计的订单，统计单位为 CRM 会员账户，未按门店做额外筛选或分组。结果如下：\\n- 创建订单数：0 单（按下单日期统计全部订单，含取消单）\\n- 净销售额：0.00 元（已支付订单实付减退款合计）\\n- 购买会员数：0 个会员账户（有有效订单的去重账户数）\\n- 有效订单均额：未定义（3月无有效订单，分母为零，无法计算）\\n- 取消率：未定义（创建订单数为零，分母为零，无法计算）\\n\\n说明：2026年3月处于本次数据覆盖期内，上述零为该月统计范围内的真实零结果，并非数据缺失；两项比率指标因分母为零按口径定义为未定义，而非零。\",\"used_metrics\":[\"order_count\",\"net_sales_cents\",\"buyer_count\",\"avg_order_value\",\"cancel_rate\"],\"citations\":[\"当前执行结果\"]}"
+  },
+  "usage": {
+    "prompt_tokens": 1430,
+    "completion_tokens": 1014,
+    "total_tokens": 2444,
+    "completion_tokens_details": {
+      "reasoning_tokens": 767
+    }
+  },
+  "seconds": 14.286,
+  "call": {
+    "policy_version": "gateway-stages-20260922",
+    "attempts": [
+      {
+        "attempt": 1,
+        "request": {
+          "model": "glm-5.3-flash",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据本轮真实执行结果回答问题。解释条件时必须使用字段语义：store、store__region、store__store_name 都表示订单成交门店及其地区/名称；home_store 及其地区/名称才表示会员归属门店。返回 intent 中已有字段筛选就是已经应用的查询条件，不能因没有额外中文同名字段而否认已应用的条件。只能引用结果中的数值；金额以分存储，展示元需除100；比例展示百分数需乘100。用简明业务语言解释统计范围、口径及限制，金额保留两位小数、比例适当四舍五入。不要展示内部 status、intent 等字段名。区分零和未定义。聚合返回零是覆盖内的零；未返回某个分组仅说明该分组未列出，不能称为该指标未定义，也不能推断数据覆盖不足。返回 JSON：{\"answer\":\"...\",\"used_metrics\":[],\"citations\":[\"当前执行结果\"]}。\ncustomer_context 指明当前已加载客户与统计单位，data_context 指明本次测试数据版本和覆盖；本轮成功结果已经处于该客户数据范围。问题中的当前客户名称不是门店筛选值，不能因为没有同名门店筛选而否认结果属于该客户。只说明实际应用的筛选和分组；若用户没有要求某维度，不添加假设性的门店歧义。人数按customer_context统计单位表述为账户，不暗示跨系统自然人已去重。用业务词说明范围，不向用户罗列技术字段ID。\n"
+            },
+            {
+              "role": "user",
+              "content": "{\"question\": \"2026年3月青禾的创建订单数、净销售额、购买会员数、有效订单均额、取消率分别是多少?\", \"customer_context\": {\"customer\": \"青禾\", \"statistics_unit\": \"CRM 会员账户\", \"scope\": \"本周合成测试库\"}, \"data_context\": {\"seed\": 20260923, \"synthetic\": true, \"counts\": {\"members\": 20, \"orders\": 48, \"stores\": 3, \"cards\": 22}, \"coverage\": [\"2024-09-01\", \"2026-09-01\"], \"sha256\": {\"orders.csv\": \"c6e0dee6081e7a6f7782b54de78b3182835c46184c8e7569fc23feab8cf3c4f1\", \"cards.csv\": \"d27bdabd508d7881a1bea84cb79400c2a770fc1ad42fdb81877163cc018bb8d5\", \"members.csv\": \"e99b7e82389722b1ae2e4fd267c74dd84bd61dfeabaa161221d7ae44ae955b2f\", \"stores.csv\": \"e8160804fd485853f6c75d9a095b1ee6f05bbbd40ba851cac84def35488aa41d\"}, \"id\": \"qinghe-w03-20260923-small\", \"timezone\": \"Asia/Shanghai\", \"reference_date\": \"2026-09-01\", \"generator_version\": \"qinghe-w03-v1\", \"base_seed\": 20260922, \"library_sha256\": \"a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef\"}, \"result\": {\"status\": \"ok\", \"intent\": {\"metrics\": [\"order_count\", \"net_sales_cents\", \"buyer_count\", \"avg_order_value\", \"cancel_rate\"], \"start\": \"2026-03-01\", \"end\": \"2026-04-01\", \"group_by\": [], \"filters\": []}, \"columns\": [\"order_count\", \"net_sales_cents\", \"buyer_count\", \"avg_order_value\", \"cancel_rate\"], \"rows\": [[0, 0, 0, null, null]], \"seconds\": 0.1, \"units\": {\"order_count\": \"count\", \"net_sales_cents\": \"cents\", \"buyer_count\": \"count\", \"avg_order_value\": \"cents\", \"cancel_rate\": \"ratio\"}, \"data_version\": \"qinghe-w03-20260923-small\", \"data_sha256\": \"8a295969ec24556ebd7f818506633919e71f840fc86488d53efc185f9768cfe6\", \"catalog_sha256\": \"a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef\"}, \"definitions\": [{\"id\": \"order_count\", \"name\": \"创建订单数\", \"aliases\": [], \"unit\": \"count\", \"constraints\": [], \"sources\": [{\"file\": \"01_订单日报说明.md\", \"quote\": \"按下单日期统计全部订单，每个订单号一次，包含取消单。\"}], \"query_policy\": {\"full_month_only\": false}}, {\"id\": \"net_sales_cents\", \"name\": \"净销售额\", \"aliases\": [], \"unit\": \"cents\", \"constraints\": [], \"sources\": [{\"file\": \"01_订单日报说明.md\", \"quote\": \"paid 订单实付减退款后合计；取消单不计；按原订单下单日期归属；单位分。\"}], \"query_policy\": {\"full_month_only\": false}}, {\"id\": \"buyer_count\", \"name\": \"购买会员数\", \"aliases\": [], \"unit\": \"count\", \"constraints\": [], \"sources\": [{\"file\": \"01_订单日报说明.md\", \"quote\": \"统计窗口及筛选条件内有有效订单的不同 CRM 会员账户数，不做跨系统自然人去重。\"}], \"query_policy\": {\"full_month_only\": false}}, {\"id\": \"avg_order_value\", \"name\": \"有效订单均额\", \"aliases\": [], \"unit\": \"cents\", \"constraints\": [], \"sources\": [{\"file\": \"02_财务邮件.md\", \"quote\": \"净销售额除以有效订单数，单位分／单；分母零时未定义。\"}], \"query_policy\": {\"full_month_only\": false}}, {\"id\": \"cancel_rate\", \"name\": \"取消率\", \"aliases\": [], \"unit\": \"ratio\", \"constraints\": [], \"sources\": [{\"file\": \"02_财务邮件.md\", \"quote\": \"取消订单数除以创建订单数；分母零时未定义。\"}], \"query_policy\": {\"full_month_only\": false}}]}"
+            }
+          ],
+          "stream": false,
+          "max_tokens": 8192
+        },
+        "timeout_seconds": 180.0,
+        "max_tokens": 8192,
+        "usage": {
+          "completion_tokens": 1014,
+          "completion_tokens_details": {
+            "reasoning_tokens": 767
+          },
+          "prompt_tokens": 1430,
+          "prompt_tokens_details": {
+            "cached_tokens": 320
+          },
+          "total_tokens": 2444
+        },
+        "trace_ids": {},
+        "response_id": "20261109025221a1ca6595d0cc4763",
+        "http_status": 200,
+        "finish_reason": "stop",
+        "response": {
+          "role": "assistant",
+          "content": "{\"answer\":\"统计范围：青禾客户数据范围内、2026年3月（3月1日至3月31日）按下单日期统计的订单，统计单位为 CRM 会员账户，未按门店做额外筛选或分组。结果如下：\\n- 创建订单数：0 单（按下单日期统计全部订单，含取消单）\\n- 净销售额：0.00 元（已支付订单实付减退款合计）\\n- 购买会员数：0 个会员账户（有有效订单的去重账户数）\\n- 有效订单均额：未定义（3月无有效订单，分母为零，无法计算）\\n- 取消率：未定义（创建订单数为零，分母为零，无法计算）\\n\\n说明：2026年3月处于本次数据覆盖期内，上述零为该月统计范围内的真实零结果，并非数据缺失；两项比率指标因分母为零按口径定义为未定义，而非零。\",\"used_metrics\":[\"order_count\",\"net_sales_cents\",\"buyer_count\",\"avg_order_value\",\"cancel_rate\"],\"citations\":[\"当前执行结果\"]}"
+        },
+        "seconds": 14.286
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1430,
+      "completion_tokens": 1014,
+      "total_tokens": 2444,
+      "completion_tokens_details": {
+        "reasoning_tokens": 767
+      }
+    }
+  }
+}

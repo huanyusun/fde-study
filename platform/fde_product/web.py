@@ -37,7 +37,11 @@ def make_server(agent,port=0,actions=False):
             data=(value if html else json.dumps(value,ensure_ascii=False)).encode();self.send_response(status);self.send_header('Content-Type','text/html; charset=utf-8' if html else 'application/json');self.send_header('Content-Length',str(len(data)));self.send_header('Cache-Control','no-store');self.end_headers();self.wfile.write(data)
         def do_GET(self):
             if self.path!='/':return self.send(404,{'error':'NOT_FOUND'})
-            self.send(200,PAGE,True)
+            import html
+            label=getattr(agent,'customer_label',None)
+            page=PAGE.replace('松果生活 · 独立虚构样例 · 业务参考日期：2026-09-01',html.escape(label)+' · 已加载指标库；松果生活样例分析与动作能力继续保留') if label else PAGE
+            if label:page=page.replace('<textarea id="text">找出 2026 年 8 月相较 7 月消费下降至少 20% 的老会员，比较前后消费，给出召回建议并说明依据。', '<textarea id="text" placeholder="请输入指标问题，例如指定月份、指标与分析范围。">')
+            self.send(200,page,True)
         def do_POST(self):
             host=self.headers.get('Host','');origin=self.headers.get('Origin')
             if host not in [f'127.0.0.1:{self.server.server_port}',f'localhost:{self.server.server_port}'] or self.headers.get('X-FDE-Client')!='local-ui' or (origin and origin not in ['http://'+host]):return self.send(403,{'error':'ORIGIN_REJECTED'})

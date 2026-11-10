@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "metrics_compiled": [
+    "gross_receipts_cents",
+    "monthly_large_buyer_count",
+    "net_receipts_cents",
+    "receipt_count",
+    "return_ratio",
+    "returned_cents"
+  ],
+  "validator": "SemanticManifestValidator; native explain + DuckDB EXPLAIN"
+}

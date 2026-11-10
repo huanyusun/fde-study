@@ -1,0 +1,50 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "order_count",
+      "paid_order_count",
+      "valid_order_count",
+      "net_sales_cents"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  SUM(CASE WHEN order_id IS NOT NULL THEN 1 ELSE 0 END) AS order_count\n  , SUM(CASE WHEN case when status = 'paid' then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS paid_order_count\n  , SUM(CASE WHEN case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS valid_order_count\n  , SUM(case when status = 'paid' then paid_cents - refund_cents else 0 end) AS net_sales_cents\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+  "columns": [
+    "order_count",
+    "paid_order_count",
+    "valid_order_count",
+    "net_sales_cents"
+  ],
+  "rows": [
+    [
+      34306,
+      31564,
+      29933,
+      513921320
+    ]
+  ],
+  "seconds": 0.063,
+  "units": {
+    "order_count": "count",
+    "paid_order_count": "count",
+    "valid_order_count": "count",
+    "net_sales_cents": "cents"
+  },
+  "data_version": "qinghe-w03-20260923-large",
+  "data_sha256": "0074e7f764c63e836617aecb0e217aa3b5cc0cf9ede557179ad46b077dcf8ba8",
+  "catalog_sha256": "a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef",
+  "answer": "2026年8月（按订单下单日期统计，2026-08-01至2026-08-31），青禾（当前已加载客户，CRM会员账户口径，本周合成测试库数据）整体经营指标如下，未叠加任何门店或地区筛选：创建订单数为34,306单（含取消单）；支付订单数为31,564单（含后续全额退款的订单）；有效订单数为29,933单（已支付且实付减退款大于零，取消单和全额退款单不计）；净销售额为5,139,213.20元（已支付订单实付金额减退款后的合计，取消单不计，按原订单下单日期归属）。",
+  "question": "2026年8月青禾的创建订单数、支付订单数、有效订单数、净销售额分别是多少?",
+  "trace_id": "b41a1fcd-2418-48b6-86ba-d9d522e9c970",
+  "elapsed_seconds": 39.849,
+  "model_usage": {
+    "prompt_tokens": 343245,
+    "completion_tokens": 914,
+    "total_tokens": 344159
+  },
+  "model_calls_with_usage": 2
+}

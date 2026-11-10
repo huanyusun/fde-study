@@ -1,0 +1,13 @@
+{
+  "skill": "build-metrics/SKILL.md",
+  "business_model": "business_model.md",
+  "materials": [
+    "materials"
+  ],
+  "targets": "targets.json",
+  "scope": {
+    "customer": "梧桐书店",
+    "scope": "独立教学样例"
+  },
+  "data": "data"
+}

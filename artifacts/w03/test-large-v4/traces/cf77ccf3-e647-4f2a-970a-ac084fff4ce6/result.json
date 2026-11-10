@@ -1,0 +1,46 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "payment_cents",
+      "refund_cents",
+      "discount_cents"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  SUM(case when status = 'paid' then paid_cents else 0 end) AS payment_cents\n  , SUM(case when status = 'paid' then refund_cents else 0 end) AS refund_cents\n  , SUM(case when status = 'paid' then gross_cents - paid_cents else 0 end) AS discount_cents\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+  "columns": [
+    "payment_cents",
+    "refund_cents",
+    "discount_cents"
+  ],
+  "rows": [
+    [
+      570270646,
+      56349326,
+      63492599
+    ]
+  ],
+  "seconds": 0.054,
+  "units": {
+    "payment_cents": "cents",
+    "refund_cents": "cents",
+    "discount_cents": "cents"
+  },
+  "data_version": "qinghe-w03-20260923-large",
+  "data_sha256": "0074e7f764c63e836617aecb0e217aa3b5cc0cf9ede557179ad46b077dcf8ba8",
+  "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+  "answer": "2026年8月（查询范围2026-08-01至2026-09-01，青禾会员订单，未按门店再做筛选，汇总全部门店）：实付金额 5,702,706.46 元；退款金额 563,493.26 元；优惠金额 634,925.99 元。口径说明：实付金额为已支付订单的实付合计，尚未扣除退款；退款金额按原订单的下单日期归属统计，而非退款实际发生日；优惠金额为订单原价减实付的合计，退款不冲减已计入的优惠金额。数据为本周合成测试库范围内的CRM会员账户订单数据。",
+  "question": "2026年8月青禾的实付金额、退款金额、优惠金额分别是多少?",
+  "trace_id": "cf77ccf3-e647-4f2a-970a-ac084fff4ce6",
+  "elapsed_seconds": 60.404,
+  "model_usage": {
+    "prompt_tokens": 344091,
+    "completion_tokens": 1545,
+    "total_tokens": 345636
+  },
+  "model_calls_with_usage": 2
+}

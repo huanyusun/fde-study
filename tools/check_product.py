@@ -45,5 +45,40 @@ def check(root,dry=False):
         if r['actual_status']!=r['expected_status'] or not r['passed']:errors.append('MODEL_BASELINE_FAILED: '+r['case_id'])
     if not any(x['case_id']=='analysis' for x in values['model_baseline']['runs']):errors.append('NO_LIVE_ANALYSIS')
     return {'status':'fail' if errors else 'pass','errors':errors,'notes':notes,'limits':['Artifact checks do not prove authorship or replace live behavior replay and rubric review.']}
+
+EVIDENCE_STEP='运行 tools/verify_product.py --live，完成 evals 评估后运行 tools/finalize_evaluation.py。'
+MISSING_STEPS={'environment_check':EVIDENCE_STEP,'model_baseline':EVIDENCE_STEP,'runtime_evidence':EVIDENCE_STEP,
+    'product_fit_gap':'按 README 自行填写这份文件。'}
+HINTS={'PRODUCT_VERSION_MISMATCH':'几份 JSON 的产品版本不一致，用同一版工程重新生成。',
+    'ENVIRONMENT_NOT_READY':'环境检查有未通过的项，看 artifacts/w01/environment_check.json 里的 checks，修好后重新生成。',
+    'REQUIRED_BEHAVIOR_FAILED':'必测行为缺项或未通过，看 artifacts/w01/runtime_evidence.json 的 cases，修好后重跑 tools/verify_product.py --live。',
+    'UNKNOWN_CAPABILITY_ID':'fit-gap 引用了产品没有的能力编号，改成 product/capabilities.json 里已有的编号。',
+    'VERIFIED_WITHOUT_EVIDENCE':'fit-gap 里标为 verified 的条目没有写证据，补上证据或改状态。',
+    'PROJECT_ASSESSMENT_MISSING':'缺立项报告，写到 docs/w01/project_assessment.md。',
+    'INVALID_EVIDENCE_PATH':'运行证据引用的文件不在工程内或已不存在，恢复文件或重跑验证。',
+    'BASELINE_RUN_NOT_HASHED':'模型基线的运行记录没有进入证据哈希，重跑 tools/verify_product.py --live。',
+    'NO_LIVE_ANALYSIS':'模型基线里没有 analysis 用例的实际运行，重跑 tools/verify_product.py --live。',
+    'EVIDENCE_HASH_MISMATCH':'证据文件在生成后被改过，恢复原文件或重跑验证。',
+    'CASE_EVIDENCE_NOT_HASHED':'用例证据没有进入证据哈希，重跑 tools/verify_product.py --live。',
+    'MODEL_BASELINE_FAILED':'模型基线有用例未通过，看 artifacts/w01/model_baseline.json，修好后重跑 tools/verify_product.py --live。'}
+
+def summary_lines(r):
+    """Chinese recap for a learner; the JSON above stays the full result."""
+    if r['status']=='pass':return ['预检结果：结构可供审阅，这不代表作业通过']
+    rows={}
+    for error in r['errors']:
+        head,_,detail=error.partition(': ')
+        if head in MISSING_STEPS and detail=='MISSING_OR_INVALID':text=f'缺 artifacts/w01/{head}.json，或内容不是合法 JSON：{MISSING_STEPS[head]}'
+        elif head in MISSING_STEPS:text=f'artifacts/w01/{head}.json 不符合格式要求，第一处：{detail}'
+        elif head in HINTS:text=HINTS[head]+(f'（{detail}）' if detail else '')
+        else:text=error
+        key=head if head in MISSING_STEPS else error
+        rows.setdefault(key,text)
+    return [f'预检结果：还差 {len(rows)} 项，暂不能提交',*[f'{i}. {text}' for i,text in enumerate(rows.values(),1)],'全部项和说明见上方 JSON。']
+
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--root',default=str(ROOT));p.add_argument('--dry-run',action='store_true');a=p.parse_args();r=check(a.root,a.dry_run);print(json.dumps(r,ensure_ascii=False,indent=2));raise SystemExit(1 if r['status']=='fail' else 0)
+    p=argparse.ArgumentParser();p.add_argument('--root',default=str(ROOT));p.add_argument('--dry-run',action='store_true');a=p.parse_args();r=check(a.root,a.dry_run);print(json.dumps(r,ensure_ascii=False,indent=2),flush=True)
+    if r['status']!='dry_run':
+        try:print('\n'.join(summary_lines(r)),file=sys.stderr)
+        except Exception:pass  # The recap must never change the result.
+    raise SystemExit(1 if r['status']=='fail' else 0)

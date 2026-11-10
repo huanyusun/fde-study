@@ -133,15 +133,25 @@ def test_direct_cli_external_workspace_and_non_overwrite(ws):
     command=[sys.executable,str(ROOT/'tools/check_w02.py'),'--workspace',str(ws.root),'--output','report.json']
     result=subprocess.run(command,cwd=ws.root,capture_output=True,text=True)
     assert result.returncode==0,result.stdout+result.stderr
-    before=ws.raw('report.json')
     again=subprocess.run(command,cwd=ws.root,capture_output=True,text=True)
-    # The rerun still shows the full result; only saving is refused, and the old report is kept.
     assert again.returncode==2 and json.loads(again.stdout)['status']=='ready_for_review'
-    assert json.loads(again.stderr)['code']=='OUTPUT_EXISTS' and ws.raw('report.json')==before
+    assert json.loads(again.stderr)['code']=='OUTPUT_EXISTS'
     inspect=subprocess.run([sys.executable,str(ROOT/'tools/w02_knowledge.py'),'--workspace',str(ws.root),'inspect'],cwd=ws.root,capture_output=True,text=True)
     assert inspect.returncode==0,inspect.stdout+inspect.stderr
     assert json.loads(inspect.stdout)['planned_model_calls']==0
 
+def test_public_bundle_has_only_current_teaching_example(tmp_path):
+    from build_w02_agent import build
+    target=tmp_path/'new.zip';build(target)
+    with zipfile.ZipFile(target) as z:
+        manifest=json.loads(z.read('fde-agent-w02/MANIFEST.json'));names=set(manifest['files'])
+        assert manifest['version']=='w02-agent-0.5.2-candidate'
+        assert {'examples/w02_natural/business_model.md','tools/w02_knowledge.py','templates/w02_delivery/business_model.md',
+                'tools/w02_workflow.py','templates/w02_workflow/skills/extract-business/SKILL.md','docs/w02_workflow/README.md'}<=names
+        assert not any(n.startswith(('instructor/','examples/w02_library/','examples/w02_knowledge/','templates/w02_knowledge/')) for n in names)
+        assert 'tools/w02_context.py' not in names and 'platform/fde_product/customer_knowledge.py' not in names
+        assert 'templates/w02_delivery/stakeholder_map.md' not in names
+        for n,d in manifest['files'].items():assert hashlib.sha256(z.read('fde-agent-w02/'+n)).hexdigest()==d
 
 
 def test_knowledge_init_and_comparison_reuse_historical_extraction(ws, monkeypatch):

@@ -1,0 +1,50 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "refund_order_count",
+      "partial_refund_order_count",
+      "full_refund_order_count",
+      "refund_buyer_count"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  SUM(CASE WHEN case when status = 'paid' and refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS refund_order_count\n  , SUM(CASE WHEN case when status = 'paid' and refund_cents > 0 and refund_cents < paid_cents then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS partial_refund_order_count\n  , SUM(CASE WHEN case when status = 'paid' and paid_cents > 0 and refund_cents = paid_cents then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS full_refund_order_count\n  , COUNT(DISTINCT case when status = 'paid' and refund_cents > 0 then member_id end) AS refund_buyer_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+  "columns": [
+    "refund_order_count",
+    "partial_refund_order_count",
+    "full_refund_order_count",
+    "refund_buyer_count"
+  ],
+  "rows": [
+    [
+      4,
+      1,
+      3,
+      4
+    ]
+  ],
+  "seconds": 0.071,
+  "units": {
+    "refund_order_count": "count",
+    "partial_refund_order_count": "count",
+    "full_refund_order_count": "count",
+    "refund_buyer_count": "count"
+  },
+  "data_version": "qinghe-w03-20260923-small",
+  "data_sha256": "8a295969ec24556ebd7f818506633919e71f840fc86488d53efc185f9768cfe6",
+  "catalog_sha256": "a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef",
+  "answer": "2026年8月，青禾（覆盖其全部成交门店，未附加门店或地区筛选）：退款订单共4笔，其中部分退款订单1笔、全额退款订单3笔（1+3=4，口径一致）；发生退款的会员为4个CRM会员账户（按会员账户去重统计，不代表去重后的自然人数量）。以上数据来自本周合成测试库。",
+  "question": "2026年8月青禾的退款订单数、部分退款订单数、全额退款订单数、退款会员数分别是多少?",
+  "trace_id": "b11b7d10-d53a-48db-9d31-91767d622144",
+  "elapsed_seconds": 20.116,
+  "model_usage": {
+    "prompt_tokens": 10091,
+    "completion_tokens": 843,
+    "total_tokens": 10934
+  },
+  "model_calls_with_usage": 2
+}

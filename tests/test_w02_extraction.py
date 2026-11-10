@@ -246,6 +246,15 @@ def test_reconcile_budget_failures_preserve_completed_extraction(sample):
     assert run['status']=='failed' and run['error']['code']=='RECONCILE_LIMIT' and len(model.calls)==1
 
 
+def test_public_bundle_excludes_teacher_customer_answers_and_runtime(tmp_path):
+    from tools.build_w02_extraction import build,FILES
+    import zipfile
+    output=tmp_path/'bundle.zip';build(ROOT,output)
+    with zipfile.ZipFile(output) as archive:
+        names={p.removeprefix('w02-extractor/') for p in archive.namelist()}
+        assert names==set(FILES)|{'README.md','MANIFEST.json'}
+        assert all(not p.startswith(('instructor/','.env','.runtime','artifacts/','customer/')) for p in names)
+    with pytest.raises(FileExistsError): build(ROOT,output)
 
 
 def test_json_output_protocol_is_requested_at_both_stages(sample):

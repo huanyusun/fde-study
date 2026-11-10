@@ -18,7 +18,7 @@ python3 -m venv .venv
 .venv/bin/python tools/w02_interviews.py inspect --config examples/w02_extraction/extraction.json
 ```
 
-最后一步不调用模型，预期显示 2 份会议、1 个提取批次和计划 2 次模型调用。`examples/w02_extraction/` 是虚构图书馆材料，来源标记 `fixture`；不包含青禾答案。Windows 激活虚拟环境后使用 `python`；Windows、Linux 如遇问题，请反馈给课程方。
+最后一步不调用模型，预期显示 2 份会议、1 个提取批次和计划 2 次模型调用。`examples/w02_extraction/` 是虚构图书馆材料，来源标记 `fixture`；不包含青禾答案。Windows 激活虚拟环境后使用 `python`，本次没有 Windows 实机验证。
 
 所有命令可在子命令前加 `--workspace /path/to/你的客户仓库`。产物、配置和来源都写入这个仓库，工具代码及 Schema 从本工具安装目录读取并快照入运行记录；不要求覆盖已有 W1 工程。路径以工作仓库为基准，使用 `/`，不接受越界路径或指向仓库外的符号链接。
 
@@ -35,13 +35,13 @@ python3 -m venv .venv
 3. 把 `focus_questions` 改成自己的提取问题，例如需要弄清的定义、工作环节、限制或分歧；结合试跑结果修改 `extraction_prompt.txt`。不要把自己猜的答案写成模型必须接受的事实。
 4. 选择模型支持的 `profile`，再运行 `inspect` 查看输入是否有效及计划调用数。修改批次参数后也先检查。
 
-如果保存的是“完整公开记录”而不是提取用记录，先把原件保留在仓库，再转换到新文件：
+如果只有旧版“完整公开记录”，先把原件保留在仓库，再转换到新文件：
 
 ```sh
 .venv/bin/python tools/w02_interviews.py convert artifacts/w02/sources/old-public.json --output artifacts/w02/sources/normalized.json
 ```
 
-转换保留原周次和消息 ID，W1 不会变成 W2；系统操作消息留在原件里，不送进提取。非公开导出格式会被拒绝。已经规范化的记录可直接使用，不必再次转换。
+转换保留原周次和消息 ID，W1 不会变成 W2；系统操作消息留在原件里，不送进提取。含教师审核、消息私有元数据的内部导出会被拒绝。已经规范化的记录可直接使用，不必再次转换。
 
 ## 实际提取
 
@@ -52,6 +52,7 @@ python3 -m venv .venv
 | `compatible` | 通用请求，不加厂商参数 | 默认起点；模型仍须按提示词返回完整 JSON |
 | `json-object` | 加入 JSON 对象输出约束 | 端点支持 `response_format` |
 | `deepseek-json` | JSON、顶层 `thinking`：提取与冲突判断均开启低推理，8192 输出额度 | 端点需支持 DeepSeek OpenAI 格式的思考开关 |
+| `gateway-json` | JSON、`extra_body.thinking`：提取与冲突判断均开启低推理，8192 输出额度 | 教师网关验证配置；保留独立名称便于区分本课程网关实测 |
 
 配置好环境后：
 
@@ -84,13 +85,13 @@ python3 -m venv .venv
 
 候选里的置信或复核状态是程序的中间数据，不证明真实情况已经核实。来源能够定位，仍需判断原文支持到什么程度。发现候选失真，可以改提取要求重跑，也可以在人工记录中说明采用时的修订；不用为了建模先修齐所有机器字段。
 
-有多次成功提取时，初始化加 `--from-extraction` 指向采用的运行。业务模型加载与同题对照见[知识入口](../w02_knowledge/README.md)。
+有多次成功提取时，初始化加 `--from-extraction` 指向采用的运行。业务模型加载与同题对照见[新版知识入口](../w02_knowledge/README.md)。
 
 ## 学员实现与检查边界
 
 | 课程方已提供 | 学员需要完成 |
 | --- | --- |
-| 公开记录读取、完整公开记录转换、来源定位 | 选择访谈对象与问题，保留自己的原文 |
+| 公开记录读取、旧格式转换、来源定位 | 选择访谈对象与问题，保留自己的原文 |
 | 分批模型调用、严格 JSON 解析和错误提示 | 修改提取目标、提示词和配置；需要时调整或替换处理程序 |
 | 跨记录冲突候选与来源检查 | 判断是否真有分歧、保留口径差异，规划下一步核实 |
 | 候选与原文展示、两份文档模板 | 核查准备采用的信息，解释选择、修订与依据 |

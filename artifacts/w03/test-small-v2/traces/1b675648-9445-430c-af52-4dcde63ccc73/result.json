@@ -1,0 +1,54 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "payment_cents",
+      "refund_cents",
+      "net_sales_cents",
+      "gross_cents",
+      "discount_cents"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  SUM(case when status = 'paid' then paid_cents else 0 end) AS payment_cents\n  , SUM(case when status = 'paid' then refund_cents else 0 end) AS refund_cents\n  , SUM(case when status = 'paid' then paid_cents - refund_cents else 0 end) AS net_sales_cents\n  , SUM(case when status = 'paid' then gross_cents else 0 end) AS gross_cents\n  , SUM(case when status = 'paid' then gross_cents - paid_cents else 0 end) AS discount_cents\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+  "columns": [
+    "payment_cents",
+    "refund_cents",
+    "net_sales_cents",
+    "gross_cents",
+    "discount_cents"
+  ],
+  "rows": [
+    [
+      119050,
+      18750,
+      100300,
+      124250,
+      5200
+    ]
+  ],
+  "seconds": 0.131,
+  "units": {
+    "payment_cents": "cents",
+    "refund_cents": "cents",
+    "net_sales_cents": "cents",
+    "gross_cents": "cents",
+    "discount_cents": "cents"
+  },
+  "data_version": "qinghe-w03-20260923-small",
+  "data_sha256": "8a295969ec24556ebd7f818506633919e71f840fc86488d53efc185f9768cfe6",
+  "catalog_sha256": "a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef",
+  "answer": "青禾 2026 年 8 月（自然月，Asia/Shanghai 时区，已支付订单口径，按原订单下单日期归属，本周合成测试库全部订单，未按门店等维度筛选）：实付金额 1190.50 元；退款金额 187.50 元；净销售额 1003.00 元（实付减退款，取消单不计）；支付订单原价金额 1242.50 元（折扣前原价合计）；优惠金额 52.00 元（原价减实付，退款不冲减原优惠金额）。勾稽核验：1242.50 − 52.00 = 1190.50，1190.50 − 187.50 = 1003.00，各项相互一致。",
+  "question": "2026年8月青禾的实付金额、退款金额、净销售额、支付订单原价金额、优惠金额分别是多少?",
+  "trace_id": "1b675648-9445-430c-af52-4dcde63ccc73",
+  "elapsed_seconds": 24.822,
+  "model_usage": {
+    "prompt_tokens": 10190,
+    "completion_tokens": 1288,
+    "total_tokens": 11478
+  },
+  "model_calls_with_usage": 2
+}

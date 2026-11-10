@@ -1,0 +1,58 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "monthly_paid_buyer_count",
+      "monthly_paid_order_count",
+      "monthly_paid_sales_cents",
+      "monthly_paid_repeat_buyer_count",
+      "monthly_paid_repeat_rate",
+      "monthly_paid_avg_order_value"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "WITH sma_10002_cte AS (\n  SELECT\n    DATE_TRUNC('month', month_start) AS metric_time__month\n    , CASE WHEN case when valid_order_cnt >= 1 then member_id end IS NOT NULL THEN 1 ELSE 0 END AS __monthly_paid_buyer_count\n    , valid_order_cnt AS __monthly_paid_order_count\n    , net_cents_sum AS __monthly_paid_sales_cents\n    , CASE WHEN case when valid_order_cnt >= 2 then member_id end IS NOT NULL THEN 1 ELSE 0 END AS __monthly_paid_repeat_buyer_count\n  FROM \"data\".\"main\".\"account_month_paid\" account_month_paid_src_10000\n)\n\nSELECT\n  MAX(subq_10.monthly_paid_buyer_count) AS monthly_paid_buyer_count\n  , MAX(subq_10.monthly_paid_order_count) AS monthly_paid_order_count\n  , MAX(subq_10.monthly_paid_sales_cents) AS monthly_paid_sales_cents\n  , MAX(subq_10.monthly_paid_repeat_buyer_count) AS monthly_paid_repeat_buyer_count\n  , MAX(subq_17.monthly_paid_repeat_rate) AS monthly_paid_repeat_rate\n  , MAX(subq_17.monthly_paid_avg_order_value) AS monthly_paid_avg_order_value\nFROM (\n  SELECT\n    SUM(__monthly_paid_buyer_count) AS monthly_paid_buyer_count\n    , SUM(__monthly_paid_order_count) AS monthly_paid_order_count\n    , SUM(__monthly_paid_sales_cents) AS monthly_paid_sales_cents\n    , SUM(__monthly_paid_repeat_buyer_count) AS monthly_paid_repeat_buyer_count\n  FROM sma_10002_cte\n  WHERE metric_time__month BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_10\nCROSS JOIN (\n  SELECT\n    case when monthly_paid_buyer_count = 0 then null else monthly_paid_repeat_buyer_count / monthly_paid_buyer_count end AS monthly_paid_repeat_rate\n    , case when monthly_paid_order_count = 0 then null else monthly_paid_sales_cents / monthly_paid_order_count end AS monthly_paid_avg_order_value\n  FROM (\n    SELECT\n      SUM(__monthly_paid_repeat_buyer_count) AS monthly_paid_repeat_buyer_count\n      , SUM(__monthly_paid_buyer_count) AS monthly_paid_buyer_count\n      , SUM(__monthly_paid_sales_cents) AS monthly_paid_sales_cents\n      , SUM(__monthly_paid_order_count) AS monthly_paid_order_count\n    FROM sma_10002_cte\n    WHERE metric_time__month BETWEEN '2026-08-01' AND '2026-08-31'\n  ) subq_16\n) subq_17",
+  "columns": [
+    "monthly_paid_buyer_count",
+    "monthly_paid_order_count",
+    "monthly_paid_sales_cents",
+    "monthly_paid_repeat_buyer_count",
+    "monthly_paid_repeat_rate",
+    "monthly_paid_avg_order_value"
+  ],
+  "rows": [
+    [
+      3683,
+      6565,
+      113027218,
+      1643,
+      0.4461037197936465,
+      17216.63640517898
+    ]
+  ],
+  "seconds": 0.177,
+  "units": {
+    "monthly_paid_buyer_count": "count",
+    "monthly_paid_order_count": "count",
+    "monthly_paid_sales_cents": "cents",
+    "monthly_paid_repeat_buyer_count": "count",
+    "monthly_paid_repeat_rate": "ratio",
+    "monthly_paid_avg_order_value": "cents"
+  },
+  "data_version": "qinghe-w03-20260923-large",
+  "data_sha256": "0074e7f764c63e836617aecb0e217aa3b5cc0cf9ede557179ad46b077dcf8ba8",
+  "catalog_sha256": "a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef",
+  "answer": "青禾2026年8月（完整自然月，全门店全渠道，按CRM会员账户口径）的月末付费会员指标如下：购买人数3,683个账户（当月有至少一笔有效订单且月末符合总部运营月报付费资格的账户数）；有效订单数6,565单（月末符合付费资格账户当月的全部有效订单，按账户资格统计，不按卡重复）；净销售额1,130,272.18元（由113,027,218分换算）；复购人数1,643个账户（当月有至少两笔有效订单）；复购率44.61%（复购人数÷购买人数，分母不为零，指标有效）；订单均额172.17元/单（净销售额÷有效订单数）。本次未按门店或渠道做额外筛选，结果覆盖青禾全部成交门店与渠道；数据版本覆盖至2026年9月1日，2026年8月为完整自然月，符合该指标的统计口径。",
+  "question": "2026年8月青禾的月末付费会员购买人数、月末付费会员有效订单数、月末付费会员净销售额、月末付费会员复购人数、月末付费会员复购率、月末付费会员订单均额分别是多少?",
+  "trace_id": "8d8aab7f-dc91-458c-b18f-fe316d903f8b",
+  "elapsed_seconds": 48.955,
+  "model_usage": {
+    "prompt_tokens": 343661,
+    "completion_tokens": 1608,
+    "total_tokens": 345269
+  },
+  "model_calls_with_usage": 2
+}

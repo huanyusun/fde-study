@@ -1,0 +1,14 @@
+{
+  "status": "error",
+  "code": "Expecting ',' delimiter: line 1 column 63 (char 62)",
+  "reason": "本次调用未完成，请查看运行记录；不能把失败当成零。",
+  "question": "青禾的有效订单数是多少?",
+  "trace_id": "45a798cd-43d0-49b5-a687-1a61c1c24be5",
+  "elapsed_seconds": 7.982,
+  "model_usage": {
+    "prompt_tokens": 8716,
+    "completion_tokens": 415,
+    "total_tokens": 9131
+  },
+  "model_calls_with_usage": 1
+}

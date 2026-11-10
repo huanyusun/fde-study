@@ -1,0 +1,7 @@
+order_id,member_id,store_id,ordered_at,status,gross_cents,paid_cents,refund_cents,quantity,channel
+WO1,W1,W01,2026-08-01,paid,10000,10000,2000,2,门店
+WO2,W2,W02,2026-08-31,paid,5000,5000,0,1,小程序
+WO3,W1,W01,2026-08-20,cancelled,9000,0,0,1,门店
+WO4,W1,W01,2026-07-05,paid,6000,6000,0,1,门店
+WO5,W1,W02,2026-07-20,paid,5000,5000,1000,1,小程序
+WO6,W2,W02,2026-07-12,paid,12000,12000,12000,2,门店
