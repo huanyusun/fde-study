@@ -1,8 +1,0 @@
-w03:
-  outputs:
-    dev:
-      path: /Users/sunhuanyu/orca/workspaces/fde-study/w03/artifacts/w03/build-try5/validation-project/data.duckdb
-      schema: main
-      threads: 1
-      type: duckdb
-  target: dev

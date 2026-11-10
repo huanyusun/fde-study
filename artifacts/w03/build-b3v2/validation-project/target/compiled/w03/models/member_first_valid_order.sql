@@ -1,1 +1,0 @@
-select member_id, ordered_at as first_ordered_at, paid_cents - refund_cents as first_net_cents from "data"."main"."orders_valid_ranked" where first_seq = 1

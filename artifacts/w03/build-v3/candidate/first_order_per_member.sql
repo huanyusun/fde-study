@@ -1,1 +1,0 @@
-select member_id, order_id, ordered_at as first_ordered_at, paid_cents - refund_cents as first_net_cents from (select *, row_number() over (partition by member_id order by ordered_at, order_id) as rn from {{ ref('orders') }} where status = 'paid' and paid_cents - refund_cents > 0) t where rn = 1

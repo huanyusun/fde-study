@@ -1,1 +1,0 @@
-select order_id, member_id, ordered_at from (select order_id, member_id, ordered_at, row_number() over (partition by member_id order by ordered_at, order_id) as rn from {{ ref('orders') }} where status = 'paid' and paid_cents - refund_cents > 0) t where rn >= 2

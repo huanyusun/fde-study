@@ -1,1 +1,0 @@
-WITH ranked AS (SELECT member_id, order_id, ordered_at, ROW_NUMBER() OVER (PARTITION BY member_id ORDER BY ordered_at, order_id) AS rn FROM {{ ref('orders') }} WHERE status = 'paid' AND paid_cents - refund_cents > 0) SELECT order_id, member_id, ordered_at FROM ranked WHERE rn >= 2

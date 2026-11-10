@@ -1,1 +1,0 @@
-select member_id, ordered_at as first_ordered_at, paid_cents - refund_cents as first_net_sales_cents from {{ ref('member_purchase_seq') }} where is_first

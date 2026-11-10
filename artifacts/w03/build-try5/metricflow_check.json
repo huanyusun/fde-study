@@ -1,9 +1,0 @@
-{
-  "passed": true,
-  "metrics_compiled": [
-    "order_count",
-    "paid_order_count",
-    "payment_cents"
-  ],
-  "validator": "SemanticManifestValidator; native explain + DuckDB EXPLAIN"
-}

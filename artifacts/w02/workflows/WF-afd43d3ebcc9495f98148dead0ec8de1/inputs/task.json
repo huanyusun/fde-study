@@ -1,9 +1,0 @@
-{
-  "version": "w02-workflow-0.1.0",
-  "goal": "从W3四场访谈提取付费会员资格口径与阶段交付要求:付费卡产品范围(悦享年卡/家庭季卡,异业联名卡与体验卡排除)、月末判定与账户去重、有效期端点(valid_from当天起有效/valid_until当天已无效/ended_at当天起无效)、提前终止处理、退卡停卡记录归属、王经理验收依据与SOW条款要求;保留未决(同类型多卡并存、时限与审批人)。",
-  "extraction_config": "customer/w02/extraction.json",
-  "skill": "customer/w02/skills/extract-business/SKILL.md",
-  "business_model": "docs/w03/business_model.md",
-  "notes": "docs/w03/interview_notes.md",
-  "max_steps": 24
-}

@@ -1,9 +1,0 @@
-{
-  "version": "w02-workflow-0.1.0",
-  "goal": "第一轮：从老周、小林、陈姐三位必访和沈总、王经理选访的 W2 访谈中，整理会员复购问题需要的业务认识。重点：会员数两种说法各自的口径与核实路径；会员、订单、优惠券、标签需要区分的地方；各角色的工作方式、职责与授权边界；对下滑原因和上一个项目的不同判断及其依据；助手可以做和不能自动做的事。不补 W3 才讨论的指标公式。",
-  "extraction_config": "customer/w02/extraction.json",
-  "skill": "customer/w02/skills/extract-business/SKILL.md",
-  "business_model": "docs/w02/business_model.md",
-  "notes": "docs/w02/interview_notes.md",
-  "max_steps": 24
-}
