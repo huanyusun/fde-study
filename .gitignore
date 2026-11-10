@@ -32,3 +32,15 @@ artifacts/w03/*/validation-project/**
 !artifacts/w03/*/validation-project/validation.log
 !artifacts/w03/*/validation-project/validation.json
 w03-submit.zip
+
+# PR 精简:过程证据目录只在本地与提交 zip 中保留,不进 git(证据见 w03-submit.zip)
+artifacts/w02/runs/
+artifacts/w02/workflows/
+artifacts/w03/build-*/
+artifacts/w03/library-v1-pinned/
+artifacts/w03/library-defective-v4/
+artifacts/w03/sample-test-v1/
+artifacts/w03/test-small-v[1-6]/
+artifacts/w03/test-large-v[1-4]/
+artifacts/w03/test-small-v7/traces/
+artifacts/w03/test-large-v5/traces/
