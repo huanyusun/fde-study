@@ -1,0 +1,727 @@
+{
+  "contract_version": "w04-0.1.0",
+  "data_version": "wutong-w04-v1",
+  "fields": [
+    {
+      "source_file": "读者卡.csv",
+      "field": "卡编号",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 0,
+      "range": {
+        "min": null,
+        "max": null
+      }
+    },
+    {
+      "source_file": "读者卡.csv",
+      "field": "读者编号",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 0,
+      "range": {
+        "min": null,
+        "max": null
+      }
+    },
+    {
+      "source_file": "读者卡.csv",
+      "field": "卡类别",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 0,
+      "range": {
+        "min": null,
+        "max": null
+      }
+    },
+    {
+      "source_file": "读者卡.csv",
+      "field": "起始日期",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 0,
+      "range": {
+        "min": null,
+        "max": null
+      }
+    },
+    {
+      "source_file": "读者卡.csv",
+      "field": "截止日期",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 0,
+      "range": {
+        "min": null,
+        "max": null
+      }
+    },
+    {
+      "source_file": "读者卡.csv",
+      "field": "终止日期",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 0,
+      "range": {
+        "min": null,
+        "max": null
+      }
+    },
+    {
+      "source_file": "读者卡.csv",
+      "field": "卡实收",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 0,
+      "range": {
+        "min": null,
+        "max": null
+      }
+    },
+    {
+      "source_file": "读者导出.csv",
+      "field": "读者编号",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 2017,
+      "range": {
+        "min": "WT0000001",
+        "max": "WT0002017"
+      }
+    },
+    {
+      "source_file": "读者导出.csv",
+      "field": "称呼",
+      "inferred_type": "string",
+      "missing_count": 10,
+      "total_count": 2017,
+      "range": {
+        "min": "丁俊铭",
+        "max": "龚雅茹"
+      }
+    },
+    {
+      "source_file": "读者导出.csv",
+      "field": "联系电话",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 2017,
+      "range": {
+        "min": "138****0041",
+        "max": "198****9762"
+      }
+    },
+    {
+      "source_file": "读者导出.csv",
+      "field": "生日",
+      "inferred_type": "string",
+      "missing_count": 86,
+      "total_count": 2017,
+      "range": {
+        "min": "1934-10-28",
+        "max": "2010-11-11"
+      }
+    },
+    {
+      "source_file": "读者导出.csv",
+      "field": "办证日期",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 2017,
+      "range": {
+        "min": "01/02/2021",
+        "max": "30/12/2020"
+      }
+    },
+    {
+      "source_file": "读者导出.csv",
+      "field": "会员级别",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 2017,
+      "distribution": [
+        {
+          "value": "普通",
+          "count": 1411
+        },
+        {
+          "value": "金卡",
+          "count": 162
+        },
+        {
+          "value": "银卡",
+          "count": 444
+        }
+      ]
+    },
+    {
+      "source_file": "读者导出.csv",
+      "field": "办证门店",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 2017,
+      "distribution": [
+        {
+          "value": "B01",
+          "count": 387
+        },
+        {
+          "value": "B02",
+          "count": 347
+        },
+        {
+          "value": "B03",
+          "count": 300
+        },
+        {
+          "value": "B04",
+          "count": 257
+        },
+        {
+          "value": "B05",
+          "count": 202
+        },
+        {
+          "value": "B06",
+          "count": 213
+        },
+        {
+          "value": "B07",
+          "count": 177
+        },
+        {
+          "value": "B08",
+          "count": 134
+        }
+      ]
+    },
+    {
+      "source_file": "读者导出.csv",
+      "field": "备注标签",
+      "inferred_type": "string",
+      "missing_count": 503,
+      "total_count": 2017,
+      "range": {
+        "min": "#下次到店核一下联系方式",
+        "max": "科学阅读；常来书友；夜读同行"
+      }
+    },
+    {
+      "source_file": "销售流水.csv",
+      "field": "票据号",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 20003,
+      "range": {
+        "min": "WT20240901000004",
+        "max": "WT20260831000050"
+      }
+    },
+    {
+      "source_file": "销售流水.csv",
+      "field": "读者编号",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 20003,
+      "range": {
+        "min": "WT0000001",
+        "max": "WT9019927"
+      }
+    },
+    {
+      "source_file": "销售流水.csv",
+      "field": "成交店号",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 20003,
+      "distribution": [
+        {
+          "value": "B01",
+          "count": 4013
+        },
+        {
+          "value": "B02",
+          "count": 3497
+        },
+        {
+          "value": "B03",
+          "count": 2958
+        },
+        {
+          "value": "B04",
+          "count": 2272
+        },
+        {
+          "value": "B05",
+          "count": 2104
+        },
+        {
+          "value": "B06",
+          "count": 2188
+        },
+        {
+          "value": "B07",
+          "count": 1721
+        },
+        {
+          "value": "B08",
+          "count": 1250
+        }
+      ]
+    },
+    {
+      "source_file": "销售流水.csv",
+      "field": "结账时刻",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 20003,
+      "range": {
+        "min": "2024-09-01 09:33:34",
+        "max": "2026-08-31 21:03:36"
+      }
+    },
+    {
+      "source_file": "销售流水.csv",
+      "field": "结账状态",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 20003,
+      "distribution": [
+        {
+          "value": "已撤单",
+          "count": 698
+        },
+        {
+          "value": "已结账",
+          "count": 16629
+        },
+        {
+          "value": "已退清",
+          "count": 1149
+        },
+        {
+          "value": "部分退货",
+          "count": 1527
+        }
+      ]
+    },
+    {
+      "source_file": "销售流水.csv",
+      "field": "书品原额",
+      "inferred_type": "decimal",
+      "missing_count": 0,
+      "total_count": 20003,
+      "range": {
+        "min": "8.62",
+        "max": "1013.05"
+      }
+    },
+    {
+      "source_file": "销售流水.csv",
+      "field": "实际收款",
+      "inferred_type": "decimal",
+      "missing_count": 0,
+      "total_count": 20003,
+      "range": {
+        "min": "0.00",
+        "max": "929.53"
+      }
+    },
+    {
+      "source_file": "销售流水.csv",
+      "field": "已退金额",
+      "inferred_type": "decimal",
+      "missing_count": 0,
+      "total_count": 20003,
+      "range": {
+        "min": "0.00",
+        "max": "564.65"
+      }
+    },
+    {
+      "source_file": "销售流水.csv",
+      "field": "册数",
+      "inferred_type": "integer",
+      "missing_count": 0,
+      "total_count": 20003,
+      "distribution": [
+        {
+          "value": "1",
+          "count": 5751
+        },
+        {
+          "value": "10",
+          "count": 98
+        },
+        {
+          "value": "11",
+          "count": 92
+        },
+        {
+          "value": "12",
+          "count": 38
+        },
+        {
+          "value": "13",
+          "count": 34
+        },
+        {
+          "value": "14",
+          "count": 27
+        },
+        {
+          "value": "15",
+          "count": 20
+        },
+        {
+          "value": "16",
+          "count": 15
+        },
+        {
+          "value": "17",
+          "count": 5
+        },
+        {
+          "value": "18",
+          "count": 6
+        },
+        {
+          "value": "19",
+          "count": 6
+        },
+        {
+          "value": "2",
+          "count": 5613
+        },
+        {
+          "value": "20",
+          "count": 1
+        },
+        {
+          "value": "21",
+          "count": 1
+        },
+        {
+          "value": "22",
+          "count": 2
+        },
+        {
+          "value": "24",
+          "count": 2
+        },
+        {
+          "value": "25",
+          "count": 1
+        },
+        {
+          "value": "3",
+          "count": 3580
+        },
+        {
+          "value": "34",
+          "count": 2
+        },
+        {
+          "value": "4",
+          "count": 2033
+        },
+        {
+          "value": "5",
+          "count": 1209
+        },
+        {
+          "value": "6",
+          "count": 653
+        },
+        {
+          "value": "7",
+          "count": 389
+        },
+        {
+          "value": "8",
+          "count": 255
+        },
+        {
+          "value": "9",
+          "count": 170
+        }
+      ]
+    },
+    {
+      "source_file": "销售流水.csv",
+      "field": "收款入口",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 20003,
+      "distribution": [
+        {
+          "value": "书店收银",
+          "count": 19985
+        },
+        {
+          "value": "代收点",
+          "count": 18
+        }
+      ]
+    },
+    {
+      "source_file": "门店名册.csv",
+      "field": "店号",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 8,
+      "distribution": [
+        {
+          "value": "B01",
+          "count": 1
+        },
+        {
+          "value": "B02",
+          "count": 1
+        },
+        {
+          "value": "B03",
+          "count": 1
+        },
+        {
+          "value": "B04",
+          "count": 1
+        },
+        {
+          "value": "B05",
+          "count": 1
+        },
+        {
+          "value": "B06",
+          "count": 1
+        },
+        {
+          "value": "B07",
+          "count": 1
+        },
+        {
+          "value": "B08",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "source_file": "门店名册.csv",
+      "field": "门店名称",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 8,
+      "distribution": [
+        {
+          "value": "上海五角场店",
+          "count": 1
+        },
+        {
+          "value": "上海静安寺店",
+          "count": 1
+        },
+        {
+          "value": "北京王府井店",
+          "count": 1
+        },
+        {
+          "value": "南京新街口店",
+          "count": 1
+        },
+        {
+          "value": "广州北京路店",
+          "count": 1
+        },
+        {
+          "value": "杭州文三路店",
+          "count": 1
+        },
+        {
+          "value": "杭州湖滨店",
+          "count": 1
+        },
+        {
+          "value": "武汉光谷店",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "source_file": "门店名册.csv",
+      "field": "所属区域",
+      "inferred_type": "string",
+      "missing_count": 0,
+      "total_count": 8,
+      "distribution": [
+        {
+          "value": "华东",
+          "count": 5
+        },
+        {
+          "value": "华中",
+          "count": 1
+        },
+        {
+          "value": "华北",
+          "count": 1
+        },
+        {
+          "value": "华南",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "anomalies": [
+    {
+      "pattern": "完全重复行：40 条",
+      "evidence": {
+        "source_file": "销售流水.csv",
+        "sample_rows": [
+          998,
+          999,
+          1997,
+          1998,
+          2996,
+          2997,
+          3995,
+          3996,
+          4994,
+          4995,
+          5993,
+          5994,
+          6992,
+          6993,
+          7991,
+          7992,
+          8990,
+          8991,
+          9989,
+          9990
+        ]
+      }
+    },
+    {
+      "pattern": "孤儿订单：23 条原始记录（含重复时需另去重）",
+      "evidence": {
+        "source_file": "销售流水.csv",
+        "sample_rows": [
+          1094,
+          1529,
+          1908,
+          4180,
+          4424,
+          4574,
+          4666,
+          5437,
+          6417,
+          6683,
+          8467,
+          10790,
+          11145,
+          13154,
+          14132,
+          14193,
+          14926,
+          15264,
+          17631,
+          18708
+        ]
+      }
+    },
+    {
+      "pattern": "契约外渠道：18 条原始记录（含重复时需另去重）",
+      "evidence": {
+        "source_file": "销售流水.csv",
+        "sample_rows": [
+          437,
+          3211,
+          4649,
+          6344,
+          6763,
+          7132,
+          7286,
+          8965,
+          9586,
+          9630,
+          9860,
+          12733,
+          13396,
+          14617,
+          14982,
+          14985,
+          15133,
+          17186
+        ]
+      }
+    },
+    {
+      "pattern": "日期混用：110 条非 ISO 写法",
+      "evidence": {
+        "source_file": "读者导出.csv",
+        "sample_rows": [
+          7,
+          13,
+          24,
+          33,
+          48,
+          63,
+          73,
+          103,
+          108,
+          119,
+          160,
+          178,
+          180,
+          211,
+          246,
+          255,
+          305,
+          342,
+          346,
+          358
+        ]
+      }
+    },
+    {
+      "pattern": "金额包含小数，与字典整数分不符",
+      "evidence": {
+        "source_file": "销售流水.csv",
+        "sample_rows": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  ],
+  "dictionary_differences": [
+    {
+      "source_file": "读者导出.csv",
+      "field": "办证日期",
+      "dictionary_claim": "统一 YYYY-MM-DD",
+      "actual": "110 条使用日/月/年或中文日期",
+      "impact": "按多格式显式解析，不能仅按一种日期格式丢弃"
+    },
+    {
+      "source_file": "销售流水.csv",
+      "field": "实际收款",
+      "dictionary_claim": "整数分",
+      "actual": "20003 条金额带小数；示例 162.64，例题核对以元为单位",
+      "impact": "规则按 Decimal 乘 100，避免金额缩小 100 倍"
+    },
+    {
+      "source_file": "读者导出.csv",
+      "field": "备注标签",
+      "dictionary_claim": "竖线分隔，手册原清单只有 6 项",
+      "actual": "还使用中文分号，存在新增标签夜读同行；井号开头为手记",
+      "impact": "不能按斜杠拆分合法标签；备注单独保留，未知标签不删除"
+    }
+  ]
+}

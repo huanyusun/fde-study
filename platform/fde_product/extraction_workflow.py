@@ -153,14 +153,14 @@ def start(ws,task_path=DEFAULT_TASK,previous=None):
 COMPLETED_POINTER = "artifacts/w02/workflow_completed.json"
 
 
-def resolve_previous(ws,path="latest"):
-    # An unfinished later task must not hide the last confirmed round.
-    if path=="latest" and ws.path(COMPLETED_POINTER).exists(): return ws.load(COMPLETED_POINTER)["session"]
-    return resolve_session(ws,path)
-
-
 def resolve_session(ws,path="latest"):
     return ws.load("artifacts/w02/workflow_current.json")["session"] if path=="latest" else path
+
+
+def resolve_previous(ws,path="latest"):
+    # A later failed or unfinished round must not hide the last confirmed one.
+    if path=="latest" and ws.path(COMPLETED_POINTER).exists(): return ws.load(COMPLETED_POINTER)["session"]
+    return resolve_session(ws,path)
 
 
 def interrupted(s):
@@ -181,6 +181,12 @@ def can_resume(s):
     """Judged from saved fields only, so sessions that failed under an earlier package qualify too."""
     return (s["status"]=="failed" and isinstance(s.get("error"),str) and bool(RETRYABLE_MODEL_ERRORS.fullmatch(s["error"]))
         and bool(s["calls"]) and s["calls"][-1].get("response") is None and not interrupted(s))
+
+
+def steps_since_feedback(s):
+    """max_steps guards a model running on its own; FDE feedback starts a new count, resumed failures do not use it."""
+    base=s.get("step_base",0)
+    return s["steps"]-base-sum(1 for x in s.get("resumed_failures",[]) if x["step"]>base)
 
 
 def load_session(ws,path):
@@ -251,7 +257,7 @@ def advance(ws,path,model,extractor):
     private=ws.load(private_path) if ws.path(private_path).exists() else {}
     specs_by_name={x["function"]["name"]:x["function"]["parameters"] for x in schemas()}
     try:
-        while s["steps"]-len(s.get("resumed_failures",[]))<s["task"]["max_steps"] and s["status"]=="active":
+        while steps_since_feedback(s)<s["task"]["max_steps"] and s["status"]=="active":
             s["steps"]+=1
             prefix=s["folder"]+f"/model/step-{s['steps']:03}"
             entry={"step":s["steps"],"mode":model.mode,"request":None,"response":None};s["calls"].append(entry)
@@ -301,6 +307,7 @@ def advance(ws,path,model,extractor):
     except (CheckError,ModelError,OSError,UnicodeError) as exc:
         s["status"]="failed";s["error"]=getattr(exc,"code","FILE_OPERATION_FAILED")
     finally:
+        # Ctrl-C or a crash inside a tool leaves a call without reply; that conversation cannot be resumed.
         if s["status"]=="active" and interrupted(s):
             s["status"]="failed";s["error"]="SESSION_INTERRUPTED"
         save(ws,path,s)
@@ -313,7 +320,7 @@ def review(ws,path,feedback):
     entry={"claim_ids":s["pending"]["claim_ids"],"feedback":feedback.strip(),"origin":"human_cli","at":datetime.now(timezone.utc).isoformat()}
     s["human_reviews"].append(entry);s["reviewed"]=sorted(set(s["reviewed"])|set(entry["claim_ids"]))
     s["messages"].append({"role":"user","content":"FDE 对当前组的核查反馈（不等于批准文件写入）："+json.dumps(entry,ensure_ascii=False)})
-    s["pending"]=None;s["status"]="active";save(ws,path,s)
+    s["pending"]=None;s["status"]="active";s["step_base"]=s["steps"];save(ws,path,s)
     return s
 
 
@@ -322,7 +329,7 @@ def revise(ws,path,feedback):
     require(isinstance(feedback,str) and 0<len(feedback.strip())<=12000,"FEEDBACK_REQUIRED")
     s.setdefault("revision_feedback",[]).append(feedback.strip())
     s["messages"].append({"role":"user","content":"FDE 暂不确认本版草稿，请按以下意见调整并再次 propose_update："+feedback.strip()})
-    s["status"]="active";save(ws,path,s);return s
+    s["status"]="active";s["step_base"]=s["steps"];save(ws,path,s);return s
 
 
 def apply(ws,path):
@@ -363,6 +370,9 @@ def apply(ws,path):
     return s
 
 
+INTERRUPTED_HINT = "本轮在工具执行中被中断，已标记为未完成，记录保留。可用 status、report 查看；调整后重新 start 新建任务，已确认的上一轮可用 --previous latest 接续。"
+
+
 RESUME_HINT = "模型这一步没有回答，对话记录和已给的核查都在。恢复网络或服务后直接 resume，不用改文件。"
 RESTART_HINT = "本轮未完成，不能 resume，也不能 apply。可用 report 查看记录；核对错误后调整，重新 start。"
 
@@ -371,6 +381,7 @@ def public_status(s,path):
     result={"session":path,"status":s["status"],"steps":s["steps"],"extraction_run":s["extraction_run"],
         "reviewed":s["reviewed"],"pending":s["pending"],"proposal":s.get("proposal_path",s["folder"]+"/proposal.json") if s["proposal"] else None,
         "error":s["error"]}
-    if can_resume(s): result["next"]=RESUME_HINT
+    if s["error"]=="SESSION_INTERRUPTED": result["next"]=INTERRUPTED_HINT
+    elif can_resume(s): result["next"]=RESUME_HINT
     elif s["status"]=="failed": result["next"]=RESTART_HINT
     return result

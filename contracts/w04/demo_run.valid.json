@@ -1,0 +1,84 @@
+{
+  "contract_version": "w04-0.3.0",
+  "data_version": "illustrative-v1",
+  "query_library_version": "illustrative-library-v1",
+  "selected_chain": "示例：有效订单查询",
+  "runs": [
+    {
+      "question": "示例数据中的有效订单有几笔？",
+      "agent_answer": "结构示例：已导入的新 CRM 范围内为 1 笔；旧 POS 不在本次数据中。",
+      "query_status": "executed",
+      "actual_queries": [
+        {
+          "sql": "select 1 as example_only",
+          "result": {
+            "columns": [
+              "example_only"
+            ],
+            "rows": [
+              [
+                1
+              ]
+            ]
+          },
+          "error": null
+        }
+      ],
+      "bad_case": false,
+      "bad_case_reason": "",
+      "tuning": {
+        "before": {
+          "agent_answer": "结构示例：将覆盖内数量误称为全公司数量。",
+          "query_status": "executed",
+          "actual_queries": [
+            {
+              "sql": "select 1 as example_only",
+              "result": {
+                "columns": [
+                  "example_only"
+                ],
+                "rows": [
+                  [
+                    1
+                  ]
+                ]
+              },
+              "error": null
+            }
+          ],
+          "bad_case": true,
+          "bad_case_reason": "未说明来源缺口。",
+          "coverage_notes": {
+            "source": "结构示例：本次只含新 CRM，未包含旧 POS。",
+            "time_range": {
+              "start": "2024-09-01",
+              "end_exclusive": "2026-09-01"
+            },
+            "quarantined": {
+              "member": 0,
+              "order": 1,
+              "card": 0,
+              "shop": 0
+            }
+          }
+        },
+        "change_location": "提示词／上下文",
+        "change": "将查询返回的覆盖说明加入回答依据。",
+        "reason": "避免把新 CRM 的局部结果说成全公司结果。"
+      },
+      "coverage_notes": {
+        "source": "结构示例：本次只含新 CRM，未包含旧 POS。",
+        "time_range": {
+          "start": "2024-09-01",
+          "end_exclusive": "2026-09-01"
+        },
+        "quarantined": {
+          "member": 0,
+          "order": 1,
+          "card": 0,
+          "shop": 0
+        }
+      }
+    }
+  ]
+}

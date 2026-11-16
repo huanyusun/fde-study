@@ -1,0 +1,25 @@
+{
+  "base_version": "public-independent-fixture",
+  "boundary_ids": [
+    "QH99810001",
+    "QH99810002",
+    "O20260803900501",
+    "O20260803900502",
+    "9801"
+  ],
+  "revision": "fixture-v2",
+  "allocation_source_sha256": {
+    "crm_member_export.csv": "dfe1e842c80f947bf85b0b356073e6eb0c9cd7385072fbc731452d7a60ea8913",
+    "crm_order_export.csv": "e95a5a467f044ef6d059014a71dcd39edc178d88e8ea06f87f2ecb1a40040052",
+    "crm_card_export.csv": "1e2539c564d1e007f3aaaa11b1d16de9a50a63858fed5dc09537089321b5e424",
+    "crm_shop.csv": "bcef4a1edb12f18695b545fef64b7da2c7504f3cfc535937f08c7380a5f00045"
+  },
+  "fixture_sha256": {
+    "crm_card_export.csv": "334db072d93bfd2434f07cc6fea98d9ada7f4719d303dc8545f86d7ec356a682",
+    "crm_member_export.csv": "576e1b6b2ca300f5526e2f487f2a4b56c5ef47ee6cf5e2de4a152a9902cebe9a",
+    "crm_order_export.csv": "171cd69c4f3d34e4834ce00aa32f24b1be713ce4179ae2f866399680d27dcf19",
+    "crm_shop.csv": "d6f79dae3984da71b20498bfaddeb5fa3251d5f1e2238974eff7a9d212eea535"
+  },
+  "expected_sha256": "210ce848f71281cc8b47fcce44b0435fc05bda4e20facf6225763a1b391571f6",
+  "scoring_revision": "notes-text-conservation-20260930"
+}

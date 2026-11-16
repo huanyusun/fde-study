@@ -1,0 +1,22 @@
+{
+  "profile_report": [
+    "fields",
+    0,
+    "missing_count"
+  ],
+  "cleaning_rules": [
+    "tag_cleaning",
+    "delimiters"
+  ],
+  "adapter_test_report": [
+    "record_counts",
+    0,
+    "accepted"
+  ],
+  "demo_run": [
+    "runs",
+    0,
+    "tuning",
+    "change_location"
+  ]
+}

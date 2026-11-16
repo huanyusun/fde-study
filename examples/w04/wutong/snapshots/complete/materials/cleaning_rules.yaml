@@ -1,0 +1,25 @@
+contract_version: w04-0.1.0
+data_version: wutong-w04-v1
+tag_cleaning:
+  delimiters: ['|', '；']
+  legal_tags_source: tags.txt
+  hyphenated_tag_handling: 保留完整标签，斜杠和连字符均不是备注标记
+  unknown_tag_handling: 保留原值作为待核标签，不自动删除
+  note_extraction: '#'
+invalid_values:
+  - source_fields: [称呼, 联系电话, 生日]
+    values: ['', 'NULL', '-', '无']
+    action: keep_raw
+    reason: 这些字段不进查询库，原始文件完整保留
+abnormal_records:
+  - {rule_id: money_yuan, condition: decimal_yuan, action: normalize, reason_code: YUAN_TO_CENTS, evidence: 金额含两位小数，与整分字典不符，经例题核对按元处理}
+  - {rule_id: dates, condition: iso_or_dmy_or_chinese_date, action: normalize, reason_code: DATE_NORMALIZED, evidence: 办证日期实际混用三种格式}
+  - {rule_id: duplicate, condition: exact_duplicate, action: deduplicate, reason_code: EXACT_DUPLICATE, evidence: 分页接续附近存在完全相同记录}
+  - {rule_id: orphan, condition: missing_member, action: quarantine, reason_code: UNLINKED_ACCOUNT, evidence: 票据引用的读者编号未出现在导出中}
+  - {rule_id: channel, condition: unsupported_channel, action: quarantine, reason_code: UNSUPPORTED_CHANNEL, evidence: 代收点不在当前导入契约支持范围}
+  - {rule_id: bad_date, condition: unparseable_date, action: quarantine, reason_code: INVALID_DATE, evidence: 无法解析时保留整条原记录}
+  - {rule_id: duplicate_key, condition: conflicting_primary_key, action: quarantine, reason_code: DUPLICATE_PRIMARY_KEY, evidence: 主键冲突且内容不同不能按完全重复删除}
+raw_preservation:
+  original_files: raw 目录逐字节保留，manifest 记录 SHA-256
+  notes: member_notes.csv 保留实际来源字段、CSV 记录序号和完整原文
+  quarantine: quarantine.csv 保留完整原记录及来源位置

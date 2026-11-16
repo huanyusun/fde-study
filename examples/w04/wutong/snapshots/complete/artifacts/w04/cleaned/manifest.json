@@ -1,0 +1,73 @@
+{
+  "id": "wutong-w04-v1",
+  "contract_version": "w04-data-0.1.0",
+  "coverage": [
+    "2024-09-01",
+    "2026-09-01"
+  ],
+  "reference_date": "2026-09-01",
+  "timezone": "Asia/Shanghai",
+  "source_sha256": {
+    "读者卡.csv": "42d5b8f68b170a5fe9745ece4c208aaab9aa253a332f5734c97d4df16784f26b",
+    "读者导出.csv": "89e10f72590bd85820668c4b301866226046a72b076cd16320d688cef61ca870",
+    "销售流水.csv": "ef43cc85cf79a6222168177580d6681f09669946677c4732ab4aaf8edf87978d",
+    "门店名册.csv": "d9d5eea05796719013c342ac7208c76d3a93addc43ac0f1e7dcbbb838fc62b9a"
+  },
+  "sha256": {
+    "cards.csv": "e03bffa821c267d1c5c7ff16b58d0895898c70dccab2e061f45f086f4a999a9f",
+    "member_notes.csv": "c210e3524ecc33f6ab4c75cb0989425d24ae10389c1ff93fbd593687e52cffe4",
+    "member_tags.csv": "7f06f3be497014659a21f2c5dcb7166d4e34c71d27ee3ac41d0ca681211cd341",
+    "members.csv": "3c42d330b40f1e2ce1b1c4d18e3f9c825f8a159e8e851fdefab18a34b93b20e5",
+    "orders.csv": "f5382b6be2c21bd9cfddca5e5fccef0492def96f999b44e72d086f92d39232b4",
+    "quarantine.csv": "3ede7abcae88bcbede9806baef677f4906e02cdaa0b6ba699cb6864ba2e09ff8",
+    "stores.csv": "8ebc8d49469eae0bd198799d4d2011f78c75b6969f8f0f525bbe6168ec4a5214"
+  },
+  "counts": {
+    "members": 2017,
+    "orders": 19923,
+    "stores": 8,
+    "cards": 0,
+    "member_tags": 2036,
+    "member_notes": 168,
+    "quarantine": 40
+  },
+  "record_counts": {
+    "member": {
+      "read": 2017,
+      "accepted": 2017,
+      "quarantined": 0,
+      "deduplicated": 0
+    },
+    "order": {
+      "read": 20003,
+      "accepted": 19923,
+      "quarantined": 40,
+      "deduplicated": 40
+    },
+    "shop": {
+      "read": 8,
+      "accepted": 8,
+      "quarantined": 0,
+      "deduplicated": 0
+    },
+    "card": {
+      "read": 0,
+      "accepted": 0,
+      "quarantined": 0,
+      "deduplicated": 0
+    }
+  },
+  "coverage_notes": {
+    "source": "门店收银系统导出；线上订单在另一平台，本次未导出。",
+    "time_range": {
+      "start": "2024-09-01",
+      "end_exclusive": "2026-09-01"
+    },
+    "quarantined": {
+      "member": 0,
+      "order": 40,
+      "shop": 0,
+      "card": 0
+    }
+  }
+}

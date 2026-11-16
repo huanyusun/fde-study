@@ -1,0 +1,40 @@
+{
+  "contract_version": "w04-0.1.0",
+  "data_version": "illustrative-v1",
+  "tag_cleaning": {
+    "delimiters": "逗号",
+    "legal_tags_source": "经访谈核实的标签清单",
+    "hyphenated_tag_handling": "先匹配完整合法标签，不能按连字符删除",
+    "unknown_tag_handling": "仅经客户确认的标准标签进入标签表，其余作为完整备注保留；未经确认的暂定标签在诊断报告中列为待核实",
+    "note_extraction": "一条备注一行，完整原值与来源位置同时保留"
+  },
+  "invalid_values": [
+    {
+      "source_fields": [
+        "birth"
+      ],
+      "values": [
+        "",
+        "NULL",
+        "-",
+        "无"
+      ],
+      "action": "转为空值",
+      "reason": "来源缺失标记"
+    }
+  ],
+  "abnormal_records": [
+    {
+      "rule_id": "orphan_order",
+      "condition": "会员号无法关联",
+      "action": "quarantine",
+      "reason_code": "UNLINKED_ACCOUNT",
+      "evidence": "crm_order_export.csv 第 2 条记录"
+    }
+  ],
+  "raw_preservation": {
+    "original_files": "只读保存并计算 SHA-256",
+    "notes": "member_notes.csv 保留 source_file、source_row、source_field、raw_text",
+    "quarantine": "quarantine.csv 保留完整 raw_json"
+  }
+}

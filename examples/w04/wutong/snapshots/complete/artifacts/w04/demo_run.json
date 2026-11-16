@@ -1,0 +1,317 @@
+{
+  "contract_version": "w04-0.3.0",
+  "selected_chain": "门店收款单数查询与来源范围说明",
+  "data_version": "wutong-w04-v1",
+  "query_library_version": "9b85deabe0f4c035e61f0c48db6ad19033b84c0533652e0e83ef2783e574c788",
+  "runs": [
+    {
+      "question": "梧桐书店 2026 年 8 月的收款单数是多少？",
+      "agent_answer": "在梧桐书店当前数据范围内，2026年8月收款单数为783单。统计口径为按已支付订单计数，区间覆盖2026年8月整月，截止到9月1日前。统计范围来自门店收银系统已纳入的订单；线上订单在另一平台、本次未导出，另有40条订单在数据准备中隔离，均未计入本次结果。",
+      "query_status": "executed",
+      "actual_queries": [
+        {
+          "sql": "SELECT\n  SUM(CASE WHEN status = 'paid' THEN 1 ELSE 0 END) AS receipt_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+          "result": {
+            "status": "ok",
+            "intent": {
+              "metrics": [
+                "receipt_count"
+              ],
+              "start": "2026-08-01",
+              "end": "2026-09-01",
+              "group_by": [],
+              "filters": []
+            },
+            "sql": "SELECT\n  SUM(CASE WHEN status = 'paid' THEN 1 ELSE 0 END) AS receipt_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+            "columns": [
+              "receipt_count"
+            ],
+            "rows": [
+              [
+                783
+              ]
+            ],
+            "seconds": 0.011,
+            "units": {
+              "receipt_count": "count"
+            },
+            "data_version": "wutong-w04-v1",
+            "data_sha256": "547ed23930757c476d3af15c31c08f1a3fd96c3775aea5b4a1e231640d29b1f2",
+            "catalog_sha256": "9b85deabe0f4c035e61f0c48db6ad19033b84c0533652e0e83ef2783e574c788",
+            "coverage_notes": {
+              "source": "门店收银系统导出；线上订单在另一平台，本次未导出。",
+              "time_range": {
+                "start": "2024-09-01",
+                "end_exclusive": "2026-09-01"
+              },
+              "quarantined": {
+                "member": 0,
+                "order": 40,
+                "shop": 0,
+                "card": 0
+              }
+            }
+          },
+          "error": null
+        }
+      ],
+      "coverage_notes": {
+        "source": "门店收银系统导出；线上订单在另一平台，本次未导出。",
+        "time_range": {
+          "start": "2024-09-01",
+          "end_exclusive": "2026-09-01"
+        },
+        "quarantined": {
+          "member": 0,
+          "order": 40,
+          "shop": 0,
+          "card": 0
+        }
+      },
+      "bad_case": false,
+      "bad_case_reason": ""
+    },
+    {
+      "question": "梧桐 2026 年 8 月的收款单数比去年同期增长了多少？",
+      "agent_answer": "本次统计当前客户梧桐书店按自然月汇总的收款单数，口径为已付款订单数，未应用额外筛选。2026年8月收款单数为783单，2025年8月为909单；2026年8月同比减少126单，增长率为-13.86%，即同比下降约13.86%。数据覆盖至2026年8月，仅含门店收银系统导出的已付款订单，线上订单未导出，校验中被隔离的订单未纳入统计。",
+      "query_status": "executed",
+      "actual_queries": [
+        {
+          "sql": "SELECT\n  metric_time__month\n  , SUM(__receipt_count) AS receipt_count\nFROM (\n  SELECT\n    DATE_TRUNC('month', ordered_at) AS metric_time__month\n    , CASE WHEN status = 'paid' THEN 1 ELSE 0 END AS __receipt_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2025-08-01' AND '2026-08-31'\n) subq_5\nGROUP BY\n  metric_time__month",
+          "result": {
+            "status": "ok",
+            "intent": {
+              "metrics": [
+                "receipt_count"
+              ],
+              "start": "2025-08-01",
+              "end": "2026-09-01",
+              "group_by": [
+                "metric_time__month"
+              ],
+              "filters": []
+            },
+            "sql": "SELECT\n  metric_time__month\n  , SUM(__receipt_count) AS receipt_count\nFROM (\n  SELECT\n    DATE_TRUNC('month', ordered_at) AS metric_time__month\n    , CASE WHEN status = 'paid' THEN 1 ELSE 0 END AS __receipt_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2025-08-01' AND '2026-08-31'\n) subq_5\nGROUP BY\n  metric_time__month",
+            "columns": [
+              "metric_time__month",
+              "receipt_count"
+            ],
+            "rows": [
+              [
+                "2026-07-01 00:00:00",
+                831
+              ],
+              [
+                "2025-10-01 00:00:00",
+                753
+              ],
+              [
+                "2026-04-01 00:00:00",
+                667
+              ],
+              [
+                "2025-12-01 00:00:00",
+                815
+              ],
+              [
+                "2026-05-01 00:00:00",
+                742
+              ],
+              [
+                "2025-09-01 00:00:00",
+                827
+              ],
+              [
+                "2026-02-01 00:00:00",
+                696
+              ],
+              [
+                "2026-08-01 00:00:00",
+                783
+              ],
+              [
+                "2026-03-01 00:00:00",
+                767
+              ],
+              [
+                "2026-06-01 00:00:00",
+                744
+              ],
+              [
+                "2025-08-01 00:00:00",
+                909
+              ],
+              [
+                "2026-01-01 00:00:00",
+                765
+              ],
+              [
+                "2025-11-01 00:00:00",
+                855
+              ]
+            ],
+            "seconds": 0.015,
+            "units": {
+              "receipt_count": "count"
+            },
+            "data_version": "wutong-w04-v1",
+            "data_sha256": "547ed23930757c476d3af15c31c08f1a3fd96c3775aea5b4a1e231640d29b1f2",
+            "catalog_sha256": "9b85deabe0f4c035e61f0c48db6ad19033b84c0533652e0e83ef2783e574c788",
+            "coverage_notes": {
+              "source": "门店收银系统导出；线上订单在另一平台，本次未导出。",
+              "time_range": {
+                "start": "2024-09-01",
+                "end_exclusive": "2026-09-01"
+              },
+              "quarantined": {
+                "member": 0,
+                "order": 40,
+                "shop": 0,
+                "card": 0
+              }
+            }
+          },
+          "error": null
+        }
+      ],
+      "coverage_notes": {
+        "source": "门店收银系统导出；线上订单在另一平台，本次未导出。",
+        "time_range": {
+          "start": "2024-09-01",
+          "end_exclusive": "2026-09-01"
+        },
+        "quarantined": {
+          "member": 0,
+          "order": 40,
+          "shop": 0,
+          "card": 0
+        }
+      },
+      "bad_case": true,
+      "bad_case_reason": "已说明线上缺口，但结论仍按全店下",
+      "tuning": {
+        "before": {
+          "agent_answer": "在梧桐书店当前客户范围内，按收款单数（已支付订单数）统计，2026年8月为783单，2025年8月为909单；同比减少126单，降幅约13.86%，即同比增长率约为-13.86%。统计覆盖2025年8月至2026年8月的完整月份。",
+          "query_status": "executed",
+          "actual_queries": [
+            {
+              "sql": "SELECT\n  metric_time__month\n  , SUM(__receipt_count) AS receipt_count\nFROM (\n  SELECT\n    DATE_TRUNC('month', ordered_at) AS metric_time__month\n    , CASE WHEN status = 'paid' THEN 1 ELSE 0 END AS __receipt_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2025-08-01' AND '2026-08-31'\n) subq_5\nGROUP BY\n  metric_time__month",
+              "result": {
+                "status": "ok",
+                "intent": {
+                  "metrics": [
+                    "receipt_count"
+                  ],
+                  "start": "2025-08-01",
+                  "end": "2026-09-01",
+                  "group_by": [
+                    "metric_time__month"
+                  ],
+                  "filters": []
+                },
+                "sql": "SELECT\n  metric_time__month\n  , SUM(__receipt_count) AS receipt_count\nFROM (\n  SELECT\n    DATE_TRUNC('month', ordered_at) AS metric_time__month\n    , CASE WHEN status = 'paid' THEN 1 ELSE 0 END AS __receipt_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2025-08-01' AND '2026-08-31'\n) subq_5\nGROUP BY\n  metric_time__month",
+                "columns": [
+                  "metric_time__month",
+                  "receipt_count"
+                ],
+                "rows": [
+                  [
+                    "2026-07-01 00:00:00",
+                    831
+                  ],
+                  [
+                    "2025-10-01 00:00:00",
+                    753
+                  ],
+                  [
+                    "2026-04-01 00:00:00",
+                    667
+                  ],
+                  [
+                    "2025-12-01 00:00:00",
+                    815
+                  ],
+                  [
+                    "2026-05-01 00:00:00",
+                    742
+                  ],
+                  [
+                    "2026-03-01 00:00:00",
+                    767
+                  ],
+                  [
+                    "2025-09-01 00:00:00",
+                    827
+                  ],
+                  [
+                    "2025-11-01 00:00:00",
+                    855
+                  ],
+                  [
+                    "2026-08-01 00:00:00",
+                    783
+                  ],
+                  [
+                    "2025-08-01 00:00:00",
+                    909
+                  ],
+                  [
+                    "2026-01-01 00:00:00",
+                    765
+                  ],
+                  [
+                    "2026-06-01 00:00:00",
+                    744
+                  ],
+                  [
+                    "2026-02-01 00:00:00",
+                    696
+                  ]
+                ],
+                "seconds": 0.013,
+                "units": {
+                  "receipt_count": "count"
+                },
+                "data_version": "wutong-w04-v1",
+                "data_sha256": "c146b11fc8335b864314f5b25af7e0a69355d26ebfee4a537bcffabe29482e9f",
+                "catalog_sha256": "9b85deabe0f4c035e61f0c48db6ad19033b84c0533652e0e83ef2783e574c788",
+                "coverage_notes": {
+                  "source": "门店收银系统导出",
+                  "time_range": {
+                    "start": "2024-09-01",
+                    "end_exclusive": "2026-09-01"
+                  },
+                  "quarantined": {
+                    "member": 0,
+                    "order": 40,
+                    "shop": 0,
+                    "card": 0
+                  }
+                }
+              },
+              "error": null
+            }
+          ],
+          "coverage_notes": {
+            "source": "门店收银系统导出",
+            "time_range": {
+              "start": "2024-09-01",
+              "end_exclusive": "2026-09-01"
+            },
+            "quarantined": {
+              "member": 0,
+              "order": 40,
+              "shop": 0,
+              "card": 0
+            }
+          },
+          "bad_case": true,
+          "bad_case_reason": "将门店数据的同比变化表述为当前客户变化，未说明线上来源缺口。"
+        },
+        "change_location": "数据／SQL",
+        "change": "将覆盖说明从“门店收银系统导出”补充为“门店收银系统导出；线上订单在另一平台，本次未导出。”",
+        "reason": "使回答的结论限定在实际数据来源范围内。"
+      }
+    }
+  ]
+}

@@ -1,3 +1,3 @@
-"""W03 upgraded membership Agent, with retained W01 and W02 workflows."""
-VERSION="w03-0.1.0-candidate"
+"""Membership Agent with W01 through W04 course tools."""
+VERSION="w04-0.1.0"
 CONTRACT_VERSION="w03-0.1.0"
