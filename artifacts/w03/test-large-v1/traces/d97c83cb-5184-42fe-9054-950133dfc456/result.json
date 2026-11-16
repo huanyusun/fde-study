@@ -1,0 +1,50 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "first_buyer_count",
+      "first_order_count",
+      "repeat_order_count",
+      "valid_order_count"
+    ],
+    "start": "2026-07-01",
+    "end": "2026-08-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  MAX(subq_10.first_buyer_count) AS first_buyer_count\n  , MAX(subq_10.first_order_count) AS first_order_count\n  , MAX(subq_17.repeat_order_count) AS repeat_order_count\n  , MAX(subq_24.valid_order_count) AS valid_order_count\nFROM (\n  SELECT\n    SUM(CASE WHEN member_id IS NOT NULL THEN 1 ELSE 0 END) AS first_buyer_count\n    , SUM(CASE WHEN member_id IS NOT NULL THEN 1 ELSE 0 END) AS first_order_count\n  FROM \"data\".\"main\".\"member_first_valid_order\" member_first_valid_order_src_10000\n  WHERE DATE_TRUNC('day', first_ordered_at) BETWEEN '2026-07-01' AND '2026-07-31'\n) subq_10\nCROSS JOIN (\n  SELECT\n    SUM(CASE WHEN case when first_seq > 1 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS repeat_order_count\n  FROM \"data\".\"main\".\"orders_valid_ranked\" orders_valid_ranked_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-07-01' AND '2026-07-31'\n) subq_17\nCROSS JOIN (\n  SELECT\n    SUM(CASE WHEN case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS valid_order_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-07-01' AND '2026-07-31'\n) subq_24",
+  "columns": [
+    "first_buyer_count",
+    "first_order_count",
+    "repeat_order_count",
+    "valid_order_count"
+  ],
+  "rows": [
+    [
+      473,
+      473,
+      29524,
+      29997
+    ]
+  ],
+  "seconds": 0.135,
+  "units": {
+    "first_buyer_count": "count",
+    "first_order_count": "count",
+    "repeat_order_count": "count",
+    "valid_order_count": "count"
+  },
+  "data_version": "qinghe-w03-20260923-large",
+  "data_sha256": "0074e7f764c63e836617aecb0e217aa3b5cc0cf9ede557179ad46b077dcf8ba8",
+  "catalog_sha256": "a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef",
+  "answer": "2026年7月1日至7月31日（查询窗口2026-07-01至2026-08-01）期间，青禾客户数据（本周合成测试库，未应用门店或其他筛选条件）的统计结果如下：\n\n- 观测期首购会员数：473 个 CRM 会员账户，即在全部测试覆盖期内首次有效订单落入7月窗口的账户数（不代表终身首购）。\n- 观测期首单数：473 单，即各账户在全测试覆盖期内的第一笔有效订单落入7月窗口的单数；因每个账户仅有一笔首单，故与首购会员数一致。\n- 观测期后续购买订单数：29,524 单，即账户第二笔及以后的有效订单按订单日期落入7月窗口的合计。\n- 有效订单数：29,997 单，口径为状态已支付且实付金额减退款金额大于零，取消和全退订单不计。\n\n统计单位为 CRM 会员账户，不代表自然人去重。",
+  "question": "2026年7月青禾的观测期首购会员数、观测期首单数、观测期后续购买订单数、有效订单数分别是多少?",
+  "trace_id": "d97c83cb-5184-42fe-9054-950133dfc456",
+  "elapsed_seconds": 39.616,
+  "model_usage": {
+    "prompt_tokens": 343298,
+    "completion_tokens": 1033,
+    "total_tokens": 344331
+  },
+  "model_calls_with_usage": 2
+}

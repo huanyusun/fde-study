@@ -1,0 +1,26 @@
+[
+  {
+    "id": "receipt_count",
+    "name": "收款单数"
+  },
+  {
+    "id": "gross_receipts_cents",
+    "name": "到账总额"
+  },
+  {
+    "id": "returned_cents",
+    "name": "退回金额"
+  },
+  {
+    "id": "net_receipts_cents",
+    "name": "扣退后收入"
+  },
+  {
+    "id": "return_ratio",
+    "name": "退回占比"
+  },
+  {
+    "id": "monthly_large_buyer_count",
+    "name": "月内大额会员数"
+  }
+]

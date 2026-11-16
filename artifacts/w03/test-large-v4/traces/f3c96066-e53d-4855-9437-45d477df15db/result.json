@@ -1,0 +1,10 @@
+{
+  "status": "error",
+  "code": "MODEL_HTTP_429",
+  "reason": "本次调用未完成，请查看运行记录；不能把失败当成零。",
+  "question": "2026年7月青禾的月末付费会员购买人数、月末付费会员有效订单数、月末付费会员净销售额分别是多少?",
+  "trace_id": "f3c96066-e53d-4855-9437-45d477df15db",
+  "elapsed_seconds": 5.634,
+  "model_usage": {},
+  "model_calls_with_usage": 0
+}

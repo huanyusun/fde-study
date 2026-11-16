@@ -1,0 +1,54 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "order_count",
+      "net_sales_cents",
+      "buyer_count",
+      "avg_order_value",
+      "cancel_rate"
+    ],
+    "start": "2026-03-01",
+    "end": "2026-04-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "WITH sma_10005_cte AS (\n  SELECT\n    DATE_TRUNC('day', ordered_at) AS metric_time__day\n    , CASE WHEN order_id IS NOT NULL THEN 1 ELSE 0 END AS __order_count\n    , CASE WHEN case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END AS __valid_order_count\n    , CASE WHEN case when status = 'cancelled' then order_id end IS NOT NULL THEN 1 ELSE 0 END AS __cancelled_order_count\n    , case when status = 'paid' then paid_cents - refund_cents else 0 end AS __net_sales_cents\n    , case when status = 'paid' and paid_cents - refund_cents > 0 then member_id end AS __buyer_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n)\n\nSELECT\n  MAX(subq_11.order_count) AS order_count\n  , MAX(subq_11.net_sales_cents) AS net_sales_cents\n  , MAX(subq_11.buyer_count) AS buyer_count\n  , MAX(subq_18.avg_order_value) AS avg_order_value\n  , MAX(subq_18.cancel_rate) AS cancel_rate\nFROM (\n  SELECT\n    SUM(__order_count) AS order_count\n    , SUM(__net_sales_cents) AS net_sales_cents\n    , COUNT(DISTINCT __buyer_count) AS buyer_count\n  FROM sma_10005_cte\n  WHERE metric_time__day BETWEEN '2026-03-01' AND '2026-03-31'\n) subq_11\nCROSS JOIN (\n  SELECT\n    case when valid_order_count = 0 then null else net_sales_cents / valid_order_count end AS avg_order_value\n    , case when order_count = 0 then null else cancelled_order_count / order_count end AS cancel_rate\n  FROM (\n    SELECT\n      SUM(__net_sales_cents) AS net_sales_cents\n      , SUM(__valid_order_count) AS valid_order_count\n      , SUM(__cancelled_order_count) AS cancelled_order_count\n      , SUM(__order_count) AS order_count\n    FROM sma_10005_cte\n    WHERE metric_time__day BETWEEN '2026-03-01' AND '2026-03-31'\n  ) subq_17\n) subq_18",
+  "columns": [
+    "order_count",
+    "net_sales_cents",
+    "buyer_count",
+    "avg_order_value",
+    "cancel_rate"
+  ],
+  "rows": [
+    [
+      0,
+      0,
+      0,
+      null,
+      null
+    ]
+  ],
+  "seconds": 0.083,
+  "units": {
+    "order_count": "count",
+    "net_sales_cents": "cents",
+    "buyer_count": "count",
+    "avg_order_value": "cents",
+    "cancel_rate": "ratio"
+  },
+  "data_version": "qinghe-w03-20260923-small",
+  "data_sha256": "8a295969ec24556ebd7f818506633919e71f840fc86488d53efc185f9768cfe6",
+  "catalog_sha256": "a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef",
+  "answer": "2026年3月（3月1日至3月31日）青禾当前已加载客户的数据范围内：创建订单数为0单；净销售额为0.00元；购买会员数为0个CRM会员账户（按账户统计，不做跨系统自然人去重）。有效订单均额与取消率均未定义：本月无有效订单、无创建订单，两项指标的分母为零，因此无法计算（这是覆盖范围内的真实零值，而非数据缺失）。本次统计未附加门店或地区筛选，范围为该客户全部成交门店。",
+  "question": "2026年3月青禾的创建订单数、净销售额、购买会员数、有效订单均额、取消率分别是多少?",
+  "trace_id": "9cdea0f5-06a6-4861-8651-30af330f86cd",
+  "elapsed_seconds": 22.059,
+  "model_usage": {
+    "prompt_tokens": 10169,
+    "completion_tokens": 1072,
+    "total_tokens": 11241
+  },
+  "model_calls_with_usage": 2
+}

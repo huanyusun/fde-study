@@ -1,0 +1,46 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "buyer_count",
+      "new_member_count",
+      "selling_store_count"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  MAX(subq_9.buyer_count) AS buyer_count\n  , MAX(subq_9.selling_store_count) AS selling_store_count\n  , MAX(subq_16.new_member_count) AS new_member_count\nFROM (\n  SELECT\n    COUNT(DISTINCT case when status = 'paid' and paid_cents - refund_cents > 0 then member_id end) AS buyer_count\n    , COUNT(DISTINCT case when status = 'paid' and paid_cents - refund_cents > 0 then store_id end) AS selling_store_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_9\nCROSS JOIN (\n  SELECT\n    SUM(CASE WHEN member_id IS NOT NULL THEN 1 ELSE 0 END) AS new_member_count\n  FROM \"data\".\"main\".\"members\" members_src_10000\n  WHERE DATE_TRUNC('day', registered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_16",
+  "columns": [
+    "buyer_count",
+    "selling_store_count",
+    "new_member_count"
+  ],
+  "rows": [
+    [
+      16504,
+      24,
+      0
+    ]
+  ],
+  "seconds": 0.086,
+  "units": {
+    "buyer_count": "count",
+    "new_member_count": "count",
+    "selling_store_count": "count"
+  },
+  "data_version": "qinghe-w03-20260923-large",
+  "data_sha256": "0074e7f764c63e836617aecb0e217aa3b5cc0cf9ede557179ad46b077dcf8ba8",
+  "catalog_sha256": "a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef",
+  "answer": "2026年8月青禾会员经营情况如下：\n\n1. **购买会员数：16,504 个**。统计口径为当月窗口内（2026-08-01 至 2026-08-31）有有效订单的不同 CRM 会员账户数，不做跨系统自然人去重。\n2. **注册会员数：0 个**。即当月按注册日期统计的新注册 CRM 账户数为零（这是统计覆盖范围内的实际为零，并非数据缺失）。\n3. **成交门店数：24 家**。即当月至少产生一笔有效订单的订单成交门店共 24 家。\n\n说明：以上均为本月合成测试库范围内的汇总，未额外按门店、地区等维度筛选；成交门店数按订单成交门店统计，与会员归属门店口径不同。",
+  "question": "2026年8月青禾的购买会员数、注册会员数、成交门店数分别是多少?",
+  "trace_id": "d399c3b7-74dc-44eb-a2a2-3d8024d27c11",
+  "elapsed_seconds": 39.29,
+  "model_usage": {
+    "prompt_tokens": 343132,
+    "completion_tokens": 937,
+    "total_tokens": 344069
+  },
+  "model_calls_with_usage": 2
+}

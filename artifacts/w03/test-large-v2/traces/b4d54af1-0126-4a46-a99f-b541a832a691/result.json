@@ -1,0 +1,58 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "monthly_paid_buyer_count",
+      "monthly_paid_order_count",
+      "monthly_paid_sales_cents",
+      "monthly_paid_repeat_buyer_count",
+      "monthly_paid_repeat_rate",
+      "monthly_paid_avg_order_value"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "WITH sma_10002_cte AS (\n  SELECT\n    DATE_TRUNC('month', month_start) AS metric_time__month\n    , CASE WHEN case when valid_order_cnt >= 1 then member_id end IS NOT NULL THEN 1 ELSE 0 END AS __monthly_paid_buyer_count\n    , valid_order_cnt AS __monthly_paid_order_count\n    , net_cents_sum AS __monthly_paid_sales_cents\n    , CASE WHEN case when valid_order_cnt >= 2 then member_id end IS NOT NULL THEN 1 ELSE 0 END AS __monthly_paid_repeat_buyer_count\n  FROM \"data\".\"main\".\"account_month_paid\" account_month_paid_src_10000\n)\n\nSELECT\n  MAX(subq_10.monthly_paid_buyer_count) AS monthly_paid_buyer_count\n  , MAX(subq_10.monthly_paid_order_count) AS monthly_paid_order_count\n  , MAX(subq_10.monthly_paid_sales_cents) AS monthly_paid_sales_cents\n  , MAX(subq_10.monthly_paid_repeat_buyer_count) AS monthly_paid_repeat_buyer_count\n  , MAX(subq_17.monthly_paid_repeat_rate) AS monthly_paid_repeat_rate\n  , MAX(subq_17.monthly_paid_avg_order_value) AS monthly_paid_avg_order_value\nFROM (\n  SELECT\n    SUM(__monthly_paid_buyer_count) AS monthly_paid_buyer_count\n    , SUM(__monthly_paid_order_count) AS monthly_paid_order_count\n    , SUM(__monthly_paid_sales_cents) AS monthly_paid_sales_cents\n    , SUM(__monthly_paid_repeat_buyer_count) AS monthly_paid_repeat_buyer_count\n  FROM sma_10002_cte\n  WHERE metric_time__month BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_10\nCROSS JOIN (\n  SELECT\n    case when monthly_paid_buyer_count = 0 then null else monthly_paid_repeat_buyer_count / monthly_paid_buyer_count end AS monthly_paid_repeat_rate\n    , case when monthly_paid_order_count = 0 then null else monthly_paid_sales_cents / monthly_paid_order_count end AS monthly_paid_avg_order_value\n  FROM (\n    SELECT\n      SUM(__monthly_paid_repeat_buyer_count) AS monthly_paid_repeat_buyer_count\n      , SUM(__monthly_paid_buyer_count) AS monthly_paid_buyer_count\n      , SUM(__monthly_paid_sales_cents) AS monthly_paid_sales_cents\n      , SUM(__monthly_paid_order_count) AS monthly_paid_order_count\n    FROM sma_10002_cte\n    WHERE metric_time__month BETWEEN '2026-08-01' AND '2026-08-31'\n  ) subq_16\n) subq_17",
+  "columns": [
+    "monthly_paid_buyer_count",
+    "monthly_paid_order_count",
+    "monthly_paid_sales_cents",
+    "monthly_paid_repeat_buyer_count",
+    "monthly_paid_repeat_rate",
+    "monthly_paid_avg_order_value"
+  ],
+  "rows": [
+    [
+      3683,
+      6565,
+      113027218,
+      1643,
+      0.4461037197936465,
+      17216.63640517898
+    ]
+  ],
+  "seconds": 0.168,
+  "units": {
+    "monthly_paid_buyer_count": "count",
+    "monthly_paid_order_count": "count",
+    "monthly_paid_sales_cents": "cents",
+    "monthly_paid_repeat_buyer_count": "count",
+    "monthly_paid_repeat_rate": "ratio",
+    "monthly_paid_avg_order_value": "cents"
+  },
+  "data_version": "qinghe-w03-20260923-large",
+  "data_sha256": "0074e7f764c63e836617aecb0e217aa3b5cc0cf9ede557179ad46b077dcf8ba8",
+  "catalog_sha256": "a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef",
+  "answer": "2026年8月（完整自然月），青禾全门店全渠道范围内，按CRM会员账户统计：\n\n- 月末付费会员购买人数：3,683个账户（当月至少一笔有效订单且月末符合付费资格）；\n- 月末付费会员有效订单数：6,565笔；\n- 月末付费会员净销售额：1,130,272.18元；\n- 月末付费会员复购人数：1,643个账户（当月至少两笔有效订单）；\n- 月末付费会员复购率：44.61%（复购人数÷购买人数）；\n- 月末付费会员订单均额：172.17元/单（净销售额÷有效订单数）。\n\n统计说明：口径为完整自然月，覆盖青禾全部门店与全渠道，人数按CRM会员账户计，不代表跨系统自然人去重；本次未按门店、渠道等维度额外筛选。",
+  "question": "2026年8月青禾的月末付费会员购买人数、月末付费会员有效订单数、月末付费会员净销售额、月末付费会员复购人数、月末付费会员复购率、月末付费会员订单均额分别是多少?",
+  "trace_id": "b4d54af1-0126-4a46-a99f-b541a832a691",
+  "elapsed_seconds": 28.603,
+  "model_usage": {
+    "prompt_tokens": 343661,
+    "completion_tokens": 1467,
+    "total_tokens": 345128
+  },
+  "model_calls_with_usage": 2
+}

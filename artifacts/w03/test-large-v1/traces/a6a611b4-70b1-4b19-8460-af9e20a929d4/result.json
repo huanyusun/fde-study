@@ -1,0 +1,46 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "monthly_paid_buyer_count",
+      "monthly_paid_order_count",
+      "monthly_paid_sales_cents"
+    ],
+    "start": "2026-07-01",
+    "end": "2026-08-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  SUM(CASE WHEN case when valid_order_cnt >= 1 then member_id end IS NOT NULL THEN 1 ELSE 0 END) AS monthly_paid_buyer_count\n  , SUM(valid_order_cnt) AS monthly_paid_order_count\n  , SUM(net_cents_sum) AS monthly_paid_sales_cents\nFROM \"data\".\"main\".\"account_month_paid\" account_month_paid_src_10000\nWHERE DATE_TRUNC('month', month_start) BETWEEN '2026-07-01' AND '2026-07-31'",
+  "columns": [
+    "monthly_paid_buyer_count",
+    "monthly_paid_order_count",
+    "monthly_paid_sales_cents"
+  ],
+  "rows": [
+    [
+      3566,
+      6074,
+      103238748
+    ]
+  ],
+  "seconds": 0.061,
+  "units": {
+    "monthly_paid_buyer_count": "count",
+    "monthly_paid_order_count": "count",
+    "monthly_paid_sales_cents": "cents"
+  },
+  "data_version": "qinghe-w03-20260923-large",
+  "data_sha256": "0074e7f764c63e836617aecb0e217aa3b5cc0cf9ede557179ad46b077dcf8ba8",
+  "catalog_sha256": "a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef",
+  "answer": "2026年7月（完整自然月），青禾全门店、全渠道范围内，按CRM会员账户口径统计：月末付费会员购买人数为3,566个账户（当月有至少一笔有效订单且月末符合付费资格的账户数）；月末付费会员有效订单数为6,074笔（月末符合付费资格账户当月的全部有效订单，按账户资格筛选、不按卡重复）；月末付费会员净销售额为1,032,387.48元（由103,238,748分换算，同一批账户有效订单的净销售额合计）。本次统计未按门店或地区做额外筛选，为全量口径；人数为账户数，不代表跨系统去重后的自然人数。",
+  "question": "2026年7月青禾的月末付费会员购买人数、月末付费会员有效订单数、月末付费会员净销售额分别是多少?",
+  "trace_id": "a6a611b4-70b1-4b19-8460-af9e20a929d4",
+  "elapsed_seconds": 38.219,
+  "model_usage": {
+    "prompt_tokens": 343221,
+    "completion_tokens": 1042,
+    "total_tokens": 344263
+  },
+  "model_calls_with_usage": 2
+}

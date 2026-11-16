@@ -1,0 +1,46 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "buyer_count",
+      "new_member_count",
+      "selling_store_count"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  MAX(subq_9.buyer_count) AS buyer_count\n  , MAX(subq_9.selling_store_count) AS selling_store_count\n  , MAX(subq_16.new_member_count) AS new_member_count\nFROM (\n  SELECT\n    COUNT(DISTINCT case when status = 'paid' and paid_cents - refund_cents > 0 then member_id end) AS buyer_count\n    , COUNT(DISTINCT case when status = 'paid' and paid_cents - refund_cents > 0 then store_id end) AS selling_store_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_9\nCROSS JOIN (\n  SELECT\n    COUNT(DISTINCT member_id) AS new_member_count\n  FROM \"data\".\"main\".\"members\" members_src_10000\n  WHERE DATE_TRUNC('day', registered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_16",
+  "columns": [
+    "buyer_count",
+    "selling_store_count",
+    "new_member_count"
+  ],
+  "rows": [
+    [
+      16504,
+      24,
+      0
+    ]
+  ],
+  "seconds": 0.074,
+  "units": {
+    "buyer_count": "count",
+    "new_member_count": "count",
+    "selling_store_count": "count"
+  },
+  "data_version": "qinghe-w03-20260923-large",
+  "data_sha256": "0074e7f764c63e836617aecb0e217aa3b5cc0cf9ede557179ad46b077dcf8ba8",
+  "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+  "answer": "2026年8月（2026-08-01至2026-08-31窗口）青禾数据范围下：购买会员数为16,504个CRM会员账户（窗口内有有效订单、不按自然人去重）；成交门店数为24家（当月至少有一笔有效订单的门店）；注册会员数为0个（当月按注册日期统计的新注册账户数为零，属于统计范围内的实际零值，并非数据缺失）。以上均为账户口径，不代表自然人数。",
+  "question": "2026年8月青禾的购买会员数、注册会员数、成交门店数分别是多少?",
+  "trace_id": "f27334a4-ebd5-42d6-82b3-48ed94bfba1c",
+  "elapsed_seconds": 70.364,
+  "model_usage": {
+    "prompt_tokens": 344083,
+    "completion_tokens": 881,
+    "total_tokens": 344964
+  },
+  "model_calls_with_usage": 2
+}

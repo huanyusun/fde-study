@@ -1,0 +1,50 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "order_count",
+      "first_buyer_count",
+      "first_order_sales_cents",
+      "new_member_count"
+    ],
+    "start": "2024-09-01",
+    "end": "2024-10-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  MAX(subq_10.order_count) AS order_count\n  , MAX(subq_17.first_buyer_count) AS first_buyer_count\n  , MAX(subq_17.first_order_sales_cents) AS first_order_sales_cents\n  , MAX(subq_24.new_member_count) AS new_member_count\nFROM (\n  SELECT\n    SUM(CASE WHEN order_id IS NOT NULL THEN 1 ELSE 0 END) AS order_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2024-09-01' AND '2024-09-30'\n) subq_10\nCROSS JOIN (\n  SELECT\n    COUNT(DISTINCT case when is_first_order then member_id end) AS first_buyer_count\n    , SUM(case when is_first_order then net_cents else 0 end) AS first_order_sales_cents\n  FROM \"data\".\"main\".\"order_validity\" order_validity_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2024-09-01' AND '2024-09-30'\n) subq_17\nCROSS JOIN (\n  SELECT\n    COUNT(DISTINCT member_id) AS new_member_count\n  FROM \"data\".\"main\".\"members\" members_src_10000\n  WHERE DATE_TRUNC('day', registered_at) BETWEEN '2024-09-01' AND '2024-09-30'\n) subq_24",
+  "columns": [
+    "order_count",
+    "first_buyer_count",
+    "first_order_sales_cents",
+    "new_member_count"
+  ],
+  "rows": [
+    [
+      1,
+      1,
+      1000,
+      8
+    ]
+  ],
+  "seconds": 0.077,
+  "units": {
+    "order_count": "count",
+    "first_buyer_count": "count",
+    "first_order_sales_cents": "cents",
+    "new_member_count": "count"
+  },
+  "data_version": "qinghe-w03-20260923-small",
+  "data_sha256": "8a295969ec24556ebd7f818506633919e71f840fc86488d53efc185f9768cfe6",
+  "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+  "answer": "2024年9月（2024-09-01至2024-09-30，全部成交门店合并、未按门店或地区分组）青禾的统计结果如下：\n- 创建订单数：1 单（按下单日期统计全部订单，每个订单号计一次，含取消单）\n- 观测期首购会员数：1 个 CRM 会员账户（指在测试覆盖期内首次有效订单落在9月的账户数，非终身首购概念，也不等同于自然人数）\n- 观测期首单净销售额：10.00 元（该账户在覆盖期内第一笔有效订单的净销售额，按订单日期归属9月）\n- 注册会员数：8 个 CRM 会员账户（按9月注册日期统计的新账户数，不代表自然人数）\n以上均在青禾客户数据范围内统计，统计单位为 CRM 会员账户；本月未应用任何门店筛选条件。",
+  "question": "2024年9月青禾的创建订单数、观测期首购会员数、观测期首单净销售额、注册会员数分别是多少?",
+  "trace_id": "0d33e355-25fa-4e44-8bd1-d4b51c888f62",
+  "elapsed_seconds": 24.819,
+  "model_usage": {
+    "prompt_tokens": 11082,
+    "completion_tokens": 775,
+    "total_tokens": 11857
+  },
+  "model_calls_with_usage": 2
+}

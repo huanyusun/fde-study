@@ -1,0 +1,10 @@
+{
+  "status": "error",
+  "code": "SSLError",
+  "reason": "本次调用未完成，请查看运行记录；不能把失败当成零。",
+  "question": "2026年8月青禾的毛利率是多少?",
+  "trace_id": "9dddd8b0-e49c-4720-a12d-357d376c1674",
+  "elapsed_seconds": 1.066,
+  "model_usage": {},
+  "model_calls_with_usage": 0
+}

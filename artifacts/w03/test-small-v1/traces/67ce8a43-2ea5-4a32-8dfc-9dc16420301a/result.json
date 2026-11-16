@@ -1,0 +1,66 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "avg_order_value",
+      "avg_buyer_value",
+      "purchase_frequency",
+      "refund_amount_rate",
+      "cancel_rate",
+      "refund_order_rate",
+      "discount_rate",
+      "items_per_order"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  case when valid_order_count = 0 then null else net_sales_cents / valid_order_count end AS avg_order_value\n  , case when buyer_count = 0 then null else net_sales_cents / buyer_count end AS avg_buyer_value\n  , case when buyer_count = 0 then null else valid_order_count / buyer_count end AS purchase_frequency\n  , case when payment_cents = 0 then null else refund_cents / payment_cents end AS refund_amount_rate\n  , case when order_count = 0 then null else cancelled_order_count / order_count end AS cancel_rate\n  , case when paid_order_count = 0 then null else refund_order_count / paid_order_count end AS refund_order_rate\n  , case when gross_cents = 0 then null else discount_cents / gross_cents end AS discount_rate\n  , case when valid_order_count = 0 then null else valid_order_items / valid_order_count end AS items_per_order\nFROM (\n  SELECT\n    SUM(case when status = 'paid' then paid_cents - refund_cents else 0 end) AS net_sales_cents\n    , SUM(CASE WHEN case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS valid_order_count\n    , COUNT(DISTINCT case when status = 'paid' and paid_cents - refund_cents > 0 then member_id end) AS buyer_count\n    , SUM(case when status = 'paid' then refund_cents else 0 end) AS refund_cents\n    , SUM(case when status = 'paid' then paid_cents else 0 end) AS payment_cents\n    , SUM(CASE WHEN case when status = 'cancelled' then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS cancelled_order_count\n    , SUM(CASE WHEN order_id IS NOT NULL THEN 1 ELSE 0 END) AS order_count\n    , SUM(CASE WHEN case when status = 'paid' and refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS refund_order_count\n    , SUM(CASE WHEN case when status = 'paid' then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS paid_order_count\n    , SUM(case when status = 'paid' then gross_cents - paid_cents else 0 end) AS discount_cents\n    , SUM(case when status = 'paid' then gross_cents else 0 end) AS gross_cents\n    , SUM(case when status = 'paid' and paid_cents - refund_cents > 0 then quantity else 0 end) AS valid_order_items\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_18",
+  "columns": [
+    "avg_order_value",
+    "avg_buyer_value",
+    "purchase_frequency",
+    "refund_amount_rate",
+    "cancel_rate",
+    "refund_order_rate",
+    "discount_rate",
+    "items_per_order"
+  ],
+  "rows": [
+    [
+      3714.814814814815,
+      6686.666666666667,
+      1.8,
+      0.15749685006299874,
+      0.0625,
+      0.13333333333333333,
+      0.041851106639839035,
+      1.2222222222222223
+    ]
+  ],
+  "seconds": 0.22,
+  "units": {
+    "avg_order_value": "cents",
+    "avg_buyer_value": "cents",
+    "purchase_frequency": "count",
+    "refund_amount_rate": "ratio",
+    "cancel_rate": "ratio",
+    "refund_order_rate": "ratio",
+    "discount_rate": "ratio",
+    "items_per_order": "count"
+  },
+  "data_version": "qinghe-w03-20260923-small",
+  "data_sha256": "8a295969ec24556ebd7f818506633919e71f840fc86488d53efc185f9768cfe6",
+  "catalog_sha256": "a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef",
+  "answer": "2026年8月（统计区间2026-08-01至2026-09-01）青禾客户整体口径下的指标如下（未加任何门店或分组筛选，统计单位为CRM会员账户）：\n- 有效订单均额：37.15元/单\n- 购买会员人均消费：66.87元/账户\n- 购买频次：1.8单/账户\n- 退款金额占比：15.75%\n- 取消率：6.25%\n- 退款订单率：13.33%\n- 优惠率：4.19%\n- 单均商品件数：约1.22件/单\n\n口径说明：有效订单均额为净销售额除以有效订单数；购买会员人均消费为净销售额除以购买会员数；购买频次为有效订单数除以购买会员数；退款金额占比为退款金额除以实付金额；取消率为取消订单数除以创建订单数；退款订单率为退款订单数除以支付订单数；优惠率为优惠金额除以支付订单原价金额；单均商品件数为有效订单商品件数除以有效订单数。以上均为本月覆盖范围内数据的汇总结果。",
+  "question": "2026年8月青禾的有效订单均额、购买会员人均消费、购买频次、退款金额占比、取消率、退款订单率、优惠率、单均商品件数分别是多少?",
+  "trace_id": "67ce8a43-2ea5-4a32-8dfc-9dc16420301a",
+  "elapsed_seconds": 23.281,
+  "model_usage": {
+    "prompt_tokens": 10550,
+    "completion_tokens": 1308,
+    "total_tokens": 11858
+  },
+  "model_calls_with_usage": 2
+}

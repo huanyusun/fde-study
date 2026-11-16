@@ -1,0 +1,134 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "valid_order_count"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [
+      "store"
+    ],
+    "filters": []
+  },
+  "sql": "SELECT\n  store\n  , SUM(__valid_order_count) AS valid_order_count\nFROM (\n  SELECT\n    store_id AS store\n    , CASE WHEN case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END AS __valid_order_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_5\nGROUP BY\n  store",
+  "columns": [
+    "store",
+    "valid_order_count"
+  ],
+  "rows": [
+    [
+      "S19",
+      1197
+    ],
+    [
+      "S05",
+      1272
+    ],
+    [
+      "S15",
+      1282
+    ],
+    [
+      "S08",
+      1200
+    ],
+    [
+      "S01",
+      1171
+    ],
+    [
+      "S24",
+      1189
+    ],
+    [
+      "S22",
+      1240
+    ],
+    [
+      "S21",
+      1247
+    ],
+    [
+      "S20",
+      1276
+    ],
+    [
+      "S18",
+      1287
+    ],
+    [
+      "S02",
+      1207
+    ],
+    [
+      "S13",
+      1218
+    ],
+    [
+      "S16",
+      1283
+    ],
+    [
+      "S11",
+      1339
+    ],
+    [
+      "S04",
+      1275
+    ],
+    [
+      "S23",
+      1257
+    ],
+    [
+      "S17",
+      1286
+    ],
+    [
+      "S12",
+      1245
+    ],
+    [
+      "S14",
+      1203
+    ],
+    [
+      "S07",
+      1243
+    ],
+    [
+      "S03",
+      1275
+    ],
+    [
+      "S06",
+      1218
+    ],
+    [
+      "S10",
+      1280
+    ],
+    [
+      "S09",
+      1243
+    ]
+  ],
+  "seconds": 0.054,
+  "units": {
+    "valid_order_count": "count"
+  },
+  "data_version": "qinghe-w03-20260923-large",
+  "data_sha256": "0074e7f764c63e836617aecb0e217aa3b5cc0cf9ede557179ad46b077dcf8ba8",
+  "catalog_sha256": "a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef",
+  "answer": "2026年8月（统计期间2026-08-01至2026-09-01），青禾24家成交门店的有效订单数如下（按订单成交门店统计；有效订单指已支付且实付金额减退款金额大于零的订单，取消和全额退款订单不计入）：S11：1339单；S18：1287单；S17：1286单；S16：1283单；S15：1282单；S10：1280单；S20：1276单；S03：1275单；S04：1275单；S05：1272单；S21：1247单；S12：1245单；S23：1257单；S09：1243单；S07：1243单；S22：1240单；S13：1218单；S06：1218单；S02：1207单；S14：1203单；S08：1200单；S19：1197单；S24：1189单；S01：1171单。本月共24家门店全部有成交记录，其中S11门店最高（1339单），S01门店最低（1171单）；本月未应用额外筛选条件，结果基于当前青禾本周合成测试库数据。",
+  "question": "2026年8月青禾各成交门店的有效订单数分别是多少?",
+  "trace_id": "33177ffc-a198-4f1c-ad30-1df18a79aa09",
+  "elapsed_seconds": 61.427,
+  "model_usage": {
+    "prompt_tokens": 343113,
+    "completion_tokens": 2560,
+    "total_tokens": 345673
+  },
+  "model_calls_with_usage": 2
+}

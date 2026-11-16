@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "items": [
+    {
+      "model": "orders",
+      "check": "primary_key",
+      "columns": [
+        "order_id"
+      ],
+      "rows": 6,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "orders",
+      "entity": "member",
+      "target": "members",
+      "check": "foreign_key",
+      "unmatched_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "orders",
+      "entity": "store",
+      "target": "stores",
+      "check": "foreign_key",
+      "unmatched_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "members",
+      "check": "primary_key",
+      "columns": [
+        "member_id"
+      ],
+      "rows": 2,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "members",
+      "entity": "home_store",
+      "target": "stores_home",
+      "check": "foreign_key",
+      "unmatched_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "stores",
+      "check": "primary_key",
+      "columns": [
+        "store_id"
+      ],
+      "rows": 2,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "stores_home",
+      "check": "primary_key",
+      "columns": [
+        "store_id"
+      ],
+      "rows": 2,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "monthly_member_receipts",
+      "check": "primary_key",
+      "columns": [
+        "member_id",
+        "month_start"
+      ],
+      "rows": 4,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "monthly_member_receipts",
+      "check": "primary_key",
+      "columns": [
+        "member_month_key"
+      ],
+      "rows": 4,
+      "null_rows": 0,
+      "duplicate_rows": 0,
+      "passed": true
+    },
+    {
+      "model": "monthly_member_receipts",
+      "entity": "member",
+      "target": "members",
+      "check": "foreign_key",
+      "unmatched_rows": 0,
+      "passed": true
+    }
+  ]
+}

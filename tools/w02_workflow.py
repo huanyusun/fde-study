@@ -45,12 +45,14 @@ def main():
                         model=WorkflowModel(profile=cfg["profile"],timeout=90)
                         path=start(ws,a.task,a.previous)
                     else:
-                        path=a.session;s=load_session(ws,path);model=WorkflowModel(profile=s["profile"],timeout=90)
+                        path=a.session;s=load_session(ws,path)
+                        if s["status"]=="failed" and not can_resume(s):
+                            print(json.dumps({**public_status(s,path),"code":"HUMAN_ACTION_REQUIRED"},ensure_ascii=False,indent=2));return 2
+                        model=WorkflowModel(profile=s["profile"],timeout=90)
                     extractor=ExtractionModel(profile=model.profile,timeout=90)
                     try:
                         result=public_status(advance(ws,path,model,extractor),path)
                     except KeyboardInterrupt:
-                        # advance() has already saved the session; show where it stopped instead of a traceback.
                         print(json.dumps(public_status(load_session(ws,path),path),ensure_ascii=False,indent=2));return 130
         print(json.dumps(result,ensure_ascii=False,indent=2))
         return 2 if result.get("status")=="failed" else 0

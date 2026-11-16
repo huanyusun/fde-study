@@ -1,0 +1,48 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "valid_order_count",
+      "net_sales_cents"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": [
+      {
+        "field": "order__channel",
+        "op": "eq",
+        "value": "小程序"
+      }
+    ]
+  },
+  "sql": "SELECT\n  SUM(valid_order_count) AS valid_order_count\n  , SUM(net_sales_cents) AS net_sales_cents\nFROM (\n  SELECT\n    channel AS order__channel\n    , CASE WHEN case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END AS valid_order_count\n    , case when status = 'paid' then paid_cents - refund_cents else 0 end AS net_sales_cents\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_5\nWHERE order__channel in ('小程序')",
+  "columns": [
+    "valid_order_count",
+    "net_sales_cents"
+  ],
+  "rows": [
+    [
+      13,
+      48700
+    ]
+  ],
+  "seconds": 0.049,
+  "units": {
+    "valid_order_count": "count",
+    "net_sales_cents": "cents"
+  },
+  "data_version": "qinghe-w03-20260923-small",
+  "data_sha256": "8a295969ec24556ebd7f818506633919e71f840fc86488d53efc185f9768cfe6",
+  "catalog_sha256": "a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef",
+  "answer": "2026年8月（8月1日至8月31日，按下单日期归属，东八区），青禾小程序渠道共成交有效订单13笔，净销售额487.00元。口径说明：有效订单数指已支付且实付减退款后金额大于零的订单，取消单和全额退款单不计入；净销售额为已支付订单实付金额扣除退款后的合计，按原订单下单日期归属。本次统计仅筛选了小程序渠道，未按门店、会员归属门店等其他维度拆分，覆盖范围为青禾本周合成测试库数据。",
+  "question": "2026年8月青禾小程序渠道的有效订单数和净销售额分别是多少?",
+  "trace_id": "7925cd9f-da56-42d1-804a-7936b0db8135",
+  "elapsed_seconds": 19.701,
+  "model_usage": {
+    "prompt_tokens": 9886,
+    "completion_tokens": 791,
+    "total_tokens": 10677
+  },
+  "model_calls_with_usage": 2
+}

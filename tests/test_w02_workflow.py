@@ -178,6 +178,41 @@ def test_tool_reasoning_is_retained_privately_for_next_call(sample):
     assert len(private)==1 and stat.S_IMODE(private[0].stat().st_mode)==0o600
     assert 'PRIVATE_TEST_REASONING' not in ''.join(f.read_text() for f in ws.path(s['folder']).rglob('*.json'))
 
+
+@pytest.mark.parametrize("code",["MODEL_NETWORK_ERROR","MODEL_TIMEOUT","MODEL_TURN_TIMEOUT","MODEL_HTTP_503","MODEL_HTTP_429"])
+def test_unanswered_model_call_resumes_without_losing_reviews(sample,code):
+    ws=sample;p,_=first(ws);review(ws,p,"人工核查意见")
+    s=advance(ws,p,NativeFixture([ModelError(code)]),ExtractFixture());before=deepcopy(s["messages"]);failed=s["steps"]
+    assert s["status"]=="failed" and s["error"]==code and can_resume(s) and "resume" in public_status(s,p)["next"]
+    with pytest.raises(CheckError,match="NO_PENDING_PROPOSAL"): apply(ws,p)
+    s=advance(ws,p,NativeFixture([("request_review",{"claim_ids":["CLM-001-0003"],"question":"继续核对。"})]),ExtractFixture())
+    assert s["status"]=="awaiting_review" and s["error"] is None and s["messages"][:len(before)]==before
+    assert s["human_reviews"][0]["feedback"]=="人工核查意见" and s["resumed_failures"][0]["step"]==failed and s["resumed_failures"][0]["error"]==code
+    assert s["calls"][failed-1]["response"] is None and s["steps"]==failed+1
+
+@pytest.mark.parametrize("code",["MODEL_OUTPUT_TRUNCATED","MODEL_HTTP_401","MODEL_HTTP_400","MODEL_INVALID_RESPONSE","SESSION_INTERRUPTED","STEP_LIMIT"])
+def test_other_failures_stay_closed(sample,code):
+    ws=sample;p,_=first(ws);s=ws.load(p);s["status"]="failed";s["error"]=code;s["calls"][-1]["response"]=None;save(ws,p,s)
+    assert not can_resume(s) and "next" in public_status(s,p)
+    with pytest.raises(CheckError,match="HUMAN_ACTION_REQUIRED"): advance(ws,p,NativeFixture([]),ExtractFixture())
+    with pytest.raises(CheckError,match="NO_PENDING_PROPOSAL"): apply(ws,p)
+
+def test_failure_after_the_model_answered_stays_closed(sample):
+    ws=sample;p,_=first(ws);s=ws.load(p);s["status"]="failed";s["error"]="MODEL_TIMEOUT";save(ws,p,s)
+    assert s["calls"][-1]["response"] is not None and not can_resume(s)
+
+def test_extractor_failure_inside_tool_stays_closed(sample):
+    ws=sample;p,_=first(ws);s=ws.load(p);s["status"]="failed";s["error"]="MODEL_TIMEOUT";s["calls"][-1]["response"]=None
+    s["messages"].append({"role":"assistant","tool_calls":[{"id":"x","function":{"name":"extract_candidates","arguments":"{}"}}]});save(ws,p,s)
+    assert not can_resume(s)
+
+def test_session_failed_under_earlier_package_resumes_and_failed_step_is_free(sample):
+    ws=sample;p,_=first(ws);review(ws,p,"人工核查意见");s=ws.load(p);assert "resumed_failures" not in s
+    s["steps"]+=1;s["task"]["max_steps"]=s["steps"];s["calls"].append({"step":s["steps"],"mode":"fixture","request":None,"response":None})
+    s["status"]="failed";s["error"]="MODEL_NETWORK_ERROR";save(ws,p,s)
+    s=advance(ws,p,NativeFixture([("show_evidence",{"claim_ids":["CLM-001-0001"]})]),ExtractFixture())
+    assert len(s["resumed_failures"])==1 and s["calls"][-1]["response"] and s["error"]=="STEP_LIMIT" and not can_resume(s)
+
 def test_previous_latest_skips_failed_later_round(sample):
     ws=sample;p,_=proposal(ws);apply(ws,p)
     q=start(ws,previous=resolve_previous(ws,"latest"))

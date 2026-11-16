@@ -1,0 +1,24 @@
+{
+  "status": "unsupported",
+  "reason": "请求的统计月份为2026年10月，但当前数据集（青禾，dataset qinghe-w03-20260923-small）的数据覆盖截至2026-09-01，2026年10月无数据可查。指标“创建订单数”本身支持任意时间范围，可改查覆盖期内的月份（如2026年8月或9月）。",
+  "intent": {
+    "status": "unsupported",
+    "reason": "请求的统计月份为2026年10月，但当前数据集（青禾，dataset qinghe-w03-20260923-small）的数据覆盖截至2026-09-01，2026年10月无数据可查。指标“创建订单数”本身支持任意时间范围，可改查覆盖期内的月份（如2026年8月或9月）。",
+    "metrics": [
+      "order_count"
+    ],
+    "start": "2026-10-01",
+    "end": "2026-11-01",
+    "group_by": [],
+    "filters": []
+  },
+  "question": "2026年10月青禾的创建订单数是多少?",
+  "trace_id": "99d6fa44-d046-4296-b008-aa3aaf714ade",
+  "elapsed_seconds": 13.605,
+  "model_usage": {
+    "prompt_tokens": 8722,
+    "completion_tokens": 726,
+    "total_tokens": 9448
+  },
+  "model_calls_with_usage": 1
+}

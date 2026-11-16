@@ -1,0 +1,22 @@
+{
+  "status": "unsupported",
+  "reason": "指标目录中不存在毛利率指标。本数据集只有销售额、退款、优惠等口径（如 gross_cents 为支付订单原价金额，并非毛利），没有成本/毛利相关字段，无法计算毛利率。可考虑改查：优惠率 discount_rate、退款金额占比 refund_amount_rate、净销售额 net_sales_cents、支付订单原价金额 gross_cents 等相关指标。",
+  "intent": {
+    "status": "unsupported",
+    "reason": "指标目录中不存在毛利率指标。本数据集只有销售额、退款、优惠等口径（如 gross_cents 为支付订单原价金额，并非毛利），没有成本/毛利相关字段，无法计算毛利率。可考虑改查：优惠率 discount_rate、退款金额占比 refund_amount_rate、净销售额 net_sales_cents、支付订单原价金额 gross_cents 等相关指标。",
+    "metrics": [],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "question": "2026年8月青禾的毛利率是多少?",
+  "trace_id": "8532a18b-195c-47f8-9a27-e1494d84f5b3",
+  "elapsed_seconds": 11.318,
+  "model_usage": {
+    "prompt_tokens": 8720,
+    "completion_tokens": 721,
+    "total_tokens": 9441
+  },
+  "model_calls_with_usage": 1
+}

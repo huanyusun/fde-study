@@ -1,0 +1,8 @@
+-r requirements.in
+dbt-core==1.12.5
+dbt-metricflow==0.15.0
+metricflow==0.213.0
+dbt-duckdb==1.11.0
+duckdb==1.5.5
+pytest==9.1.1
+waitress==3.0.2

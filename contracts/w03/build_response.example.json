@@ -1,0 +1,108 @@
+{
+  "semantic_models": [
+    {
+      "name": "example_model",
+      "model": "ref('orders')",
+      "defaults": {
+        "agg_time_dimension": "ordered_at"
+      },
+      "entities": [
+        {
+          "name": "example_entity",
+          "type": "primary",
+          "expr": "order_id"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "ordered_at",
+          "type": "time",
+          "type_params": {
+            "time_granularity": "day"
+          }
+        }
+      ],
+      "measures": [
+        {
+          "name": "unique_measure_name",
+          "expr": "SQL expression",
+          "agg": "sum"
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "name": "target_id",
+      "label": "中文名",
+      "description": "定义",
+      "type": "simple",
+      "type_params": {
+        "measure": "unique_measure_name"
+      }
+    }
+  ],
+  "catalog": [
+    {
+      "id": "target_id",
+      "name": "中文名",
+      "aliases": [],
+      "unit": "count",
+      "sources": [
+        {
+          "file": "input.md",
+          "quote": "连续原文"
+        }
+      ],
+      "constraints": [],
+      "query_policy": {
+        "full_month_only": false
+      }
+    }
+  ],
+  "model_sql": {},
+  "unresolved": [
+    {
+      "metric_id": "another_target_id",
+      "missing_facts": [
+        "尚需客户核实的业务条件"
+      ],
+      "reason": "缺项为何影响当前任务"
+    },
+    {
+      "dimension_id": "missing_dimension_id",
+      "missing_facts": [
+        "尚需核实的维度关系"
+      ],
+      "reason": "缺失关系对查询的影响"
+    }
+  ],
+  "business_model_usage": [
+    {
+      "quote": "业务模型连续原文",
+      "used_for": [
+        {
+          "kind": "semantic_model",
+          "name": "example_model"
+        },
+        {
+          "kind": "dimension",
+          "name": "query_dimension_id"
+        },
+        {
+          "kind": "derived_model",
+          "name": "custom_model_name"
+        },
+        {
+          "kind": "metric",
+          "name": "target_id"
+        }
+      ]
+    }
+  ],
+  "grain_keys": {
+    "example_model": [
+      "order_id"
+    ]
+  }
+}

@@ -2,11 +2,11 @@
 
 模型调用默认单次 90 秒、输出截断后一次扩容重试，参数、运行记录和私有推理续接规则见 [模型配置与恢复](../model-configuration.md)。
 
-本入口使用 `w02-workflow-0.1.0`。课程提供通用 Skill、有限步数的工具调用 Agent、提取与来源检查、运行报告和确认后写入。你负责本轮目标、材料、必要任务调整，以及业务核查和取舍。也可以单独使用[提取命令](../w02_extraction/README.md)。
+本入口使用 `w02-workflow-0.1.0`。课程提供通用 Skill、有限步数的工具调用 Agent、提取与来源检查、运行报告和确认后写入。你负责本轮目标、材料、必要任务调整，以及业务核查和取舍。旧的 [提取命令](../w02_extraction/README.md)继续可用。
 
 ## 1. 准备本轮任务
 
-按根 README 安装 Python 3.11 以上环境和依赖，配置 `FDE_MODEL_URL`、`FDE_MODEL_NAME`、`FDE_MODEL_KEY`。使用与端点匹配的 profile；工作流还要求模型支持 Chat Completions 的原生工具调用。密钥放在环境变量中，不写入任务或 Skill。
+按根 README 安装 Python 3.11 以上环境和依赖，配置 `FDE_MODEL_URL`、`FDE_MODEL_NAME`、`FDE_MODEL_KEY`。使用与端点匹配的 profile；新版工作流还要求模型支持 Chat Completions 的原生工具调用。密钥放在环境变量中，不写入任务或 Skill。
 
 在工程目录运行：
 
@@ -30,7 +30,7 @@
 .venv/bin/python tools/w02_workflow.py start
 ```
 
-`inspect` 不调用模型。`start` 冻结本轮材料、方法、文档和源码快照；Agent 读取 Skill 后选择工具。一个工作仓库只操作一个当前任务，也可在子命令前加 `--workspace /path/to/客户仓库`。Windows 激活虚拟环境后使用 `python`；Windows、Linux 如遇问题，请反馈给课程方。
+`inspect` 不调用模型。`start` 冻结本轮材料、方法、文档和源码快照；Agent 读取 Skill 后选择工具。一个工作仓库只操作一个当前任务，也可在子命令前加 `--workspace /path/to/客户仓库`。Windows 激活虚拟环境后使用 `python`；Windows 实机验证状态另见发放说明。
 
 ## 2. 分组核查，给出自己的判断
 
@@ -80,14 +80,16 @@
 .venv/bin/python tools/w02_workflow.py start --previous latest
 ```
 
-`latest` 指最近一次 `apply` 确认完成的任务，之后新建的任务即使失败或未完成也不影响接续；也可以直接写上一轮 `session.json` 的路径。上一轮需已确认完成。新任务读取当前业务模型与核查记录，同时接收上一轮的后续问题；原运行不覆盖。目标和材料只决定本轮工作范围。误判若来自提取要求或方法，需要修改提示词、配置或 Skill，再用有关材料验证；工具不会自动改写自己的方法。
+`latest` 指最近一次 `apply` 确认完成的任务，之后新建的任务即使失败或未完成也不影响接续。上一轮需已确认完成。新任务读取当前业务模型与核查记录，同时接收上一轮的后续问题；原运行不覆盖。目标和材料只决定本轮工作范围。误判若来自提取要求或方法，需要修改提示词、配置或 Skill，再用有关材料验证；工具不会自动改写自己的方法。
 
 需要把当前业务模型交给 V06 时，沿用 [知识入口](../w02_knowledge/README.md)。首次运行 `w02_knowledge.py init` 会保留已有两份文档；存在多次提取时，用 `--from-extraction` 指定工作流状态中显示的本轮 `extraction_run`。后续如何核对 Agent 是否采用，见 V06。
 
 ## 失败后怎么继续
 
-`status` 查看当前停点，`report` 查看已有证据。调用失败、输出不完整、格式错误和步数达到上限会保留请求与公开返回，并标记未完成。工具不自动切换模型、降级或反复重试。核对错误、端点能力与任务规模后，明确重新 `start`；失败任务不能当成已完成，也不能 `apply`。
+`status` 查看当前停点和下一步（`next`），`report` 查看已有证据。调用失败、输出不完整、格式错误和步数达到上限会保留请求与公开返回，并标记未完成。工具不自动切换模型、降级或反复重试。
 
-如果进程被强制关闭，先确认没有该仓库的工作流进程仍在运行，再移除 `artifacts/w02/.workflow.lock` 并查看状态。已进入 `applying` 的任务可再次执行 `apply` 继续完成保存；不覆盖人工另外修改过的文件。工具执行中按 Ctrl-C 或进程中断时，任务标记为未完成（`SESSION_INTERRUPTED`），不能 `resume`；其他执行中断同样按未完成处理，保留记录后重新 `start`。
+模型没有回答、对话记录完整的失败（`MODEL_NETWORK_ERROR`、`MODEL_TIMEOUT`、`MODEL_TURN_TIMEOUT`、`MODEL_HTTP_429`、`MODEL_HTTP_5xx`），恢复网络或服务后直接 `resume`，不用改文件；已给的核查保留，失败那一步不计入 `max_steps`。其他失败（模型已回答但格式不对、步数达到上限等），核对错误、端点能力与任务规模后，明确重新 `start`。失败任务不能当成已完成，也不能 `apply`。
+
+如果进程被强制关闭，先确认没有该仓库的工作流进程仍在运行，再移除 `artifacts/w02/.workflow.lock` 并查看状态。已进入 `applying` 的任务可再次执行 `apply` 继续完成保存；不覆盖人工另外修改过的文件。其他执行中断按未完成处理，保留记录后新建任务。
 
 报告、任务状态和候选属于程序产物。人工交付仍只有 `docs/w02/business_model.md` 与 `docs/w02/interview_notes.md`；按外层任务书保存同仓库程序与运行记录，不新增手填状态表或验证报告。结构检查和真实调用成功都不能替代业务判断。

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "independent-net-income",
+    "question": "2026 年 8 月梧桐书店扣退后收入是多少？",
+    "expected": {
+      "status": "ok",
+      "intent": {
+        "metrics": [
+          "net_receipts_cents"
+        ],
+        "start": "2026-08-01",
+        "end": "2026-09-01",
+        "group_by": [],
+        "filters": []
+      },
+      "columns": [
+        "net_receipts_cents"
+      ],
+      "rows": [
+        [
+          13000
+        ]
+      ],
+      "units": {
+        "net_receipts_cents": "cents"
+      }
+    },
+    "expected_source": "独立核算 2026 年 8 月：WO1、WO2 的 paid 实付合计 15000 分，退回 2000 分，差额 13000 分；7 月追加订单不在窗口内。"
+  },
+  {
+    "id": "monthly-large-07",
+    "question": "2026 年 7 月梧桐书店月内大额会员数是多少？",
+    "expected": {
+      "status": "ok",
+      "intent": {
+        "metrics": [
+          "monthly_large_buyer_count"
+        ],
+        "start": "2026-07-01",
+        "end": "2026-08-01",
+        "group_by": [],
+        "filters": []
+      },
+      "columns": [
+        "monthly_large_buyer_count"
+      ],
+      "rows": [
+        [
+          1
+        ]
+      ],
+      "units": {
+        "monthly_large_buyer_count": "count"
+      }
+    },
+    "expected_source": "W1：6000＋（5000－1000）＝10000 分，含等于；W2：12000－12000＝0 分，不计。"
+  },
+  {
+    "id": "monthly-large-08",
+    "question": "2026 年 8 月梧桐书店月内大额会员数是多少？",
+    "expected": {
+      "status": "ok",
+      "intent": {
+        "metrics": [
+          "monthly_large_buyer_count"
+        ],
+        "start": "2026-08-01",
+        "end": "2026-09-01",
+        "group_by": [],
+        "filters": []
+      },
+      "columns": [
+        "monthly_large_buyer_count"
+      ],
+      "rows": [
+        [
+          0
+        ]
+      ],
+      "units": {
+        "monthly_large_buyer_count": "count"
+      }
+    },
+    "expected_source": "W1 8000 分，W2 5000 分，均未到 10000 分；覆盖内已知零。"
+  }
+]

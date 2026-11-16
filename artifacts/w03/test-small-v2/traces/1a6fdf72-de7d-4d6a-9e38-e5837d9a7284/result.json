@@ -1,0 +1,51 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "monthly_buyer_count",
+      "monthly_repeat_rate"
+    ],
+    "start": "2026-07-01",
+    "end": "2026-09-01",
+    "group_by": [
+      "metric_time__month"
+    ],
+    "filters": []
+  },
+  "sql": "WITH sma_10001_cte AS (\n  SELECT\n    DATE_TRUNC('month', month_start) AS metric_time__month\n    , CASE WHEN member_id IS NOT NULL THEN 1 ELSE 0 END AS __monthly_buyer_count\n    , CASE WHEN case when valid_order_cnt >= 2 then member_id end IS NOT NULL THEN 1 ELSE 0 END AS __monthly_repeat_buyer_count\n  FROM \"data\".\"main\".\"account_month_general\" account_month_general_src_10000\n)\n\nSELECT\n  COALESCE(subq_8.metric_time__month, subq_15.metric_time__month) AS metric_time__month\n  , MAX(subq_8.monthly_buyer_count) AS monthly_buyer_count\n  , MAX(subq_15.monthly_repeat_rate) AS monthly_repeat_rate\nFROM (\n  SELECT\n    metric_time__month\n    , SUM(__monthly_buyer_count) AS monthly_buyer_count\n  FROM sma_10001_cte\n  WHERE metric_time__month BETWEEN '2026-07-01' AND '2026-08-31'\n  GROUP BY\n    metric_time__month\n) subq_8\nFULL OUTER JOIN (\n  SELECT\n    metric_time__month\n    , case when monthly_buyer_count = 0 then null else monthly_repeat_buyer_count / monthly_buyer_count end AS monthly_repeat_rate\n  FROM (\n    SELECT\n      metric_time__month\n      , SUM(__monthly_repeat_buyer_count) AS monthly_repeat_buyer_count\n      , SUM(__monthly_buyer_count) AS monthly_buyer_count\n    FROM sma_10001_cte\n    WHERE metric_time__month BETWEEN '2026-07-01' AND '2026-08-31'\n    GROUP BY\n      metric_time__month\n  ) subq_14\n) subq_15\nON\n  subq_8.metric_time__month = subq_15.metric_time__month\nGROUP BY\n  COALESCE(subq_8.metric_time__month, subq_15.metric_time__month)",
+  "columns": [
+    "metric_time__month",
+    "monthly_buyer_count",
+    "monthly_repeat_rate"
+  ],
+  "rows": [
+    [
+      "2026-07-01 00:00:00",
+      11,
+      0.09090909090909091
+    ],
+    [
+      "2026-08-01 00:00:00",
+      15,
+      0.8
+    ]
+  ],
+  "seconds": 0.062,
+  "units": {
+    "monthly_buyer_count": "count",
+    "monthly_repeat_rate": "ratio"
+  },
+  "data_version": "qinghe-w03-20260923-small",
+  "data_sha256": "8a295969ec24556ebd7f818506633919e71f840fc86488d53efc185f9768cfe6",
+  "catalog_sha256": "a180a69db43bb5e90504ecf19efd89f94018415fd1a03a8692c46b8c226cebef",
+  "answer": "青禾（CRM 会员账户口径，本周合成测试库）在2026年7月和8月的月度表现如下，均为全门店、全渠道、仅完整自然月的口径，按月分别统计、未跨月合并：\n\n- 2026年7月：月内购买会员数为11个账户，月内复购率约9.09%（即11个账户中约1个在该月内重复购买）。\n- 2026年8月：月内购买会员数为15个账户，月内复购率为80.00%（即15个账户中有12个在该月内重复购买）。\n\n说明：月内购买会员数指同一自然月内有至少一笔有效订单的账户数（按会员账户计，不代表跨系统自然人去重）；月内复购率＝月内复购账户数÷月内购买账户数。两个月均未附加任何门店或地区筛选，为全门店口径。7月复购率明显低于8月，且8月购买账户数也有所增长。",
+  "question": "2026年7月和8月,青禾每个月的月内购买会员数和月内复购率分别是多少?",
+  "trace_id": "1a6fdf72-de7d-4d6a-9e38-e5837d9a7284",
+  "elapsed_seconds": 22.272,
+  "model_usage": {
+    "prompt_tokens": 10003,
+    "completion_tokens": 1001,
+    "total_tokens": 11004
+  },
+  "model_calls_with_usage": 2
+}

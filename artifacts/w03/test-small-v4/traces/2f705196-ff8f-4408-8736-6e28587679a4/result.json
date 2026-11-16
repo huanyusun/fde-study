@@ -1,0 +1,24 @@
+{
+  "status": "unsupported",
+  "reason": "当前数据集（qinghe-w03-20260923-small）数据覆盖范围为 2024-09-01 至 2026-09-01（参考日期 2026-09-01，时区 Asia/Shanghai），您请求的 2026年10月（2026-10-01 至 2026-11-01）超出了可查询范围，无法返回该时段的创建订单数。可建议查询覆盖期内的任意日期区间。",
+  "intent": {
+    "status": "unsupported",
+    "reason": "当前数据集（qinghe-w03-20260923-small）数据覆盖范围为 2024-09-01 至 2026-09-01（参考日期 2026-09-01，时区 Asia/Shanghai），您请求的 2026年10月（2026-10-01 至 2026-11-01）超出了可查询范围，无法返回该时段的创建订单数。可建议查询覆盖期内的任意日期区间。",
+    "metrics": [
+      "order_count"
+    ],
+    "start": "2026-10-01",
+    "end": "2026-11-01",
+    "group_by": [],
+    "filters": []
+  },
+  "question": "2026年10月青禾的创建订单数是多少?",
+  "trace_id": "2f705196-ff8f-4408-8736-6e28587679a4",
+  "elapsed_seconds": 8.858,
+  "model_usage": {
+    "prompt_tokens": 8722,
+    "completion_tokens": 494,
+    "total_tokens": 9216
+  },
+  "model_calls_with_usage": 1
+}

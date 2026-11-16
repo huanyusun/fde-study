@@ -1,0 +1,88 @@
+{
+  "contract_version": "w02-0.1.0-draft",
+  "run_id": "RUN-0d43d95184994c899c001d231c46bf92",
+  "stage": "extraction",
+  "mode": "live",
+  "status": "failed",
+  "model": {
+    "provider": "api.z.ai",
+    "name": "glm-5.3-flash",
+    "adapter_version": "w02-extractor-0.1.0"
+  },
+  "implementation": [
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/implementation/platform/fde_product/interview_extraction.py",
+      "sha256": "feccec4ac17206b68aaaa491d666ee3607581e820ec8fae2c9d0f1744b921df6"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/implementation/platform/fde_product/models.py",
+      "sha256": "17cac712394ede304b9d57f2c3adcf4cb5739bbd6264880efb9603bc5dacb223"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/implementation/tools/w02_interviews.py",
+      "sha256": "7dc6d6e55add4179c10f6cd41944606ee0a7a722ca2e5bc30b25ca4db31a3e00"
+    }
+  ],
+  "configuration": [
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/snapshot/artifacts/w02/workflows/WF-cc39088e34bd4c80b948c1a2efa5d8af/extraction.json",
+      "sha256": "666120dc3fa70e45850616a9c29b0f93d858c5983efbf70ab62df0d799b66ce4"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/snapshot/artifacts/w02/workflows/WF-cc39088e34bd4c80b948c1a2efa5d8af/inputs/prompt.md",
+      "sha256": "2bbd09f3324d0a0dd9a8e64ebaf841730260188b6c30fc39ab04d8e5b96d62b2"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/contracts/transcript.schema.json",
+      "sha256": "855f84b576d3f0b7bea82eac6b817fc0c8c723040f131f43075380110a823f9f"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/contracts/interview_facts.schema.json",
+      "sha256": "34358b1f9cca39f17f3d7b74abda732460be0beaba2f93b8e8f8bcaa3d2e0a80"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/contracts/run_evidence.schema.json",
+      "sha256": "4fed42abba5d6f9a727c52d6e3097e965ffa3b02ef855aadb2387ab1f890ebce"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/settings.json",
+      "sha256": "7a5db63a1d4cf6d910441f59974e1fa1b385f078b5e25b4f2d1bf2a1a4387836"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/snapshot/artifacts/w02/workflows/WF-cc39088e34bd4c80b948c1a2efa5d8af/sources/0.json",
+      "sha256": "5f7a26ddb42e83963fb58d8c54c47cbb71bd7491e555d3cc71ea103f4316061a"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/snapshot/artifacts/w02/workflows/WF-cc39088e34bd4c80b948c1a2efa5d8af/sources/1.json",
+      "sha256": "6c9445d88099972b373db260c3b472ed354084738aaf699ab1c5070cbae0938d"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/snapshot/artifacts/w02/workflows/WF-cc39088e34bd4c80b948c1a2efa5d8af/sources/2.json",
+      "sha256": "2500b08da7b8524f2f447ad304e8a54aa68e065e9724488870cb3bda4238c40e"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/snapshot/artifacts/w02/workflows/WF-cc39088e34bd4c80b948c1a2efa5d8af/sources/3.json",
+      "sha256": "10990cefd1754d48b462ef187ca5f1d531d4473053495148d39e04c11d5abe3b"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/step-001.request.json",
+      "sha256": "e5cf824448aa49aa7d62af42486e2e440a10733759b051f66921eab7ab4ae62c"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/step-001.attempts.json",
+      "sha256": "c3ecb7587f6bc08679ea5a4e57800c1d3e3d5aaa93313be58e2d731c544ea121"
+    },
+    {
+      "path": "artifacts/w02/runs/RUN-0d43d95184994c899c001d231c46bf92/steps.json",
+      "sha256": "4da9c7a33ec52833a3157dda5e9446bb950488119bef63d8e45f33cd6344b047"
+    }
+  ],
+  "error": {
+    "code": "MODEL_TIMEOUT",
+    "message": "本次失败；保留已有请求与公开响应，核对后创建新运行。"
+  }
+}
