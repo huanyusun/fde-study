@@ -3,7 +3,7 @@ import os,json,shutil,subprocess,sys,time,re,hashlib,tempfile,threading,csv
 from pathlib import Path
 from datetime import datetime,timedelta
 import yaml,duckdb
-from .common import read,dump,digest,library_digest
+from .common import read,dump,digest
 _CONTEXT_LOCK=threading.RLock()
 _ACTIVE_PROJECT=None
 ROOT=Path(__file__).resolve().parents[3]
@@ -19,36 +19,45 @@ TABLES={
 
 def build_project(library,data,project):
  library=Path(library).resolve();data=Path(data).resolve();p=Path(project).resolve()
- if p.exists():raise ValueError('PROJECT_ALREADY_EXISTS: use a new version path')
+ if p.exists():raise ValueError('PROJECT_ALREADY_EXISTS: '+str(p)+'；上次运行未完成或已存在，请换新的版本路径')
  from .builder import verify_library
  verify_library(library)
  manifest=read(data/'manifest.json')
+ from .coverage import validate_coverage_notes
+ validate_coverage_notes(manifest)
  for date in manifest['coverage']:datetime.strptime(date,'%Y-%m-%d')
  if len(manifest['coverage'])!=2 or manifest['coverage'][0]>=manifest['coverage'][1]:raise ValueError('DATA_COVERAGE_INVALID')
  for name in TABLES:
   if digest(data/(name+'.csv'))!=manifest['sha256'][name+'.csv']:raise ValueError('DATA_HASH_MISMATCH:'+name)
+ from .preflight import check_library
+ preflight=check_library(library,data,ROOT/'templates/w03/models',TABLES,manifest['coverage'])
  p.mkdir(parents=True)
+ dump(p/'preflight_check.json',preflight)
  shutil.copytree(ROOT/'templates/w03/models',p/'models')
  shutil.copy2(library/'metrics.yml',p/'models/metrics.yml')
  for extra in library.glob('*.sql'):shutil.copy2(extra,p/'models'/extra.name)
  for name in ['catalog.json','scope.json']:shutil.copy2(library/name,p/name)
  for name,default in [('dimension_targets.json',read(ROOT/'templates/w03/dimension_targets.json')),('grain_contract.json',{}),('unresolved.json',[])]:dump(p/name,read(library/name) if (library/name).exists() else default)
- library_hash=library_digest(library)
+ library_hash=hashlib.sha256(json.dumps({f.name:digest(f) for f in sorted(library.iterdir()) if f.suffix in ['.json','.yml','.sql']},sort_keys=True).encode()).hexdigest()
  metadata={**manifest,'id':manifest.get('id',data.name),'library_sha256':library_hash}
  dump(p/'dataset.json',metadata)
  con=duckdb.connect(str(p/'data.duckdb'))
  try:
-  for name,columns in TABLES.items():
-   types='{'+','.join("'"+k+"':'"+v+"'" for k,v in columns.items())+'}'
-   with (data/(name+'.csv')).open(newline='') as raw:
-    header=next(csv.reader(raw))
-   if set(header)!=set(columns) or len(header)!=len(columns):raise ValueError('CSV_COLUMNS_MISMATCH:'+name)
-   con.execute('create table raw_'+name+' as select * from read_csv(?, header=true, types='+types+')',[str(data/(name+'.csv'))])
-   if con.execute('select count(*) from raw_'+name).fetchone()[0]!=manifest['counts'][name]:raise ValueError('DATA_COUNT_MISMATCH:'+name)
-  for name,key in [('members','member_id'),('orders','order_id'),('stores','store_id'),('cards','card_id')]:
-   if con.execute(f'select count(*)-count(distinct {key}) from raw_{name}').fetchone()[0]:raise ValueError('DUPLICATE_OR_NULL_KEY:'+name)
-  for name in ['orders','cards']:
-   if con.execute(f'select count(*) from raw_{name} x left join raw_members m using(member_id) where m.member_id is null').fetchone()[0]:raise ValueError('UNLINKED_ACCOUNT:'+name)
+  from .w04_import import is_w04_data, import_w04
+  if is_w04_data(data,manifest):
+   import_w04(con,data,manifest,TABLES)
+  else:
+   for name,columns in TABLES.items():
+    types='{'+','.join("'"+k+"':'"+v+"'" for k,v in columns.items())+'}'
+    with (data/(name+'.csv')).open(newline='') as raw:
+     header=next(csv.reader(raw))
+    if set(header)!=set(columns) or len(header)!=len(columns):raise ValueError('CSV_COLUMNS_MISMATCH:'+name)
+    con.execute('create table raw_'+name+' as select * from read_csv(?, header=true, types='+types+')',[str(data/(name+'.csv'))])
+    if con.execute('select count(*) from raw_'+name).fetchone()[0]!=manifest['counts'][name]:raise ValueError('DATA_COUNT_MISMATCH:'+name)
+   for name,key in [('members','member_id'),('orders','order_id'),('stores','store_id'),('cards','card_id')]:
+    if con.execute(f'select count(*)-count(distinct {key}) from raw_{name}').fetchone()[0]:raise ValueError('DUPLICATE_OR_NULL_KEY:'+name)
+   for name in ['orders','cards']:
+    if con.execute(f'select count(*) from raw_{name} x left join raw_members m using(member_id) where m.member_id is null').fetchone()[0]:raise ValueError('UNLINKED_ACCOUNT:'+name)
  finally:con.close()
  (p/'dbt_project.yml').write_text(yaml.safe_dump({'name':'w03','version':'1.0','config-version':2,'profile':'w03','model-paths':['models'],'vars':{'coverage_start':manifest['coverage'][0],'coverage_end':manifest['coverage'][1]},'flags':{'send_anonymous_usage_stats':False},'models':{'w03':{'+materialized':'view'}}}))
  (p/'profiles.yml').write_text(yaml.safe_dump({'w03':{'target':'dev','outputs':{'dev':{'type':'duckdb','path':str(p/'data.duckdb'),'schema':'main','threads':1}}}}))
@@ -67,27 +76,27 @@ def query_worker(project,intent):
  with tempfile.TemporaryDirectory(prefix='fde-w03-query-') as tmp:
   inp=Path(tmp)/'request.json';out=Path(tmp)/'response.json';dump(inp,intent)
   r=subprocess.run([sys.executable,str(ROOT/'tools/w03.py'),'_query-worker','--project',str(Path(project).resolve()),'--input',str(inp),'--output',str(out)],capture_output=True,text=True,timeout=180)
-  if not out.exists():return {'status':'error','code':'QUERY_WORKER_FAILED','reason':r.stderr[-2000:]}
-  return read(out)
+  result=read(out) if out.exists() else {'status':'error','code':'QUERY_WORKER_FAILED','reason':r.stderr[-2000:]}
+  if isinstance(result,dict) and 'coverage_notes' not in result:
+   # Worker startup/transport failures still belong to the selected dataset.
+   # No metadata is invented for legacy or unavailable projects.
+   try:metadata=read(Path(project)/'dataset.json')
+   except (OSError,ValueError):metadata={}
+   if isinstance(metadata,dict):
+    from .coverage import with_coverage_notes
+    result=with_coverage_notes(result,metadata)
+  return result
 
 class Engine:
- def __init__(self,project,read_only=False):
+ def __init__(self,project):
   global _ACTIVE_PROJECT
   with _CONTEXT_LOCK:
-   self.read_only=read_only
    self._initialize(project)
    _ACTIVE_PROJECT=str(self.project.resolve())
  def _initialize(self,project):
   self.project=Path(project)
   if not (self.project/'validation.json').exists() or not read(self.project/'validation.json').get('passed'):raise ValueError('PROJECT_NOT_VALIDATED')
-  profiles_dir=self.project
-  if getattr(self,'read_only',False):
-   # The query worker only reads: a read-only copy of the profile lets concurrent workers share data.duckdb.
-   self._profiles=tempfile.TemporaryDirectory(prefix='fde-w03-profile-');profiles=yaml.safe_load((self.project/'profiles.yml').read_text())
-   for profile in profiles.values():
-    for output in profile.get('outputs',{}).values():output['config_options']={**(output.get('config_options') or {}),'access_mode':'READ_ONLY'}
-   (Path(self._profiles.name)/'profiles.yml').write_text(yaml.safe_dump(profiles));profiles_dir=Path(self._profiles.name)
-  self.cfg=CLIConfiguration();self.cfg.setup(dbt_profiles_path=profiles_dir,dbt_project_path=self.project)
+  self.cfg=CLIConfiguration();self.cfg.setup(dbt_profiles_path=self.project,dbt_project_path=self.project)
   self.dataset=json.loads((self.project/'dataset.json').read_text())
   self.dataset_hash=__import__('hashlib').sha256(json.dumps({k:v for k,v in self.dataset.items() if k!="library_sha256"},sort_keys=True).encode()).hexdigest()
   self.metric_names={m.name for m in self.cfg.mf.list_metrics()}
@@ -99,7 +108,8 @@ class Engine:
  def query(self,intent):
   with _CONTEXT_LOCK:
    if _ACTIVE_PROJECT!=str(self.project.resolve()):raise RuntimeError('PROJECT_CONTEXT_CHANGED: isolate each dataset/customer in its own worker process')
-   return self._query(intent)
+   from .coverage import with_coverage_notes
+   return with_coverage_notes(self._query(intent),self.dataset)
  def _query(self,intent):
   if not isinstance(intent,dict):return {'status':'unsupported','reason':'查询意图格式错误'}
   metrics=intent.get('metrics',[]);group=intent.get('group_by',[]);start=intent.get('start');end=intent.get('end');filters=intent.get('filters',[])

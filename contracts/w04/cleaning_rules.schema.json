@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract_version": {
+      "const": "w04-0.1.0"
+    },
+    "data_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tag_cleaning": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "delimiters": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "legal_tags_source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hyphenated_tag_handling": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unknown_tag_handling": {
+          "type": "string",
+          "minLength": 1
+        },
+        "note_extraction": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "delimiters",
+        "legal_tags_source",
+        "hyphenated_tag_handling",
+        "unknown_tag_handling",
+        "note_extraction"
+      ]
+    },
+    "invalid_values": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source_fields": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": [
+                "string",
+                "number",
+                "boolean",
+                "null"
+              ]
+            },
+            "minItems": 1
+          },
+          "action": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "source_fields",
+          "values",
+          "action",
+          "reason"
+        ]
+      },
+      "minItems": 1
+    },
+    "abnormal_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "condition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "action": {
+            "enum": [
+              "quarantine",
+              "reject",
+              "deduplicate",
+              "normalize",
+              "keep"
+            ]
+          },
+          "reason_code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "rule_id",
+          "condition",
+          "action",
+          "reason_code",
+          "evidence"
+        ]
+      },
+      "minItems": 1
+    },
+    "raw_preservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "original_files": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        },
+        "quarantine": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "original_files",
+        "notes",
+        "quarantine"
+      ]
+    }
+  },
+  "required": [
+    "contract_version",
+    "data_version",
+    "tag_cleaning",
+    "invalid_values",
+    "abnormal_records",
+    "raw_preservation"
+  ]
+}

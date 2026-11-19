@@ -1,0 +1,41 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "monthly_repeat_buyer_count"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  COUNT(DISTINCT case when valid_order_cnt >= 2 then member_id end) AS monthly_repeat_buyer_count\nFROM \"data\".\"main\".\"member_month_stats\" member_month_stats_src_10000\nWHERE DATE_TRUNC('month', month_start) BETWEEN '2026-08-01' AND '2026-08-31'",
+  "columns": [
+    "monthly_repeat_buyer_count"
+  ],
+  "rows": [
+    [
+      646
+    ]
+  ],
+  "seconds": 0.062,
+  "units": {
+    "monthly_repeat_buyer_count": "count"
+  },
+  "data_version": "qinghe-w04-v1.1",
+  "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+  "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+  "coverage_notes": {
+    "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+    "time_range": {
+      "start": "2024-09-01",
+      "end_exclusive": "2026-09-01"
+    },
+    "quarantined": {
+      "member": 0,
+      "order": 252,
+      "card": 299,
+      "shop": 0
+    }
+  }
+}

@@ -2,7 +2,8 @@
 import copy,json,re,hashlib,shutil
 from pathlib import Path
 import yaml
-from .common import read,dump,digest,call_json,new_output,configured_model
+from .common import read,dump,digest,call_json
+from .preflight import LibraryPreflightError
 ROOT=Path(__file__).resolve().parents[3]
 NAME=re.compile(r'^[a-z][a-z0-9_]*$')
 def verify_library(folder):
@@ -17,14 +18,24 @@ def verify_library(folder):
   if not all(item.get(k) for k in ['name','unit','sources']):raise ValueError('CATALOG_METADATA_REQUIRED:'+item['id'])
   policy=item.get('query_policy',{})
   if not isinstance(policy,dict) or set(policy)-{'full_month_only'} or ('full_month_only' in policy and type(policy['full_month_only']) is not bool):raise ValueError('QUERY_POLICY_INVALID')
- for f in [folder/'metrics.yml',*folder.glob('*.sql')]:
+ # Descriptions are business prose. Inspect only executable expressions/SQL.
+ def fragments(value):
+  if isinstance(value,dict):
+   for key,item in value.items():
+    if key in {'expr','model','filter'} and isinstance(item,str):yield item
+    elif isinstance(item,(dict,list)):yield from fragments(item)
+  elif isinstance(value,list):
+   for item in value:yield from fragments(item)
+ dangerous=re.compile(r'\b(read_csv\w*|read_parquet|read_json\w*|sqlite_scan|postgres_scan|httpfs|attach|install|load|copy|drop|delete|insert|update|create|env_var|run_query|config)\b\s*\(?',re.I)
+ if any(dangerous.search(text) for text in fragments(body)):raise ValueError('UNSUPPORTED_SQL_OPERATION:metrics.yml')
+ for f in folder.glob('*.sql'):
   text=f.read_text()
-  if re.search(r'\b(read_csv\w*|read_parquet|read_json\w*|sqlite_scan|postgres_scan|httpfs|attach|install|load|copy|drop|delete|insert|update|create|env_var|run_query|config)\s*\(?',text,re.I):raise ValueError('UNSUPPORTED_SQL_OPERATION:'+f.name)
-  if f.suffix=='.sql' and (not NAME.fullmatch(f.stem) or f.stem in {'orders','members','stores','cards','time_spine'} or not re.match(r'^\s*(with|select)\b',text,re.I)):raise ValueError('CUSTOM_MODEL_CONTRACT_INVALID')
+  if dangerous.search(text):raise ValueError('UNSUPPORTED_SQL_OPERATION:'+f.name)
+  if not NAME.fullmatch(f.stem) or f.stem in {'orders','members','stores','cards','time_spine'} or not re.match(r'^\s*(with|select)\b',text,re.I):raise ValueError('CUSTOM_MODEL_CONTRACT_INVALID')
  return {'metrics':len(names),'metric_ids':names,'customer':scope.get('customer')}
 
 def generate(config_path,out,selected=None,model=None):
- config_path=Path(config_path).resolve();cfg=read(config_path);base=config_path.parent;out=new_output(out)
+ config_path=Path(config_path).resolve();cfg=read(config_path);base=config_path.parent
  def path(key):return (base/cfg[key]).resolve()
  skill=path('skill').read_text()
  if not skill.strip() or 'UNIMPLEMENTED' in skill:raise ValueError('STUDENT_SKILL_REQUIRED')
@@ -43,8 +54,7 @@ def generate(config_path,out,selected=None,model=None):
  contract=read(ROOT/'contracts/w03/build_response.example.json')
  dimension_targets=read(ROOT/'templates/w03/dimension_targets.json')
  if not cfg.get('data'):raise ValueError('BUILD_DATA_REQUIRED_FOR_VALIDATION')
- if model is None:model=configured_model(32768)
- out.mkdir(parents=True,exist_ok=False)
+ out=Path(out).resolve();out.mkdir(parents=True,exist_ok=False)
  payload={'business_model_filename':'business_model.md','business_model':business,'materials':materials,'targets':targets,'access_tables':TABLES,'dimension_targets':dimension_targets,'native_format':'dbt semantic_models/measures; MetricFlow 0.213; DuckDB','contract':contract}
  dump(out/'input.json',payload)
  (out/'skill_used.md').write_text(skill)
@@ -87,6 +97,9 @@ def publish_candidate(response,scope,targets,data,out):
   verify_library(candidate)
   from .engine import build_project
   build_project(candidate,data,project)
+ except LibraryPreflightError as exc:
+  dump(out/'preflight_check.json',exc.report)
+  raise
  finally:
   for name in ['grain_check.json','dimension_check.json','metricflow_check.json','validation.json']:
    if (project/name).exists():shutil.copy2(project/name,out/name)
@@ -96,7 +109,7 @@ def publish_candidate(response,scope,targets,data,out):
  dump(candidate/'candidate_only.json',{'status':'validated','published_to':str(out)})
 
 def merge(folders,out,data):
- out=new_output(out);models={};metrics=[];catalog=[];provenance=[];scope=None;sqls={};grains={};targets=None;unresolved=[]
+ out=Path(out);out.mkdir(parents=True,exist_ok=False);models={};metrics=[];catalog=[];provenance=[];scope=None;sqls={};grains={};targets=None;unresolved=[]
  for f in map(Path,folders):
   verify_library(f)
   p=read(f/'provenance.json')
@@ -119,7 +132,7 @@ def merge(folders,out,data):
   if targets is not None and targets!=current_targets:raise ValueError('BATCH_DIMENSION_TARGET_CONFLICT')
   targets=current_targets;unresolved.extend(read(f/'unresolved.json'))
  response={'semantic_models':list(models.values()),'metrics':metrics,'catalog':catalog,'model_sql':sqls,'grain_keys':grains,'unresolved':unresolved}
- out.mkdir(parents=True,exist_ok=False);dump(out/'response.json',response)
+ dump(out/'response.json',response)
  publish_candidate(response,scope,targets,data,out)
  dump(out/'provenance.json',{'batches':provenance})
  return verify_library(out)

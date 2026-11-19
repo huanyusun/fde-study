@@ -1,0 +1,15 @@
+{
+  "id": "wutong-w04-v1",
+  "synthetic": true,
+  "coverage": [
+    "2024-09-01",
+    "2026-09-01"
+  ],
+  "source": "梧桐门店收银系统；线上来自另一平台，本次未导出。",
+  "sha256": {
+    "销售流水.csv": "ef43cc85cf79a6222168177580d6681f09669946677c4732ab4aaf8edf87978d",
+    "门店名册.csv": "d9d5eea05796719013c342ac7208c76d3a93addc43ac0f1e7dcbbb838fc62b9a",
+    "读者导出.csv": "89e10f72590bd85820668c4b301866226046a72b076cd16320d688cef61ca870",
+    "读者卡.csv": "42d5b8f68b170a5fe9745ece4c208aaab9aa253a332f5734c97d4df16784f26b"
+  }
+}

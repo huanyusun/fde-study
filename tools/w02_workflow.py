@@ -50,10 +50,7 @@ def main():
                             print(json.dumps({**public_status(s,path),"code":"HUMAN_ACTION_REQUIRED"},ensure_ascii=False,indent=2));return 2
                         model=WorkflowModel(profile=s["profile"],timeout=90)
                     extractor=ExtractionModel(profile=model.profile,timeout=90)
-                    try:
-                        result=public_status(advance(ws,path,model,extractor),path)
-                    except KeyboardInterrupt:
-                        print(json.dumps(public_status(load_session(ws,path),path),ensure_ascii=False,indent=2));return 130
+                    result=public_status(advance(ws,path,model,extractor),path)
         print(json.dumps(result,ensure_ascii=False,indent=2))
         return 2 if result.get("status")=="failed" else 0
     except (CheckError,ModelError,OSError,UnicodeError) as e:

@@ -1,0 +1,43 @@
+{
+  "selected_chain": "会员复购分析（月度复购购买人数、付费会员复购、复购率）",
+  "runs": [
+    {
+      "run_path": "demo_runs/run-01/535a0796-ef47-48d3-be4a-ed1abc597103",
+      "bad_case": false,
+      "bad_case_reason": ""
+    },
+    {
+      "run_path": "demo_runs/run-02/7885734c-c57f-467f-a8a7-b512444e2912",
+      "bad_case": false,
+      "bad_case_reason": ""
+    },
+    {
+      "run_path": "demo_runs/run-03/d9d2ecc2-4ac1-4e0b-89f8-f87599fd7932",
+      "bad_case": false,
+      "bad_case_reason": ""
+    },
+    {
+      "run_path": "demo_runs/run-04/1a9e4c88-0f45-493b-8379-facc501e8af2",
+      "bad_case": false,
+      "bad_case_reason": "查询月份超出数据覆盖期（数据至 2026-09-01 不含），系统如实返回 unsupported 并建议改查已覆盖月份，未把未知当零，属正确行为。"
+    },
+    {
+      "run_path": "demo_runs/run-05/6e21f6a7-eb10-4b51-a570-ca2eecf2da20",
+      "bad_case": true,
+      "bad_case_reason": "问题含业务限定词\"活跃会员\"（按模型 R3 应排除 22,296 个未激活账户），回答直接给出 646（全部会员口径）且仅声明\"未附加其他筛选\"，未声明\"活跃\"限定无法应用，属部分覆盖下静默替换口径。"
+    },
+    {
+      "run_path": "demo_runs/run-06/3d710669-1d77-4311-8446-00fe86869ca9",
+      "bad_case": false,
+      "bad_case_reason": "",
+      "tuning": {
+        "before_run_path": "demo_runs/run-05/6e21f6a7-eb10-4b51-a570-ca2eecf2da20",
+        "before_bad_case": true,
+        "before_bad_case_reason": "问题含业务限定词\"活跃会员\"（按模型 R3 应排除 22,296 个未激活账户），回答直接给出 646（全部会员口径）且仅声明\"未附加其他筛选\"，未声明\"活跃\"限定无法应用，属部分覆盖下静默替换口径。",
+        "change_location": "提示词／上下文",
+        "change": "复制 product/w03_answer_prompt.txt 为 customer/w04/answer_prompt.txt，仅在末尾追加一句：问题含指标库尚未建模的业务限定词（会员等级/状态类筛选）时，必须在回答开头声明该限定无法应用、所给数字为全部会员口径（含未激活、冻结、注销账户）并建议业务书面确认，禁止默默按未筛选结果作答。其余内容一字未改。",
+        "reason": "定位：指标库未建模账户状态筛选（数据／SQL 层缺口），但当前回答层把\"活跃\"限定静默丢弃，属提示词层可修复的声明缺失；按\"每次只改一处\"选择提示词层最小修复，先堵住口径静默替换，数据／SQL 层建模列入下一步。"
+      }
+    }
+  ]
+}

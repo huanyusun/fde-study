@@ -1,0 +1,1560 @@
+{
+  "order_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "order_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(CASE WHEN order_id IS NOT NULL THEN 1 ELSE 0 END) AS order_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "order_count"
+    ],
+    "rows": [
+      [
+        8862
+      ]
+    ],
+    "seconds": 0.047,
+    "units": {
+      "order_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "paid_order_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "paid_order_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(CASE WHEN case when status = 'paid' then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS paid_order_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "paid_order_count"
+    ],
+    "rows": [
+      [
+        7414
+      ]
+    ],
+    "seconds": 0.043,
+    "units": {
+      "paid_order_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "valid_order_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "valid_order_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(CASE WHEN case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS valid_order_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "valid_order_count"
+    ],
+    "rows": [
+      [
+        6845
+      ]
+    ],
+    "seconds": 0.043,
+    "units": {
+      "valid_order_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "cancelled_order_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "cancelled_order_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(CASE WHEN case when status = 'cancelled' then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS cancelled_order_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "cancelled_order_count"
+    ],
+    "rows": [
+      [
+        1448
+      ]
+    ],
+    "seconds": 0.042,
+    "units": {
+      "cancelled_order_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "refund_order_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "refund_order_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(CASE WHEN case when status = 'paid' and refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS refund_order_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "refund_order_count"
+    ],
+    "rows": [
+      [
+        1020
+      ]
+    ],
+    "seconds": 0.062,
+    "units": {
+      "refund_order_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "partial_refund_order_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "partial_refund_order_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(CASE WHEN case when status = 'paid' and refund_cents > 0 and refund_cents < paid_cents then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS partial_refund_order_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "partial_refund_order_count"
+    ],
+    "rows": [
+      [
+        451
+      ]
+    ],
+    "seconds": 0.041,
+    "units": {
+      "partial_refund_order_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "full_refund_order_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "full_refund_order_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(CASE WHEN case when status = 'paid' and paid_cents > 0 and refund_cents = paid_cents then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS full_refund_order_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "full_refund_order_count"
+    ],
+    "rows": [
+      [
+        569
+      ]
+    ],
+    "seconds": 0.043,
+    "units": {
+      "full_refund_order_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "payment_cents": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "payment_cents"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(case when status = 'paid' then paid_cents else 0 end) AS payment_cents\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "payment_cents"
+    ],
+    "rows": [
+      [
+        85214682
+      ]
+    ],
+    "seconds": 0.04,
+    "units": {
+      "payment_cents": "cents"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "refund_cents": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "refund_cents"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(case when status = 'paid' then refund_cents else 0 end) AS refund_cents\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "refund_cents"
+    ],
+    "rows": [
+      [
+        9386877
+      ]
+    ],
+    "seconds": 0.04,
+    "units": {
+      "refund_cents": "cents"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "net_sales_cents": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "net_sales_cents"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(case when status = 'paid' then paid_cents - refund_cents else 0 end) AS net_sales_cents\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "net_sales_cents"
+    ],
+    "rows": [
+      [
+        75827805
+      ]
+    ],
+    "seconds": 0.04,
+    "units": {
+      "net_sales_cents": "cents"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "gross_cents": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "gross_cents"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(case when status = 'paid' then gross_cents else 0 end) AS gross_cents\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "gross_cents"
+    ],
+    "rows": [
+      [
+        98888453
+      ]
+    ],
+    "seconds": 0.041,
+    "units": {
+      "gross_cents": "cents"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "discount_cents": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "discount_cents"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(case when status = 'paid' then gross_cents - paid_cents else 0 end) AS discount_cents\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "discount_cents"
+    ],
+    "rows": [
+      [
+        13673771
+      ]
+    ],
+    "seconds": 0.043,
+    "units": {
+      "discount_cents": "cents"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "buyer_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "buyer_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  COUNT(DISTINCT case when status = 'paid' and paid_cents - refund_cents > 0 then member_id end) AS buyer_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "buyer_count"
+    ],
+    "rows": [
+      [
+        5473
+      ]
+    ],
+    "seconds": 0.043,
+    "units": {
+      "buyer_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "refund_buyer_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "refund_buyer_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  COUNT(DISTINCT case when status = 'paid' and refund_cents > 0 then member_id end) AS refund_buyer_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "refund_buyer_count"
+    ],
+    "rows": [
+      [
+        978
+      ]
+    ],
+    "seconds": 0.135,
+    "units": {
+      "refund_buyer_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "selling_store_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "selling_store_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  COUNT(DISTINCT case when status = 'paid' and paid_cents - refund_cents > 0 then store_id end) AS selling_store_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "selling_store_count"
+    ],
+    "rows": [
+      [
+        400
+      ]
+    ],
+    "seconds": 0.044,
+    "units": {
+      "selling_store_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "valid_order_items": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "valid_order_items"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(case when status = 'paid' and paid_cents - refund_cents > 0 then quantity end) AS valid_order_items\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "valid_order_items"
+    ],
+    "rows": [
+      [
+        24040
+      ]
+    ],
+    "seconds": 0.042,
+    "units": {
+      "valid_order_items": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "avg_order_value": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "avg_order_value"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  case when valid_order_count = 0 then null else net_sales_cents / valid_order_count end AS avg_order_value\nFROM (\n  SELECT\n    SUM(case when status = 'paid' then paid_cents - refund_cents else 0 end) AS net_sales_cents\n    , SUM(CASE WHEN case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS valid_order_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_8",
+    "columns": [
+      "avg_order_value"
+    ],
+    "rows": [
+      [
+        11077.838568298028
+      ]
+    ],
+    "seconds": 0.055,
+    "units": {
+      "avg_order_value": "cents"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "avg_buyer_value": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "avg_buyer_value"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  case when buyer_count = 0 then null else net_sales_cents / buyer_count end AS avg_buyer_value\nFROM (\n  SELECT\n    SUM(case when status = 'paid' then paid_cents - refund_cents else 0 end) AS net_sales_cents\n    , COUNT(DISTINCT case when status = 'paid' and paid_cents - refund_cents > 0 then member_id end) AS buyer_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_8",
+    "columns": [
+      "avg_buyer_value"
+    ],
+    "rows": [
+      [
+        13854.888543760278
+      ]
+    ],
+    "seconds": 0.054,
+    "units": {
+      "avg_buyer_value": "cents"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "purchase_frequency": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "purchase_frequency"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  case when buyer_count = 0 then null else valid_order_count / buyer_count end AS purchase_frequency\nFROM (\n  SELECT\n    SUM(CASE WHEN case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS valid_order_count\n    , COUNT(DISTINCT case when status = 'paid' and paid_cents - refund_cents > 0 then member_id end) AS buyer_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_8",
+    "columns": [
+      "purchase_frequency"
+    ],
+    "rows": [
+      [
+        1.2506851818015714
+      ]
+    ],
+    "seconds": 0.057,
+    "units": {
+      "purchase_frequency": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "refund_amount_rate": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "refund_amount_rate"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  case when payment_cents = 0 then null else refund_cents / payment_cents end AS refund_amount_rate\nFROM (\n  SELECT\n    SUM(case when status = 'paid' then refund_cents else 0 end) AS refund_cents\n    , SUM(case when status = 'paid' then paid_cents else 0 end) AS payment_cents\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_8",
+    "columns": [
+      "refund_amount_rate"
+    ],
+    "rows": [
+      [
+        0.11015563022343966
+      ]
+    ],
+    "seconds": 0.051,
+    "units": {
+      "refund_amount_rate": "ratio"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "cancel_rate": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "cancel_rate"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  case when order_count = 0 then null else cancelled_order_count / order_count end AS cancel_rate\nFROM (\n  SELECT\n    SUM(CASE WHEN case when status = 'cancelled' then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS cancelled_order_count\n    , SUM(CASE WHEN order_id IS NOT NULL THEN 1 ELSE 0 END) AS order_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_8",
+    "columns": [
+      "cancel_rate"
+    ],
+    "rows": [
+      [
+        0.1633942676596705
+      ]
+    ],
+    "seconds": 0.055,
+    "units": {
+      "cancel_rate": "ratio"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "refund_order_rate": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "refund_order_rate"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  case when paid_order_count = 0 then null else refund_order_count / paid_order_count end AS refund_order_rate\nFROM (\n  SELECT\n    SUM(CASE WHEN case when status = 'paid' and refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS refund_order_count\n    , SUM(CASE WHEN case when status = 'paid' then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS paid_order_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_8",
+    "columns": [
+      "refund_order_rate"
+    ],
+    "rows": [
+      [
+        0.1375775559751821
+      ]
+    ],
+    "seconds": 0.05,
+    "units": {
+      "refund_order_rate": "ratio"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "discount_rate": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "discount_rate"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  case when gross_cents = 0 then null else discount_cents / gross_cents end AS discount_rate\nFROM (\n  SELECT\n    SUM(case when status = 'paid' then gross_cents - paid_cents else 0 end) AS discount_cents\n    , SUM(case when status = 'paid' then gross_cents else 0 end) AS gross_cents\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_8",
+    "columns": [
+      "discount_rate"
+    ],
+    "rows": [
+      [
+        0.13827469826027108
+      ]
+    ],
+    "seconds": 0.059,
+    "units": {
+      "discount_rate": "ratio"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "items_per_order": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "items_per_order"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  case when valid_order_count = 0 then null else valid_order_items / valid_order_count end AS items_per_order\nFROM (\n  SELECT\n    SUM(case when status = 'paid' and paid_cents - refund_cents > 0 then quantity end) AS valid_order_items\n    , SUM(CASE WHEN case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS valid_order_count\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_8",
+    "columns": [
+      "items_per_order"
+    ],
+    "rows": [
+      [
+        3.5120525931336743
+      ]
+    ],
+    "seconds": 0.05,
+    "units": {
+      "items_per_order": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "new_member_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "new_member_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  COUNT(DISTINCT member_id) AS new_member_count\nFROM \"data\".\"main\".\"members\" members_src_10000\nWHERE DATE_TRUNC('day', registered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "new_member_count"
+    ],
+    "rows": [
+      [
+        3048
+      ]
+    ],
+    "seconds": 0.039,
+    "units": {
+      "new_member_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "first_buyer_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "first_buyer_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  COUNT(DISTINCT case when is_first_order then member_id end) AS first_buyer_count\nFROM \"data\".\"main\".\"order_validity\" order_validity_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "first_buyer_count"
+    ],
+    "rows": [
+      [
+        3362
+      ]
+    ],
+    "seconds": 0.067,
+    "units": {
+      "first_buyer_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "first_order_sales_cents": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "first_order_sales_cents"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(case when is_first_order then net_cents else 0 end) AS first_order_sales_cents\nFROM \"data\".\"main\".\"order_validity\" order_validity_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "first_order_sales_cents"
+    ],
+    "rows": [
+      [
+        32653316
+      ]
+    ],
+    "seconds": 0.067,
+    "units": {
+      "first_order_sales_cents": "cents"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "first_order_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "first_order_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(CASE WHEN case when is_first_order then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS first_order_count\nFROM \"data\".\"main\".\"order_validity\" order_validity_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "first_order_count"
+    ],
+    "rows": [
+      [
+        3362
+      ]
+    ],
+    "seconds": 0.064,
+    "units": {
+      "first_order_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "repeat_order_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "repeat_order_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(CASE WHEN case when not is_first_order then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS repeat_order_count\nFROM \"data\".\"main\".\"order_validity\" order_validity_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "repeat_order_count"
+    ],
+    "rows": [
+      [
+        3483
+      ]
+    ],
+    "seconds": 0.064,
+    "units": {
+      "repeat_order_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "monthly_buyer_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "monthly_buyer_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  COUNT(DISTINCT case when valid_order_cnt >= 1 then member_id end) AS monthly_buyer_count\nFROM \"data\".\"main\".\"member_month_stats\" member_month_stats_src_10000\nWHERE DATE_TRUNC('month', month_start) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "monthly_buyer_count"
+    ],
+    "rows": [
+      [
+        5473
+      ]
+    ],
+    "seconds": 0.065,
+    "units": {
+      "monthly_buyer_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "monthly_repeat_buyer_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "monthly_repeat_buyer_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  COUNT(DISTINCT case when valid_order_cnt >= 2 then member_id end) AS monthly_repeat_buyer_count\nFROM \"data\".\"main\".\"member_month_stats\" member_month_stats_src_10000\nWHERE DATE_TRUNC('month', month_start) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "monthly_repeat_buyer_count"
+    ],
+    "rows": [
+      [
+        646
+      ]
+    ],
+    "seconds": 0.061,
+    "units": {
+      "monthly_repeat_buyer_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "monthly_repeat_rate": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "monthly_repeat_rate"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  case when monthly_buyer_count = 0 then null else monthly_repeat_buyer_count / monthly_buyer_count end AS monthly_repeat_rate\nFROM (\n  SELECT\n    COUNT(DISTINCT case when valid_order_cnt >= 2 then member_id end) AS monthly_repeat_buyer_count\n    , COUNT(DISTINCT case when valid_order_cnt >= 1 then member_id end) AS monthly_buyer_count\n  FROM \"data\".\"main\".\"member_month_stats\" member_month_stats_src_10000\n  WHERE DATE_TRUNC('month', month_start) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_8",
+    "columns": [
+      "monthly_repeat_rate"
+    ],
+    "rows": [
+      [
+        0.11803398501735794
+      ]
+    ],
+    "seconds": 0.079,
+    "units": {
+      "monthly_repeat_rate": "ratio"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "monthly_paid_buyer_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "monthly_paid_buyer_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  COUNT(DISTINCT case when is_paid_eligible and valid_order_cnt >= 1 then member_id end) AS monthly_paid_buyer_count\nFROM \"data\".\"main\".\"member_month_stats\" member_month_stats_src_10000\nWHERE DATE_TRUNC('month', month_start) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "monthly_paid_buyer_count"
+    ],
+    "rows": [
+      [
+        493
+      ]
+    ],
+    "seconds": 0.062,
+    "units": {
+      "monthly_paid_buyer_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "monthly_paid_order_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "monthly_paid_order_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(case when is_paid_eligible then valid_order_cnt else 0 end) AS monthly_paid_order_count\nFROM \"data\".\"main\".\"member_month_stats\" member_month_stats_src_10000\nWHERE DATE_TRUNC('month', month_start) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "monthly_paid_order_count"
+    ],
+    "rows": [
+      [
+        761
+      ]
+    ],
+    "seconds": 0.061,
+    "units": {
+      "monthly_paid_order_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "monthly_paid_sales_cents": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "monthly_paid_sales_cents"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  SUM(case when is_paid_eligible then net_cents else 0 end) AS monthly_paid_sales_cents\nFROM \"data\".\"main\".\"member_month_stats\" member_month_stats_src_10000\nWHERE DATE_TRUNC('month', month_start) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "monthly_paid_sales_cents"
+    ],
+    "rows": [
+      [
+        8601918
+      ]
+    ],
+    "seconds": 0.075,
+    "units": {
+      "monthly_paid_sales_cents": "cents"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "monthly_paid_repeat_buyer_count": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "monthly_paid_repeat_buyer_count"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  COUNT(DISTINCT case when is_paid_eligible and valid_order_cnt >= 2 then member_id end) AS monthly_paid_repeat_buyer_count\nFROM \"data\".\"main\".\"member_month_stats\" member_month_stats_src_10000\nWHERE DATE_TRUNC('month', month_start) BETWEEN '2026-08-01' AND '2026-08-31'",
+    "columns": [
+      "monthly_paid_repeat_buyer_count"
+    ],
+    "rows": [
+      [
+        115
+      ]
+    ],
+    "seconds": 0.083,
+    "units": {
+      "monthly_paid_repeat_buyer_count": "count"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "monthly_paid_repeat_rate": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "monthly_paid_repeat_rate"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  case when monthly_paid_buyer_count = 0 then null else monthly_paid_repeat_buyer_count / monthly_paid_buyer_count end AS monthly_paid_repeat_rate\nFROM (\n  SELECT\n    COUNT(DISTINCT case when is_paid_eligible and valid_order_cnt >= 2 then member_id end) AS monthly_paid_repeat_buyer_count\n    , COUNT(DISTINCT case when is_paid_eligible and valid_order_cnt >= 1 then member_id end) AS monthly_paid_buyer_count\n  FROM \"data\".\"main\".\"member_month_stats\" member_month_stats_src_10000\n  WHERE DATE_TRUNC('month', month_start) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_8",
+    "columns": [
+      "monthly_paid_repeat_rate"
+    ],
+    "rows": [
+      [
+        0.2332657200811359
+      ]
+    ],
+    "seconds": 0.069,
+    "units": {
+      "monthly_paid_repeat_rate": "ratio"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  },
+  "monthly_paid_avg_order_value": {
+    "status": "ok",
+    "intent": {
+      "metrics": [
+        "monthly_paid_avg_order_value"
+      ],
+      "start": "2026-08-01",
+      "end": "2026-09-01",
+      "group_by": [],
+      "filters": []
+    },
+    "sql": "SELECT\n  case when monthly_paid_order_count = 0 then null else monthly_paid_sales_cents / monthly_paid_order_count end AS monthly_paid_avg_order_value\nFROM (\n  SELECT\n    SUM(case when is_paid_eligible then net_cents else 0 end) AS monthly_paid_sales_cents\n    , SUM(case when is_paid_eligible then valid_order_cnt else 0 end) AS monthly_paid_order_count\n  FROM \"data\".\"main\".\"member_month_stats\" member_month_stats_src_10000\n  WHERE DATE_TRUNC('month', month_start) BETWEEN '2026-08-01' AND '2026-08-31'\n) subq_8",
+    "columns": [
+      "monthly_paid_avg_order_value"
+    ],
+    "rows": [
+      [
+        11303.440210249672
+      ]
+    ],
+    "seconds": 0.074,
+    "units": {
+      "monthly_paid_avg_order_value": "cents"
+    },
+    "data_version": "qinghe-w04-v1.1",
+    "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+    "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+    "coverage_notes": {
+      "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+      "time_range": {
+        "start": "2024-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "quarantined": {
+        "member": 0,
+        "order": 252,
+        "card": 299,
+        "shop": 0
+      }
+    }
+  }
+}

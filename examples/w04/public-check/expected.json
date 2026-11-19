@@ -1,0 +1,129 @@
+{
+  "data_version": "w04-public-check-v1",
+  "tables": {
+    "members": [
+      {
+        "member_id": "QH99810001",
+        "registered_at": "2025-03-16",
+        "home_store_id": "9801",
+        "tier": "普通",
+        "account_status": "活跃",
+        "registered_channel": "门店",
+        "created_at": "2025-03-16"
+      }
+    ],
+    "stores": [
+      {
+        "store_id": "9801",
+        "region": "华东",
+        "store_name": "杭州文晖路店"
+      }
+    ],
+    "cards": [],
+    "orders": [
+      {
+        "order_id": "O20260803900501",
+        "member_id": "QH99810001",
+        "store_id": "9801",
+        "ordered_at": "2026-08-03",
+        "status": "paid",
+        "gross_cents": 9990,
+        "paid_cents": 7990,
+        "refund_cents": 0,
+        "quantity": 2,
+        "channel": "门店"
+      }
+    ],
+    "member_tags": [
+      {
+        "member_id": "QH99810001",
+        "tag": "母婴-0到3岁"
+      }
+    ],
+    "member_notes": [
+      {
+        "member_id": "QH99810001",
+        "source_file": "crm_member_export.csv",
+        "source_row": 1,
+        "source_field": "tag",
+        "raw_text": "母婴-0到3岁,待核新品,勿打电话-先留言",
+        "note_text": "待核新品",
+        "category": "其他"
+      },
+      {
+        "member_id": "QH99810001",
+        "source_file": "crm_member_export.csv",
+        "source_row": 1,
+        "source_field": "tag",
+        "raw_text": "母婴-0到3岁,待核新品,勿打电话-先留言",
+        "note_text": "勿打电话-先留言",
+        "category": "触达限制"
+      }
+    ],
+    "quarantine": [
+      {
+        "record_type": "order",
+        "source_file": "crm_order_export.csv",
+        "source_row": 3,
+        "reason_code": "UNLINKED_ACCOUNT",
+        "raw_json": "{\"amt_pay\": \"79.90\", \"amt_rfd\": \"0.00\", \"amt_total\": \"99.90\", \"ch\": \"门店\", \"hy_id\": \"QH99810002\", \"ord_no\": \"O20260803900502\", \"ord_stat\": \"已支付\", \"ord_tm\": \"2026-08-03 10:33:20\", \"qty\": \"2\", \"shop_cd\": \"9801\"}"
+      }
+    ]
+  },
+  "record_counts": {
+    "member": {
+      "read": 1,
+      "accepted": 1,
+      "quarantined": 0,
+      "deduplicated": 0
+    },
+    "shop": {
+      "read": 1,
+      "accepted": 1,
+      "quarantined": 0,
+      "deduplicated": 0
+    },
+    "order": {
+      "read": 3,
+      "accepted": 1,
+      "quarantined": 1,
+      "deduplicated": 1
+    },
+    "card": {
+      "read": 0,
+      "accepted": 0,
+      "quarantined": 0,
+      "deduplicated": 0
+    }
+  },
+  "anomalies": [
+    {
+      "name": "duplicate",
+      "pattern": "重复|duplicate",
+      "source_file": "crm_order_export.csv",
+      "rows": [
+        2
+      ]
+    },
+    {
+      "name": "orphan",
+      "pattern": "孤儿|关联|orphan",
+      "source_file": "crm_order_export.csv",
+      "rows": [
+        3
+      ]
+    }
+  ],
+  "boundary_checks": {
+    "intent": "格式合法、时间和关联一致；只改变具体待测问题。",
+    "invalid_date": "订单日期字段被损坏为 2026-02-30，票据编号保留正确日期 2026-02-28。",
+    "constructed_ids": [
+      "QH99810001",
+      "QH99810002",
+      "O20260803900501",
+      "O20260803900502",
+      "9801"
+    ]
+  },
+  "note_scoring": "标签集合、同来源非标签文字按原顺序完整保留、raw_text 与来源完整保留、触达限制全部识别严格；分段边界与非触达类别人工审阅"
+}

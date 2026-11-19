@@ -1,0 +1,28 @@
+{
+  "state": "complete",
+  "data_version": "wutong-w04-v1",
+  "sha256": {
+    "materials/导出字段手册.md": "236f3df2939edeb093f3bf866c7151f144edaaa7ed3beb7f2e81336a302fd752",
+    "materials/tags.txt": "62fbdad6b58a51340eba7c1b6c4e00b61c79b68fd94df17b7e5f2b56136982b2",
+    "materials/cleaning_rules.yaml": "6eefcb2f4374e4959f8064637e52fb48c9daf056b88c6358764bb7a0a32b7439",
+    "customer/w04/test_solution.py": "fa1dfb34dbc055d2e8a2edfcd7fbef4d187e882115a8450d901c26009eb041b8",
+    "customer/w04/solution.py": "4a6ec13825bc4adc851f7caffe4fe9d640f65d6f6b1ca75cb823fd9e3589fcac",
+    "materials/raw/销售流水.csv": "ef43cc85cf79a6222168177580d6681f09669946677c4732ab4aaf8edf87978d",
+    "materials/raw/门店名册.csv": "d9d5eea05796719013c342ac7208c76d3a93addc43ac0f1e7dcbbb838fc62b9a",
+    "materials/raw/source.json": "4842a3d6dc90b2a8de6a685d477fde2751b008aba4b1ac6f73601ce2aa7b6524",
+    "materials/raw/读者导出.csv": "89e10f72590bd85820668c4b301866226046a72b076cd16320d688cef61ca870",
+    "materials/raw/读者卡.csv": "42d5b8f68b170a5fe9745ece4c208aaab9aa253a332f5734c97d4df16784f26b",
+    "artifacts/w04/adapter_test_report.json": "4133a87a715ea17065e5e18841f633630d935dc37e3929cfafab8bfa9fe5ace1",
+    "artifacts/w04/profile_report.json": "6cf872a25eb123e868937b70b4c5a965b176a430e99d8046e2172da2fa89af73",
+    "artifacts/w04/demo_run.json": "d45e4b5571860b19a14d7520af5844b7e2b2874bf64f94a9d4dc1d26066e726b",
+    "artifacts/w04/cleaning_rules.yaml": "6eefcb2f4374e4959f8064637e52fb48c9daf056b88c6358764bb7a0a32b7439",
+    "artifacts/w04/cleaned/orders.csv": "f5382b6be2c21bd9cfddca5e5fccef0492def96f999b44e72d086f92d39232b4",
+    "artifacts/w04/cleaned/cards.csv": "e03bffa821c267d1c5c7ff16b58d0895898c70dccab2e061f45f086f4a999a9f",
+    "artifacts/w04/cleaned/members.csv": "3c42d330b40f1e2ce1b1c4d18e3f9c825f8a159e8e851fdefab18a34b93b20e5",
+    "artifacts/w04/cleaned/quarantine.csv": "3ede7abcae88bcbede9806baef677f4906e02cdaa0b6ba699cb6864ba2e09ff8",
+    "artifacts/w04/cleaned/member_tags.csv": "7f06f3be497014659a21f2c5dcb7166d4e34c71d27ee3ac41d0ca681211cd341",
+    "artifacts/w04/cleaned/manifest.json": "addfacc08c17679ca80d48a0cf74676ffa1233ad078a0abd329b9188f9920618",
+    "artifacts/w04/cleaned/member_notes.csv": "c210e3524ecc33f6ab4c75cb0989425d24ae10389c1ff93fbd593687e52cffe4",
+    "artifacts/w04/cleaned/stores.csv": "8ebc8d49469eae0bd198799d4d2011f78c75b6969f8f0f525bbe6168ec4a5214"
+  }
+}

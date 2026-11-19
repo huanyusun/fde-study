@@ -1,0 +1,353 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract_version": {
+      "const": "w04-0.3.0"
+    },
+    "data_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "query_library_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selected_chain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "question": {
+            "type": "string",
+            "minLength": 1
+          },
+          "agent_answer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "query_status": {
+            "enum": [
+              "executed",
+              "failed",
+              "not_executed"
+            ]
+          },
+          "actual_queries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "sql": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "result": {
+                  "type": [
+                    "object",
+                    "array",
+                    "null"
+                  ]
+                },
+                "error": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "sql",
+                "result",
+                "error"
+              ]
+            },
+            "minItems": 0
+          },
+          "bad_case": {
+            "type": "boolean"
+          },
+          "bad_case_reason": {
+            "type": "string"
+          },
+          "tuning": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "before": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "agent_answer": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "query_status": {
+                    "enum": [
+                      "executed",
+                      "failed",
+                      "not_executed"
+                    ]
+                  },
+                  "actual_queries": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "sql": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "result": {
+                          "type": [
+                            "object",
+                            "array",
+                            "null"
+                          ]
+                        },
+                        "error": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "sql",
+                        "result",
+                        "error"
+                      ]
+                    },
+                    "minItems": 0
+                  },
+                  "bad_case": {
+                    "type": "boolean"
+                  },
+                  "bad_case_reason": {
+                    "type": "string"
+                  },
+                  "coverage_notes": {
+                    "$ref": "#/$defs/coverage_notes"
+                  }
+                },
+                "required": [
+                  "agent_answer",
+                  "query_status",
+                  "actual_queries",
+                  "bad_case",
+                  "bad_case_reason",
+                  "coverage_notes"
+                ],
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "bad_case": {
+                          "const": true
+                        }
+                      },
+                      "required": [
+                        "bad_case"
+                      ]
+                    },
+                    "then": {
+                      "properties": {
+                        "bad_case_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "if": {
+                      "properties": {
+                        "query_status": {
+                          "const": "executed"
+                        }
+                      },
+                      "required": [
+                        "query_status"
+                      ]
+                    },
+                    "then": {
+                      "properties": {
+                        "actual_queries": {
+                          "minItems": 1
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "change_location": {
+                "enum": [
+                  "协议",
+                  "数据／SQL",
+                  "工具",
+                  "提示词／上下文",
+                  "Harness 策略"
+                ]
+              },
+              "change": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "before",
+              "change_location",
+              "change",
+              "reason"
+            ]
+          },
+          "coverage_notes": {
+            "$ref": "#/$defs/coverage_notes"
+          }
+        },
+        "required": [
+          "question",
+          "agent_answer",
+          "query_status",
+          "actual_queries",
+          "bad_case",
+          "bad_case_reason",
+          "coverage_notes"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "bad_case": {
+                  "const": true
+                }
+              },
+              "required": [
+                "bad_case"
+              ]
+            },
+            "then": {
+              "properties": {
+                "bad_case_reason": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "query_status": {
+                  "const": "executed"
+                }
+              },
+              "required": [
+                "query_status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "actual_queries": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        ]
+      },
+      "minItems": 1,
+      "contains": {
+        "required": [
+          "tuning"
+        ]
+      }
+    }
+  },
+  "required": [
+    "contract_version",
+    "data_version",
+    "query_library_version",
+    "selected_chain",
+    "runs"
+  ],
+  "$defs": {
+    "coverage_notes": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "time_range": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            "end_exclusive": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            }
+          },
+          "required": [
+            "start",
+            "end_exclusive"
+          ]
+        },
+        "quarantined": {
+          "type": "object",
+          "properties": {
+            "member": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "card": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "shop": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "member",
+            "order",
+            "card",
+            "shop"
+          ],
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "required": [
+        "source",
+        "time_range",
+        "quarantined"
+      ]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "state": "start",
+  "data_version": "wutong-w04-v1",
+  "sha256": {
+    "materials/导出字段手册.md": "236f3df2939edeb093f3bf866c7151f144edaaa7ed3beb7f2e81336a302fd752",
+    "materials/tags.txt": "62fbdad6b58a51340eba7c1b6c4e00b61c79b68fd94df17b7e5f2b56136982b2",
+    "materials/cleaning_rules.yaml": "6eefcb2f4374e4959f8064637e52fb48c9daf056b88c6358764bb7a0a32b7439",
+    "customer/w04/test_solution.py": "39d07ec5e3a7f32c79a09a3d40f05818a10c636dafaba0406fe01fc4cc127cf2",
+    "customer/w04/solution.py": "466c0eac486eef1c290bde950fb46821bdfef6274748f6ba11d0e0bf15b67b78",
+    "customer/w04/README.md": "5d69a081935851295c4b267b3a228e6b8c2aa29aeeb8d6ea7a6a08550726240c",
+    "customer/w04/check.json": "ba66cbd8748c3aec9bb2ac175b9ca37e50cd1b3983fd83170bbca46e6f95c62b",
+    "materials/raw/销售流水.csv": "ef43cc85cf79a6222168177580d6681f09669946677c4732ab4aaf8edf87978d",
+    "materials/raw/门店名册.csv": "d9d5eea05796719013c342ac7208c76d3a93addc43ac0f1e7dcbbb838fc62b9a",
+    "materials/raw/source.json": "4842a3d6dc90b2a8de6a685d477fde2751b008aba4b1ac6f73601ce2aa7b6524",
+    "materials/raw/读者导出.csv": "89e10f72590bd85820668c4b301866226046a72b076cd16320d688cef61ca870",
+    "materials/raw/读者卡.csv": "42d5b8f68b170a5fe9745ece4c208aaab9aa253a332f5734c97d4df16784f26b"
+  }
+}

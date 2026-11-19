@@ -1,0 +1,347 @@
+{
+  "contract_version": "w04-0.1.0",
+  "data_version": "qinghe-w04-v1.1",
+  "field_mapping": [
+    {
+      "source_file": "crm_member_export.csv",
+      "source_fields": [
+        "hy_id"
+      ],
+      "target": "members.member_id",
+      "transformation": "保留原会员号"
+    },
+    {
+      "source_file": "crm_member_export.csv",
+      "source_fields": [
+        "join_dt"
+      ],
+      "target": "members.registered_at",
+      "transformation": "斜杠/紧凑格式归一为 ISO 日期"
+    },
+    {
+      "source_file": "crm_member_export.csv",
+      "source_fields": [
+        "reg_shop"
+      ],
+      "target": "members.home_store_id",
+      "transformation": "全角转半角、去首尾空格后保留"
+    },
+    {
+      "source_file": "crm_member_export.csv",
+      "source_fields": [
+        "lv"
+      ],
+      "target": "members.tier",
+      "transformation": "保留文字等级(普通/银卡/金卡)"
+    },
+    {
+      "source_file": "crm_member_export.csv",
+      "source_fields": [
+        "stat"
+      ],
+      "target": "members.account_status",
+      "transformation": "0→未激活,1→活跃,2→冻结,3→注销"
+    },
+    {
+      "source_file": "crm_member_export.csv",
+      "source_fields": [
+        "src_ch"
+      ],
+      "target": "members.registered_channel",
+      "transformation": "保留,含\"系统导入\""
+    },
+    {
+      "source_file": "crm_member_export.csv",
+      "source_fields": [
+        "create_tm"
+      ],
+      "target": "members.created_at",
+      "transformation": "取日期部分"
+    },
+    {
+      "source_file": "crm_member_export.csv",
+      "source_fields": [
+        "tag"
+      ],
+      "target": "member_tags.tag",
+      "transformation": "按分隔符拆分,仅 tags.txt 内合法标签"
+    },
+    {
+      "source_file": "crm_member_export.csv",
+      "source_fields": [
+        "tag"
+      ],
+      "target": "member_notes.raw_text",
+      "transformation": "非标签片段按备注保留,原文完整"
+    },
+    {
+      "source_file": "crm_order_export.csv",
+      "source_fields": [
+        "ord_no"
+      ],
+      "target": "orders.order_id",
+      "transformation": "保留原订单号,重复行去重"
+    },
+    {
+      "source_file": "crm_order_export.csv",
+      "source_fields": [
+        "hy_id"
+      ],
+      "target": "orders.member_id",
+      "transformation": "校验会员关联,失败隔离"
+    },
+    {
+      "source_file": "crm_order_export.csv",
+      "source_fields": [
+        "shop_cd"
+      ],
+      "target": "orders.store_id",
+      "transformation": "全角转半角、去空格后校验门店关联"
+    },
+    {
+      "source_file": "crm_order_export.csv",
+      "source_fields": [
+        "ord_tm"
+      ],
+      "target": "orders.ordered_at",
+      "transformation": "取本地日期"
+    },
+    {
+      "source_file": "crm_order_export.csv",
+      "source_fields": [
+        "ord_stat"
+      ],
+      "target": "orders.status",
+      "transformation": "已支付/已完成/部分退款/全额退款→paid,已取消→cancelled,其他隔离"
+    },
+    {
+      "source_file": "crm_order_export.csv",
+      "source_fields": [
+        "amt_total"
+      ],
+      "target": "orders.gross_cents",
+      "transformation": "Decimal 元乘 100 取整"
+    },
+    {
+      "source_file": "crm_order_export.csv",
+      "source_fields": [
+        "amt_pay"
+      ],
+      "target": "orders.paid_cents",
+      "transformation": "Decimal 元乘 100 取整"
+    },
+    {
+      "source_file": "crm_order_export.csv",
+      "source_fields": [
+        "amt_rfd"
+      ],
+      "target": "orders.refund_cents",
+      "transformation": "Decimal 元乘 100 取整,超额退款隔离"
+    },
+    {
+      "source_file": "crm_order_export.csv",
+      "source_fields": [
+        "qty"
+      ],
+      "target": "orders.quantity",
+      "transformation": "转整数"
+    },
+    {
+      "source_file": "crm_order_export.csv",
+      "source_fields": [
+        "ch"
+      ],
+      "target": "orders.channel",
+      "transformation": "保留门店/小程序/商城"
+    },
+    {
+      "source_file": "crm_shop.csv",
+      "source_fields": [
+        "shop_cd"
+      ],
+      "target": "stores.store_id",
+      "transformation": "全角转半角、去空格后保留"
+    },
+    {
+      "source_file": "crm_shop.csv",
+      "source_fields": [
+        "area"
+      ],
+      "target": "stores.region",
+      "transformation": "保留,含华中/西南"
+    },
+    {
+      "source_file": "crm_shop.csv",
+      "source_fields": [
+        "shop_nm"
+      ],
+      "target": "stores.store_name",
+      "transformation": "保持"
+    },
+    {
+      "source_file": "crm_card_export.csv",
+      "source_fields": [
+        "card_no"
+      ],
+      "target": "cards.card_id",
+      "transformation": "保留原卡号"
+    },
+    {
+      "source_file": "crm_card_export.csv",
+      "source_fields": [
+        "hy_id"
+      ],
+      "target": "cards.member_id",
+      "transformation": "校验会员关联,失败隔离"
+    },
+    {
+      "source_file": "crm_card_export.csv",
+      "source_fields": [
+        "card_kind"
+      ],
+      "target": "cards.card_type",
+      "transformation": "悦享卡(年)→悦享年卡;员工卡等契约外卡种隔离"
+    },
+    {
+      "source_file": "crm_card_export.csv",
+      "source_fields": [
+        "st_dt"
+      ],
+      "target": "cards.valid_from",
+      "transformation": "ISO 日期"
+    },
+    {
+      "source_file": "crm_card_export.csv",
+      "source_fields": [
+        "ed_dt"
+      ],
+      "target": "cards.valid_until",
+      "transformation": "ISO 日期"
+    },
+    {
+      "source_file": "crm_card_export.csv",
+      "source_fields": [
+        "stop_dt"
+      ],
+      "target": "cards.ended_at",
+      "transformation": "空值保留为空,有值转 ISO"
+    },
+    {
+      "source_file": "crm_card_export.csv",
+      "source_fields": [
+        "pay_amt"
+      ],
+      "target": "cards.card_paid_cents",
+      "transformation": "Decimal 元乘 100 取整"
+    }
+  ],
+  "record_counts": [
+    {
+      "record_type": "member",
+      "read": 119754,
+      "accepted": 119754,
+      "quarantined": 0,
+      "deduplicated": 0,
+      "reconciliation": {
+        "balanced": true,
+        "evidence": "源文件 119754 = 接受 119754 + 隔离 0 + 去重 0；库内 119754"
+      }
+    },
+    {
+      "record_type": "order",
+      "read": 168253,
+      "accepted": 167665,
+      "quarantined": 252,
+      "deduplicated": 336,
+      "reconciliation": {
+        "balanced": true,
+        "evidence": "源文件 168253 = 接受 167665 + 隔离 252 + 去重 336；库内 167665"
+      }
+    },
+    {
+      "record_type": "shop",
+      "read": 403,
+      "accepted": 403,
+      "quarantined": 0,
+      "deduplicated": 0,
+      "reconciliation": {
+        "balanced": true,
+        "evidence": "源文件 403 = 接受 403 + 隔离 0 + 去重 0；库内 403"
+      }
+    },
+    {
+      "record_type": "card",
+      "read": 16648,
+      "accepted": 16349,
+      "quarantined": 299,
+      "deduplicated": 0,
+      "reconciliation": {
+        "balanced": true,
+        "evidence": "源文件 16648 = 接受 16349 + 隔离 299 + 去重 0；库内 16349"
+      }
+    }
+  ],
+  "samples": [
+    {
+      "source_file": "crm_order_export.csv",
+      "source_row": 1,
+      "status": "accepted",
+      "destination": "orders.csv 记录 1",
+      "reason": "字段、单位、日期和关联符合契约"
+    },
+    {
+      "source_file": "crm_order_export.csv",
+      "source_row": 2851,
+      "status": "quarantined",
+      "destination": "quarantine.csv 记录 1",
+      "reason": "REFUND_EXCEEDS_PAID"
+    }
+  ],
+  "repeat_import": {
+    "first_run_id": "/Users/sunhuanyu/orca/workspaces/fde-study/w04/.runtime/w04/run-02/project-a",
+    "second_run_id": "/Users/sunhuanyu/orca/workspaces/fde-study/w04/.runtime/w04/run-02/project-b",
+    "before": {
+      "cards": 16349,
+      "member_month_stats": 96553,
+      "member_notes": 28557,
+      "member_tags": 53770,
+      "members": 119754,
+      "order_validity": 128789,
+      "orders": 167665,
+      "quarantine": 551,
+      "raw_cards": 16349,
+      "raw_member_notes": 28557,
+      "raw_member_tags": 53770,
+      "raw_members": 119754,
+      "raw_orders": 167665,
+      "raw_quarantine": 551,
+      "raw_stores": 403,
+      "stores": 403,
+      "time_spine": 730
+    },
+    "after": {
+      "cards": 16349,
+      "member_month_stats": 96553,
+      "member_notes": 28557,
+      "member_tags": 53770,
+      "members": 119754,
+      "order_validity": 128789,
+      "orders": 167665,
+      "quarantine": 551,
+      "raw_cards": 16349,
+      "raw_member_notes": 28557,
+      "raw_member_tags": 53770,
+      "raw_members": 119754,
+      "raw_orders": 167665,
+      "raw_quarantine": 551,
+      "raw_stores": 403,
+      "stores": 403,
+      "time_spine": 730
+    },
+    "row_counts_equal": true
+  },
+  "test_result": {
+    "passed": true,
+    "details": "清洗后订单 167665 条、实付 1708422813 分;四类记录对账等式成立,两次独立全量导入的行数、金额、表哈希逐项一致。"
+  }
+}
