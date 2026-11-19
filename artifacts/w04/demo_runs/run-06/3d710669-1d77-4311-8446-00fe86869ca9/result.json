@@ -1,0 +1,51 @@
+{
+  "status": "ok",
+  "intent": {
+    "metrics": [
+      "monthly_repeat_buyer_count"
+    ],
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "group_by": [],
+    "filters": []
+  },
+  "sql": "SELECT\n  COUNT(DISTINCT case when valid_order_cnt >= 2 then member_id end) AS monthly_repeat_buyer_count\nFROM \"data\".\"main\".\"member_month_stats\" member_month_stats_src_10000\nWHERE DATE_TRUNC('month', month_start) BETWEEN '2026-08-01' AND '2026-08-31'",
+  "columns": [
+    "monthly_repeat_buyer_count"
+  ],
+  "rows": [
+    [
+      646
+    ]
+  ],
+  "seconds": 0.084,
+  "units": {
+    "monthly_repeat_buyer_count": "count"
+  },
+  "data_version": "qinghe-w04-v1.1",
+  "data_sha256": "fce192beb6d7af4f54941b8b738e39e62bab8f4b6140425ba36afe06c13537ea",
+  "catalog_sha256": "abd6855df96dac43bce076a47f62487a8a943fb6e220986e0b87a9f3e639a2fb",
+  "coverage_notes": {
+    "source": "青禾新 CRM 系统导出(会员/订单/会员卡/门店四表);小林工作账回访与勿扰名单仅用于对照核验,不导入查询库;线上商城独立订单流与退卡流水未包含在本次导出。",
+    "time_range": {
+      "start": "2024-09-01",
+      "end_exclusive": "2026-09-01"
+    },
+    "quarantined": {
+      "member": 0,
+      "order": 252,
+      "card": 299,
+      "shop": 0
+    }
+  },
+  "answer": "【口径声明】您问题中的\"活跃会员\"属于会员状态/等级类业务限定词，当前指标库尚未建模该筛选条件，本次查询无法应用；以下数字为全部会员口径（含未激活、冻结、注销账户），如需严格的\"活跃会员\"口径，建议以业务口径书面确认为准。\n\n统计结果：2026年8月复购购买人数为 646 个 CRM 会员账户。\n\n口径说明：\n- 统计范围：青禾 CRM 系统导出数据（会员/订单/会员卡/门店），全门店、全渠道口径；线上商城独立订单流与退卡流水未包含在本次数据中，实际复购规模可能高于此数。\n- 复购定义：同一自然月（2026-08-01 至 2026-08-31）内有两笔及以上有效订单的账户数；该指标仅支持完整自然月、全门店口径统计。\n- 计数单位：CRM 会员账户，不代表去重后的自然人。\n- 该月份数据在本次数据版本覆盖范围内（2024-09-01 至 2026-09-01）；本次查询未应用其他筛选或分组条件。",
+  "question": "2026年8月，活跃会员的复购购买人数是多少？",
+  "trace_id": "3d710669-1d77-4311-8446-00fe86869ca9",
+  "elapsed_seconds": 50.763,
+  "model_usage": {
+    "prompt_tokens": 20992,
+    "completion_tokens": 2791,
+    "total_tokens": 23783
+  },
+  "model_calls_with_usage": 2
+}

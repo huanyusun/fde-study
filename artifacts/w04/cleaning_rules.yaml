@@ -1,0 +1,128 @@
+# 本文件由 customer/w04/gen_cleaning_rules.py 生成,勿手改;重跑命令见该脚本 docstring。
+# 数据事实对账自 artifacts/w04/profile_report.json;业务口径出处 artifacts/w04/interviews/。
+contract_version: w04-0.1.0
+data_version: qinghe-w04-v1.1
+tag_cleaning:
+  delimiters:
+  - ','
+  - ，
+  - ;
+  - /
+  legal_tags_source: tags.txt
+  hyphenated_tag_handling: 连字符是标签与备注内部的组成字符,不是分隔符;先按 tags.txt 整词匹配合法标签(如"母婴-0到3岁"),禁止按连字符拆分 (xiao-lin-1
+    MSG-06100)
+  unknown_tag_handling: 仅 tags.txt 中经客户确认的 16 个标准标签进入 member_tags;清单外的片段一律作为完整备注写入 member_notes 并保留原文,未经确认的暂定词(如"待核新品")按备注保留并在诊断报告列为待核
+    (xiao-lin-1 MSG-06100)
+  note_extraction: 拆出的非标签片段一条备注一行,raw_text 保留 tag 字段完整原值、note_text 为片段原文、source_field=tag;以"勿发短信"或"勿打电话"开头的片段
+    category=触达限制,其余 category=其他;"勿扰""暂勿来电""号码是错的"等写法无客户依据,不归触达限制、按备注保留列待核 (xiao-lin-1 MSG-06102)
+invalid_values:
+- source_fields:
+  - hy_id
+  values:
+  - ''
+  - 'NULL'
+  - '-'
+  - 无
+  action: 隔离该记录
+  reason: 会员主键为空,无法入库与关联
+- source_fields:
+  - ord_no
+  - card_no
+  values:
+  - ''
+  - 'NULL'
+  - '-'
+  - 无
+  action: 隔离该记录
+  reason: 订单号/卡号主键为空
+- source_fields:
+  - amt_total
+  - amt_pay
+  - amt_rfd
+  - pay_amt
+  - qty
+  values:
+  - ''
+  - 'NULL'
+  - '-'
+  - 无
+  action: 隔离该记录
+  reason: 金额或件数缺失,无法完成元→分换算与汇总
+- source_fields:
+  - stat
+  values:
+  - '0'
+  action: 映射为"未激活"
+  reason: 老周确认 0=未激活,到店或小程序激活后变 1 (lao-zhou-1 MSG-06087)
+- source_fields:
+  - src_ch
+  values:
+  - 系统导入
+  action: 保留并映射为"系统导入"
+  reason: 老周确认为批量建档账户,契约 registered_channel 已含该值 (lao-zhou-1 MSG-06089)
+abnormal_records:
+- rule_id: duplicate_member_row
+  condition: crm_member_export.csv 中整行字段值完全相同的重复记录
+  action: deduplicate
+  reason_code: DUPLICATE_PRIMARY_KEY
+  evidence: 同一 hy_id 重复出现;重复行计入 deduplicated 桶
+- rule_id: duplicate_order_row
+  condition: crm_order_export.csv 中整行完全相同或 ord_no 同值重复的记录(同单重复导出)
+  action: deduplicate
+  reason_code: DUPLICATE_PRIMARY_KEY
+  evidence: profile_report.json 异常"完全重复行/主键重复",首条保留、其余去重
+- rule_id: duplicate_shop_row
+  condition: crm_shop.csv 中整行完全相同或 shop_cd 同值冲突的记录
+  action: deduplicate
+  reason_code: DUPLICATE_PRIMARY_KEY
+  evidence: 同重复行口径
+- rule_id: duplicate_card_row
+  condition: crm_card_export.csv 中整行完全相同或 card_no 同值冲突的记录
+  action: deduplicate
+  reason_code: DUPLICATE_PRIMARY_KEY
+  evidence: 同重复行口径
+- rule_id: orphan_order
+  condition: 订单 hy_id 归一后仍无法在会员表找到
+  action: quarantine
+  reason_code: UNLINKED_ACCOUNT
+  evidence: profile_report.json 异常"孤儿记录",隔离保留完整原记录
+- rule_id: orphan_card
+  condition: 会员卡 hy_id 归一后仍无法在会员表找到
+  action: quarantine
+  reason_code: UNLINKED_ACCOUNT
+  evidence: 同孤儿订单口径
+- rule_id: refund_exceeds_paid
+  condition: amt_rfd(元转分后)大于 amt_pay
+  action: quarantine
+  reason_code: REFUND_EXCEEDS_PAID
+  evidence: profile_report.json 异常"超额退款",金额口径见访谈 lao-zhou-1 MSG-06085
+- rule_id: invalid_calendar_date
+  condition: 日期字段(join_dt/birth/st_dt/ed_dt/stop_dt/ord_tm)无法解析为合法日历日期,如 2026-02-30
+  action: quarantine
+  reason_code: INVALID_DATE
+  evidence: 预检边界样例注入的损坏日期;与格式归一(join_dt_format)区分
+- rule_id: unsupported_card_type
+  condition: card_kind 等于"员工卡"
+  action: quarantine
+  reason_code: UNSUPPORTED_CARD_TYPE
+  evidence: 陈姐确认员工卡为内购福利、不算会员权益不计入付费会员资格 (chen-jie-1 MSG-06109),299 张全部 pay_amt=0.00
+- rule_id: unlinked_store
+  condition: reg_shop/shop_cd 全角转半角、去首尾空格、字母统一大写归一后,仍无法在门店表找到(字母前缀编码本身合法)
+  action: quarantine
+  reason_code: UNLINKED_STORE
+  evidence: 自定义原因码;编码规则见 lao-zhou-1 MSG-06093,2025 年后新店带字母前缀
+- rule_id: join_dt_format
+  condition: join_dt 为 YYYY/MM/DD 或 YYYYMMDD 写法
+  action: normalize
+  reason_code: DATE_FORMAT_NON_ISO
+  evidence: 斜杠 1,823 条+紧凑 1,790 条,归一为 ISO;老周确认字段含义、格式按数据归一 (lao-zhou-1 MSG-06091)
+- rule_id: shop_code_fullwidth
+  condition: reg_shop/shop_cd 含全角数字/字母、首尾空格或小写字母
+  action: normalize
+  reason_code: SHOP_CODE_FORMAT
+  evidence: 6,177 条非四位;全角转半角、去空格后重试门店关联,仍失配走 unlinked_store
+raw_preservation:
+  original_files: 原始 CSV 只读保留于 materials/data/qinghe-w04-v1.1,不修改、不重写;manifest.json 记录各文件行数与 SHA-256
+  notes: member_notes.csv 每条备注保留 source_file、source_row、source_field=tag、raw_text(tag 字段完整原值)、note_text(片段原文)、category;备注不拆碎片、不删原文,同一片段的来源两列齐全
+  quarantine: quarantine.csv 每条保留 record_type、source_file、source_row、reason_code、raw_json(json.dumps(row["raw"],
+    ensure_ascii=False) 写完整原记录);隔离不丢弃,计数入 record_counts.quarantined
