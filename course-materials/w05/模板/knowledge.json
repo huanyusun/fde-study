@@ -1,0 +1,8 @@
+{
+  "name": "retrieve_knowledge",
+  "args": {
+    "query": "联系限制与建议",
+    "reference_date": "2026-09-01",
+    "limit": 5
+  }
+}

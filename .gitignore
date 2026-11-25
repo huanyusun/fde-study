@@ -46,3 +46,10 @@ artifacts/w03/test-small-v7/traces/
 artifacts/w03/test-large-v5/traces/
 course-materials/w03/W02_checkpoint/
 artifacts/w03/library/validation-project/
+
+# W05:本周数据与暂存目录不进 git
+data/
+downloads/w05/
+course-materials/w05/W04_checkpoint/
+course-materials/w05/**/*.zip
+artifacts/w04/cleaned/

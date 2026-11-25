@@ -1,0 +1,6 @@
+{
+  "name": "member_relations",
+  "args": {
+    "member_id": "YOUR_COMPUTED_MEMBER_ID"
+  }
+}

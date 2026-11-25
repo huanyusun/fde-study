@@ -1,0 +1,4 @@
+evidence_id,left,right,relation,basis
+EX-E1,CRM:A1,CRM:A2,same,教学样例指定账户授权核查结果
+EX-E2,CRM:A1,POS:P1,same,教学样例指定账户成功迁移回执
+EX-E3,POS:P2,,unresolved,教学样例未取得登记身份依据

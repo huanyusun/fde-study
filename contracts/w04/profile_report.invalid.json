@@ -1,0 +1,39 @@
+{
+  "contract_version": "w04-0.1.0",
+  "data_version": "illustrative-v1",
+  "fields": [
+    {
+      "source_file": "crm_member_export.csv",
+      "field": "stat",
+      "inferred_type": "string",
+      "total_count": 2,
+      "missing_count": -1,
+      "distribution": [
+        {
+          "value": "1",
+          "count": 2
+        }
+      ]
+    }
+  ],
+  "anomalies": [
+    {
+      "pattern": "标签原值含备注",
+      "evidence": {
+        "source_file": "crm_member_export.csv",
+        "sample_rows": [
+          1
+        ]
+      }
+    }
+  ],
+  "dictionary_differences": [
+    {
+      "source_file": "crm_member_export.csv",
+      "field": "stat",
+      "dictionary_claim": "示例旧字典未说明全部状态",
+      "actual": "示例中发现补充状态说明",
+      "impact": "需要核实映射"
+    }
+  ]
+}

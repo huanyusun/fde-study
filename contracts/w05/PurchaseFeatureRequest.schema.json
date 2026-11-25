@@ -1,0 +1,29 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "member_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Member Id",
+      "type": "string"
+    },
+    "reference_date": {
+      "format": "date",
+      "title": "Reference Date",
+      "type": "string"
+    },
+    "dormant_days": {
+      "maximum": 3650,
+      "minimum": 1,
+      "title": "Dormant Days",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "member_id",
+    "reference_date",
+    "dormant_days"
+  ],
+  "title": "PurchaseFeatureRequest",
+  "type": "object"
+}

@@ -1,0 +1,41 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "metric": {
+      "description": "当前指标目录中可按会员计算的指标 ID",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "title": "Metric",
+      "type": "string"
+    },
+    "op": {
+      "enum": [
+        "gte",
+        "gt",
+        "lte",
+        "lt",
+        "eq"
+      ],
+      "title": "Op",
+      "type": "string"
+    },
+    "value": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "description": "按该指标的原单位填写，金额为分",
+      "title": "Value"
+    }
+  },
+  "required": [
+    "metric",
+    "op",
+    "value"
+  ],
+  "title": "AggregateFilter",
+  "type": "object"
+}

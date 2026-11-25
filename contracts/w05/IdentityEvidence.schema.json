@@ -1,0 +1,53 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "left": {
+      "title": "Left",
+      "type": "string"
+    },
+    "right": {
+      "title": "Right",
+      "type": "string"
+    },
+    "relation": {
+      "enum": [
+        "same",
+        "different",
+        "unresolved"
+      ],
+      "title": "Relation",
+      "type": "string"
+    },
+    "evidence_id": {
+      "minLength": 1,
+      "title": "Evidence Id",
+      "type": "string"
+    },
+    "source_file": {
+      "minLength": 1,
+      "title": "Source File",
+      "type": "string"
+    },
+    "source_row": {
+      "minimum": 1,
+      "title": "Source Row",
+      "type": "integer"
+    },
+    "rule_version": {
+      "minLength": 1,
+      "title": "Rule Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "left",
+    "right",
+    "relation",
+    "evidence_id",
+    "source_file",
+    "source_row",
+    "rule_version"
+  ],
+  "title": "IdentityEvidence",
+  "type": "object"
+}

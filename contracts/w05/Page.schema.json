@@ -1,0 +1,20 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "offset": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Offset",
+      "type": "integer"
+    },
+    "limit": {
+      "default": 100,
+      "maximum": 1000,
+      "minimum": 1,
+      "title": "Limit",
+      "type": "integer"
+    }
+  },
+  "title": "Page",
+  "type": "object"
+}

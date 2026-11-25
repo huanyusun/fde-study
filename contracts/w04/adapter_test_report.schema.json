@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract_version": {
+      "const": "w04-0.1.0"
+    },
+    "data_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "field_mapping": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source_file": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_fields": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "transformation": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "source_file",
+          "source_fields",
+          "target",
+          "transformation"
+        ]
+      },
+      "minItems": 1
+    },
+    "record_counts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "record_type": {
+            "enum": [
+              "member",
+              "order",
+              "card",
+              "shop"
+            ]
+          },
+          "read": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "accepted": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "quarantined": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "deduplicated": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "reconciliation": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "balanced": {
+                "type": "boolean"
+              },
+              "evidence": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "balanced",
+              "evidence"
+            ]
+          }
+        },
+        "required": [
+          "record_type",
+          "read",
+          "accepted",
+          "quarantined",
+          "deduplicated",
+          "reconciliation"
+        ]
+      },
+      "minItems": 1
+    },
+    "samples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source_file": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_row": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "status": {
+            "enum": [
+              "accepted",
+              "quarantined",
+              "rejected"
+            ]
+          },
+          "destination": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_file",
+          "source_row",
+          "status",
+          "destination",
+          "reason"
+        ]
+      },
+      "minItems": 2,
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "status": {
+                "const": "accepted"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "quarantined",
+                  "rejected"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        }
+      ]
+    },
+    "repeat_import": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "first_run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "second_run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "before": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "after": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "row_counts_equal": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "first_run_id",
+        "second_run_id",
+        "before",
+        "after",
+        "row_counts_equal"
+      ]
+    },
+    "test_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "passed": {
+          "type": "boolean"
+        },
+        "details": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "passed",
+        "details"
+      ]
+    }
+  },
+  "required": [
+    "contract_version",
+    "data_version",
+    "field_mapping",
+    "record_counts",
+    "samples",
+    "repeat_import",
+    "test_result"
+  ]
+}

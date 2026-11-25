@@ -1,0 +1,6 @@
+{
+  "raw": "YOUR_RAW_DIRECTORY",
+  "w04_cleaned": "YOUR_W04_C3_CLEANED_DIRECTORY",
+  "library": "YOUR_W03_W04_LIBRARY_DIRECTORY",
+  "code": "YOUR_CUSTOMER_SOLUTION_FILE"
+}

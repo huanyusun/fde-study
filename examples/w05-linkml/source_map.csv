@@ -1,0 +1,7 @@
+object_id,source_file,source_row,fields_or_basis
+CRM:A1,raw/crm_member_export.csv,1,hy_id;reg_shop
+CRM:A2,raw/crm_member_export.csv,2,hy_id;reg_shop
+POS:P1,raw/pos_member_export.csv,1,pos_member_id;missing_registration
+POS:P2,raw/pos_member_export.csv,2,pos_member_id;missing_registration
+M1,raw/identity_evidence.csv,1,EX-E1 and EX-E2 supplied expectation
+X1,raw/identity_evidence.csv,3,EX-E3 unresolved financial bucket
