@@ -1,7 +1,7 @@
 """Call the standard Agent, then the learner's deterministic subprocess judge."""
 import subprocess,json,uuid
 from pathlib import Path
-from .common import read,dump,new_output
+from .common import read,dump
 
 def judge(command,expected,actual,cwd=None):
  if not isinstance(command,list) or not command or not all(isinstance(x,str) for x in command):raise ValueError('JUDGE_COMMAND_REQUIRED')
@@ -17,11 +17,10 @@ def run_cases(project,cases_path,command,out,cwd=None):
  cases=read(cases_path)
  if not isinstance(cases,list) or not cases:raise ValueError('TEST_CASES_REQUIRED')
  if len({c['id'] for c in cases})!=len(cases):raise ValueError('CASE_IDS_MUST_BE_UNIQUE')
- out=new_output(out);agent=MetricsAgent(project,out/'traces');results=[]
- # Missing judge fails before spending model tokens or taking the output name.
- judge(command,cases[0]['expected'],cases[0]['expected'],cwd)
- out.mkdir(parents=True,exist_ok=False)
+ out=Path(out);out.mkdir(parents=True,exist_ok=False);agent=MetricsAgent(project,out/'traces');results=[]
  for case in cases:
+  # Missing judge fails before spending model tokens.
+  if not results:judge(command,case['expected'],case['expected'],cwd)
   actual=agent.ask(case['question']);comparison=judge(command,case['expected'],actual,cwd)
   results.append({'id':case['id'],'question':case['question'],'expected':case['expected'],'actual':actual,'comparison':comparison})
   dump(out/'metric_test_report.json',{'contract_version':'w03-0.1.0','complete':False,'cases':results})

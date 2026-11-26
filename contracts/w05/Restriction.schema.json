@@ -1,0 +1,49 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "source_id": {
+      "title": "Source Id",
+      "type": "string"
+    },
+    "scope": {
+      "enum": [
+        "all",
+        "telephone",
+        "sms",
+        "unknown"
+      ],
+      "title": "Scope",
+      "type": "string"
+    },
+    "source_file": {
+      "minLength": 1,
+      "title": "Source File",
+      "type": "string"
+    },
+    "source_row": {
+      "minimum": 1,
+      "title": "Source Row",
+      "type": "integer"
+    },
+    "quote": {
+      "minLength": 1,
+      "title": "Quote",
+      "type": "string"
+    },
+    "rule_version": {
+      "minLength": 1,
+      "title": "Rule Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_id",
+    "scope",
+    "source_file",
+    "source_row",
+    "quote",
+    "rule_version"
+  ],
+  "title": "Restriction",
+  "type": "object"
+}

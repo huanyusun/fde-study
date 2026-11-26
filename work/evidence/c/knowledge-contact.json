@@ -1,0 +1,109 @@
+{
+  "status": "ok",
+  "hits": [
+    {
+      "node_id": "contact-6",
+      "quote": "| 已取得的有效依据 | 本轮含义 |\n| --- | --- |\n| 明确“请勿再联系” | 限制本轮所有联系渠道 |\n| 明确“勿打电话” | 限制电话；不能由此推定其他渠道已获许可 |\n| 明确“勿发短信” | 限制短信；不能由此推定其他渠道已获许可 |\n| 只有勿扰原因，没有明确渠道或补充确认 | 限制范围待核，不能直接推荐通过某个渠道联系 |",
+      "source": {
+        "id": "contact",
+        "version": "v0.1",
+        "level": "usage",
+        "valid_from": "2026-08-31",
+        "valid_until": "2026-09-02",
+        "conditions": {},
+        "source_file": "05_联系限制与建议说明.md",
+        "source_sha256": "12a4e903228fe26320508425f9a613b4054f208d947296bd656be1c982cbd51b",
+        "chunk": 6
+      },
+      "applicability": "applicable",
+      "missing_conditions": [],
+      "match_count": 10
+    },
+    {
+      "node_id": "contact-1",
+      "quote": "# 青禾优选：联系限制与建议说明",
+      "source": {
+        "id": "contact",
+        "version": "v0.1",
+        "level": "usage",
+        "valid_from": "2026-08-31",
+        "valid_until": "2026-09-02",
+        "conditions": {},
+        "source_file": "05_联系限制与建议说明.md",
+        "source_sha256": "12a4e903228fe26320508425f9a613b4054f208d947296bd656be1c982cbd51b",
+        "chunk": 1
+      },
+      "applicability": "applicable",
+      "missing_conditions": [],
+      "match_count": 7
+    },
+    {
+      "node_id": "contact-10",
+      "quote": "| 会员当前上下文 | 可以给出的分析或建议 |\n| --- | --- |\n| 身份已核实、满足本轮条件，必要依据齐全且指定渠道未发现适用限制 | 说明消费和最近购买依据，列为供业务人员复核的联系候选；“未发现限制”不表述为已取得授权 |\n| 旧 POS 有近 60 天有效购买，合并后不满足沉睡条件 | 说明已覆盖的近期购买，不能继续按沉睡会员推荐召回 |\n| 明确限制联系，或确认属于本轮排除对象 | 说明不能推荐的具体依据，不提供绕过限制的联系方法 |\n| 身份、覆盖、核验或限制范围未决 | 说明还缺什么、影响哪个判断及应向谁核实，暂不确认适合联系 |",
+      "source": {
+        "id": "contact",
+        "version": "v0.1",
+        "level": "usage",
+        "valid_from": "2026-08-31",
+        "valid_until": "2026-09-02",
+        "conditions": {},
+        "source_file": "05_联系限制与建议说明.md",
+        "source_sha256": "12a4e903228fe26320508425f9a613b4054f208d947296bd656be1c982cbd51b",
+        "chunk": 10
+      },
+      "applicability": "applicable",
+      "missing_conditions": [],
+      "match_count": 4
+    },
+    {
+      "node_id": "contact-8",
+      "quote": "用户未指定渠道时，分别返回已知限制和待核范围，不默认电话。存在明确禁止时保留禁止结论；另有不明范围时一并说明，不能把禁止降为待核，也不能把待核解释成许可。",
+      "source": {
+        "id": "contact",
+        "version": "v0.1",
+        "level": "usage",
+        "valid_from": "2026-08-31",
+        "valid_until": "2026-09-02",
+        "conditions": {},
+        "source_file": "05_联系限制与建议说明.md",
+        "source_sha256": "12a4e903228fe26320508425f9a613b4054f208d947296bd656be1c982cbd51b",
+        "chunk": 8
+      },
+      "applicability": "applicable",
+      "missing_conditions": [],
+      "match_count": 4
+    },
+    {
+      "node_id": "contact-7",
+      "quote": "在身份已核实的前提下，各来源限制合并生效。电话限制与短信限制可以同时成立；一处“可以联系”、空白备注或较新日期，不自动取消另一处仍有效的限制。本轮没有自动解除限制的规则。",
+      "source": {
+        "id": "contact",
+        "version": "v0.1",
+        "level": "usage",
+        "valid_from": "2026-08-31",
+        "valid_until": "2026-09-02",
+        "conditions": {},
+        "source_file": "05_联系限制与建议说明.md",
+        "source_sha256": "12a4e903228fe26320508425f9a613b4054f208d947296bd656be1c982cbd51b",
+        "chunk": 7
+      },
+      "applicability": "applicable",
+      "missing_conditions": [],
+      "match_count": 3
+    }
+  ],
+  "knowledge_version": "qinghe-w05-rules-20261008.1",
+  "index_sha256": "07063999351f8ab57afc16df0cd4796d49b4c68d99f8b62963535e877dc4f8ac",
+  "hard_constraints_from_program": true,
+  "retrieval": "local keyword retrieval",
+  "versions": {
+    "binding_version": "w05-member-binding-1",
+    "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+    "data_version": "qinghe-w05-v2.0-candidate.2",
+    "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+    "grain_version": "w05-verified-person-and-unresolved-source-1",
+    "mapping_version": "qinghe-w05-rules-20261008.1",
+    "module_dependencies_sha256": "abd237dccedc5bdde8c1697a75d152f2a877d4e40093af2b038498ffc529e9b9"
+  },
+  "evidence_id": "60ea31fa131c62c3ae5e9a450f8fcb33dbe033606b200da48842ea2e44730d57"
+}

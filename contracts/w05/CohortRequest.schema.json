@@ -1,0 +1,328 @@
+{
+  "$defs": {
+    "AggregateFilter": {
+      "additionalProperties": false,
+      "properties": {
+        "metric": {
+          "description": "当前指标目录中可按会员计算的指标 ID",
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "title": "Metric",
+          "type": "string"
+        },
+        "op": {
+          "enum": [
+            "gte",
+            "gt",
+            "lte",
+            "lt",
+            "eq"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "description": "按该指标的原单位填写，金额为分",
+          "title": "Value"
+        }
+      },
+      "required": [
+        "metric",
+        "op",
+        "value"
+      ],
+      "title": "AggregateFilter",
+      "type": "object"
+    },
+    "Comparison": {
+      "additionalProperties": false,
+      "properties": {
+        "metric": {
+          "description": "用于两期对比的指标 ID；只接受可加总、能按会员计算、非月度类的指标，例如 net_sales_cents",
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "title": "Metric",
+          "type": "string"
+        },
+        "baseline_start": {
+          "description": "基期起始日（含）",
+          "format": "date",
+          "title": "Baseline Start",
+          "type": "string"
+        },
+        "baseline_end": {
+          "description": "基期结束日（不含）；必须不晚于本期 start",
+          "format": "date",
+          "title": "Baseline End",
+          "type": "string"
+        },
+        "direction": {
+          "description": "decrease 表示本期比基期下降，increase 表示上升",
+          "enum": [
+            "decrease",
+            "increase"
+          ],
+          "title": "Direction",
+          "type": "string"
+        },
+        "min_ratio": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "description": "变化幅度下限，按基期值的比例填写：下降不少于 50% 填 0.5；下降时不超过 1",
+          "gt": 0,
+          "le": 100,
+          "title": "Min Ratio"
+        },
+        "min_baseline_value": {
+          "anyOf": [
+            {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "description": "可选。基期值下限，按该指标的原单位填写，金额为分；用户没有提基期门槛时不填",
+              "gt": 0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Min Baseline Value"
+        }
+      },
+      "required": [
+        "metric",
+        "baseline_start",
+        "baseline_end",
+        "direction",
+        "min_ratio"
+      ],
+      "title": "Comparison",
+      "type": "object"
+    },
+    "Page": {
+      "additionalProperties": false,
+      "properties": {
+        "offset": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "limit": {
+          "default": 100,
+          "maximum": 1000,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "store_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Store Id"
+    },
+    "store_ids": {
+      "anyOf": [
+        {
+          "items": {
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 50,
+          "minItems": 1,
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "可选。多家注册门店，任一门店有注册关系即在范围内，名单去重；与 store_id 不能同时填。只查一家门店时用 store_id",
+      "title": "Store Ids"
+    },
+    "reference_date": {
+      "format": "date",
+      "title": "Reference Date",
+      "type": "string"
+    },
+    "start": {
+      "format": "date",
+      "title": "Start",
+      "type": "string"
+    },
+    "end": {
+      "format": "date",
+      "title": "End",
+      "type": "string"
+    },
+    "dormant_days": {
+      "anyOf": [
+        {
+          "maximum": 3650,
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "可选。最近有效购买距参考日至少满 N 天；用户没有提这类条件时不填",
+      "title": "Dormant Days"
+    },
+    "active_within_days": {
+      "anyOf": [
+        {
+          "maximum": 3650,
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "可选。最近有效购买距参考日不足 N 天；与 dormant_days 同填时表示满 dormant_days 天且不足 active_within_days 天",
+      "title": "Active Within Days"
+    },
+    "metric_filters": {
+      "description": "指标条件，同时满足；同一指标可以分别给下限和上限。没有 comparison 时必填 1～3 条；有 comparison 时可以不填",
+      "items": {
+        "$ref": "#/$defs/AggregateFilter"
+      },
+      "maxItems": 3,
+      "title": "Metric Filters",
+      "type": "array"
+    },
+    "comparison": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Comparison"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "可选。两期对比：本期是 start／end，基期在本期之前；只在基期有该指标记录的会员中筛选，本期没有记录按 0 计，基期值不大于 0 的不计算比例"
+    },
+    "tiers": {
+      "anyOf": [
+        {
+          "items": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "可选。会员等级，取值用当前数据里的等级原值，多个值表示任一等级；等级未知的会员不会被丢掉，其余条件满足时列入待核",
+      "title": "Tiers"
+    },
+    "registered_from": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "可选。注册日期不早于这一天（含）；注册日期取来源 CRM 已知入会日期的最早值",
+      "title": "Registered From"
+    },
+    "registered_before": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "可选。注册日期早于这一天（不含）；注册日期未知的会员不会被丢掉，其余条件满足时列入待核",
+      "title": "Registered Before"
+    },
+    "channel": {
+      "anyOf": [
+        {
+          "enum": [
+            "telephone",
+            "sms",
+            "all"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Channel"
+    },
+    "unsupported_conditions": {
+      "description": "用户提出、但以上字段无法表达的条件，按用户原话逐条填写，例如会员卡、条件之间的或关系、基期对比以外的多个窗口、月度类指标、超过 3 条指标条件、不带任何指标条件只按属性列会员。没有就不填。填写后本工具不返回名单",
+      "items": {
+        "maxLength": 200,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 10,
+      "title": "Unsupported Conditions",
+      "type": "array"
+    },
+    "page": {
+      "$ref": "#/$defs/Page"
+    }
+  },
+  "required": [
+    "reference_date",
+    "start",
+    "end"
+  ],
+  "title": "CohortRequest",
+  "type": "object"
+}

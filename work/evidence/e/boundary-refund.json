@@ -1,0 +1,150 @@
+{
+  "status": "ok",
+  "member_id": "U8cb61fd07235ea5d8a21f97c",
+  "attributes": {
+    "member_id": "U8cb61fd07235ea5d8a21f97c",
+    "display_name": "万立正",
+    "names": [
+      "万立正"
+    ],
+    "masked_mobiles": [
+      "139****7106"
+    ],
+    "tier": "普通",
+    "conflicts": [],
+    "source_ids": [
+      "CRM:QH10104650",
+      "CRM:QH10104651"
+    ],
+    "registered_stores": [
+      "5752"
+    ],
+    "sources": [
+      {
+        "source_id": "CRM:QH10104650",
+        "source_file": "crm_member_export.csv",
+        "source_row": 104573,
+        "field": "nm",
+        "raw_value": "万立正"
+      },
+      {
+        "source_id": "CRM:QH10104650",
+        "source_file": "crm_member_export.csv",
+        "source_row": 104573,
+        "field": "mobile",
+        "raw_value": "139****7106"
+      },
+      {
+        "source_id": "CRM:QH10104650",
+        "source_file": "crm_member_export.csv",
+        "source_row": 104573,
+        "field": "lv",
+        "raw_value": "普通"
+      },
+      {
+        "source_id": "CRM:QH10104650",
+        "source_file": "crm_member_export.csv",
+        "source_row": 104573,
+        "field": "reg_shop",
+        "raw_value": "5752"
+      },
+      {
+        "source_id": "CRM:QH10104651",
+        "source_file": "crm_member_export.csv",
+        "source_row": 104574,
+        "field": "nm",
+        "raw_value": "万立正"
+      },
+      {
+        "source_id": "CRM:QH10104651",
+        "source_file": "crm_member_export.csv",
+        "source_row": 104574,
+        "field": "mobile",
+        "raw_value": "139****7106"
+      },
+      {
+        "source_id": "CRM:QH10104651",
+        "source_file": "crm_member_export.csv",
+        "source_row": 104574,
+        "field": "lv",
+        "raw_value": "普通"
+      },
+      {
+        "source_id": "CRM:QH10104651",
+        "source_file": "crm_member_export.csv",
+        "source_row": 104574,
+        "field": "reg_shop",
+        "raw_value": "5752"
+      }
+    ],
+    "identity_status": "verified"
+  },
+  "policy": {
+    "member_id": "U8cb61fd07235ea5d8a21f97c",
+    "status": "ok",
+    "channels": {
+      "telephone": "no_known_restriction",
+      "sms": "no_known_restriction"
+    },
+    "restriction_evidence": [],
+    "member_excluded": false,
+    "account_exclusions": [],
+    "all_source_accounts_excluded": false,
+    "confirmed_exclusions": [],
+    "pending_verifications": [],
+    "verification_coverage_complete": true,
+    "actual_contact_authorized": false
+  },
+  "last_effective_purchase": "2026-06-29",
+  "dormant_days": 64,
+  "dormancy_condition": {
+    "threshold_days": 60,
+    "operator": "gte",
+    "matches": true,
+    "scope": "recent_effective_purchase_only; full_cohort_requires_member_cohort"
+  },
+  "recommendation_allowed": true,
+  "recommendation_decision": {
+    "scope": "detail_recommendation_safety_only; full_cohort_requires_member_cohort",
+    "operator": "all",
+    "conditions": {
+      "identity_verified": true,
+      "member_not_excluded": true,
+      "some_source_account_not_excluded": true,
+      "no_pending_operational_verification": true,
+      "recent_purchase_coverage_complete": true,
+      "recent_effective_purchase_present": true,
+      "selected_channel_has_no_known_restriction": true
+    },
+    "result": true,
+    "context_only_fields": [
+      "tier"
+    ],
+    "actual_contact_authorized": false
+  },
+  "presentation_scope": "current_member_facts_v1",
+  "recommendation_context_purpose": "knowledge_applicability_only; tier does not decide recommendation_allowed",
+  "follow_up_owners": {
+    "source_identity_and_registration": "老周",
+    "contact_channel_scope": "小林"
+  },
+  "follow_up_requirements": [],
+  "recommendation_context": {
+    "channel": "sms",
+    "identity": "verified",
+    "tier": "普通"
+  },
+  "coverage_complete": true,
+  "reference_date": "2026-09-01",
+  "actual_contact_authorized": false,
+  "versions": {
+    "binding_version": "w05-member-binding-1",
+    "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+    "data_version": "qinghe-w05-v2.0-candidate.2",
+    "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+    "grain_version": "w05-verified-person-and-unresolved-source-1",
+    "mapping_version": "qinghe-w05-rules-20261008.1",
+    "module_dependencies_sha256": "abd237dccedc5bdde8c1697a75d152f2a877d4e40093af2b038498ffc529e9b9"
+  },
+  "evidence_id": "b15bac70adb8f40e15f7e3b6c9e2ead89cb6c8b02550f29710a67acb67e68917"
+}

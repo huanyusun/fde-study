@@ -1,0 +1,22 @@
+{
+  "name": "member_cohort",
+  "args": {
+    "store_id": null,
+    "reference_date": "2026-09-01",
+    "start": "2025-09-01",
+    "end": "2026-09-01",
+    "active_within_days": 60,
+    "metric_filters": [
+      {
+        "metric": "net_sales_cents",
+        "op": "gte",
+        "value": 300000
+      }
+    ],
+    "channel": null,
+    "page": {
+      "offset": 0,
+      "limit": 100
+    }
+  }
+}

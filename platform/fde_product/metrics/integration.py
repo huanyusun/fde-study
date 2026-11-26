@@ -46,6 +46,6 @@ class UpgradedAgent(Agent):
 def active_project(home):
  path=Path(home)/'metrics-binding.json'
  if not path.exists():return None
- data=read(path);project=Path(data['project'])
+ data=read(path);project=(path.parent/data['project']).resolve()
  if not (project/'dataset.json').exists():raise ValueError('METRICS_PROJECT_NOT_FOUND: reload the library for this product home')
  return project

@@ -1,0 +1,63 @@
+id: https://example.org/w05/member
+name: w05_member
+prefixes:
+  linkml: https://w3id.org/linkml/
+  w05: https://example.org/w05/
+default_prefix: w05
+imports:
+  - linkml:types
+default_range: string
+classes:
+  Member:
+    description: Unified business identity or explicitly unresolved financial bucket.
+    slots: [] # TODO 填 Member 字段与关系名
+  SourceAccount:
+    description: Namespaced source identifier with immutable file and row provenance.
+    slots: [] # TODO 填 SourceAccount 字段与关系名
+  Store:
+    description: Registration store; purchase locations remain in existing orders.
+    slots: [] # TODO 填 Store 字段名
+slots:
+  id:
+    identifier: true
+    required: true
+  display_name:
+    description: Null when no defensible representative name exists.
+  identity_status:
+    required: true
+    range: IdentityStatus
+  source_accounts:
+    range: SourceAccount
+    multivalued: true
+    inlined: false
+    required: true
+  registered_stores:
+    range: Store
+    multivalued: true
+    inlined: false
+  system:
+    range: SourceSystem
+    required: true
+  source_file:
+    required: true
+  source_row:
+    range: integer
+    minimum_value: 1
+    required: true
+  registered_store:
+    range: Store
+    inlined: false
+  name:
+    required: true
+  payload:
+    description: Adapter-owned JSON preserving existing contract fields; not model-derived rules.
+    required: true
+enums:
+  IdentityStatus:
+    permissible_values:
+      verified:
+      unresolved:
+  SourceSystem:
+    permissible_values:
+      CRM:
+      POS:

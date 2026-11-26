@@ -1,0 +1,60 @@
+{
+  "version": "w05-main-policy-20261008-materials-v0.2",
+  "state": "business_evidence_rules_confirmed_engineering_candidate",
+  "source_fact_ids": [
+    "QH5-9",
+    "QH5-10",
+    "QH5-11",
+    "QH5-12",
+    "QH5-13",
+    "QH5-14"
+  ],
+  "default_request": {
+    "store_id": null,
+    "reference_date": "2026-09-01",
+    "start": "2025-09-01",
+    "end": "2026-09-01",
+    "dormant_days": 60,
+    "metric_filters": [
+      {
+        "metric": "net_sales_cents",
+        "op": "gte",
+        "value": 300000
+      }
+    ],
+    "channel": null,
+    "page": {
+      "offset": 0,
+      "limit": 100
+    }
+  },
+  "parameters": "Defaults define this teaching task; capabilities remain parameterized. Unsupported conditions must be rejected or clarified.",
+  "semantics": {
+    "timezone": "Asia/Shanghai",
+    "window": "start inclusive, end exclusive",
+    "monetary_unit": "cents",
+    "member_grain": "evidence_verified_person",
+    "purchase": "original approved W03 paid/refund semantics; last effective purchase requires paid_cents > refund_cents",
+    "registration_relation": "source_account_registered_store",
+    "multiple_stores": "retain relations; deduplicate per store and company independently",
+    "POS_only_registration": "unknown; retain company members/orders; store range notice without per-store enumeration or confirmed nonmembership",
+    "operational_exclusion": "confirmed employee/abnormal identity excluded from recommendations; suspected/unknown retained for verification; source data and historic account metrics preserved"
+  },
+  "contact_rules": {
+    "explicit_no_further_contact": "all channels blocked",
+    "explicit_no_telephone": "telephone blocked",
+    "explicit_no_sms": "sms blocked",
+    "same_person": "merge evidence from every verified source account",
+    "ambiguous_scope": "unknown; no inference of permission",
+    "unspecified_channel": "report per-channel constraints; do not choose telephone",
+    "automatic_release": "not provided"
+  },
+  "action_boundary": "read-only analysis and manual review suggestions; no contact, coupon or label execution",
+  "pending": [
+    "precise_count_acceptance",
+    "D4_D5_quotas_and_release",
+    "interview_alignment",
+    "independent_learner_trial",
+    "formal_deployment_and_release"
+  ]
+}

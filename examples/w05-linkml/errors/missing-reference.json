@@ -1,0 +1,71 @@
+{
+  "stores": [
+    {
+      "id": "S1",
+      "name": "注册门店一"
+    },
+    {
+      "id": "S2",
+      "name": "注册门店二"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "CRM:A1",
+      "system": "CRM",
+      "source_file": "crm_member_export.csv",
+      "source_row": 1,
+      "registered_store": "S1",
+      "payload": "{}"
+    },
+    {
+      "id": "CRM:A2",
+      "system": "CRM",
+      "source_file": "crm_member_export.csv",
+      "source_row": 2,
+      "registered_store": "S2",
+      "payload": "{}"
+    },
+    {
+      "id": "POS:P1",
+      "system": "POS",
+      "source_file": "pos_member_export.csv",
+      "source_row": 1,
+      "payload": "{}"
+    },
+    {
+      "id": "POS:P2",
+      "system": "POS",
+      "source_file": "pos_member_export.csv",
+      "source_row": 2,
+      "payload": "{}"
+    }
+  ],
+  "members": [
+    {
+      "id": "M1",
+      "display_name": "已核实名称",
+      "identity_status": "verified",
+      "source_accounts": [
+        "CRM:A1",
+        "CRM:A2",
+        "POS:P1",
+        "POS:missing"
+      ],
+      "registered_stores": [
+        "S1",
+        "S2"
+      ],
+      "payload": "{}"
+    },
+    {
+      "id": "X1",
+      "identity_status": "unresolved",
+      "source_accounts": [
+        "POS:P2"
+      ],
+      "registered_stores": [],
+      "payload": "{}"
+    }
+  ]
+}

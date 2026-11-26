@@ -1,0 +1,190 @@
+{
+  "status": "ok",
+  "member_id": "U00f6526bd6cb87ec6ffc0514",
+  "attributes": {
+    "member_id": "U00f6526bd6cb87ec6ffc0514",
+    "display_name": "徐雅雯",
+    "names": [
+      "徐雅雯",
+      "徐雯"
+    ],
+    "masked_mobiles": [
+      "198****2175"
+    ],
+    "tier": null,
+    "conflicts": [
+      {
+        "field": "name",
+        "values": [
+          "徐雅雯",
+          "徐雯"
+        ]
+      },
+      {
+        "field": "tier",
+        "values": [
+          "银卡",
+          "普通"
+        ]
+      }
+    ],
+    "source_ids": [
+      "CRM:QH10031934",
+      "CRM:QH10075436",
+      "POS:POS13153"
+    ],
+    "registered_stores": [
+      "5391"
+    ],
+    "sources": [
+      {
+        "source_id": "CRM:QH10031934",
+        "source_file": "crm_member_export.csv",
+        "source_row": 31927,
+        "field": "nm",
+        "raw_value": "徐雅雯"
+      },
+      {
+        "source_id": "CRM:QH10031934",
+        "source_file": "crm_member_export.csv",
+        "source_row": 31927,
+        "field": "mobile",
+        "raw_value": "198****2175"
+      },
+      {
+        "source_id": "CRM:QH10031934",
+        "source_file": "crm_member_export.csv",
+        "source_row": 31927,
+        "field": "lv",
+        "raw_value": "银卡"
+      },
+      {
+        "source_id": "CRM:QH10031934",
+        "source_file": "crm_member_export.csv",
+        "source_row": 31927,
+        "field": "reg_shop",
+        "raw_value": "5391"
+      },
+      {
+        "source_id": "CRM:QH10075436",
+        "source_file": "crm_member_export.csv",
+        "source_row": 75427,
+        "field": "nm",
+        "raw_value": "徐雯"
+      },
+      {
+        "source_id": "CRM:QH10075436",
+        "source_file": "crm_member_export.csv",
+        "source_row": 75427,
+        "field": "mobile",
+        "raw_value": "198****2175"
+      },
+      {
+        "source_id": "CRM:QH10075436",
+        "source_file": "crm_member_export.csv",
+        "source_row": 75427,
+        "field": "lv",
+        "raw_value": "普通"
+      },
+      {
+        "source_id": "CRM:QH10075436",
+        "source_file": "crm_member_export.csv",
+        "source_row": 75427,
+        "field": "reg_shop",
+        "raw_value": "5391"
+      },
+      {
+        "source_id": "POS:POS13153",
+        "source_file": "pos_member_export.csv",
+        "source_row": 6367,
+        "field": "name",
+        "raw_value": "徐雅雯"
+      },
+      {
+        "source_id": "POS:POS13153",
+        "source_file": "pos_member_export.csv",
+        "source_row": 6367,
+        "field": "mobile",
+        "raw_value": "198****2175"
+      }
+    ],
+    "identity_status": "verified"
+  },
+  "policy": {
+    "member_id": "U00f6526bd6cb87ec6ffc0514",
+    "status": "ok",
+    "channels": {
+      "telephone": "no_known_restriction",
+      "sms": "no_known_restriction"
+    },
+    "restriction_evidence": [],
+    "member_excluded": false,
+    "account_exclusions": [],
+    "all_source_accounts_excluded": false,
+    "confirmed_exclusions": [],
+    "pending_verifications": [],
+    "verification_coverage_complete": true,
+    "actual_contact_authorized": false
+  },
+  "last_effective_purchase": "2025-02-17",
+  "dormant_days": 561,
+  "dormancy_condition": {
+    "threshold_days": 60,
+    "operator": "gte",
+    "matches": true,
+    "scope": "recent_effective_purchase_only; full_cohort_requires_member_cohort"
+  },
+  "recommendation_allowed": true,
+  "recommendation_decision": {
+    "scope": "detail_recommendation_safety_only; full_cohort_requires_member_cohort",
+    "operator": "all",
+    "conditions": {
+      "identity_verified": true,
+      "member_not_excluded": true,
+      "some_source_account_not_excluded": true,
+      "no_pending_operational_verification": true,
+      "recent_purchase_coverage_complete": true,
+      "recent_effective_purchase_present": true,
+      "selected_channel_has_no_known_restriction": true
+    },
+    "result": true,
+    "context_only_fields": [
+      "tier"
+    ],
+    "actual_contact_authorized": false
+  },
+  "presentation_scope": "current_member_facts_v1",
+  "recommendation_context_purpose": "knowledge_applicability_only; tier does not decide recommendation_allowed",
+  "follow_up_owners": {
+    "source_identity_and_registration": "老周",
+    "contact_channel_scope": "小林"
+  },
+  "follow_up_requirements": [
+    {
+      "topic": "source_registration",
+      "owner": "老周",
+      "source_ids": [
+        "POS:POS13153"
+      ],
+      "question": "补证这些来源账户的注册门店；不能用购买门店替代。"
+    }
+  ],
+  "recommendation_context": {
+    "channel": "sms",
+    "identity": "verified",
+    "tier": null
+  },
+  "coverage_complete": true,
+  "reference_date": "2026-09-01",
+  "actual_contact_authorized": false,
+  "versions": {
+    "binding_version": "w05-member-binding-1",
+    "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+    "data_version": "qinghe-w05-v2.0-candidate.2",
+    "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+    "grain_version": "w05-verified-person-and-unresolved-source-1",
+    "mapping_version": "qinghe-w05-rules-20261008.1",
+    "module_dependencies_sha256": "17b54ee5421f4a6d120750cfb46bcc2970ecd3f46f32eefd4ef49e4dfac3e3a5"
+  },
+  "evidence_id": "402e3ec774d5fcde10dc242accc54b6c1925ac99f5eb1a966df690579fbca02e"
+}

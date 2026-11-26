@@ -19,6 +19,7 @@ def expression(item):
 def grain_check(project):
     p = Path(project)
     models = yaml.safe_load((p/'models/metrics.yml').read_text())['semantic_models']
+    nullable_home = (read(p/'entity_semantics.json').get('home_store')=='representative_attribute') if (p/'entity_semantics.json').exists() else False
     declarations = read(p/'grain_contract.json') if (p/'grain_contract.json').exists() else {}
     con = duckdb.connect(str(p/'data.duckdb'))
     items = []
@@ -46,7 +47,7 @@ def grain_check(project):
                     items.append({'model': sm['name'], 'entity': ent['name'], 'check': 'foreign_key', 'passed': False, 'reason': 'FOREIGN_TARGET_MISSING_OR_AMBIGUOUS'})
                     continue
                 target, key = targets[0]
-                row = con.execute(f"select count(*) from (select {expression(ent)} as k from {table}) s left join (select distinct {expression(key)} as k from {relation(target)}) t on s.k=t.k where t.k is null").fetchone()
+                row = con.execute(f"select count(*) from (select {expression(ent)} as k from {table}) s left join (select distinct {expression(key)} as k from {relation(target)}) t on s.k=t.k where t.k is null{' and s.k is not null' if nullable_home and ent['name']=='home_store' else ''}").fetchone()
                 items.append({'model': sm['name'], 'entity': ent['name'], 'target': target['name'], 'check': 'foreign_key', 'unmatched_rows': row[0], 'passed': row[0] == 0})
     finally:
         con.close()
@@ -99,12 +100,11 @@ def inspect_project(project):
             for name in metric_names:
                 dimensions = cfg.mf.list_group_bys(metric_names=[name], include_derived_time_granularities=True)
                 names = {getattr(d, 'dunder_name', None) or d.name for d in dimensions}
+                links = sorted({d.name for d in dimensions if getattr(d, 'dunder_name', None) is None})
                 resolved = {}
                 for target in targets:
-                    key = target['id']
-                    candidates = [n for n in names if n == key or n.endswith('__'+key)]
-                    if key in names:resolved[key] = key
-                    elif len(candidates) == 1:resolved[key] = candidates[0]
+                    native = resolve_group_by(cfg, name, target['id'], names, links)
+                    if native is not None:resolved[target['id']] = native
                 per_metric[name] = resolved
                 actual.update(resolved)
         pending = {x['dimension_id']: x for x in read(p/'unresolved.json') if x.get('dimension_id') and x.get('missing_facts') and x.get('reason')}
@@ -120,6 +120,30 @@ def inspect_project(project):
         failures.append('DIMENSION_TARGET_COVERAGE_FAILED')
     dump(p/'validation.json', {'passed': not failures, 'failures': failures})
     return {'passed': not failures, 'failures': failures}
+
+def resolve_group_by(cfg, metric, key, names, links):
+    """The group-by name that MetricFlow itself accepts for `key` on `metric`, or None.
+
+    list_group_bys gives dimensions with their join path (dunder_name) but entities without one: home_store owned by
+    members is listed as `home_store` for an order metric, while a query only accepts `member__home_store`. Matching
+    names alone judged it queryable and the query then failed (NATIVE_QUERY_FAILED). So every candidate is confirmed
+    with the same request the engine sends (explain, no data read); an entity not accepted as is is tried behind each
+    entity of the metric (`<link>__<key>`), and kept only when exactly one spelling resolves."""
+    from metricflow.engine.metricflow_engine import MetricFlowQueryRequest
+    def accepted(candidate):
+        try:
+            cfg.mf.explain(mf_request=MetricFlowQueryRequest.create(metric_names=[metric], group_by_names=[candidate]))
+            return True
+        except Exception:
+            return False
+    candidates = [key] if key in names else [n for n in names if n.endswith('__' + key)]
+    if len(candidates) == 1 and accepted(candidates[0]):
+        return candidates[0]
+    if key not in links:
+        return None
+    linked = [link + '__' + key for link in links if link != key]
+    ok = [c for c in linked if accepted(c)]
+    return ok[0] if len(ok) == 1 else None
 
 def build_dimension_manifest(project, report):
     p = Path(project)

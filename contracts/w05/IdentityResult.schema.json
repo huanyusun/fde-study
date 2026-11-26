@@ -1,0 +1,50 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "source_id": {
+      "title": "Source Id",
+      "type": "string"
+    },
+    "member_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Member Id"
+    },
+    "status": {
+      "enum": [
+        "resolved",
+        "singleton",
+        "unresolved",
+        "conflict"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "mapping_version": {
+      "title": "Mapping Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_id",
+    "member_id",
+    "status",
+    "evidence_ids",
+    "mapping_version"
+  ],
+  "title": "IdentityResult",
+  "type": "object"
+}

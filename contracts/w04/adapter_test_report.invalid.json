@@ -1,0 +1,58 @@
+{
+  "contract_version": "w04-0.1.0",
+  "data_version": "illustrative-v1",
+  "field_mapping": [
+    {
+      "source_file": "crm_order_export.csv",
+      "source_fields": [
+        "amt_pay"
+      ],
+      "target": "orders.paid_cents",
+      "transformation": "十进制元乘 100 转整数分"
+    }
+  ],
+  "record_counts": [
+    {
+      "record_type": "order",
+      "read": 2,
+      "accepted": -1,
+      "quarantined": 1,
+      "deduplicated": 0,
+      "reconciliation": {
+        "balanced": true,
+        "evidence": "2 = 1 + 1 + 0"
+      }
+    }
+  ],
+  "samples": [
+    {
+      "source_file": "crm_order_export.csv",
+      "source_row": 1,
+      "status": "accepted",
+      "destination": "data.duckdb/raw_orders",
+      "reason": ""
+    },
+    {
+      "source_file": "crm_order_export.csv",
+      "source_row": 2,
+      "status": "quarantined",
+      "destination": "quarantine.csv 第 1 条记录",
+      "reason": "UNLINKED_ACCOUNT"
+    }
+  ],
+  "repeat_import": {
+    "first_run_id": "example-a",
+    "second_run_id": "example-b",
+    "before": {
+      "raw_orders": 1
+    },
+    "after": {
+      "raw_orders": 1
+    },
+    "row_counts_equal": true
+  },
+  "test_result": {
+    "passed": true,
+    "details": "结构示例，不是实际运行记录"
+  }
+}

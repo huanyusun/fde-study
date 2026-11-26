@@ -19,7 +19,7 @@ function display(v){
  if(actual){lines.push((labels[actual.status]||actual.status)+'；会员 '+actual.payload.member_id+'；标签 '+actual.payload.tag);lines.push('当前标签：'+(actual.label_active?'存在':'不存在')+'；版本 '+actual.label_version);}
  else if(executed){lines.push(labels[executed.status]||executed.status);}
  if(r.summary)lines.push(r.summary);
- for(const rec of r.recommendations||[])lines.push('会员 '+rec.member_id+'：'+rec.suggestion+'\n依据：'+rec.rationale);
+ for(const rec of r.recommendations||[])lines.push('会员 '+rec.member_id+'：'+rec.suggestion+'\n依据：'+(rec.rationale||rec.evidence_ids?.join('、')||'见工具依据与运行记录'));
  if(r.limitations?.length)lines.push('适用限制：\n'+r.limitations.join('\n'));
  if(r.evidence_ids?.length)lines.push('依据编号：'+r.evidence_ids.join('、'));
  el('answer').textContent=lines.join('\n\n');
@@ -41,6 +41,11 @@ def make_server(agent,port=0,actions=False):
             label=getattr(agent,'customer_label',None)
             page=PAGE.replace('松果生活 · 独立虚构样例 · 业务参考日期：2026-09-01',html.escape(label)+' · 已加载指标库；松果生活样例分析与动作能力继续保留') if label else PAGE
             if label:page=page.replace('<textarea id="text">找出 2026 年 8 月相较 7 月消费下降至少 20% 的老会员，比较前后消费，给出召回建议并说明依据。', '<textarea id="text" placeholder="请输入指标问题，例如指定月份、指标与分析范围。">')
+            if getattr(agent,'member_service',None):
+                page=page.replace(html.escape(label)+' · 已加载指标库；松果生活样例分析与动作能力继续保留',html.escape(label)+' · 会员分析与建议')
+                page=page.replace('分析默认只读。动作模式仅操作本地样例标签系统；需要逐项明确确认。','查询、圈选和建议均为只读分析；联系由业务人员另行确认。')
+                page=page.replace('<p><label><input id="actions" type="checkbox">','<p hidden><label><input id="actions" type="checkbox" disabled>')
+                page=page.replace('请输入指标问题，例如指定月份、指标与分析范围。','请输入指标、会员圈选或资料查询问题，明确时间、门店和联系渠道。')
             self.send(200,page,True)
         def do_POST(self):
             host=self.headers.get('Host','');origin=self.headers.get('Origin')

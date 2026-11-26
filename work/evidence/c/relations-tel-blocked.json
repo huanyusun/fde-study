@@ -1,0 +1,186 @@
+{
+  "status": "ok",
+  "member_id": "U713cf89fe10ead5e5c8bd949",
+  "accounts": [
+    {
+      "source_id": "CRM:QH10008650",
+      "system": "CRM",
+      "source_file": "crm_member_export.csv",
+      "source_row": 8649,
+      "registered_store": "2706",
+      "raw": {
+        "hy_id": "QH10008650",
+        "nm": "韦骏畅",
+        "mobile": "199****9172",
+        "birth": "1977-08-10",
+        "join_dt": "2023-11-02",
+        "create_tm": "2023-11-02 21:54:12",
+        "lv": "银卡",
+        "stat": "1",
+        "src_ch": "商城",
+        "reg_shop": "2706",
+        "reg_dev": "f239574c89d3e50c",
+        "tag": "价格敏感，小程序偏好"
+      }
+    },
+    {
+      "source_id": "CRM:QH10010871",
+      "system": "CRM",
+      "source_file": "crm_member_export.csv",
+      "source_row": 10869,
+      "registered_store": "2706",
+      "raw": {
+        "hy_id": "QH10010871",
+        "nm": "韦畅",
+        "mobile": "199****9172",
+        "birth": "1977-08-10",
+        "join_dt": "2023-12-12",
+        "create_tm": "2023-12-12 14:09:32",
+        "lv": "普通",
+        "stat": "1",
+        "src_ch": "门店",
+        "reg_shop": "2706",
+        "reg_dev": "7889a36229631135",
+        "tag": "周末家庭/勿打电话-本人要求"
+      }
+    },
+    {
+      "source_id": "CRM:QH10054022",
+      "system": "CRM",
+      "source_file": "crm_member_export.csv",
+      "source_row": 54013,
+      "registered_store": "2706",
+      "raw": {
+        "hy_id": "QH10054022",
+        "nm": "韦畅",
+        "mobile": "199****9172",
+        "birth": "1977-08-10",
+        "join_dt": "2023-11-02",
+        "create_tm": "2025-03-15 04:52:28",
+        "lv": "普通",
+        "stat": "1",
+        "src_ch": "系统导入",
+        "reg_shop": "2706",
+        "reg_dev": "",
+        "tag": "生鲜偏好"
+      }
+    },
+    {
+      "source_id": "POS:POS13365",
+      "system": "POS",
+      "source_file": "pos_member_export.csv",
+      "source_row": 6481,
+      "registered_store": null,
+      "raw": {
+        "pos_member_id": "POS13365",
+        "name": "韦骏畅",
+        "mobile": "199****9172"
+      }
+    }
+  ],
+  "registered_stores": [
+    "2706"
+  ],
+  "orders": [
+    {
+      "order_id": "CRM:O20250202000141",
+      "member_id": "U713cf89fe10ead5e5c8bd949",
+      "store_id": "2706",
+      "ordered_at": "2025-02-02",
+      "status": "paid",
+      "gross_cents": 7898,
+      "paid_cents": 6713,
+      "refund_cents": 0,
+      "quantity": 2,
+      "channel": "门店",
+      "provenance": {
+        "order_id": "CRM:O20250202000141",
+        "member_id": "U713cf89fe10ead5e5c8bd949",
+        "source_id": "CRM:QH10010871",
+        "source_file": "crm_order_export.csv",
+        "source_row": "27360"
+      }
+    },
+    {
+      "order_id": "CRM:O20250203000009",
+      "member_id": "U713cf89fe10ead5e5c8bd949",
+      "store_id": "8696",
+      "ordered_at": "2025-02-03",
+      "status": "paid",
+      "gross_cents": 8744,
+      "paid_cents": 8307,
+      "refund_cents": 8307,
+      "quantity": 3,
+      "channel": "商城",
+      "provenance": {
+        "order_id": "CRM:O20250203000009",
+        "member_id": "U713cf89fe10ead5e5c8bd949",
+        "source_id": "CRM:QH10008650",
+        "source_file": "crm_order_export.csv",
+        "source_row": "27419"
+      }
+    },
+    {
+      "order_id": "CRM:O20260217000161",
+      "member_id": "U713cf89fe10ead5e5c8bd949",
+      "store_id": "2706",
+      "ordered_at": "2026-02-17",
+      "status": "paid",
+      "gross_cents": 34192,
+      "paid_cents": 26063,
+      "refund_cents": 0,
+      "quantity": 7,
+      "channel": "小程序",
+      "provenance": {
+        "order_id": "CRM:O20260217000161",
+        "member_id": "U713cf89fe10ead5e5c8bd949",
+        "source_id": "CRM:QH10008650",
+        "source_file": "crm_order_export.csv",
+        "source_row": "114618"
+      }
+    },
+    {
+      "order_id": "CRM:O20260219000021",
+      "member_id": "U713cf89fe10ead5e5c8bd949",
+      "store_id": "8696",
+      "ordered_at": "2026-02-19",
+      "status": "paid",
+      "gross_cents": 12597,
+      "paid_cents": 9707,
+      "refund_cents": 9707,
+      "quantity": 2,
+      "channel": "小程序",
+      "provenance": {
+        "order_id": "CRM:O20260219000021",
+        "member_id": "U713cf89fe10ead5e5c8bd949",
+        "source_id": "CRM:QH10008650",
+        "source_file": "crm_order_export.csv",
+        "source_row": "114932"
+      }
+    }
+  ],
+  "cards": [],
+  "card_scope": "原始卡记录含财务隔离项；不表示这些卡进入原 W04 指标。",
+  "coverage": [
+    "2024-09-01",
+    "2026-09-01"
+  ],
+  "page": {
+    "total": 4,
+    "returned": 4,
+    "offset": 0,
+    "limit": 100,
+    "next_offset": null,
+    "complete": true
+  },
+  "versions": {
+    "binding_version": "w05-member-binding-1",
+    "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+    "data_version": "qinghe-w05-v2.0-candidate.2",
+    "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+    "grain_version": "w05-verified-person-and-unresolved-source-1",
+    "mapping_version": "qinghe-w05-rules-20261008.1",
+    "module_dependencies_sha256": "abd237dccedc5bdde8c1697a75d152f2a877d4e40093af2b038498ffc529e9b9"
+  },
+  "evidence_id": "a18760ea06fd1c0f5f320c1609944fddc52928efa5055acf84d8bd6c821982f0"
+}

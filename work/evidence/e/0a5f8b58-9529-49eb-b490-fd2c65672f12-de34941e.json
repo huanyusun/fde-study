@@ -1,0 +1,107 @@
+{
+  "product_version": "0.2.0-w1",
+  "runtime_revision": "w01-runtime-20260922",
+  "session_id": "0a5f8b58-9529-49eb-b490-fd2c65672f12",
+  "model_mode": "live",
+  "model_name": "glm-5.3-flash",
+  "prompt_sha256": "b20cdc07bb0c1832162a4231e22316a16ed462988e5113d32a0c5cacfb5fad5e",
+  "status": "incomplete",
+  "result": {
+    "evidence_ids": [
+      "e9f4743e5eec4112eed2a59142fe917d694d6ccc1538c7e8c5c938fde3487e2c"
+    ],
+    "recommendations": [],
+    "status": "incomplete",
+    "summary": "本轮购买财务实体数（buyer_count）为 46058。统计窗口 [2025-09-01,2026-09-01)，按当轮工具的筛选条件汇总，未按维度分组。\n统计粒度为已核实统一会员与未决来源独立财务桶；有效净购买条件为 paid 且实付减退款大于零，按 member_id 去重，取消和全额退款不计；沿用原公式，运营排除不扣减经营记录。\n此数不是已确认自然人数，未决来源桶不能当作已核实自然人；精确自然人数及相关分母仍待补证，precise_person_total_acceptance=pending。该指标不证明身份已全量核实，也不构成实际联系授权。",
+    "validation_passed": true,
+    "validation_code": "GROUNDED",
+    "validation_scope": {
+      "checked": [
+        "current_turn_citations",
+        "result_status_and_sets",
+        "recommendation_policy_and_knowledge",
+        "structured_critical_facts",
+        "candidate_disposition_coverage"
+      ],
+      "not_checked": [
+        "free_text_fact_correspondence",
+        "independent_business_acceptance",
+        "task_scope_matches_user_request"
+      ],
+      "source_review_required": true
+    }
+  },
+  "observations": [
+    {
+      "name": "query_metrics",
+      "args": {
+        "question": "查询 2025-09-01 到 2026-09-01（不含）全公司未分组的购买财务实体数（buyer_count），不要按任何维度分组"
+      },
+      "result": {
+        "status": "partial",
+        "intent": {
+          "metrics": [
+            "buyer_count"
+          ],
+          "start": "2025-09-01",
+          "end": "2026-09-01",
+          "group_by": [],
+          "filters": []
+        },
+        "sql": "SELECT\n  COUNT(DISTINCT case when status = 'paid' and paid_cents - refund_cents > 0 then member_id end) AS buyer_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2025-09-01' AND '2026-08-31'",
+        "columns": [
+          "buyer_count"
+        ],
+        "rows": [
+          [
+            46058
+          ]
+        ],
+        "seconds": 0.058,
+        "units": {
+          "buyer_count": "count"
+        },
+        "data_version": "qinghe-w05-v2.0-candidate.2",
+        "data_sha256": "93a2aefe5361dac33cc02abec8ae2bb5831b9a0aaece27d9611ed418ec061372",
+        "catalog_sha256": "5317a960d98de397dfd2ae916f5a7e768735aa486e7856dd766ca3560357e3b1",
+        "coverage_notes": {
+          "source": "本轮 CRM 与旧 POS 完整导出；原 W04 财务隔离继承。未决来源保留独立财务桶，不能解释为自然人。运营员工/异常排除不扣经营指标。",
+          "time_range": {
+            "start": "2024-09-01",
+            "end_exclusive": "2026-09-01"
+          },
+          "quarantined": {
+            "member": 0,
+            "order": 252,
+            "card": 299,
+            "shop": 0
+          },
+          "identity_unresolved_sources": 12001,
+          "precise_person_total_acceptance": "pending"
+        },
+        "reason": "当前统计含未决来源的独立财务桶，不能验收为精确自然人数或相关分母；金额和订单保留。",
+        "precise_person_total_acceptance": "pending",
+        "entity_semantics": "verified_person_with_unresolved_source_buckets",
+        "question": "查询 2025-09-01 到 2026-09-01（不含）全公司未分组的购买财务实体数（buyer_count），不要按任何维度分组",
+        "trace_id": "37ba4316-9ca6-4117-a6dd-217d1decddc5",
+        "elapsed_seconds": 14.255,
+        "model_usage": {
+          "prompt_tokens": 20060,
+          "completion_tokens": 389,
+          "total_tokens": 20449
+        },
+        "model_calls_with_usage": 1,
+        "evidence_id": "e9f4743e5eec4112eed2a59142fe917d694d6ccc1538c7e8c5c938fde3487e2c"
+      },
+      "call_id": "call_-7038295983221896743"
+    }
+  ],
+  "steps": 2,
+  "output_repairs": 0,
+  "usage": {
+    "prompt_tokens": 31715,
+    "completion_tokens": 2712,
+    "total_tokens": 34427
+  },
+  "trace_id": "d91dd44048c253a5e36536602111e624"
+}

@@ -1,0 +1,122 @@
+{
+  "status": "ok",
+  "coverage_complete": true,
+  "member_ids": [
+    "U485c6c17e0d34702cba0c2ca"
+  ],
+  "members": [
+    {
+      "member_id": "U485c6c17e0d34702cba0c2ca",
+      "metric_values": {
+        "net_sales_cents": 473756
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-25",
+      "dormant_days": 68
+    }
+  ],
+  "unknown_members": [],
+  "blocked_members": [],
+  "unresolved_sources": [],
+  "excluded_member_ids": [],
+  "condition_hit_member_ids": [
+    "U485c6c17e0d34702cba0c2ca"
+  ],
+  "condition_hit_count": 1,
+  "operational_excluded_count": 0,
+  "channels": {
+    "telephone": {
+      "eligible": 1,
+      "blocked": 0,
+      "unknown": 0
+    },
+    "sms": {
+      "eligible": 1,
+      "blocked": 0,
+      "unknown": 0
+    }
+  },
+  "channel": "sms",
+  "recency_condition": {
+    "dormant_days": 60,
+    "active_within_days": null,
+    "applied": true,
+    "basis": "days_from_last_effective_purchase_to_reference_date; dormant_days gte, active_within_days lt"
+  },
+  "store_scope": {
+    "store_ids": [
+      "1203"
+    ],
+    "mode": "single_store",
+    "basis": "any_source_account_registration_in_the_listed_stores; one person is listed once"
+  },
+  "attribute_conditions": {
+    "tiers": null,
+    "registered_from": null,
+    "registered_before_exclusive": null,
+    "applied": false,
+    "basis": "tier: member attribute, null when sources conflict or none is recorded; registered_at: earliest known CRM join date, null for POS-only members"
+  },
+  "attribute_pending_members": {
+    "tier": [],
+    "registered_at": []
+  },
+  "comparison_condition": null,
+  "candidate_scope": {
+    "basis": "members_with_a_record_of_the_filtered_metrics_in_the_window",
+    "zero_value_members_omitted": false,
+    "metrics_whose_conditions_hold_at_zero": [],
+    "message": "本次只在指标窗口内有相应指标记录的会员中筛选。"
+  },
+  "cohort_kind": "channel_candidates",
+  "eligible_count": 1,
+  "condition_analysis_count": null,
+  "financial_bucket_hits": 0,
+  "range_notice": {
+    "registration_unknown_company_people": 3995,
+    "store_query_omits_unknown_registration": true,
+    "message": "注册门店未知的人群保留在全公司数据；不能确定属于或不属于当前门店，未重复列入单店待核名单。"
+  },
+  "actual_contact_authorized": false,
+  "result_scope": {
+    "coverage_complete": "recent_effective_purchase_window_only",
+    "unresolved_sources": "current_filter_and_registration_scope_identity_only",
+    "financial_quarantine_review": "not_assessed",
+    "empty_candidates": "does_not_prove_absence_of_other_records"
+  },
+  "page": {
+    "total": 1,
+    "returned": 1,
+    "offset": 0,
+    "limit": 100,
+    "next_offset": null,
+    "complete": true,
+    "snapshot_token": "d924d7d349b37051e69f5a8e51e1667cf487fad94e6d193ee4afb9494b2ad879"
+  },
+  "aggregate_evidence": {
+    "sql": "SELECT\n  member\n  , SUM(__net_sales_cents) AS net_sales_cents\nFROM (\n  SELECT\n    member_id AS member\n    , case when status = 'paid' then paid_cents - refund_cents else 0 end AS __net_sales_cents\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2025-09-01' AND '2026-08-31'\n) subq_5\nGROUP BY\n  member",
+    "aggregate_sql": "SELECT * FROM (SELECT\n  member\n  , SUM(__net_sales_cents) AS net_sales_cents\nFROM (\n  SELECT\n    member_id AS member\n    , case when status = 'paid' then paid_cents - refund_cents else 0 end AS __net_sales_cents\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2025-09-01' AND '2026-08-31'\n) subq_5\nGROUP BY\n  member) AS controlled_aggregate WHERE \"net_sales_cents\" >= ?",
+    "aggregate_parameters": [
+      300000
+    ],
+    "data_sha256": "93a2aefe5361dac33cc02abec8ae2bb5831b9a0aaece27d9611ed418ec061372",
+    "catalog_sha256": "5317a960d98de397dfd2ae916f5a7e768735aa486e7856dd766ca3560357e3b1",
+    "units": {
+      "net_sales_cents": "cents"
+    }
+  },
+  "rules_version": "qinghe-w05-rules-20261008.1",
+  "versions": {
+    "binding_version": "w05-member-binding-1",
+    "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+    "data_version": "qinghe-w05-v2.0-candidate.2",
+    "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+    "grain_version": "w05-verified-person-and-unresolved-source-1",
+    "mapping_version": "qinghe-w05-rules-20261008.1",
+    "module_dependencies_sha256": "abd237dccedc5bdde8c1697a75d152f2a877d4e40093af2b038498ffc529e9b9"
+  },
+  "evidence_id": "b2c40eb185be823125e9196dc228f6bf4ed7686a7efed0cf3ce25b1422a83157"
+}

@@ -1,0 +1,57 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "source_id": {
+      "title": "Source Id",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "employee",
+        "abnormal_identity"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "verification": {
+      "enum": [
+        "confirmed",
+        "suspected",
+        "unknown"
+      ],
+      "title": "Verification",
+      "type": "string"
+    },
+    "source_file": {
+      "minLength": 1,
+      "title": "Source File",
+      "type": "string"
+    },
+    "source_row": {
+      "minimum": 1,
+      "title": "Source Row",
+      "type": "integer"
+    },
+    "quote": {
+      "minLength": 1,
+      "title": "Quote",
+      "type": "string"
+    },
+    "rule_version": {
+      "minLength": 1,
+      "title": "Rule Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_id",
+    "kind",
+    "verification",
+    "source_file",
+    "source_row",
+    "quote",
+    "rule_version"
+  ],
+  "title": "Exclusion",
+  "type": "object"
+}

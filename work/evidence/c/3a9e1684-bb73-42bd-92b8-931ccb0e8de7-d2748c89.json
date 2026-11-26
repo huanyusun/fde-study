@@ -1,0 +1,650 @@
+{
+  "product_version": "0.2.0-w1",
+  "runtime_revision": "w01-runtime-20260922",
+  "session_id": "3a9e1684-bb73-42bd-92b8-931ccb0e8de7",
+  "model_mode": "live",
+  "model_name": "glm-5.3-flash",
+  "prompt_sha256": "b20cdc07bb0c1832162a4231e22316a16ed462988e5113d32a0c5cacfb5fad5e",
+  "status": "completed",
+  "result": {
+    "critical_facts": {
+      "cards": [],
+      "recommendation_decisions": [
+        {
+          "actual_contact_authorized": false,
+          "conditions": {
+            "identity_verified": true,
+            "member_not_excluded": true,
+            "no_pending_operational_verification": true,
+            "recent_effective_purchase_present": true,
+            "recent_purchase_coverage_complete": true,
+            "selected_channel_has_no_known_restriction": false,
+            "some_source_account_not_excluded": true
+          },
+          "context_only_fields": [
+            "tier"
+          ],
+          "evidence_id": "98a4629bb4885c9c94dfc517ed3aa59845fc85d426faf3dd394a49e401dcb55a",
+          "follow_up_requirements": [
+            {
+              "owner": "老周",
+              "question": "补证这些来源账户的注册门店；不能用购买门店替代。",
+              "source_ids": [
+                "POS:POS13365"
+              ],
+              "topic": "source_registration"
+            }
+          ],
+          "member_id": "U713cf89fe10ead5e5c8bd949",
+          "operator": "all",
+          "result": false,
+          "scope": "detail_recommendation_safety_only; full_cohort_requires_member_cohort"
+        }
+      ]
+    },
+    "evidence_ids": [
+      "98a4629bb4885c9c94dfc517ed3aa59845fc85d426faf3dd394a49e401dcb55a",
+      "a18760ea06fd1c0f5f320c1609944fddc52928efa5055acf84d8bd6c821982f0",
+      "960e68f83ae0a97c871001944aa18e6051b105fe0435814f29957f948143b743"
+    ],
+    "member_ids": [],
+    "recommendations": [],
+    "status": "completed",
+    "summary": "会员 U713cf89fe10ead5e5c8bd949：身份 verified，姓名 来源值冲突 [\"韦骏畅\", \"韦畅\"]；当前未选定统一值；原姓名 [\"韦骏畅\", \"韦畅\"]，脱敏手机 [\"199****9172\"]，等级 来源值冲突 [\"银卡\", \"普通\"]；当前未选定统一值 仅作知识上下文，不参与资格判断。\n已知来源注册门店 [\"2706\"]；购买门店不能替代注册门店。最近有效购买 2026-02-17，间隔 196 天；沉睡阈值 60 天，gte，匹配 True，仅限最近有效购买条件，不推断完整圈选资格。\n渠道限制 {\"telephone\": \"blocked\", \"sms\": \"no_known_restriction\"}；会员排除=False，账户排除=[]，运营待核=[]；详情建议安全条件=False，实际参与判断的条件={\"identity_verified\": true, \"member_not_excluded\": true, \"some_source_account_not_excluded\": true, \"no_pending_operational_verification\": true, \"recent_purchase_coverage_complete\": true, \"recent_effective_purchase_present\": true, \"selected_channel_has_no_known_restriction\": false}。未发现限制不等于授权，禁止或未知不能推荐相应渠道联系，不提供绕行动作。\n限制原文 crm_member_export.csv 第 10869 行／CRM:QH10010871：勿打电话-本人要求；范围 telephone，规则 qinghe-w05-rules-20261008.1。补充确认原记录：[]\n限制原文 小林工作账_勿扰名单.csv 第 19 行／CRM:QH10010871：本人要求；范围 telephone，规则 qinghe-w05-rules-20261008.1。补充确认原记录：[{\"record_id\": \"CS-efc94a2242174a2595f4\", \"source_file\": \"contact_scope_confirmation.csv\", \"source_row\": 19, \"status\": \"current\", \"channel_scope\": \"telephone\", \"basis_file\": \"crm_member_export.csv\", \"basis_row\": \"10869\", \"summary\": \"原 CRM 备注明确勿打电话\"}]\n来源账户 CRM:QH10008650，crm_member_export.csv 第 8649 行，注册门店 2706。\n来源账户 CRM:QH10010871，crm_member_export.csv 第 10869 行，注册门店 2706。\n来源账户 CRM:QH10054022，crm_member_export.csv 第 54013 行，注册门店 2706。\n来源账户 POS:POS13365，pos_member_export.csv 第 6481 行，注册门店 未知／未提供。\n实际订单本页 4 笔／总数 4，分页完整=True；逐笔原值与来源保留在当轮 member_relations。\n订单 CRM:O20250202000141：2025-02-02，购买门店 2706，状态 paid，原价 7898 分、实付 6713 分、退款 0 分、件数 2，渠道 门店；来源 CRM:QH10010871／crm_order_export.csv 第 27360 行。\n订单 CRM:O20250203000009：2025-02-03，购买门店 8696，状态 paid，原价 8744 分、实付 8307 分、退款 8307 分、件数 3，渠道 商城；来源 CRM:QH10008650／crm_order_export.csv 第 27419 行。\n订单 CRM:O20260217000161：2026-02-17，购买门店 2706，状态 paid，原价 34192 分、实付 26063 分、退款 0 分、件数 7，渠道 小程序；来源 CRM:QH10008650／crm_order_export.csv 第 114618 行。\n订单 CRM:O20260219000021：2026-02-19，购买门店 8696，状态 paid，原价 12597 分、实付 9707 分、退款 9707 分、件数 2，渠道 小程序；来源 CRM:QH10008650／crm_order_export.csv 第 114932 行。\n当轮未返回卡记录，不推断卡是否存在或全局隔离数量。\n当前待补证事项：source_registration，来源账户 POS:POS13365，找老周：补证这些来源账户的注册门店；不能用购买门店替代。\n本轮未获实际联系授权，只有数据支持的当前补证事项列为待办；业务复核边界保持。\n已取得适用知识依据：contact-6,contact-1,contact-2,contact-5,contact-10；来源、有效期和原片段保留在当轮检索证据。",
+    "validation_passed": true,
+    "validation_code": "GROUNDED",
+    "validation_scope": {
+      "checked": [
+        "current_turn_citations",
+        "result_status_and_sets",
+        "recommendation_policy_and_knowledge",
+        "structured_critical_facts",
+        "candidate_disposition_coverage"
+      ],
+      "not_checked": [
+        "free_text_fact_correspondence",
+        "independent_business_acceptance",
+        "task_scope_matches_user_request"
+      ],
+      "source_review_required": true
+    }
+  },
+  "observations": [
+    {
+      "name": "get_member",
+      "args": {
+        "channel": "telephone",
+        "member_id": "U713cf89fe10ead5e5c8bd949",
+        "reference_date": "2026-09-01"
+      },
+      "result": {
+        "status": "ok",
+        "member_id": "U713cf89fe10ead5e5c8bd949",
+        "attributes": {
+          "member_id": "U713cf89fe10ead5e5c8bd949",
+          "display_name": null,
+          "names": [
+            "韦骏畅",
+            "韦畅"
+          ],
+          "masked_mobiles": [
+            "199****9172"
+          ],
+          "tier": null,
+          "conflicts": [
+            {
+              "field": "name",
+              "values": [
+                "韦骏畅",
+                "韦畅"
+              ]
+            },
+            {
+              "field": "tier",
+              "values": [
+                "银卡",
+                "普通"
+              ]
+            }
+          ],
+          "source_ids": [
+            "CRM:QH10008650",
+            "CRM:QH10010871",
+            "CRM:QH10054022",
+            "POS:POS13365"
+          ],
+          "registered_stores": [
+            "2706"
+          ],
+          "sources": [
+            {
+              "source_id": "CRM:QH10008650",
+              "source_file": "crm_member_export.csv",
+              "source_row": 8649,
+              "field": "nm",
+              "raw_value": "韦骏畅"
+            },
+            {
+              "source_id": "CRM:QH10008650",
+              "source_file": "crm_member_export.csv",
+              "source_row": 8649,
+              "field": "mobile",
+              "raw_value": "199****9172"
+            },
+            {
+              "source_id": "CRM:QH10008650",
+              "source_file": "crm_member_export.csv",
+              "source_row": 8649,
+              "field": "lv",
+              "raw_value": "银卡"
+            },
+            {
+              "source_id": "CRM:QH10008650",
+              "source_file": "crm_member_export.csv",
+              "source_row": 8649,
+              "field": "reg_shop",
+              "raw_value": "2706"
+            },
+            {
+              "source_id": "CRM:QH10010871",
+              "source_file": "crm_member_export.csv",
+              "source_row": 10869,
+              "field": "nm",
+              "raw_value": "韦畅"
+            },
+            {
+              "source_id": "CRM:QH10010871",
+              "source_file": "crm_member_export.csv",
+              "source_row": 10869,
+              "field": "mobile",
+              "raw_value": "199****9172"
+            },
+            {
+              "source_id": "CRM:QH10010871",
+              "source_file": "crm_member_export.csv",
+              "source_row": 10869,
+              "field": "lv",
+              "raw_value": "普通"
+            },
+            {
+              "source_id": "CRM:QH10010871",
+              "source_file": "crm_member_export.csv",
+              "source_row": 10869,
+              "field": "reg_shop",
+              "raw_value": "2706"
+            },
+            {
+              "source_id": "CRM:QH10054022",
+              "source_file": "crm_member_export.csv",
+              "source_row": 54013,
+              "field": "nm",
+              "raw_value": "韦畅"
+            },
+            {
+              "source_id": "CRM:QH10054022",
+              "source_file": "crm_member_export.csv",
+              "source_row": 54013,
+              "field": "mobile",
+              "raw_value": "199****9172"
+            },
+            {
+              "source_id": "CRM:QH10054022",
+              "source_file": "crm_member_export.csv",
+              "source_row": 54013,
+              "field": "lv",
+              "raw_value": "普通"
+            },
+            {
+              "source_id": "CRM:QH10054022",
+              "source_file": "crm_member_export.csv",
+              "source_row": 54013,
+              "field": "reg_shop",
+              "raw_value": "2706"
+            },
+            {
+              "source_id": "POS:POS13365",
+              "source_file": "pos_member_export.csv",
+              "source_row": 6481,
+              "field": "name",
+              "raw_value": "韦骏畅"
+            },
+            {
+              "source_id": "POS:POS13365",
+              "source_file": "pos_member_export.csv",
+              "source_row": 6481,
+              "field": "mobile",
+              "raw_value": "199****9172"
+            }
+          ],
+          "identity_status": "verified"
+        },
+        "policy": {
+          "member_id": "U713cf89fe10ead5e5c8bd949",
+          "status": "ok",
+          "channels": {
+            "telephone": "blocked",
+            "sms": "no_known_restriction"
+          },
+          "restriction_evidence": [
+            {
+              "source_id": "CRM:QH10010871",
+              "scope": "telephone",
+              "source_file": "crm_member_export.csv",
+              "source_row": 10869,
+              "quote": "勿打电话-本人要求",
+              "rule_version": "qinghe-w05-rules-20261008.1"
+            },
+            {
+              "source_id": "CRM:QH10010871",
+              "scope": "telephone",
+              "source_file": "小林工作账_勿扰名单.csv",
+              "source_row": 19,
+              "quote": "本人要求",
+              "rule_version": "qinghe-w05-rules-20261008.1",
+              "confirmation_records": [
+                {
+                  "record_id": "CS-efc94a2242174a2595f4",
+                  "source_file": "contact_scope_confirmation.csv",
+                  "source_row": 19,
+                  "status": "current",
+                  "channel_scope": "telephone",
+                  "basis_file": "crm_member_export.csv",
+                  "basis_row": "10869",
+                  "summary": "原 CRM 备注明确勿打电话"
+                }
+              ]
+            }
+          ],
+          "member_excluded": false,
+          "account_exclusions": [],
+          "all_source_accounts_excluded": false,
+          "confirmed_exclusions": [],
+          "pending_verifications": [],
+          "verification_coverage_complete": true,
+          "actual_contact_authorized": false
+        },
+        "last_effective_purchase": "2026-02-17",
+        "dormant_days": 196,
+        "dormancy_condition": {
+          "threshold_days": 60,
+          "operator": "gte",
+          "matches": true,
+          "scope": "recent_effective_purchase_only; full_cohort_requires_member_cohort"
+        },
+        "recommendation_allowed": false,
+        "recommendation_decision": {
+          "scope": "detail_recommendation_safety_only; full_cohort_requires_member_cohort",
+          "operator": "all",
+          "conditions": {
+            "identity_verified": true,
+            "member_not_excluded": true,
+            "some_source_account_not_excluded": true,
+            "no_pending_operational_verification": true,
+            "recent_purchase_coverage_complete": true,
+            "recent_effective_purchase_present": true,
+            "selected_channel_has_no_known_restriction": false
+          },
+          "result": false,
+          "context_only_fields": [
+            "tier"
+          ],
+          "actual_contact_authorized": false
+        },
+        "presentation_scope": "current_member_facts_v1",
+        "recommendation_context_purpose": "knowledge_applicability_only; tier does not decide recommendation_allowed",
+        "follow_up_owners": {
+          "source_identity_and_registration": "老周",
+          "contact_channel_scope": "小林"
+        },
+        "follow_up_requirements": [
+          {
+            "topic": "source_registration",
+            "owner": "老周",
+            "source_ids": [
+              "POS:POS13365"
+            ],
+            "question": "补证这些来源账户的注册门店；不能用购买门店替代。"
+          }
+        ],
+        "recommendation_context": {
+          "channel": "telephone",
+          "identity": "verified",
+          "tier": null
+        },
+        "coverage_complete": true,
+        "reference_date": "2026-09-01",
+        "actual_contact_authorized": false,
+        "versions": {
+          "binding_version": "w05-member-binding-1",
+          "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+          "data_version": "qinghe-w05-v2.0-candidate.2",
+          "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+          "grain_version": "w05-verified-person-and-unresolved-source-1",
+          "mapping_version": "qinghe-w05-rules-20261008.1",
+          "module_dependencies_sha256": "abd237dccedc5bdde8c1697a75d152f2a877d4e40093af2b038498ffc529e9b9"
+        },
+        "evidence_id": "98a4629bb4885c9c94dfc517ed3aa59845fc85d426faf3dd394a49e401dcb55a"
+      },
+      "call_id": "call_-7038301480780037867"
+    },
+    {
+      "name": "member_relations",
+      "args": {
+        "member_id": "U713cf89fe10ead5e5c8bd949"
+      },
+      "result": {
+        "status": "ok",
+        "member_id": "U713cf89fe10ead5e5c8bd949",
+        "accounts": [
+          {
+            "source_id": "CRM:QH10008650",
+            "system": "CRM",
+            "source_file": "crm_member_export.csv",
+            "source_row": 8649,
+            "registered_store": "2706",
+            "raw": {
+              "hy_id": "QH10008650",
+              "nm": "韦骏畅",
+              "mobile": "199****9172",
+              "birth": "1977-08-10",
+              "join_dt": "2023-11-02",
+              "create_tm": "2023-11-02 21:54:12",
+              "lv": "银卡",
+              "stat": "1",
+              "src_ch": "商城",
+              "reg_shop": "2706",
+              "reg_dev": "f239574c89d3e50c",
+              "tag": "价格敏感，小程序偏好"
+            }
+          },
+          {
+            "source_id": "CRM:QH10010871",
+            "system": "CRM",
+            "source_file": "crm_member_export.csv",
+            "source_row": 10869,
+            "registered_store": "2706",
+            "raw": {
+              "hy_id": "QH10010871",
+              "nm": "韦畅",
+              "mobile": "199****9172",
+              "birth": "1977-08-10",
+              "join_dt": "2023-12-12",
+              "create_tm": "2023-12-12 14:09:32",
+              "lv": "普通",
+              "stat": "1",
+              "src_ch": "门店",
+              "reg_shop": "2706",
+              "reg_dev": "7889a36229631135",
+              "tag": "周末家庭/勿打电话-本人要求"
+            }
+          },
+          {
+            "source_id": "CRM:QH10054022",
+            "system": "CRM",
+            "source_file": "crm_member_export.csv",
+            "source_row": 54013,
+            "registered_store": "2706",
+            "raw": {
+              "hy_id": "QH10054022",
+              "nm": "韦畅",
+              "mobile": "199****9172",
+              "birth": "1977-08-10",
+              "join_dt": "2023-11-02",
+              "create_tm": "2025-03-15 04:52:28",
+              "lv": "普通",
+              "stat": "1",
+              "src_ch": "系统导入",
+              "reg_shop": "2706",
+              "reg_dev": "",
+              "tag": "生鲜偏好"
+            }
+          },
+          {
+            "source_id": "POS:POS13365",
+            "system": "POS",
+            "source_file": "pos_member_export.csv",
+            "source_row": 6481,
+            "registered_store": null,
+            "raw": {
+              "pos_member_id": "POS13365",
+              "name": "韦骏畅",
+              "mobile": "199****9172"
+            }
+          }
+        ],
+        "registered_stores": [
+          "2706"
+        ],
+        "orders": [
+          {
+            "order_id": "CRM:O20250202000141",
+            "member_id": "U713cf89fe10ead5e5c8bd949",
+            "store_id": "2706",
+            "ordered_at": "2025-02-02",
+            "status": "paid",
+            "gross_cents": 7898,
+            "paid_cents": 6713,
+            "refund_cents": 0,
+            "quantity": 2,
+            "channel": "门店",
+            "provenance": {
+              "order_id": "CRM:O20250202000141",
+              "member_id": "U713cf89fe10ead5e5c8bd949",
+              "source_id": "CRM:QH10010871",
+              "source_file": "crm_order_export.csv",
+              "source_row": "27360"
+            }
+          },
+          {
+            "order_id": "CRM:O20250203000009",
+            "member_id": "U713cf89fe10ead5e5c8bd949",
+            "store_id": "8696",
+            "ordered_at": "2025-02-03",
+            "status": "paid",
+            "gross_cents": 8744,
+            "paid_cents": 8307,
+            "refund_cents": 8307,
+            "quantity": 3,
+            "channel": "商城",
+            "provenance": {
+              "order_id": "CRM:O20250203000009",
+              "member_id": "U713cf89fe10ead5e5c8bd949",
+              "source_id": "CRM:QH10008650",
+              "source_file": "crm_order_export.csv",
+              "source_row": "27419"
+            }
+          },
+          {
+            "order_id": "CRM:O20260217000161",
+            "member_id": "U713cf89fe10ead5e5c8bd949",
+            "store_id": "2706",
+            "ordered_at": "2026-02-17",
+            "status": "paid",
+            "gross_cents": 34192,
+            "paid_cents": 26063,
+            "refund_cents": 0,
+            "quantity": 7,
+            "channel": "小程序",
+            "provenance": {
+              "order_id": "CRM:O20260217000161",
+              "member_id": "U713cf89fe10ead5e5c8bd949",
+              "source_id": "CRM:QH10008650",
+              "source_file": "crm_order_export.csv",
+              "source_row": "114618"
+            }
+          },
+          {
+            "order_id": "CRM:O20260219000021",
+            "member_id": "U713cf89fe10ead5e5c8bd949",
+            "store_id": "8696",
+            "ordered_at": "2026-02-19",
+            "status": "paid",
+            "gross_cents": 12597,
+            "paid_cents": 9707,
+            "refund_cents": 9707,
+            "quantity": 2,
+            "channel": "小程序",
+            "provenance": {
+              "order_id": "CRM:O20260219000021",
+              "member_id": "U713cf89fe10ead5e5c8bd949",
+              "source_id": "CRM:QH10008650",
+              "source_file": "crm_order_export.csv",
+              "source_row": "114932"
+            }
+          }
+        ],
+        "cards": [],
+        "card_scope": "原始卡记录含财务隔离项；不表示这些卡进入原 W04 指标。",
+        "coverage": [
+          "2024-09-01",
+          "2026-09-01"
+        ],
+        "page": {
+          "total": 4,
+          "returned": 4,
+          "offset": 0,
+          "limit": 100,
+          "next_offset": null,
+          "complete": true
+        },
+        "versions": {
+          "binding_version": "w05-member-binding-1",
+          "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+          "data_version": "qinghe-w05-v2.0-candidate.2",
+          "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+          "grain_version": "w05-verified-person-and-unresolved-source-1",
+          "mapping_version": "qinghe-w05-rules-20261008.1",
+          "module_dependencies_sha256": "abd237dccedc5bdde8c1697a75d152f2a877d4e40093af2b038498ffc529e9b9"
+        },
+        "evidence_id": "a18760ea06fd1c0f5f320c1609944fddc52928efa5055acf84d8bd6c821982f0"
+      },
+      "call_id": "call_-7038301480780037866"
+    },
+    {
+      "name": "retrieve_knowledge",
+      "args": {
+        "level": "usage",
+        "query": "电话渠道联系限制、recommendation_decision 程序禁联条件、补充确认来源与建议适用性",
+        "reference_date": "2026-09-01"
+      },
+      "result": {
+        "status": "ok",
+        "hits": [
+          {
+            "node_id": "contact-6",
+            "quote": "| 已取得的有效依据 | 本轮含义 |\n| --- | --- |\n| 明确“请勿再联系” | 限制本轮所有联系渠道 |\n| 明确“勿打电话” | 限制电话；不能由此推定其他渠道已获许可 |\n| 明确“勿发短信” | 限制短信；不能由此推定其他渠道已获许可 |\n| 只有勿扰原因，没有明确渠道或补充确认 | 限制范围待核，不能直接推荐通过某个渠道联系 |",
+            "source": {
+              "id": "contact",
+              "version": "v0.1",
+              "level": "usage",
+              "valid_from": "2026-08-31",
+              "valid_until": "2026-09-02",
+              "conditions": {},
+              "source_file": "05_联系限制与建议说明.md",
+              "source_sha256": "12a4e903228fe26320508425f9a613b4054f208d947296bd656be1c982cbd51b",
+              "chunk": 6
+            },
+            "applicability": "applicable",
+            "missing_conditions": [],
+            "match_count": 14
+          },
+          {
+            "node_id": "contact-1",
+            "quote": "# 青禾优选：联系限制与建议说明",
+            "source": {
+              "id": "contact",
+              "version": "v0.1",
+              "level": "usage",
+              "valid_from": "2026-08-31",
+              "valid_until": "2026-09-02",
+              "conditions": {},
+              "source_file": "05_联系限制与建议说明.md",
+              "source_sha256": "12a4e903228fe26320508425f9a613b4054f208d947296bd656be1c982cbd51b",
+              "chunk": 1
+            },
+            "applicability": "applicable",
+            "missing_conditions": [],
+            "match_count": 9
+          },
+          {
+            "node_id": "contact-2",
+            "quote": "> 业务依据说明 v0.1｜2026-10-08。用于固定参考日 2026-09-01 的本轮分析和建议；原文、补充确认记录及各自版本共同构成依据，不授权执行联系。",
+            "source": {
+              "id": "contact",
+              "version": "v0.1",
+              "level": "usage",
+              "valid_from": "2026-08-31",
+              "valid_until": "2026-09-02",
+              "conditions": {},
+              "source_file": "05_联系限制与建议说明.md",
+              "source_sha256": "12a4e903228fe26320508425f9a613b4054f208d947296bd656be1c982cbd51b",
+              "chunk": 2
+            },
+            "applicability": "applicable",
+            "missing_conditions": [],
+            "match_count": 8
+          },
+          {
+            "node_id": "contact-5",
+            "quote": "本轮通过补充确认记录说明具体条目的渠道范围。确认记录应指向原条目，保留原文、来源账户、确认依据、渠道范围、确认时间及状态；不修改原工作账来制造过去已经写明的含义。无法确认的条目继续待核。",
+            "source": {
+              "id": "contact",
+              "version": "v0.1",
+              "level": "usage",
+              "valid_from": "2026-08-31",
+              "valid_until": "2026-09-02",
+              "conditions": {},
+              "source_file": "05_联系限制与建议说明.md",
+              "source_sha256": "12a4e903228fe26320508425f9a613b4054f208d947296bd656be1c982cbd51b",
+              "chunk": 5
+            },
+            "applicability": "applicable",
+            "missing_conditions": [],
+            "match_count": 8
+          },
+          {
+            "node_id": "contact-10",
+            "quote": "| 会员当前上下文 | 可以给出的分析或建议 |\n| --- | --- |\n| 身份已核实、满足本轮条件，必要依据齐全且指定渠道未发现适用限制 | 说明消费和最近购买依据，列为供业务人员复核的联系候选；“未发现限制”不表述为已取得授权 |\n| 旧 POS 有近 60 天有效购买，合并后不满足沉睡条件 | 说明已覆盖的近期购买，不能继续按沉睡会员推荐召回 |\n| 明确限制联系，或确认属于本轮排除对象 | 说明不能推荐的具体依据，不提供绕过限制的联系方法 |\n| 身份、覆盖、核验或限制范围未决 | 说明还缺什么、影响哪个判断及应向谁核实，暂不确认适合联系 |",
+            "source": {
+              "id": "contact",
+              "version": "v0.1",
+              "level": "usage",
+              "valid_from": "2026-08-31",
+              "valid_until": "2026-09-02",
+              "conditions": {},
+              "source_file": "05_联系限制与建议说明.md",
+              "source_sha256": "12a4e903228fe26320508425f9a613b4054f208d947296bd656be1c982cbd51b",
+              "chunk": 10
+            },
+            "applicability": "applicable",
+            "missing_conditions": [],
+            "match_count": 7
+          }
+        ],
+        "knowledge_version": "qinghe-w05-rules-20261008.1",
+        "index_sha256": "07063999351f8ab57afc16df0cd4796d49b4c68d99f8b62963535e877dc4f8ac",
+        "hard_constraints_from_program": true,
+        "retrieval": "local keyword retrieval",
+        "versions": {
+          "binding_version": "w05-member-binding-1",
+          "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+          "data_version": "qinghe-w05-v2.0-candidate.2",
+          "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+          "grain_version": "w05-verified-person-and-unresolved-source-1",
+          "mapping_version": "qinghe-w05-rules-20261008.1",
+          "module_dependencies_sha256": "abd237dccedc5bdde8c1697a75d152f2a877d4e40093af2b038498ffc529e9b9"
+        },
+        "evidence_id": "960e68f83ae0a97c871001944aa18e6051b105fe0435814f29957f948143b743"
+      },
+      "call_id": "call_-7038301480780037865"
+    }
+  ],
+  "steps": 2,
+  "output_repairs": 0,
+  "usage": {
+    "prompt_tokens": 17681,
+    "completion_tokens": 4356,
+    "total_tokens": 22037
+  },
+  "trace_id": "6ddd7f19050f850684606cc3e6898551"
+}

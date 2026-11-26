@@ -1,0 +1,65 @@
+{
+  "data_version": "qinghe-w05-v2.0-candidate.2",
+  "rules_version": "qinghe-w05-rules-20261008.1",
+  "baseline_evidence": [],
+  "current_evidence": [],
+  "change_log": [],
+  "pending": [
+    "precise_person_total"
+  ],
+  "formal_acceptance": false,
+  "scope_and_evidence": {
+    "delivered_capabilities": [],
+    "business_model_file": "docs/w05/business_model.md",
+    "model_and_metric_changes": [],
+    "material_and_data_sources": [],
+    "interview_sources": [],
+    "inferences": [],
+    "unresolved_impacts": [],
+    "reuse_and_scope_explanation": "",
+    "checkpoint_and_ai_usage": ""
+  },
+  "verification_cases": [
+    {
+      "id": "A",
+      "inputs": {},
+      "expected_from_public_evidence": "",
+      "evidence_files": [],
+      "result": "not_run",
+      "findings": ""
+    },
+    {
+      "id": "B",
+      "inputs": {},
+      "expected_from_public_evidence": "",
+      "evidence_files": [],
+      "result": "not_run",
+      "findings": ""
+    },
+    {
+      "id": "C",
+      "inputs": {},
+      "expected_from_public_evidence": "",
+      "evidence_files": [],
+      "result": "not_run",
+      "findings": ""
+    },
+    {
+      "id": "D",
+      "inputs": {},
+      "expected_from_public_evidence": "",
+      "evidence_files": [],
+      "result": "not_run",
+      "findings": ""
+    },
+    {
+      "id": "E",
+      "inputs": {},
+      "expected_from_public_evidence": "",
+      "evidence_files": [],
+      "result": "not_run",
+      "findings": ""
+    }
+  ],
+  "time_log": []
+}
