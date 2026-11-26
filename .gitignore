@@ -53,3 +53,11 @@ downloads/w05/
 course-materials/w05/W04_checkpoint/
 course-materials/w05/**/*.zip
 artifacts/w04/cleaned/
+.cache/
+.idea/
+work/prepared-*/
+work/home-*/
+work/model-*/
+work/submission-*/
+work/d/
+work/*.zip

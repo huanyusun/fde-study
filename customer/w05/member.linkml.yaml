@@ -10,13 +10,13 @@ default_range: string
 classes:
   Member:
     description: Unified business identity or explicitly unresolved financial bucket.
-    slots: [] # TODO 填 Member 字段与关系名
+    slots: [id, display_name, identity_status, source_accounts, registered_stores, payload]
   SourceAccount:
     description: Namespaced source identifier with immutable file and row provenance.
-    slots: [] # TODO 填 SourceAccount 字段与关系名
+    slots: [id, system, source_file, source_row, registered_store, payload]
   Store:
     description: Registration store; purchase locations remain in existing orders.
-    slots: [] # TODO 填 Store 字段名
+    slots: [id, name]
 slots:
   id:
     identifier: true

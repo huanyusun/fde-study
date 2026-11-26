@@ -1,0 +1,6 @@
+{
+  "raw": "data/w05-v2",
+  "w04_cleaned": "artifacts/w04/cleaned",
+  "library": "work/library",
+  "code": "customer/w05/solution.py"
+}
