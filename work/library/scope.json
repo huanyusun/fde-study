@@ -1,0 +1,7 @@
+{
+  "customer": "青禾",
+  "statistics_unit": "已验证统一会员；未决来源单独保留财务桶，不能计作已验证自然人",
+  "scope": "青禾 v2 CRM+POS 导出内消费（2024-09-01 至 2026-09-01 不含）。运营排除不扣减财务，精确自然人数仍需业务补证。POS 独有注册日期和门店未知。",
+  "business_model": "docs/w05/business_model.md",
+  "report": "artifacts/w05/mvp_v1_report.json"
+}

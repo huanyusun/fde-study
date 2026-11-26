@@ -1,0 +1,6 @@
+{
+  "home": "/Users/sunhuanyu/orca/workspaces/fde-study/w05/work/home-1",
+  "data_version": "qinghe-w05-v2.0-candidate.2",
+  "shared_tools": 4,
+  "default_entry": "tools/product.py run|serve|start"
+}
