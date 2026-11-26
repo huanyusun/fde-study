@@ -1,0 +1,122 @@
+{
+  "product_version": "0.2.0-w1",
+  "runtime_revision": "w01-runtime-20260922",
+  "session_id": "75b4e121-7403-499f-ae60-234809ee835a",
+  "model_mode": "live",
+  "model_name": "glm-5.4",
+  "prompt_sha256": "b20cdc07bb0c1832162a4231e22316a16ed462988e5113d32a0c5cacfb5fad5e",
+  "status": "incomplete",
+  "result": {
+    "status": "incomplete",
+    "summary": "本轮按门店 1203、近 12 个月（2025-09-01 至 2026-09-01）净消费不少于 3000 元（300000 分）、距最近有效购买满 60 天、短信渠道发起会员圈选，但 member_cohort 两次调用均返回 MEMBER_TOOL_CONTRACT_FAILED，未返回任何会员名单，因此无法对候选人逐一查看详情、关联记录与适用知识，也无法给出建议。member_ids、unknown_member_ids、blocked_member_ids、unresolved_source_ids 均为空表示圈选未完成，不表示无符合条件的会员。需在圈选工具恢复后按原条件重试，本轮未执行任何联系动作。",
+    "evidence_ids": [
+      "b17842ff8b9be47ebf27b019f79d9b20da6f89d40322256c891b1b764685aa4f",
+      "b17842ff8b9be47ebf27b019f79d9b20da6f89d40322256c891b1b764685aa4f"
+    ],
+    "recommendations": [],
+    "task_scope": {
+      "recommendations_requested": true,
+      "statement": "门店 1203、近 12 个月（2025-09-01 至 2026-09-01）净消费不少于 3000 元且距最近有效购买满 60 天的会员，短信渠道圈选，并对名单中每位候选人查看详情、关联记录与适用知识后给出有依据的建议。"
+    },
+    "non_recommendations": [],
+    "member_ids": [],
+    "unknown_member_ids": [],
+    "blocked_member_ids": [],
+    "unresolved_source_ids": [],
+    "validation_passed": true,
+    "validation_code": "GROUNDED",
+    "validation_scope": {
+      "checked": [
+        "current_turn_citations",
+        "result_status_and_sets",
+        "recommendation_policy_and_knowledge",
+        "structured_critical_facts",
+        "candidate_disposition_coverage"
+      ],
+      "not_checked": [
+        "free_text_fact_correspondence",
+        "independent_business_acceptance",
+        "task_scope_matches_user_request"
+      ],
+      "source_review_required": true
+    }
+  },
+  "observations": [
+    {
+      "name": "member_cohort",
+      "args": {
+        "reference_date": "2026-09-01",
+        "start": "2025-09-01",
+        "end": "2026-09-01",
+        "metric_filters": [
+          {
+            "metric": "net_sales_cents",
+            "op": "gte",
+            "value": 300000
+          }
+        ],
+        "dormant_days": 60,
+        "store_id": "1203",
+        "channel": "sms",
+        "page": "{\"limit\": 100, \"offset\": 0}"
+      },
+      "result": {
+        "status": "error",
+        "code": "MEMBER_TOOL_CONTRACT_FAILED",
+        "versions": {
+          "binding_version": "w05-member-binding-1",
+          "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+          "data_version": "qinghe-w05-v2.0-candidate.2",
+          "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+          "grain_version": "w05-verified-person-and-unresolved-source-1",
+          "mapping_version": "qinghe-w05-rules-20261008.1",
+          "module_dependencies_sha256": "abd237dccedc5bdde8c1697a75d152f2a877d4e40093af2b038498ffc529e9b9"
+        },
+        "evidence_id": "b17842ff8b9be47ebf27b019f79d9b20da6f89d40322256c891b1b764685aa4f"
+      },
+      "call_id": "call_-7038239324013323464"
+    },
+    {
+      "name": "member_cohort",
+      "args": {
+        "channel": "sms",
+        "dormant_days": 60,
+        "end": "2026-09-01",
+        "metric_filters": [
+          {
+            "metric": "net_sales_cents",
+            "op": "gte",
+            "value": 300000
+          }
+        ],
+        "page": "{\"limit\": 100, \"offset\": 0}",
+        "reference_date": "2026-09-01",
+        "start": "2025-09-01",
+        "store_id": "1203"
+      },
+      "result": {
+        "status": "error",
+        "code": "MEMBER_TOOL_CONTRACT_FAILED",
+        "versions": {
+          "binding_version": "w05-member-binding-1",
+          "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+          "data_version": "qinghe-w05-v2.0-candidate.2",
+          "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+          "grain_version": "w05-verified-person-and-unresolved-source-1",
+          "mapping_version": "qinghe-w05-rules-20261008.1",
+          "module_dependencies_sha256": "abd237dccedc5bdde8c1697a75d152f2a877d4e40093af2b038498ffc529e9b9"
+        },
+        "evidence_id": "b17842ff8b9be47ebf27b019f79d9b20da6f89d40322256c891b1b764685aa4f"
+      },
+      "call_id": "call_-7038238533739344939"
+    }
+  ],
+  "steps": 3,
+  "output_repairs": 0,
+  "usage": {
+    "prompt_tokens": 17858,
+    "completion_tokens": 2338,
+    "total_tokens": 20196
+  },
+  "trace_id": "70e9b1b628e30ac955490debc49805cc"
+}

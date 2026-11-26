@@ -1,0 +1,9 @@
+{
+  "name": "retrieve_knowledge",
+  "args": {
+    "query": "联系限制 勿打电话 渠道待核 建议",
+    "reference_date": "2026-09-01",
+    "level": "usage",
+    "limit": 5
+  }
+}

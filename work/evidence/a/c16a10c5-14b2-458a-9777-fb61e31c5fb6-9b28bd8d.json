@@ -1,0 +1,111 @@
+{
+  "product_version": "0.2.0-w1",
+  "runtime_revision": "w01-runtime-20260922",
+  "session_id": "c16a10c5-14b2-458a-9777-fb61e31c5fb6",
+  "model_mode": "live",
+  "model_name": "deepseek-chat",
+  "prompt_sha256": "b20cdc07bb0c1832162a4231e22316a16ed462988e5113d32a0c5cacfb5fad5e",
+  "status": "completed",
+  "result": {
+    "status": "completed",
+    "summary": "2025-09-01 至 2026-09-01（不含）全公司净销售额为 9,779,337.26 元（977,933,726 分），有效订单数 85,371 单。统计范围为当前已加载客户数据范围内的全部门店汇总，不区分归属门店或成交门店；另有少量订单处于隔离状态，未计入本次指标，因此结果仅反映本次可用数据范围。数据中还有未决来源的独立财务桶，不应解释为自然人数，精确自然人总数仍待定。本轮未做会员圈选。",
+    "evidence_ids": [
+      "a1557a69c16b4d31245c18c8eaea6ca64dad5ec6c38594a2e6e6785700e574dd"
+    ],
+    "recommendations": [],
+    "validation_passed": true,
+    "validation_code": "GROUNDED",
+    "validation_scope": {
+      "checked": [
+        "current_turn_citations",
+        "result_status_and_sets",
+        "recommendation_policy_and_knowledge",
+        "structured_critical_facts",
+        "candidate_disposition_coverage"
+      ],
+      "not_checked": [
+        "free_text_fact_correspondence",
+        "independent_business_acceptance",
+        "task_scope_matches_user_request"
+      ],
+      "source_review_required": true
+    }
+  },
+  "observations": [
+    {
+      "name": "query_metrics",
+      "args": {
+        "question": "2025-09-01 到 2026-09-01（不含）全公司的净销售额（net_sales_cents）和有效订单数（valid_order_count）"
+      },
+      "result": {
+        "status": "ok",
+        "intent": {
+          "metrics": [
+            "net_sales_cents",
+            "valid_order_count"
+          ],
+          "start": "2025-09-01",
+          "end": "2026-09-01",
+          "group_by": [],
+          "filters": []
+        },
+        "sql": "SELECT\n  SUM(case when status = 'paid' then paid_cents - refund_cents else 0 end) AS net_sales_cents\n  , SUM(CASE WHEN case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS valid_order_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2025-09-01' AND '2026-08-31'",
+        "columns": [
+          "net_sales_cents",
+          "valid_order_count"
+        ],
+        "rows": [
+          [
+            977933726,
+            85371
+          ]
+        ],
+        "seconds": 0.058,
+        "units": {
+          "net_sales_cents": "cents",
+          "valid_order_count": "count"
+        },
+        "data_version": "qinghe-w05-v2.0-candidate.2",
+        "data_sha256": "93a2aefe5361dac33cc02abec8ae2bb5831b9a0aaece27d9611ed418ec061372",
+        "catalog_sha256": "5317a960d98de397dfd2ae916f5a7e768735aa486e7856dd766ca3560357e3b1",
+        "coverage_notes": {
+          "source": "本轮 CRM 与旧 POS 完整导出；原 W04 财务隔离继承。未决来源保留独立财务桶，不能解释为自然人。运营员工/异常排除不扣经营指标。",
+          "time_range": {
+            "start": "2024-09-01",
+            "end_exclusive": "2026-09-01"
+          },
+          "quarantined": {
+            "member": 0,
+            "order": 252,
+            "card": 299,
+            "shop": 0
+          },
+          "identity_unresolved_sources": 12001,
+          "precise_person_total_acceptance": "pending"
+        },
+        "answer": "2025年9月1日至2026年9月1日（不含）期间，全公司（当前客户范围内）净销售额为 9,779,337.26 元，有效订单数为 85,371 单。统计口径为已加载客户数据范围内的全部门店汇总，不区分归属门店或成交门店；金额以分存储后换算为元。数据覆盖为完整导出，另有少量订单被隔离、未计入本次指标，因此上述结果仅反映本次可用数据范围。",
+        "precise_person_total_acceptance": "pending",
+        "entity_semantics": "verified_person_with_unresolved_source_buckets",
+        "question": "2025-09-01 到 2026-09-01（不含）全公司的净销售额（net_sales_cents）和有效订单数（valid_order_count）",
+        "trace_id": "061fe2d3-bfe5-4239-88c4-e7b3b3866b78",
+        "elapsed_seconds": 7.779,
+        "model_usage": {
+          "prompt_tokens": 22148,
+          "completion_tokens": 233,
+          "total_tokens": 22381
+        },
+        "model_calls_with_usage": 2,
+        "evidence_id": "a1557a69c16b4d31245c18c8eaea6ca64dad5ec6c38594a2e6e6785700e574dd"
+      },
+      "call_id": "call_00_513gIlUEIjGJtbKUNgeG8535"
+    }
+  ],
+  "steps": 2,
+  "output_repairs": 0,
+  "usage": {
+    "prompt_tokens": 34447,
+    "completion_tokens": 492,
+    "total_tokens": 34939
+  },
+  "trace_id": "1137c95b6222fc2eca075cd8330d9110"
+}

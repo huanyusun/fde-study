@@ -1,0 +1,111 @@
+{
+  "product_version": "0.2.0-w1",
+  "runtime_revision": "w01-runtime-20260922",
+  "session_id": "9f4332bc-8d30-4698-9477-2a79b010eb05",
+  "model_mode": "live",
+  "model_name": "glm-5.4",
+  "prompt_sha256": "b20cdc07bb0c1832162a4231e22316a16ed462988e5113d32a0c5cacfb5fad5e",
+  "status": "completed",
+  "result": {
+    "status": "completed",
+    "summary": "查询 2025-09-01 至 2026-09-01（不含当日）全公司口径指标：净销售额 9,779,337.26 元（原始值 977,933,726 分），有效订单数 85,371 笔。口径为青禾 CRM 与旧 POS 完整导出的经营数据，未按门店或地区细分；未决来源保留独立财务桶、不计作已验证自然人，运营员工/异常排除不扣减经营指标。本轮为指标查询，未做会员圈选，不涉及联系授权。",
+    "evidence_ids": [
+      "fd0c2716656f1f1ad4d36c828da1b50b8df398b5c6f01367c087cb1ff0aaf3d8"
+    ],
+    "recommendations": [],
+    "validation_passed": true,
+    "validation_code": "GROUNDED",
+    "validation_scope": {
+      "checked": [
+        "current_turn_citations",
+        "result_status_and_sets",
+        "recommendation_policy_and_knowledge",
+        "structured_critical_facts",
+        "candidate_disposition_coverage"
+      ],
+      "not_checked": [
+        "free_text_fact_correspondence",
+        "independent_business_acceptance",
+        "task_scope_matches_user_request"
+      ],
+      "source_review_required": true
+    }
+  },
+  "observations": [
+    {
+      "name": "query_metrics",
+      "args": {
+        "question": "查询 2025-09-01 至 2026-09-01（不含）全公司的净销售额（net_sales_cents，单位分）和有效订单数（valid_order_count）。"
+      },
+      "result": {
+        "status": "ok",
+        "intent": {
+          "metrics": [
+            "net_sales_cents",
+            "valid_order_count"
+          ],
+          "start": "2025-09-01",
+          "end": "2026-09-01",
+          "group_by": [],
+          "filters": []
+        },
+        "sql": "SELECT\n  SUM(case when status = 'paid' then paid_cents - refund_cents else 0 end) AS net_sales_cents\n  , SUM(CASE WHEN case when status = 'paid' and paid_cents - refund_cents > 0 then order_id end IS NOT NULL THEN 1 ELSE 0 END) AS valid_order_count\nFROM \"data\".\"main\".\"orders\" orders_src_10000\nWHERE DATE_TRUNC('day', ordered_at) BETWEEN '2025-09-01' AND '2026-08-31'",
+        "columns": [
+          "net_sales_cents",
+          "valid_order_count"
+        ],
+        "rows": [
+          [
+            977933726,
+            85371
+          ]
+        ],
+        "seconds": 0.055,
+        "units": {
+          "net_sales_cents": "cents",
+          "valid_order_count": "count"
+        },
+        "data_version": "qinghe-w05-v2.0-candidate.2",
+        "data_sha256": "93a2aefe5361dac33cc02abec8ae2bb5831b9a0aaece27d9611ed418ec061372",
+        "catalog_sha256": "5317a960d98de397dfd2ae916f5a7e768735aa486e7856dd766ca3560357e3b1",
+        "coverage_notes": {
+          "source": "本轮 CRM 与旧 POS 完整导出；原 W04 财务隔离继承。未决来源保留独立财务桶，不能解释为自然人。运营员工/异常排除不扣经营指标。",
+          "time_range": {
+            "start": "2024-09-01",
+            "end_exclusive": "2026-09-01"
+          },
+          "quarantined": {
+            "member": 0,
+            "order": 252,
+            "card": 299,
+            "shop": 0
+          },
+          "identity_unresolved_sources": 12001,
+          "precise_person_total_acceptance": "pending"
+        },
+        "answer": "统计范围：青禾 CRM 与旧 POS 完整导出内的消费数据，全公司口径（未按门店或地区细分），时间区间为 2025-09-01 至 2026-09-01（不含当日）。结果：净销售额 9,779,337.26 元（原始值 977,933,726 分），有效订单数 85,371 笔。口径说明：该口径按订单财务记录汇总，未决来源保留独立财务桶、不计作已验证自然人；运营员工/异常排除不扣减经营指标，因此以上为经营口径数据。",
+        "precise_person_total_acceptance": "pending",
+        "entity_semantics": "verified_person_with_unresolved_source_buckets",
+        "question": "查询 2025-09-01 至 2026-09-01（不含）全公司的净销售额（net_sales_cents，单位分）和有效订单数（valid_order_count）。",
+        "trace_id": "69a7653c-df6e-4478-b1fc-ebf10d72bd8d",
+        "elapsed_seconds": 17.994,
+        "model_usage": {
+          "prompt_tokens": 22642,
+          "completion_tokens": 846,
+          "total_tokens": 23488
+        },
+        "model_calls_with_usage": 2,
+        "evidence_id": "fd0c2716656f1f1ad4d36c828da1b50b8df398b5c6f01367c087cb1ff0aaf3d8"
+      },
+      "call_id": "call_-7038276363811288170"
+    }
+  ],
+  "steps": 2,
+  "output_repairs": 0,
+  "usage": {
+    "prompt_tokens": 34339,
+    "completion_tokens": 1473,
+    "total_tokens": 35812
+  },
+  "trace_id": "151b229ebfcac2723735019ad2b3e321"
+}

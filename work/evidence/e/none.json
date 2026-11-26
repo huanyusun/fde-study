@@ -1,0 +1,1529 @@
+{
+  "status": "ok",
+  "coverage_complete": true,
+  "member_ids": [
+    "U016d92c6514e0817a582f4e2",
+    "U01dce4a764f4a4a2e230ed15",
+    "U058684ad316fbb99876fb197",
+    "U070fb0a31ad469101d70ff3e",
+    "U07188cefe46d5145ee21c146",
+    "U0b04a64ff9e4c1bc93bd6840",
+    "U12568d6ea5043f3c53cc1047",
+    "U167c3b56d9bf0621d5611bd1",
+    "U178fd544a7a511098913c18f",
+    "U18772078c50287c87ef9a8e1",
+    "U18a1dd11a2b8774066495c79",
+    "U1a65165e13c268d2329995c6",
+    "U1bf3be4a38e56c869fa3ffd8",
+    "U1f916eba4355c3916183918e",
+    "U20795a855aa670d0b27e3c57",
+    "U2528252b426a32c99768d252",
+    "U271c38685d273712c3497cd9",
+    "U2adb9921ebbfbb203b7c0599",
+    "U2e8efd72b14a7186539121f2",
+    "U2e9f974c2cb59a1a946096c1",
+    "U3239bf6013d677fe08150801",
+    "U3320f98b23e41ac5c1ceb734",
+    "U354fb10c0fe9f682b23a1f74",
+    "U38ab150ad85a2d36fb22e785",
+    "U390a011cd49dbf918ab2fac8",
+    "U3aa78551325ff1db95357b74",
+    "U3ba7422c67fea2ed50c57a50",
+    "U3e47228241040a45df7e28a6",
+    "U409b6dea6ba689dfeacef6cb",
+    "U44df58683dcc9dce973efec8",
+    "U47948cb2d192a3a10cedbc0a",
+    "U485c6c17e0d34702cba0c2ca",
+    "U48a510f932c2d7d798b7fc80",
+    "U4a9df550607bdcf101492c68",
+    "U4af2e1c10ccbaa5310bb7cfe",
+    "U4b9803c8ace605db6c8fda3b",
+    "U4bbfe248ad2434f2a1f83cb6",
+    "U4c7134c26c445035b478eaf6",
+    "U4fa2dc737a21b35cb3564e6a",
+    "U523c657dd1ab0985cabc74cd",
+    "U5350a74bbfaa7c354eb1f531",
+    "U54533edfa3c1fce73c781d45",
+    "U560e5d2bd6c2b018d044fa04",
+    "U5ae3efde80edfe2ad1341a02",
+    "U5c74346f672c4566c570214a",
+    "U5ca169988509924b2ee54cef",
+    "U5e58a8e7bc1bd407c1980b82",
+    "U60b009e915c98ae76438c8ed",
+    "U63b597f96fb240ae90bb21b4",
+    "U68a61a6755a3841b52c38950",
+    "U6a0fbc663bdc84b7329363c7",
+    "U6b622cbd08f961bf521444e7",
+    "U6dcf65f7bdf7b44f28c02ad4",
+    "U716d2be13a9113151690feca",
+    "U71a09479a884872fb0f2ec3d",
+    "U76582a49eea949a9ec48aa93",
+    "U78d5110989c6d52db372d421",
+    "U7909ed3bd372d293a83e8e38",
+    "U7aba0ec74bd397c7898c562a",
+    "U7b73689687e2688a11f90d87",
+    "U81f50a99c7d47950e8188e8b",
+    "U827dc2c43391ef6765674f07",
+    "U864e23374e9c894668bd7802",
+    "U87fce6d9863ef7e710284799",
+    "U8a5881fb8d1bd17904a2747d",
+    "U8d5fe23945e0bb9b87392b39",
+    "U92c4f312012945ef0ba730a4",
+    "U933f6c5593ca5625a520e5f1",
+    "U95f57d150ef375af5e604fe3",
+    "U9622a94dc48d860747e320ab",
+    "U977dfb4ef0a3202e46c8c2e4",
+    "U98d41c20c8f56c50cb773d06",
+    "U9bd5ce88af57423dfe7bf806",
+    "U9cc7eeaad764b67fbcfe5160",
+    "Ua144c3a3471c68b090e36ad4",
+    "Ua4bc4bbc0a100bf8eee8bbb7",
+    "Ua5ce9b781ae60f30176b573c",
+    "Ua861f981dfc3acd1894fb3c9",
+    "Ua878909c8c6a092b4e92b9a3",
+    "Ua8cb8f0a1e57aaafd6231430",
+    "Ua9b495ffa4a2f258e9d01ecf",
+    "Uaa5bd3d7fd1c46af8d36144d",
+    "Uabcef742aa4224cbda3e2f49",
+    "Ub274eed7a2cf01800158a3c5",
+    "Ub5d27ba04982e1b0cca82c5b",
+    "Ub86cb3ea30a0a9b73e9fd28e",
+    "Ubc6b656bd2d8763372e397cc",
+    "Uc1fcfa880114d12661fe7bd4",
+    "Uc4a0e1bfb78c68d5a62afc34",
+    "Uc577ab9b8399e1141dc12762",
+    "Uc8424a193aa4379523be5f19",
+    "Uc8f6f29fde1573fd6419ecf5",
+    "Uca0d151cb66cb4d3213427dc",
+    "Ucce4ac38513d49cffb12a909",
+    "Ucd290e4acaa32cb6e7eae93e",
+    "Ucd7a89d588c63156b8c68492",
+    "Ucde86f0a4ad99e591c1c6bd8",
+    "Ucefd7579ead866c7f66dba8f",
+    "Ud451bdfe6a8be5a028d59b6d",
+    "Ud4ba1c9341b25fbdb5faaea0"
+  ],
+  "members": [
+    {
+      "member_id": "U016d92c6514e0817a582f4e2",
+      "metric_values": {
+        "net_sales_cents": 437929
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-29",
+      "dormant_days": 64
+    },
+    {
+      "member_id": "U01dce4a764f4a4a2e230ed15",
+      "metric_values": {
+        "net_sales_cents": 339113
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-27",
+      "dormant_days": 5
+    },
+    {
+      "member_id": "U058684ad316fbb99876fb197",
+      "metric_values": {
+        "net_sales_cents": 366841
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-07",
+      "dormant_days": 86
+    },
+    {
+      "member_id": "U070fb0a31ad469101d70ff3e",
+      "metric_values": {
+        "net_sales_cents": 362271
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-17",
+      "dormant_days": 15
+    },
+    {
+      "member_id": "U07188cefe46d5145ee21c146",
+      "metric_values": {
+        "net_sales_cents": 307103
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-30",
+      "dormant_days": 2
+    },
+    {
+      "member_id": "U0b04a64ff9e4c1bc93bd6840",
+      "metric_values": {
+        "net_sales_cents": 457774
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-09",
+      "dormant_days": 23
+    },
+    {
+      "member_id": "U12568d6ea5043f3c53cc1047",
+      "metric_values": {
+        "net_sales_cents": 308185
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-05",
+      "dormant_days": 88
+    },
+    {
+      "member_id": "U167c3b56d9bf0621d5611bd1",
+      "metric_values": {
+        "net_sales_cents": 338937
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-30",
+      "dormant_days": 63
+    },
+    {
+      "member_id": "U178fd544a7a511098913c18f",
+      "metric_values": {
+        "net_sales_cents": 379039
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-09",
+      "dormant_days": 23
+    },
+    {
+      "member_id": "U18772078c50287c87ef9a8e1",
+      "metric_values": {
+        "net_sales_cents": 321799
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-05-31",
+      "dormant_days": 93
+    },
+    {
+      "member_id": "U18a1dd11a2b8774066495c79",
+      "metric_values": {
+        "net_sales_cents": 624403
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-16",
+      "dormant_days": 47
+    },
+    {
+      "member_id": "U1a65165e13c268d2329995c6",
+      "metric_values": {
+        "net_sales_cents": 470257
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-30",
+      "dormant_days": 33
+    },
+    {
+      "member_id": "U1bf3be4a38e56c869fa3ffd8",
+      "metric_values": {
+        "net_sales_cents": 420731
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-28",
+      "dormant_days": 4
+    },
+    {
+      "member_id": "U1f916eba4355c3916183918e",
+      "metric_values": {
+        "net_sales_cents": 681856
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-16",
+      "dormant_days": 16
+    },
+    {
+      "member_id": "U20795a855aa670d0b27e3c57",
+      "metric_values": {
+        "net_sales_cents": 377074
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-12",
+      "dormant_days": 51
+    },
+    {
+      "member_id": "U2528252b426a32c99768d252",
+      "metric_values": {
+        "net_sales_cents": 300808
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-05-15",
+      "dormant_days": 109
+    },
+    {
+      "member_id": "U271c38685d273712c3497cd9",
+      "metric_values": {
+        "net_sales_cents": 304104
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-02",
+      "dormant_days": 30
+    },
+    {
+      "member_id": "U2adb9921ebbfbb203b7c0599",
+      "metric_values": {
+        "net_sales_cents": 355108
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-01-14",
+      "dormant_days": 230
+    },
+    {
+      "member_id": "U2e8efd72b14a7186539121f2",
+      "metric_values": {
+        "net_sales_cents": 459776
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-05-01",
+      "dormant_days": 123
+    },
+    {
+      "member_id": "U2e9f974c2cb59a1a946096c1",
+      "metric_values": {
+        "net_sales_cents": 371693
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-14",
+      "dormant_days": 49
+    },
+    {
+      "member_id": "U3239bf6013d677fe08150801",
+      "metric_values": {
+        "net_sales_cents": 405351
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-29",
+      "dormant_days": 3
+    },
+    {
+      "member_id": "U3320f98b23e41ac5c1ceb734",
+      "metric_values": {
+        "net_sales_cents": 358260
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-09",
+      "dormant_days": 23
+    },
+    {
+      "member_id": "U354fb10c0fe9f682b23a1f74",
+      "metric_values": {
+        "net_sales_cents": 361307
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-08",
+      "dormant_days": 55
+    },
+    {
+      "member_id": "U38ab150ad85a2d36fb22e785",
+      "metric_values": {
+        "net_sales_cents": 524123
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-29",
+      "dormant_days": 3
+    },
+    {
+      "member_id": "U390a011cd49dbf918ab2fac8",
+      "metric_values": {
+        "net_sales_cents": 361972
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-01-21",
+      "dormant_days": 223
+    },
+    {
+      "member_id": "U3aa78551325ff1db95357b74",
+      "metric_values": {
+        "net_sales_cents": 301462
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-21",
+      "dormant_days": 42
+    },
+    {
+      "member_id": "U3ba7422c67fea2ed50c57a50",
+      "metric_values": {
+        "net_sales_cents": 578769
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-24",
+      "dormant_days": 39
+    },
+    {
+      "member_id": "U3e47228241040a45df7e28a6",
+      "metric_values": {
+        "net_sales_cents": 316543
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-24",
+      "dormant_days": 69
+    },
+    {
+      "member_id": "U409b6dea6ba689dfeacef6cb",
+      "metric_values": {
+        "net_sales_cents": 391217
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-06",
+      "dormant_days": 57
+    },
+    {
+      "member_id": "U44df58683dcc9dce973efec8",
+      "metric_values": {
+        "net_sales_cents": 367647
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-30",
+      "dormant_days": 2
+    },
+    {
+      "member_id": "U47948cb2d192a3a10cedbc0a",
+      "metric_values": {
+        "net_sales_cents": 328890
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-30",
+      "dormant_days": 63
+    },
+    {
+      "member_id": "U485c6c17e0d34702cba0c2ca",
+      "metric_values": {
+        "net_sales_cents": 473756
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-25",
+      "dormant_days": 68
+    },
+    {
+      "member_id": "U48a510f932c2d7d798b7fc80",
+      "metric_values": {
+        "net_sales_cents": 312586
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-24",
+      "dormant_days": 69
+    },
+    {
+      "member_id": "U4a9df550607bdcf101492c68",
+      "metric_values": {
+        "net_sales_cents": 370352
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-30",
+      "dormant_days": 33
+    },
+    {
+      "member_id": "U4af2e1c10ccbaa5310bb7cfe",
+      "metric_values": {
+        "net_sales_cents": 325441
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2025-12-05",
+      "dormant_days": 270
+    },
+    {
+      "member_id": "U4b9803c8ace605db6c8fda3b",
+      "metric_values": {
+        "net_sales_cents": 371965
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-08",
+      "dormant_days": 24
+    },
+    {
+      "member_id": "U4bbfe248ad2434f2a1f83cb6",
+      "metric_values": {
+        "net_sales_cents": 419971
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-16",
+      "dormant_days": 77
+    },
+    {
+      "member_id": "U4c7134c26c445035b478eaf6",
+      "metric_values": {
+        "net_sales_cents": 313326
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-05-11",
+      "dormant_days": 113
+    },
+    {
+      "member_id": "U4fa2dc737a21b35cb3564e6a",
+      "metric_values": {
+        "net_sales_cents": 441005
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-14",
+      "dormant_days": 79
+    },
+    {
+      "member_id": "U523c657dd1ab0985cabc74cd",
+      "metric_values": {
+        "net_sales_cents": 427138
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-04-01",
+      "dormant_days": 153
+    },
+    {
+      "member_id": "U5350a74bbfaa7c354eb1f531",
+      "metric_values": {
+        "net_sales_cents": 403867
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-28",
+      "dormant_days": 4
+    },
+    {
+      "member_id": "U54533edfa3c1fce73c781d45",
+      "metric_values": {
+        "net_sales_cents": 512360
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-24",
+      "dormant_days": 69
+    },
+    {
+      "member_id": "U560e5d2bd6c2b018d044fa04",
+      "metric_values": {
+        "net_sales_cents": 302728
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-26",
+      "dormant_days": 37
+    },
+    {
+      "member_id": "U5ae3efde80edfe2ad1341a02",
+      "metric_values": {
+        "net_sales_cents": 367164
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-30",
+      "dormant_days": 2
+    },
+    {
+      "member_id": "U5c74346f672c4566c570214a",
+      "metric_values": {
+        "net_sales_cents": 309790
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-03-02",
+      "dormant_days": 183
+    },
+    {
+      "member_id": "U5ca169988509924b2ee54cef",
+      "metric_values": {
+        "net_sales_cents": 383374
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-04-18",
+      "dormant_days": 136
+    },
+    {
+      "member_id": "U5e58a8e7bc1bd407c1980b82",
+      "metric_values": {
+        "net_sales_cents": 356276
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-05-17",
+      "dormant_days": 107
+    },
+    {
+      "member_id": "U60b009e915c98ae76438c8ed",
+      "metric_values": {
+        "net_sales_cents": 311378
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-27",
+      "dormant_days": 36
+    },
+    {
+      "member_id": "U63b597f96fb240ae90bb21b4",
+      "metric_values": {
+        "net_sales_cents": 353335
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-22",
+      "dormant_days": 41
+    },
+    {
+      "member_id": "U68a61a6755a3841b52c38950",
+      "metric_values": {
+        "net_sales_cents": 310195
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-01-24",
+      "dormant_days": 220
+    },
+    {
+      "member_id": "U6a0fbc663bdc84b7329363c7",
+      "metric_values": {
+        "net_sales_cents": 318496
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-02",
+      "dormant_days": 61
+    },
+    {
+      "member_id": "U6b622cbd08f961bf521444e7",
+      "metric_values": {
+        "net_sales_cents": 347779
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-19",
+      "dormant_days": 13
+    },
+    {
+      "member_id": "U6dcf65f7bdf7b44f28c02ad4",
+      "metric_values": {
+        "net_sales_cents": 320299
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-25",
+      "dormant_days": 7
+    },
+    {
+      "member_id": "U716d2be13a9113151690feca",
+      "metric_values": {
+        "net_sales_cents": 310470
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-05-11",
+      "dormant_days": 113
+    },
+    {
+      "member_id": "U71a09479a884872fb0f2ec3d",
+      "metric_values": {
+        "net_sales_cents": 309409
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-11",
+      "dormant_days": 52
+    },
+    {
+      "member_id": "U76582a49eea949a9ec48aa93",
+      "metric_values": {
+        "net_sales_cents": 585202
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-31",
+      "dormant_days": 32
+    },
+    {
+      "member_id": "U78d5110989c6d52db372d421",
+      "metric_values": {
+        "net_sales_cents": 405009
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-18",
+      "dormant_days": 75
+    },
+    {
+      "member_id": "U7909ed3bd372d293a83e8e38",
+      "metric_values": {
+        "net_sales_cents": 343274
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-03-26",
+      "dormant_days": 159
+    },
+    {
+      "member_id": "U7aba0ec74bd397c7898c562a",
+      "metric_values": {
+        "net_sales_cents": 404888
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-20",
+      "dormant_days": 43
+    },
+    {
+      "member_id": "U7b73689687e2688a11f90d87",
+      "metric_values": {
+        "net_sales_cents": 314125
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-28",
+      "dormant_days": 65
+    },
+    {
+      "member_id": "U81f50a99c7d47950e8188e8b",
+      "metric_values": {
+        "net_sales_cents": 308803
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-05-27",
+      "dormant_days": 97
+    },
+    {
+      "member_id": "U827dc2c43391ef6765674f07",
+      "metric_values": {
+        "net_sales_cents": 419976
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-01-29",
+      "dormant_days": 215
+    },
+    {
+      "member_id": "U864e23374e9c894668bd7802",
+      "metric_values": {
+        "net_sales_cents": 346965
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-02",
+      "dormant_days": 30
+    },
+    {
+      "member_id": "U87fce6d9863ef7e710284799",
+      "metric_values": {
+        "net_sales_cents": 439831
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-01-25",
+      "dormant_days": 219
+    },
+    {
+      "member_id": "U8a5881fb8d1bd17904a2747d",
+      "metric_values": {
+        "net_sales_cents": 430667
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-03-11",
+      "dormant_days": 174
+    },
+    {
+      "member_id": "U8d5fe23945e0bb9b87392b39",
+      "metric_values": {
+        "net_sales_cents": 340038
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-24",
+      "dormant_days": 8
+    },
+    {
+      "member_id": "U92c4f312012945ef0ba730a4",
+      "metric_values": {
+        "net_sales_cents": 397942
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-09",
+      "dormant_days": 54
+    },
+    {
+      "member_id": "U933f6c5593ca5625a520e5f1",
+      "metric_values": {
+        "net_sales_cents": 446776
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-09",
+      "dormant_days": 54
+    },
+    {
+      "member_id": "U95f57d150ef375af5e604fe3",
+      "metric_values": {
+        "net_sales_cents": 427045
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2025-12-26",
+      "dormant_days": 249
+    },
+    {
+      "member_id": "U9622a94dc48d860747e320ab",
+      "metric_values": {
+        "net_sales_cents": 487115
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-25",
+      "dormant_days": 68
+    },
+    {
+      "member_id": "U977dfb4ef0a3202e46c8c2e4",
+      "metric_values": {
+        "net_sales_cents": 318817
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-09",
+      "dormant_days": 84
+    },
+    {
+      "member_id": "U98d41c20c8f56c50cb773d06",
+      "metric_values": {
+        "net_sales_cents": 331883
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-07",
+      "dormant_days": 86
+    },
+    {
+      "member_id": "U9bd5ce88af57423dfe7bf806",
+      "metric_values": {
+        "net_sales_cents": 551442
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-30",
+      "dormant_days": 2
+    },
+    {
+      "member_id": "U9cc7eeaad764b67fbcfe5160",
+      "metric_values": {
+        "net_sales_cents": 397388
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-15",
+      "dormant_days": 17
+    },
+    {
+      "member_id": "Ua144c3a3471c68b090e36ad4",
+      "metric_values": {
+        "net_sales_cents": 446973
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-07",
+      "dormant_days": 25
+    },
+    {
+      "member_id": "Ua4bc4bbc0a100bf8eee8bbb7",
+      "metric_values": {
+        "net_sales_cents": 337951
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-05-21",
+      "dormant_days": 103
+    },
+    {
+      "member_id": "Ua5ce9b781ae60f30176b573c",
+      "metric_values": {
+        "net_sales_cents": 321858
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-30",
+      "dormant_days": 2
+    },
+    {
+      "member_id": "Ua861f981dfc3acd1894fb3c9",
+      "metric_values": {
+        "net_sales_cents": 315256
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-03-06",
+      "dormant_days": 179
+    },
+    {
+      "member_id": "Ua878909c8c6a092b4e92b9a3",
+      "metric_values": {
+        "net_sales_cents": 370645
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-29",
+      "dormant_days": 3
+    },
+    {
+      "member_id": "Ua8cb8f0a1e57aaafd6231430",
+      "metric_values": {
+        "net_sales_cents": 403315
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-19",
+      "dormant_days": 44
+    },
+    {
+      "member_id": "Ua9b495ffa4a2f258e9d01ecf",
+      "metric_values": {
+        "net_sales_cents": 414398
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-24",
+      "dormant_days": 8
+    },
+    {
+      "member_id": "Uaa5bd3d7fd1c46af8d36144d",
+      "metric_values": {
+        "net_sales_cents": 329932
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-03-02",
+      "dormant_days": 183
+    },
+    {
+      "member_id": "Uabcef742aa4224cbda3e2f49",
+      "metric_values": {
+        "net_sales_cents": 396083
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-20",
+      "dormant_days": 12
+    },
+    {
+      "member_id": "Ub274eed7a2cf01800158a3c5",
+      "metric_values": {
+        "net_sales_cents": 326602
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-15",
+      "dormant_days": 17
+    },
+    {
+      "member_id": "Ub5d27ba04982e1b0cca82c5b",
+      "metric_values": {
+        "net_sales_cents": 313058
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-25",
+      "dormant_days": 7
+    },
+    {
+      "member_id": "Ub86cb3ea30a0a9b73e9fd28e",
+      "metric_values": {
+        "net_sales_cents": 396870
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-29",
+      "dormant_days": 3
+    },
+    {
+      "member_id": "Ubc6b656bd2d8763372e397cc",
+      "metric_values": {
+        "net_sales_cents": 534700
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-26",
+      "dormant_days": 6
+    },
+    {
+      "member_id": "Uc1fcfa880114d12661fe7bd4",
+      "metric_values": {
+        "net_sales_cents": 333246
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-17",
+      "dormant_days": 76
+    },
+    {
+      "member_id": "Uc4a0e1bfb78c68d5a62afc34",
+      "metric_values": {
+        "net_sales_cents": 340726
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-06-25",
+      "dormant_days": 68
+    },
+    {
+      "member_id": "Uc577ab9b8399e1141dc12762",
+      "metric_values": {
+        "net_sales_cents": 567189
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-18",
+      "dormant_days": 45
+    },
+    {
+      "member_id": "Uc8424a193aa4379523be5f19",
+      "metric_values": {
+        "net_sales_cents": 304159
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-02-22",
+      "dormant_days": 191
+    },
+    {
+      "member_id": "Uc8f6f29fde1573fd6419ecf5",
+      "metric_values": {
+        "net_sales_cents": 562175
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-31",
+      "dormant_days": 1
+    },
+    {
+      "member_id": "Uca0d151cb66cb4d3213427dc",
+      "metric_values": {
+        "net_sales_cents": 368842
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-21",
+      "dormant_days": 11
+    },
+    {
+      "member_id": "Ucce4ac38513d49cffb12a909",
+      "metric_values": {
+        "net_sales_cents": 360929
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-07-16",
+      "dormant_days": 47
+    },
+    {
+      "member_id": "Ucd290e4acaa32cb6e7eae93e",
+      "metric_values": {
+        "net_sales_cents": 383630
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-24",
+      "dormant_days": 8
+    },
+    {
+      "member_id": "Ucd7a89d588c63156b8c68492",
+      "metric_values": {
+        "net_sales_cents": 342351
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-20",
+      "dormant_days": 12
+    },
+    {
+      "member_id": "Ucde86f0a4ad99e591c1c6bd8",
+      "metric_values": {
+        "net_sales_cents": 407481
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-31",
+      "dormant_days": 1
+    },
+    {
+      "member_id": "Ucefd7579ead866c7f66dba8f",
+      "metric_values": {
+        "net_sales_cents": 410319
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-05-30",
+      "dormant_days": 94
+    },
+    {
+      "member_id": "Ud451bdfe6a8be5a028d59b6d",
+      "metric_values": {
+        "net_sales_cents": 442542
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-08",
+      "dormant_days": 24
+    },
+    {
+      "member_id": "Ud4ba1c9341b25fbdb5faaea0",
+      "metric_values": {
+        "net_sales_cents": 374762
+      },
+      "window": {
+        "start": "2025-09-01",
+        "end_exclusive": "2026-09-01"
+      },
+      "last_effective_purchase": "2026-08-26",
+      "dormant_days": 6
+    }
+  ],
+  "unknown_members": [],
+  "blocked_members": [],
+  "unresolved_sources": [],
+  "excluded_member_ids": [],
+  "condition_hit_member_ids": [
+    "U016d92c6514e0817a582f4e2",
+    "U01dce4a764f4a4a2e230ed15",
+    "U058684ad316fbb99876fb197",
+    "U070fb0a31ad469101d70ff3e",
+    "U07188cefe46d5145ee21c146",
+    "U0b04a64ff9e4c1bc93bd6840",
+    "U12568d6ea5043f3c53cc1047",
+    "U167c3b56d9bf0621d5611bd1",
+    "U178fd544a7a511098913c18f",
+    "U18772078c50287c87ef9a8e1",
+    "U18a1dd11a2b8774066495c79",
+    "U1a65165e13c268d2329995c6",
+    "U1bf3be4a38e56c869fa3ffd8",
+    "U1f916eba4355c3916183918e",
+    "U20795a855aa670d0b27e3c57",
+    "U2528252b426a32c99768d252",
+    "U271c38685d273712c3497cd9",
+    "U2adb9921ebbfbb203b7c0599",
+    "U2e8efd72b14a7186539121f2",
+    "U2e9f974c2cb59a1a946096c1",
+    "U3239bf6013d677fe08150801",
+    "U3320f98b23e41ac5c1ceb734",
+    "U354fb10c0fe9f682b23a1f74",
+    "U38ab150ad85a2d36fb22e785",
+    "U390a011cd49dbf918ab2fac8",
+    "U3aa78551325ff1db95357b74",
+    "U3ba7422c67fea2ed50c57a50",
+    "U3e47228241040a45df7e28a6",
+    "U409b6dea6ba689dfeacef6cb",
+    "U44df58683dcc9dce973efec8",
+    "U47948cb2d192a3a10cedbc0a",
+    "U485c6c17e0d34702cba0c2ca",
+    "U48a510f932c2d7d798b7fc80",
+    "U4a9df550607bdcf101492c68",
+    "U4af2e1c10ccbaa5310bb7cfe",
+    "U4b9803c8ace605db6c8fda3b",
+    "U4bbfe248ad2434f2a1f83cb6",
+    "U4c7134c26c445035b478eaf6",
+    "U4fa2dc737a21b35cb3564e6a",
+    "U523c657dd1ab0985cabc74cd",
+    "U5350a74bbfaa7c354eb1f531",
+    "U54533edfa3c1fce73c781d45",
+    "U560e5d2bd6c2b018d044fa04",
+    "U5ae3efde80edfe2ad1341a02",
+    "U5c74346f672c4566c570214a",
+    "U5ca169988509924b2ee54cef",
+    "U5e58a8e7bc1bd407c1980b82",
+    "U60b009e915c98ae76438c8ed",
+    "U63b597f96fb240ae90bb21b4",
+    "U68a61a6755a3841b52c38950",
+    "U6a0fbc663bdc84b7329363c7",
+    "U6b622cbd08f961bf521444e7",
+    "U6dcf65f7bdf7b44f28c02ad4",
+    "U716d2be13a9113151690feca",
+    "U71a09479a884872fb0f2ec3d",
+    "U76582a49eea949a9ec48aa93",
+    "U78d5110989c6d52db372d421",
+    "U7909ed3bd372d293a83e8e38",
+    "U7aba0ec74bd397c7898c562a",
+    "U7b73689687e2688a11f90d87",
+    "U81f50a99c7d47950e8188e8b",
+    "U827dc2c43391ef6765674f07",
+    "U864e23374e9c894668bd7802",
+    "U87fce6d9863ef7e710284799",
+    "U8a5881fb8d1bd17904a2747d",
+    "U8d5fe23945e0bb9b87392b39",
+    "U92c4f312012945ef0ba730a4",
+    "U933f6c5593ca5625a520e5f1",
+    "U95f57d150ef375af5e604fe3",
+    "U9622a94dc48d860747e320ab",
+    "U977dfb4ef0a3202e46c8c2e4",
+    "U98d41c20c8f56c50cb773d06",
+    "U9bd5ce88af57423dfe7bf806",
+    "U9cc7eeaad764b67fbcfe5160",
+    "Ua144c3a3471c68b090e36ad4",
+    "Ua4bc4bbc0a100bf8eee8bbb7",
+    "Ua5ce9b781ae60f30176b573c",
+    "Ua861f981dfc3acd1894fb3c9",
+    "Ua878909c8c6a092b4e92b9a3",
+    "Ua8cb8f0a1e57aaafd6231430",
+    "Ua9b495ffa4a2f258e9d01ecf",
+    "Uaa5bd3d7fd1c46af8d36144d",
+    "Uabcef742aa4224cbda3e2f49",
+    "Ub274eed7a2cf01800158a3c5",
+    "Ub5d27ba04982e1b0cca82c5b",
+    "Ub86cb3ea30a0a9b73e9fd28e",
+    "Ubc6b656bd2d8763372e397cc",
+    "Uc1fcfa880114d12661fe7bd4",
+    "Uc4a0e1bfb78c68d5a62afc34",
+    "Uc577ab9b8399e1141dc12762",
+    "Uc8424a193aa4379523be5f19",
+    "Uc8f6f29fde1573fd6419ecf5",
+    "Uca0d151cb66cb4d3213427dc",
+    "Ucce4ac38513d49cffb12a909",
+    "Ucd290e4acaa32cb6e7eae93e",
+    "Ucd7a89d588c63156b8c68492",
+    "Ucde86f0a4ad99e591c1c6bd8",
+    "Ucefd7579ead866c7f66dba8f",
+    "Ud451bdfe6a8be5a028d59b6d",
+    "Ud4ba1c9341b25fbdb5faaea0",
+    "Ud65798a91f2d9ef22bb0e027",
+    "Udb3c28b39db4d4b25d106103",
+    "Udbd3a348c7ecc39ec374e81d",
+    "Udc7d9a02fecff0ce3e14a10a",
+    "Ue158448b952df7f28759d08c",
+    "Ue2d9165f2fe75e43208173a7",
+    "Ue2de3d4d02388e3f00c5fbc7",
+    "Ue610a66871b8e348d2490037",
+    "Ue8f62716b2e739e209f91ed3",
+    "Ue9af417cf221b9f4f69b56fd",
+    "Ued35529bab656ba070f9a4ff",
+    "Uf057d929e12401f6939bb8a6",
+    "Uf07f1147570e6365964fd62b",
+    "Uf1aefb4b3b26b26d05b08850",
+    "Uf535bd4db383ac1e6cd5fecb",
+    "Uf6263af31d4b6828efafdec9",
+    "Uf68a4e7cee714d1de645ab08",
+    "Uf70a22cf453f523f973f2b2d",
+    "Uf8a0813d1455a80d318b55cf",
+    "Uf9022cceb22294c13bed9950",
+    "Uf9379443df29ae53e8297b36",
+    "Ufd0083b20b3f4565fdca8f73",
+    "Uff4695bc71a44063f4550cbe"
+  ],
+  "condition_hit_count": 123,
+  "operational_excluded_count": 0,
+  "channels": {
+    "telephone": {
+      "eligible": 123,
+      "blocked": 0,
+      "unknown": 0
+    },
+    "sms": {
+      "eligible": 123,
+      "blocked": 0,
+      "unknown": 0
+    }
+  },
+  "channel": null,
+  "recency_condition": {
+    "dormant_days": null,
+    "active_within_days": null,
+    "applied": false,
+    "basis": "days_from_last_effective_purchase_to_reference_date; dormant_days gte, active_within_days lt"
+  },
+  "store_scope": {
+    "store_ids": null,
+    "mode": "company",
+    "basis": "any_source_account_registration_in_the_listed_stores; one person is listed once"
+  },
+  "attribute_conditions": {
+    "tiers": null,
+    "registered_from": null,
+    "registered_before_exclusive": null,
+    "applied": false,
+    "basis": "tier: member attribute, null when sources conflict or none is recorded; registered_at: earliest known CRM join date, null for POS-only members"
+  },
+  "attribute_pending_members": {
+    "tier": [],
+    "registered_at": []
+  },
+  "comparison_condition": null,
+  "candidate_scope": {
+    "basis": "members_with_a_record_of_the_filtered_metrics_in_the_window",
+    "zero_value_members_omitted": false,
+    "metrics_whose_conditions_hold_at_zero": [],
+    "message": "本次只在指标窗口内有相应指标记录的会员中筛选。"
+  },
+  "cohort_kind": "condition_analysis",
+  "eligible_count": null,
+  "condition_analysis_count": 123,
+  "financial_bucket_hits": 0,
+  "range_notice": {
+    "registration_unknown_company_people": 3995,
+    "store_query_omits_unknown_registration": false,
+    "message": "注册门店未知的人群保留在全公司数据；不能确定属于或不属于当前门店，未重复列入单店待核名单。"
+  },
+  "actual_contact_authorized": false,
+  "result_scope": {
+    "coverage_complete": "not_applicable_without_recency_condition",
+    "unresolved_sources": "current_filter_and_registration_scope_identity_only",
+    "financial_quarantine_review": "not_assessed",
+    "empty_candidates": "does_not_prove_absence_of_other_records"
+  },
+  "page": {
+    "total": 123,
+    "returned": 100,
+    "offset": 0,
+    "limit": 100,
+    "next_offset": 100,
+    "complete": false,
+    "snapshot_token": "802389db277598cf8f9f6a6aa45178f636bdc430d5dd738b1322295b38111e6a"
+  },
+  "aggregate_evidence": {
+    "sql": "SELECT\n  member\n  , SUM(__net_sales_cents) AS net_sales_cents\nFROM (\n  SELECT\n    member_id AS member\n    , case when status = 'paid' then paid_cents - refund_cents else 0 end AS __net_sales_cents\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2025-09-01' AND '2026-08-31'\n) subq_5\nGROUP BY\n  member",
+    "aggregate_sql": "SELECT * FROM (SELECT\n  member\n  , SUM(__net_sales_cents) AS net_sales_cents\nFROM (\n  SELECT\n    member_id AS member\n    , case when status = 'paid' then paid_cents - refund_cents else 0 end AS __net_sales_cents\n  FROM \"data\".\"main\".\"orders\" orders_src_10000\n  WHERE DATE_TRUNC('day', ordered_at) BETWEEN '2025-09-01' AND '2026-08-31'\n) subq_5\nGROUP BY\n  member) AS controlled_aggregate WHERE \"net_sales_cents\" >= ?",
+    "aggregate_parameters": [
+      300000
+    ],
+    "data_sha256": "93a2aefe5361dac33cc02abec8ae2bb5831b9a0aaece27d9611ed418ec061372",
+    "catalog_sha256": "5317a960d98de397dfd2ae916f5a7e768735aa486e7856dd766ca3560357e3b1",
+    "units": {
+      "net_sales_cents": "cents"
+    }
+  },
+  "rules_version": "qinghe-w05-rules-20261008.1",
+  "versions": {
+    "binding_version": "w05-member-binding-1",
+    "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+    "data_version": "qinghe-w05-v2.0-candidate.2",
+    "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+    "grain_version": "w05-verified-person-and-unresolved-source-1",
+    "mapping_version": "qinghe-w05-rules-20261008.1",
+    "module_dependencies_sha256": "abd237dccedc5bdde8c1697a75d152f2a877d4e40093af2b038498ffc529e9b9"
+  },
+  "evidence_id": "a38f660e187b3dd6b5c87c1b1add13a45e5ed948f6641a198f088d3617368c97"
+}

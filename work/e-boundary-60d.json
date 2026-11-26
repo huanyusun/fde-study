@@ -1,0 +1,7 @@
+{
+  "name": "get_member",
+  "args": {
+    "member_id": "U6d1250ac13e3edec828f7b5f",
+    "channel": "sms"
+  }
+}

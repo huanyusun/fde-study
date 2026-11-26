@@ -1,0 +1,36 @@
+{
+  "version": "w05-public-checker-linkml-candidate-1",
+  "passed": true,
+  "checks": {
+    "block1_version_agreement": true,
+    "block1_master_matches_submitted_mapping_not_hidden_total": true,
+    "block1_each_verified_source_assigned_once": true,
+    "block1_unresolved_finance_explicit": true,
+    "block1_registration_vs_purchase_relationships": true,
+    "block1_source_registration_sets_preserved": true,
+    "block1_knowledge_and_state_hashes": true,
+    "block1_order_conservation": true,
+    "block1_original_metric_validation": true,
+    "block2_mvp_report_present": true,
+    "block2_report_version_agreement": true,
+    "block2_original_evidence_and_changes": true,
+    "block2_acceptance_boundary": true,
+    "shared_service_bound_to_submission": true,
+    "four_public_capabilities": true,
+    "program_policy_and_provenance": true,
+    "model_source_present_and_filled": true,
+    "model_source_generation_and_batch_current": true,
+    "model_current_relative_binding": true,
+    "model_submission_paths_relocatable": true
+  },
+  "errors": [],
+  "data_version": "qinghe-w05-v2.0-candidate.2",
+  "scope": "仅结构、已提交映射一致性、金额守恒、版本和可运行能力。不检查自由文字事实、身份证据正确性或客户验收。",
+  "pending": [
+    "precise_person_total",
+    "course_rubric_acceptance",
+    "repaired_submission_review",
+    "human_feedback",
+    "release"
+  ]
+}

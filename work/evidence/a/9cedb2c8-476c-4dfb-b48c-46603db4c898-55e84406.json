@@ -1,0 +1,567 @@
+{
+  "product_version": "0.2.0-w1",
+  "runtime_revision": "w01-runtime-20260922",
+  "session_id": "9cedb2c8-476c-4dfb-b48c-46603db4c898",
+  "model_mode": "live",
+  "model_name": "glm-5.3-flash",
+  "prompt_sha256": "b20cdc07bb0c1832162a4231e22316a16ed462988e5113d32a0c5cacfb5fad5e",
+  "status": "incomplete",
+  "result": {
+    "critical_facts": {
+      "cards": [
+        {
+          "evidence_id": "a392a5b4f5f67d5b29e5b6f058b8f87e50b56858c48f72cfc495930337ee1310",
+          "member_id": "U00f6526bd6cb87ec6ffc0514",
+          "source_id": "CRM:QH10031934",
+          "source_file": "crm_card_export.csv",
+          "source_row": 7517,
+          "card_id": "C20250201000002",
+          "card_kind": "体验卡",
+          "purchase_amount": {
+            "value": "19.90",
+            "source_field": "pay_amt",
+            "status": "known",
+            "unit": "CNY"
+          },
+          "effective_date": {
+            "value": "2025-02-01",
+            "source_field": "st_dt",
+            "status": "known"
+          },
+          "expiry_date": {
+            "value": "2025-03-01",
+            "source_field": "ed_dt",
+            "status": "known"
+          },
+          "stop_date": {
+            "source_field": "stop_dt",
+            "status": "missing"
+          },
+          "financial_status": "accepted_w04_card",
+          "financial_meaning": "沿用 W04 卡表接受／隔离决定；购卡金额不自动计入订单净消费。",
+          "date_boundary_meaning": "原始生效日、到期日、停卡日；未据此推断有效期边界或当前可用状态。"
+        }
+      ],
+      "recommendation_decisions": [
+        {
+          "evidence_id": "736f633058920f4504a05ef3eb472a09a163c024d7bcd1d26020477b2f51e18c",
+          "member_id": "U00f6526bd6cb87ec6ffc0514",
+          "scope": "detail_recommendation_safety_only; full_cohort_requires_member_cohort",
+          "operator": "all",
+          "conditions": {
+            "identity_verified": true,
+            "member_not_excluded": true,
+            "some_source_account_not_excluded": true,
+            "no_pending_operational_verification": true,
+            "recent_purchase_coverage_complete": true,
+            "recent_effective_purchase_present": true,
+            "selected_channel_has_no_known_restriction": true
+          },
+          "result": true,
+          "context_only_fields": [
+            "tier"
+          ],
+          "actual_contact_authorized": false,
+          "follow_up_requirements": [
+            {
+              "topic": "source_registration",
+              "owner": "老周",
+              "source_ids": [
+                "POS:POS13153"
+              ],
+              "question": "补证这些来源账户的注册门店；不能用购买门店替代。"
+            }
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "736f633058920f4504a05ef3eb472a09a163c024d7bcd1d26020477b2f51e18c",
+      "a392a5b4f5f67d5b29e5b6f058b8f87e50b56858c48f72cfc495930337ee1310"
+    ],
+    "recommendations": [],
+    "status": "incomplete",
+    "summary": "会员 U00f6526bd6cb87ec6ffc0514：身份 verified，姓名 来源值冲突 [\"徐雅雯\", \"徐雯\"]；当前未选定统一值；原姓名 [\"徐雅雯\", \"徐雯\"]，脱敏手机 [\"198****2175\"]，等级 来源值冲突 [\"银卡\", \"普通\"]；当前未选定统一值 仅作知识上下文，不参与资格判断。\n已知来源注册门店 [\"5391\"]；购买门店不能替代注册门店。最近有效购买 2025-02-17，间隔 561 天；沉睡阈值 60 天，gte，匹配 True，仅限最近有效购买条件，不推断完整圈选资格。\n渠道限制 {\"telephone\": \"no_known_restriction\", \"sms\": \"no_known_restriction\"}；会员排除=False，账户排除=[]，运营待核=[]；详情建议安全条件=True，实际参与判断的条件={\"identity_verified\": true, \"member_not_excluded\": true, \"some_source_account_not_excluded\": true, \"no_pending_operational_verification\": true, \"recent_purchase_coverage_complete\": true, \"recent_effective_purchase_present\": true, \"selected_channel_has_no_known_restriction\": true}。未发现限制不等于授权，禁止或未知不能推荐相应渠道联系，不提供绕行动作。\n来源账户 CRM:QH10031934，crm_member_export.csv 第 31927 行，注册门店 5391。\n来源账户 CRM:QH10075436，crm_member_export.csv 第 75427 行，注册门店 5391。\n来源账户 POS:POS13153，pos_member_export.csv 第 6367 行，注册门店 未知／未提供。\n实际订单本页 2 笔／总数 2，分页完整=True；逐笔原值与来源保留在当轮 member_relations。\n订单 CRM:O20250209000066：2025-02-09，购买门店 5391，状态 paid，原价 6238 分、实付 5081 分、退款 0 分、件数 1，渠道 门店；来源 CRM:QH10031934／crm_order_export.csv 第 28499 行。\n订单 CRM:O20250217000067：2025-02-17，购买门店 5391，状态 paid，原价 7187 分、实付 6274 分、退款 0 分、件数 2，渠道 门店；来源 CRM:QH10031934／crm_order_export.csv 第 30024 行。\n卡 C20250201000002（体验卡）：购卡金额 19.90 CNY／元，生效日 2025-02-01，到期日 2025-03-01，停卡日 未知／未提供；CRM:QH10031934／crm_card_export.csv 第 7517 行，accepted_w04_card。购卡金额不自动计入订单净消费，不推断日期边界或当前可用状态。\n当前待补证事项：source_registration，来源账户 POS:POS13153，找老周：补证这些来源账户的注册门店；不能用购买门店替代。\n本轮未获实际联系授权，只有数据支持的当前补证事项列为待办；业务复核边界保持。",
+    "validation_passed": false,
+    "validation_code": "FINAL_TYPED_CONTRACT",
+    "validation_scope": {
+      "checked": [
+        "current_turn_citations",
+        "result_status_and_sets",
+        "recommendation_policy_and_knowledge",
+        "structured_critical_facts",
+        "candidate_disposition_coverage"
+      ],
+      "not_checked": [
+        "free_text_fact_correspondence",
+        "independent_business_acceptance",
+        "task_scope_matches_user_request"
+      ],
+      "source_review_required": true
+    },
+    "model_claim": {
+      "critical_facts": {
+        "cards": [
+          {
+            "evidence_id": "a392a5b4f5f67d5b29e5b6f058b8f87e50b56858c48f72cfc495930337ee1310",
+            "member_id": "U00f6526bd6cb87ec6ffc0514",
+            "source_id": "CRM:QH10031934",
+            "source_file": "crm_card_export.csv",
+            "source_row": 7517,
+            "card_id": "C20250201000002",
+            "card_kind": "体验卡",
+            "purchase_amount": {
+              "value": "19.90",
+              "source_field": "pay_amt",
+              "status": "known",
+              "unit": "CNY"
+            },
+            "effective_date": {
+              "value": "2025-02-01",
+              "source_field": "st_dt",
+              "status": "known"
+            },
+            "expiry_date": {
+              "value": "2025-03-01",
+              "source_field": "ed_dt",
+              "status": "known"
+            },
+            "stop_date": {
+              "source_field": "stop_dt",
+              "status": "missing"
+            },
+            "financial_status": "accepted_w04_card",
+            "financial_meaning": "沿用 W04 卡表接受／隔离决定；购卡金额不自动计入订单净消费。",
+            "date_boundary_meaning": "原始生效日、到期日、停卡日；未据此推断有效期边界或当前可用状态。"
+          }
+        ],
+        "recommendation_decisions": [
+          {
+            "evidence_id": "736f633058920f4504a05ef3eb472a09a163c024d7bcd1d26020477b2f51e18c",
+            "member_id": "U00f6526bd6cb87ec6ffc0514",
+            "scope": "detail_recommendation_safety_only; full_cohort_requires_member_cohort",
+            "operator": "all",
+            "conditions": {
+              "identity_verified": true,
+              "member_not_excluded": true,
+              "some_source_account_not_excluded": true,
+              "no_pending_operational_verification": true,
+              "recent_purchase_coverage_complete": true,
+              "recent_effective_purchase_present": true,
+              "selected_channel_has_no_known_restriction": true
+            },
+            "result": true,
+            "context_only_fields": [
+              "tier"
+            ],
+            "actual_contact_authorized": false,
+            "follow_up_requirements": [
+              {
+                "topic": "source_registration",
+                "owner": "老周",
+                "source_ids": [
+                  "POS:POS13153"
+                ],
+                "question": "补证这些来源账户的注册门店；不能用购买门店替代。"
+              }
+            ]
+          }
+        ]
+      },
+      "evidence_ids": [
+        "736f633058920f4504a05ef3eb472a09a163c024d7bcd1d26020477b2f51e18c",
+        "a392a5b4f5f67d5b29e5b6f058b8f87e50b56858c48f72cfc495930337ee1310"
+      ],
+      "recommendations": [],
+      "status": "completed",
+      "summary": "会员 U00f6526bd6cb87ec6ffc0514：身份 verified，姓名 来源值冲突 [\"徐雅雯\", \"徐雯\"]；当前未选定统一值；原姓名 [\"徐雅雯\", \"徐雯\"]，脱敏手机 [\"198****2175\"]，等级 来源值冲突 [\"银卡\", \"普通\"]；当前未选定统一值 仅作知识上下文，不参与资格判断。\n已知来源注册门店 [\"5391\"]；购买门店不能替代注册门店。最近有效购买 2025-02-17，间隔 561 天；沉睡阈值 60 天，gte，匹配 True，仅限最近有效购买条件，不推断完整圈选资格。\n渠道限制 {\"telephone\": \"no_known_restriction\", \"sms\": \"no_known_restriction\"}；会员排除=False，账户排除=[]，运营待核=[]；详情建议安全条件=True，实际参与判断的条件={\"identity_verified\": true, \"member_not_excluded\": true, \"some_source_account_not_excluded\": true, \"no_pending_operational_verification\": true, \"recent_purchase_coverage_complete\": true, \"recent_effective_purchase_present\": true, \"selected_channel_has_no_known_restriction\": true}。未发现限制不等于授权，禁止或未知不能推荐相应渠道联系，不提供绕行动作。\n来源账户 CRM:QH10031934，crm_member_export.csv 第 31927 行，注册门店 5391。\n来源账户 CRM:QH10075436，crm_member_export.csv 第 75427 行，注册门店 5391。\n来源账户 POS:POS13153，pos_member_export.csv 第 6367 行，注册门店 未知／未提供。\n实际订单本页 2 笔／总数 2，分页完整=True；逐笔原值与来源保留在当轮 member_relations。\n订单 CRM:O20250209000066：2025-02-09，购买门店 5391，状态 paid，原价 6238 分、实付 5081 分、退款 0 分、件数 1，渠道 门店；来源 CRM:QH10031934／crm_order_export.csv 第 28499 行。\n订单 CRM:O20250217000067：2025-02-17，购买门店 5391，状态 paid，原价 7187 分、实付 6274 分、退款 0 分、件数 2，渠道 门店；来源 CRM:QH10031934／crm_order_export.csv 第 30024 行。\n卡 C20250201000002（体验卡）：购卡金额 19.90 CNY／元，生效日 2025-02-01，到期日 2025-03-01，停卡日 未知／未提供；CRM:QH10031934／crm_card_export.csv 第 7517 行，accepted_w04_card。购卡金额不自动计入订单净消费，不推断日期边界或当前可用状态。\n当前待补证事项：source_registration，来源账户 POS:POS13153，找老周：补证这些来源账户的注册门店；不能用购买门店替代。\n本轮未获实际联系授权，只有数据支持的当前补证事项列为待办；业务复核边界保持。"
+    }
+  },
+  "observations": [
+    {
+      "name": "get_member",
+      "args": {
+        "channel": "sms",
+        "member_id": "U00f6526bd6cb87ec6ffc0514",
+        "reference_date": "2026-09-01"
+      },
+      "result": {
+        "status": "ok",
+        "member_id": "U00f6526bd6cb87ec6ffc0514",
+        "attributes": {
+          "member_id": "U00f6526bd6cb87ec6ffc0514",
+          "display_name": null,
+          "names": [
+            "徐雅雯",
+            "徐雯"
+          ],
+          "masked_mobiles": [
+            "198****2175"
+          ],
+          "tier": null,
+          "conflicts": [
+            {
+              "field": "name",
+              "values": [
+                "徐雅雯",
+                "徐雯"
+              ]
+            },
+            {
+              "field": "tier",
+              "values": [
+                "银卡",
+                "普通"
+              ]
+            }
+          ],
+          "source_ids": [
+            "CRM:QH10031934",
+            "CRM:QH10075436",
+            "POS:POS13153"
+          ],
+          "registered_stores": [
+            "5391"
+          ],
+          "sources": [
+            {
+              "source_id": "CRM:QH10031934",
+              "source_file": "crm_member_export.csv",
+              "source_row": 31927,
+              "field": "nm",
+              "raw_value": "徐雅雯"
+            },
+            {
+              "source_id": "CRM:QH10031934",
+              "source_file": "crm_member_export.csv",
+              "source_row": 31927,
+              "field": "mobile",
+              "raw_value": "198****2175"
+            },
+            {
+              "source_id": "CRM:QH10031934",
+              "source_file": "crm_member_export.csv",
+              "source_row": 31927,
+              "field": "lv",
+              "raw_value": "银卡"
+            },
+            {
+              "source_id": "CRM:QH10031934",
+              "source_file": "crm_member_export.csv",
+              "source_row": 31927,
+              "field": "reg_shop",
+              "raw_value": "5391"
+            },
+            {
+              "source_id": "CRM:QH10075436",
+              "source_file": "crm_member_export.csv",
+              "source_row": 75427,
+              "field": "nm",
+              "raw_value": "徐雯"
+            },
+            {
+              "source_id": "CRM:QH10075436",
+              "source_file": "crm_member_export.csv",
+              "source_row": 75427,
+              "field": "mobile",
+              "raw_value": "198****2175"
+            },
+            {
+              "source_id": "CRM:QH10075436",
+              "source_file": "crm_member_export.csv",
+              "source_row": 75427,
+              "field": "lv",
+              "raw_value": "普通"
+            },
+            {
+              "source_id": "CRM:QH10075436",
+              "source_file": "crm_member_export.csv",
+              "source_row": 75427,
+              "field": "reg_shop",
+              "raw_value": "5391"
+            },
+            {
+              "source_id": "POS:POS13153",
+              "source_file": "pos_member_export.csv",
+              "source_row": 6367,
+              "field": "name",
+              "raw_value": "徐雅雯"
+            },
+            {
+              "source_id": "POS:POS13153",
+              "source_file": "pos_member_export.csv",
+              "source_row": 6367,
+              "field": "mobile",
+              "raw_value": "198****2175"
+            }
+          ],
+          "identity_status": "verified"
+        },
+        "policy": {
+          "member_id": "U00f6526bd6cb87ec6ffc0514",
+          "status": "ok",
+          "channels": {
+            "telephone": "no_known_restriction",
+            "sms": "no_known_restriction"
+          },
+          "restriction_evidence": [],
+          "member_excluded": false,
+          "account_exclusions": [],
+          "all_source_accounts_excluded": false,
+          "confirmed_exclusions": [],
+          "pending_verifications": [],
+          "verification_coverage_complete": true,
+          "actual_contact_authorized": false
+        },
+        "last_effective_purchase": "2025-02-17",
+        "dormant_days": 561,
+        "dormancy_condition": {
+          "threshold_days": 60,
+          "operator": "gte",
+          "matches": true,
+          "scope": "recent_effective_purchase_only; full_cohort_requires_member_cohort"
+        },
+        "recommendation_allowed": true,
+        "recommendation_decision": {
+          "scope": "detail_recommendation_safety_only; full_cohort_requires_member_cohort",
+          "operator": "all",
+          "conditions": {
+            "identity_verified": true,
+            "member_not_excluded": true,
+            "some_source_account_not_excluded": true,
+            "no_pending_operational_verification": true,
+            "recent_purchase_coverage_complete": true,
+            "recent_effective_purchase_present": true,
+            "selected_channel_has_no_known_restriction": true
+          },
+          "result": true,
+          "context_only_fields": [
+            "tier"
+          ],
+          "actual_contact_authorized": false
+        },
+        "presentation_scope": "current_member_facts_v1",
+        "recommendation_context_purpose": "knowledge_applicability_only; tier does not decide recommendation_allowed",
+        "follow_up_owners": {
+          "source_identity_and_registration": "老周",
+          "contact_channel_scope": "小林"
+        },
+        "follow_up_requirements": [
+          {
+            "topic": "source_registration",
+            "owner": "老周",
+            "source_ids": [
+              "POS:POS13153"
+            ],
+            "question": "补证这些来源账户的注册门店；不能用购买门店替代。"
+          }
+        ],
+        "recommendation_context": {
+          "channel": "sms",
+          "identity": "verified",
+          "tier": null
+        },
+        "coverage_complete": true,
+        "reference_date": "2026-09-01",
+        "actual_contact_authorized": false,
+        "versions": {
+          "binding_version": "w05-member-binding-1",
+          "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+          "data_version": "qinghe-w05-v2.0-candidate.2",
+          "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+          "grain_version": "w05-verified-person-and-unresolved-source-1",
+          "mapping_version": "qinghe-w05-rules-20261008.1",
+          "module_dependencies_sha256": "abd237dccedc5bdde8c1697a75d152f2a877d4e40093af2b038498ffc529e9b9"
+        },
+        "evidence_id": "736f633058920f4504a05ef3eb472a09a163c024d7bcd1d26020477b2f51e18c"
+      },
+      "call_id": "call_-7038285400422481263"
+    },
+    {
+      "name": "member_relations",
+      "args": {
+        "member_id": "U00f6526bd6cb87ec6ffc0514"
+      },
+      "result": {
+        "status": "ok",
+        "member_id": "U00f6526bd6cb87ec6ffc0514",
+        "accounts": [
+          {
+            "source_id": "CRM:QH10031934",
+            "system": "CRM",
+            "source_file": "crm_member_export.csv",
+            "source_row": 31927,
+            "registered_store": "5391",
+            "raw": {
+              "hy_id": "QH10031934",
+              "nm": "徐雅雯",
+              "mobile": "198****2175",
+              "birth": "2007-01-06",
+              "join_dt": "2024-12-11",
+              "create_tm": "2024-12-11 18:22:24",
+              "lv": "银卡",
+              "stat": "2",
+              "src_ch": "门店",
+              "reg_shop": "5391",
+              "reg_dev": "3c9cbbb32c434f30",
+              "tag": "生鲜偏好;门店偏好"
+            }
+          },
+          {
+            "source_id": "CRM:QH10075436",
+            "system": "CRM",
+            "source_file": "crm_member_export.csv",
+            "source_row": 75427,
+            "registered_store": "5391",
+            "raw": {
+              "hy_id": "QH10075436",
+              "nm": "徐雯",
+              "mobile": "198****2175",
+              "birth": "2007-01-06",
+              "join_dt": "2024-12-11",
+              "create_tm": "2025-03-17 03:54:40",
+              "lv": "普通",
+              "stat": "0",
+              "src_ch": "系统导入",
+              "reg_shop": "5391",
+              "reg_dev": "",
+              "tag": "学生"
+            }
+          },
+          {
+            "source_id": "POS:POS13153",
+            "system": "POS",
+            "source_file": "pos_member_export.csv",
+            "source_row": 6367,
+            "registered_store": null,
+            "raw": {
+              "pos_member_id": "POS13153",
+              "name": "徐雅雯",
+              "mobile": "198****2175"
+            }
+          }
+        ],
+        "registered_stores": [
+          "5391"
+        ],
+        "orders": [
+          {
+            "order_id": "CRM:O20250209000066",
+            "member_id": "U00f6526bd6cb87ec6ffc0514",
+            "store_id": "5391",
+            "ordered_at": "2025-02-09",
+            "status": "paid",
+            "gross_cents": 6238,
+            "paid_cents": 5081,
+            "refund_cents": 0,
+            "quantity": 1,
+            "channel": "门店",
+            "provenance": {
+              "order_id": "CRM:O20250209000066",
+              "member_id": "U00f6526bd6cb87ec6ffc0514",
+              "source_id": "CRM:QH10031934",
+              "source_file": "crm_order_export.csv",
+              "source_row": "28499"
+            }
+          },
+          {
+            "order_id": "CRM:O20250217000067",
+            "member_id": "U00f6526bd6cb87ec6ffc0514",
+            "store_id": "5391",
+            "ordered_at": "2025-02-17",
+            "status": "paid",
+            "gross_cents": 7187,
+            "paid_cents": 6274,
+            "refund_cents": 0,
+            "quantity": 2,
+            "channel": "门店",
+            "provenance": {
+              "order_id": "CRM:O20250217000067",
+              "member_id": "U00f6526bd6cb87ec6ffc0514",
+              "source_id": "CRM:QH10031934",
+              "source_file": "crm_order_export.csv",
+              "source_row": "30024"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "member_id": "U00f6526bd6cb87ec6ffc0514",
+            "source_id": "CRM:QH10031934",
+            "source_file": "crm_card_export.csv",
+            "source_row": 7517,
+            "raw": {
+              "card_no": "C20250201000002",
+              "hy_id": "QH10031934",
+              "card_kind": "体验卡",
+              "st_dt": "2025-02-01",
+              "ed_dt": "2025-03-01",
+              "stop_dt": "",
+              "pay_amt": "19.90"
+            },
+            "semantics": {
+              "card_id": "C20250201000002",
+              "card_kind": "体验卡",
+              "purchase_amount": {
+                "value": "19.90",
+                "source_field": "pay_amt",
+                "status": "known",
+                "unit": "CNY"
+              },
+              "effective_date": {
+                "value": "2025-02-01",
+                "source_field": "st_dt",
+                "status": "known"
+              },
+              "expiry_date": {
+                "value": "2025-03-01",
+                "source_field": "ed_dt",
+                "status": "known"
+              },
+              "stop_date": {
+                "value": null,
+                "source_field": "stop_dt",
+                "status": "missing"
+              },
+              "financial_status": "accepted_w04_card",
+              "financial_meaning": "沿用 W04 卡表接受／隔离决定；购卡金额不自动计入订单净消费。",
+              "date_boundary_meaning": "原始生效日、到期日、停卡日；未据此推断有效期边界或当前可用状态。"
+            }
+          }
+        ],
+        "card_scope": "原始卡记录含财务隔离项；不表示这些卡进入原 W04 指标。",
+        "coverage": [
+          "2024-09-01",
+          "2026-09-01"
+        ],
+        "page": {
+          "total": 2,
+          "returned": 2,
+          "offset": 0,
+          "limit": 100,
+          "next_offset": null,
+          "complete": true
+        },
+        "versions": {
+          "binding_version": "w05-member-binding-1",
+          "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+          "data_version": "qinghe-w05-v2.0-candidate.2",
+          "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+          "grain_version": "w05-verified-person-and-unresolved-source-1",
+          "mapping_version": "qinghe-w05-rules-20261008.1",
+          "module_dependencies_sha256": "abd237dccedc5bdde8c1697a75d152f2a877d4e40093af2b038498ffc529e9b9"
+        },
+        "evidence_id": "a392a5b4f5f67d5b29e5b6f058b8f87e50b56858c48f72cfc495930337ee1310"
+      },
+      "call_id": "call_-7038285400422481262"
+    }
+  ],
+  "steps": 2,
+  "output_repairs": 0,
+  "usage": {
+    "prompt_tokens": 17897,
+    "completion_tokens": 3527,
+    "total_tokens": 21424
+  },
+  "trace_id": "0804b94c1afaae909e3ebfb4ad9735ef"
+}

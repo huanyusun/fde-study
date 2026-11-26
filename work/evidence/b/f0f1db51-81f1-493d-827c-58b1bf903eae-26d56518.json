@@ -1,0 +1,87 @@
+{
+  "product_version": "0.2.0-w1",
+  "runtime_revision": "w01-runtime-20260922",
+  "session_id": "f0f1db51-81f1-493d-827c-58b1bf903eae",
+  "model_mode": "live",
+  "model_name": "glm-5.4",
+  "prompt_sha256": "b20cdc07bb0c1832162a4231e22316a16ed462988e5113d32a0c5cacfb5fad5e",
+  "status": "incomplete",
+  "result": {
+    "status": "incomplete",
+    "summary": "本轮按要求以门店 1203（上海豫园邻里店）、参考日 2026-09-01、2025-09-01 至 2026-09-01（不含）净消费不少于 3000 元、距最近有效购买满 60 天、短信渠道提交会员圈选，但 member_cohort 返回错误 MEMBER_TOOL_CONTRACT_FAILED，未返回任何会员名单或待核、阻断、未决来源集合。因圈选未成功，无法对候选逐人调用 get_member、member_relations 与 retrieve_knowledge（usage），本轮无个人详情、关联记录和适用知识片段证据，也不能给出任何运营建议；请待圈选工具恢复后重新执行，建议与渠道复核候选均待后续轮次产生。",
+    "evidence_ids": [
+      "b17842ff8b9be47ebf27b019f79d9b20da6f89d40322256c891b1b764685aa4f"
+    ],
+    "recommendations": [],
+    "member_ids": [],
+    "unknown_member_ids": [],
+    "blocked_member_ids": [],
+    "unresolved_source_ids": [],
+    "task_scope": {
+      "recommendations_requested": true,
+      "statement": "按门店 1203、2025-09-01 至 2026-09-01 净消费不少于 3000 元且距最近有效购买满 60 天圈选短信渠道会员，并逐人查询详情、关联记录和适用知识后给出运营建议。"
+    },
+    "non_recommendations": [],
+    "validation_passed": true,
+    "validation_code": "GROUNDED",
+    "validation_scope": {
+      "checked": [
+        "current_turn_citations",
+        "result_status_and_sets",
+        "recommendation_policy_and_knowledge",
+        "structured_critical_facts",
+        "candidate_disposition_coverage"
+      ],
+      "not_checked": [
+        "free_text_fact_correspondence",
+        "independent_business_acceptance",
+        "task_scope_matches_user_request"
+      ],
+      "source_review_required": true
+    }
+  },
+  "observations": [
+    {
+      "name": "member_cohort",
+      "args": {
+        "reference_date": "2026-09-01",
+        "start": "2025-09-01",
+        "end": "2026-09-01",
+        "metric_filters": [
+          {
+            "metric": "net_sales_cents",
+            "op": "gte",
+            "value": 300000
+          }
+        ],
+        "dormant_days": 60,
+        "store_id": "1203",
+        "channel": "sms",
+        "page": "{\"offset\": 0, \"limit\": 100}"
+      },
+      "result": {
+        "status": "error",
+        "code": "MEMBER_TOOL_CONTRACT_FAILED",
+        "versions": {
+          "binding_version": "w05-member-binding-1",
+          "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+          "data_version": "qinghe-w05-v2.0-candidate.2",
+          "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+          "grain_version": "w05-verified-person-and-unresolved-source-1",
+          "mapping_version": "qinghe-w05-rules-20261008.1",
+          "module_dependencies_sha256": "abd237dccedc5bdde8c1697a75d152f2a877d4e40093af2b038498ffc529e9b9"
+        },
+        "evidence_id": "b17842ff8b9be47ebf27b019f79d9b20da6f89d40322256c891b1b764685aa4f"
+      },
+      "call_id": "call_-7038276776128150914"
+    }
+  ],
+  "steps": 2,
+  "output_repairs": 0,
+  "usage": {
+    "prompt_tokens": 11365,
+    "completion_tokens": 2070,
+    "total_tokens": 13435
+  },
+  "trace_id": "a0a07dff4aba1e7b8a2024f1cd4cb50f"
+}

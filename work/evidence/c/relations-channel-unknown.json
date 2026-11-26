@@ -1,0 +1,186 @@
+{
+  "status": "ok",
+  "member_id": "U36941781f8348657f0470215",
+  "accounts": [
+    {
+      "source_id": "CRM:QH10033413",
+      "system": "CRM",
+      "source_file": "crm_member_export.csv",
+      "source_row": 33405,
+      "registered_store": "7665",
+      "raw": {
+        "hy_id": "QH10033413",
+        "nm": "王世祺",
+        "mobile": "136****2251",
+        "birth": "1966-07-09",
+        "join_dt": "2025-01-06",
+        "create_tm": "2025-01-06 18:45:24",
+        "lv": "普通",
+        "stat": "3",
+        "src_ch": "门店",
+        "reg_shop": "7665",
+        "reg_dev": "210133b08a6b9233",
+        "tag": "生鲜偏好"
+      }
+    },
+    {
+      "source_id": "CRM:QH10040567",
+      "system": "CRM",
+      "source_file": "crm_member_export.csv",
+      "source_row": 40558,
+      "registered_store": "7665",
+      "raw": {
+        "hy_id": "QH10040567",
+        "nm": "王世祺",
+        "mobile": "136****2251",
+        "birth": "1966-07-09",
+        "join_dt": "20250106",
+        "create_tm": "2025-03-15 01:53:49",
+        "lv": "银卡",
+        "stat": "1",
+        "src_ch": "系统导入",
+        "reg_shop": "7665",
+        "reg_dev": "",
+        "tag": "电话-信号不好没说清"
+      }
+    },
+    {
+      "source_id": "CRM:QH10081523",
+      "system": "CRM",
+      "source_file": "crm_member_export.csv",
+      "source_row": 81505,
+      "registered_store": "7665",
+      "raw": {
+        "hy_id": "QH10081523",
+        "nm": "王世祺",
+        "mobile": "158****7626",
+        "birth": "1966-07-09",
+        "join_dt": "20250521",
+        "create_tm": "2025-05-21 13:01:07",
+        "lv": "普通",
+        "stat": "3",
+        "src_ch": "门店",
+        "reg_shop": "7665",
+        "reg_dev": "3280a7b13972406b",
+        "tag": ""
+      }
+    },
+    {
+      "source_id": "POS:POS22555",
+      "system": "POS",
+      "source_file": "pos_member_export.csv",
+      "source_row": 10960,
+      "registered_store": null,
+      "raw": {
+        "pos_member_id": "POS22555",
+        "name": "王世祺",
+        "mobile": "136****2251"
+      }
+    }
+  ],
+  "registered_stores": [
+    "7665"
+  ],
+  "orders": [
+    {
+      "order_id": "CRM:O20250215000078",
+      "member_id": "U36941781f8348657f0470215",
+      "store_id": "7879",
+      "ordered_at": "2025-02-15",
+      "status": "paid",
+      "gross_cents": 4044,
+      "paid_cents": 3842,
+      "refund_cents": 0,
+      "quantity": 1,
+      "channel": "门店",
+      "provenance": {
+        "order_id": "CRM:O20250215000078",
+        "member_id": "U36941781f8348657f0470215",
+        "source_id": "CRM:QH10033413",
+        "source_file": "crm_order_export.csv",
+        "source_row": "29586"
+      }
+    },
+    {
+      "order_id": "CRM:O20250217000093",
+      "member_id": "U36941781f8348657f0470215",
+      "store_id": "7665",
+      "ordered_at": "2025-02-17",
+      "status": "paid",
+      "gross_cents": 3300,
+      "paid_cents": 2805,
+      "refund_cents": 2805,
+      "quantity": 1,
+      "channel": "门店",
+      "provenance": {
+        "order_id": "CRM:O20250217000093",
+        "member_id": "U36941781f8348657f0470215",
+        "source_id": "CRM:QH10033413",
+        "source_file": "crm_order_export.csv",
+        "source_row": "30050"
+      }
+    },
+    {
+      "order_id": "CRM:O20251217000064",
+      "member_id": "U36941781f8348657f0470215",
+      "store_id": "2082",
+      "ordered_at": "2025-12-17",
+      "status": "paid",
+      "gross_cents": 8650,
+      "paid_cents": 7785,
+      "refund_cents": 0,
+      "quantity": 4,
+      "channel": "门店",
+      "provenance": {
+        "order_id": "CRM:O20251217000064",
+        "member_id": "U36941781f8348657f0470215",
+        "source_id": "CRM:QH10040567",
+        "source_file": "crm_order_export.csv",
+        "source_row": "97873"
+      }
+    },
+    {
+      "order_id": "CRM:O20260615000163",
+      "member_id": "U36941781f8348657f0470215",
+      "store_id": "1436",
+      "ordered_at": "2026-06-15",
+      "status": "paid",
+      "gross_cents": 11929,
+      "paid_cents": 11929,
+      "refund_cents": 0,
+      "quantity": 2,
+      "channel": "门店",
+      "provenance": {
+        "order_id": "CRM:O20260615000163",
+        "member_id": "U36941781f8348657f0470215",
+        "source_id": "CRM:QH10040567",
+        "source_file": "crm_order_export.csv",
+        "source_row": "146136"
+      }
+    }
+  ],
+  "cards": [],
+  "card_scope": "原始卡记录含财务隔离项；不表示这些卡进入原 W04 指标。",
+  "coverage": [
+    "2024-09-01",
+    "2026-09-01"
+  ],
+  "page": {
+    "total": 4,
+    "returned": 4,
+    "offset": 0,
+    "limit": 100,
+    "next_offset": null,
+    "complete": true
+  },
+  "versions": {
+    "binding_version": "w05-member-binding-1",
+    "module_sha256": "dda42b189208a99c09a79eb539cf85a4b8256eb2941bf098fde42347c1ee0715",
+    "data_version": "qinghe-w05-v2.0-candidate.2",
+    "data_snapshot_sha256": "501c3b7c6247792c93780e7c86c929462bdc1035daed7e15d1fa4309acfd09ed",
+    "grain_version": "w05-verified-person-and-unresolved-source-1",
+    "mapping_version": "qinghe-w05-rules-20261008.1",
+    "module_dependencies_sha256": "abd237dccedc5bdde8c1697a75d152f2a877d4e40093af2b038498ffc529e9b9"
+  },
+  "evidence_id": "3cee93d030d55f014d54c3546f70dd3dc4dca943085ac71fda094702df94aa46"
+}

@@ -1,0 +1,372 @@
+{
+  "data_version": "qinghe-w05-v2.0-candidate.2",
+  "rules_version": "qinghe-w05-rules-20261008.1",
+  "baseline_evidence": [
+    "evidence/d/before.json",
+    "evidence/c/63291724-f891-4fd6-b936-aad97cc7af99-49f46ea6.json",
+    "evidence/a/00b02cb9-cc36-4c48-81ad-628128be5ad6-79735962.json",
+    "evidence/b/d7e9327a-d5b2-40fc-9457-b852379bc9b7-445e095c.json"
+  ],
+  "current_evidence": [
+    "evidence/d/after.json",
+    "evidence/c/bf09d001-5b72-4750-8240-365c0b99ffc0-ff4e8de2.json",
+    "evidence/a/3f32d0a5-ea3d-4fdd-a77f-cbc4550519a2-54b0ffd7.json",
+    "evidence/b/a1b03ddf-d3fe-4a18-b720-cf5b0a109b56-caf064c6.json"
+  ],
+  "change_log": [
+    {
+      "location": "work/library/catalog.json, work/library/metrics.yml, work/library/scope.json",
+      "reason": "接续 W05 跨 CRM 与旧 POS 统一身份与未决财务桶粒度，将 buyer_count 显示名改为“购买财务实体数”，更新 17 项人数/实体类指标描述与 scope.json 业务模型/报告指向，避免沿用旧“CRM 会员账户/测试库”表述；原公式 expr 与历史 sources 原文保持不变。",
+      "before_version": "work/prepared-1 (W04 原指标库副本)",
+      "after_version": "work/prepared-2 (W05 粒度更新后有效指标库)",
+      "expected_impact": "不改变任何指标数值计算，仅更新语义描述与目录显示名；未分组 buyer_count 首句直接说明购买财务实体数与自然人数待核。",
+      "evidence": [
+        "evidence/e/0a5f8b58-9529-49eb-b490-fd2c65672f12-de34941e.json"
+      ]
+    },
+    {
+      "location": "work/d/customer/w05/solution.py (隔离副本 member_attributes，提交仍用正式版)",
+      "reason": "D 组验证业务定义变更能否通过 prepare -> bind -> init 实际进入对象库与直接入口查询：在隔离副本中调整多来源姓名冲突时的 display_name 呈现策略（由 None 改为按 source_id 排序取首个非空姓名，同时完整保留 conflicts 数组）。",
+      "before_version": "正式版 customer/w05/solution.py (work/prepared-2, work/home-1)",
+      "after_version": "隔离副本 work/d/customer/w05/solution.py (work/prepared-d, work/home-d)",
+      "expected_impact": "目标冲突会员 U00f6526bd6cb87ec6ffc0514 的 display_name 由 None 变为 '徐雅雯'，其余 conflicts、source_ids、registered_stores、联系限制及 reconciliation.json 全部守恒不变。",
+      "evidence": [
+        "evidence/d/before.json",
+        "evidence/d/after.json"
+      ]
+    },
+    {
+      "location": "Agent 验证 C 组（渠道范围待核对象 U36941781f8348657f0470215）同题回归",
+      "reason": "首轮模型调用全部工具正确，但在对象存在渠道待核（unknown）时将最终状态提交为 completed，触发平台程序校验 PARTIAL_RESULT_CANNOT_COMPLETE；定位为模型输出状态约束问题，原题保留并做同题回归。",
+      "before_version": "首轮运行 session 63291724-f891-4fd6-b936-aad97cc7af99 (PARTIAL_RESULT_CANNOT_COMPLETE)",
+      "after_version": "同题回归 session bf09d001-5b72-4750-8240-365c0b99ffc0 (status=incomplete, GROUNDED)",
+      "expected_impact": "不改动客户代码与数据，回归后模型如实保留 incomplete 状态并通过 GROUNDED 校验。",
+      "evidence": [
+        "evidence/c/63291724-f891-4fd6-b936-aad97cc7af99-49f46ea6.json",
+        "evidence/c/bf09d001-5b72-4750-8240-365c0b99ffc0-ff4e8de2.json"
+      ]
+    },
+    {
+      "location": "Agent 验证 A 组（第二问 U00f6526bd6cb87ec6ffc0514）与 B 组（门店 1203）失败定位与换模型同题回归",
+      "reason": "GLM（glm-5.3-flash 与 glm-5.4）在 A2 提交时省略了 critical_facts.cards[0].stop_date 中的 value: null 键，在 B-1203 上分别漏传空数组 blocked_member_ids 或将 page 对象序列化为字符串；定位为模型工具调用与输出契约遵循问题后，不改客户代码与原题，切换 deepseek-chat 做同题回归：首次运行跨过了 null/空数组/对象参数全部障碍，仅在 summary const 出现改写/单字母拼写差异，再次提醒原样保留 const 后 A1/A2（同会话）与 B-1203 全部以 completed / GROUNDED 通过。",
+      "before_version": "首轮运行 glm-5.3-flash / glm-5.4 (A: 00b02cb9/9f4332bc, B-1203: d7e9327a/75b4e121)",
+      "after_version": "同题回归 deepseek-chat (A: 3f32d0a5 同会话双问 completed/GROUNDED, B-1203: a1b03ddf completed/GROUNDED)",
+      "expected_impact": "不修改任何客户业务代码或数据，保留全部首轮与中间失败记录，切换更严格遵循 JSON Schema 的模型后 A 组与 B-1203 同题全部回归通过。",
+      "evidence": [
+        "evidence/a/00b02cb9-cc36-4c48-81ad-628128be5ad6-79735962.json",
+        "evidence/a/9f4332bc-8d30-4698-9477-2a79b010eb05-732f224f.json",
+        "evidence/a/3f32d0a5-ea3d-4fdd-a77f-cbc4550519a2-54b0ffd7.json",
+        "evidence/b/d7e9327a-d5b2-40fc-9457-b852379bc9b7-445e095c.json",
+        "evidence/b/75b4e121-7403-499f-ae60-234809ee835a-6c3b9409.json",
+        "evidence/b/a1b03ddf-d3fe-4a18-b720-cf5b0a109b56-caf064c6.json"
+      ]
+    }
+  ],
+  "pending": [
+    "precise_person_total",
+    "out_of_export_11_historical_accounts",
+    "pos_registration_store_and_cards",
+    "contact_channel_scope_26_pending_records"
+  ],
+  "formal_acceptance": false,
+  "scope_and_evidence": {
+    "delivered_capabilities": [
+      "离线 ID-Mapping 与 ETL 接续（customer/w05/solution.py identity_evidence）：依据有效迁移记录（39,917 条）与账户核查记录（46,007 条）及 coverage.json 开户核查覆盖声明，将 163,666 个 CRM+POS 来源账户映射为 75,821 个已核实统一会员与 12,001 个未决来源独立财务桶（共 87,822 个财务实体），14 条未采信依据（3 条非 success 迁移 + 11 条导出外引用）留痕于 state/identity_findings.json；新旧 195,336 笔已接受订单精确归集且实付（2,000,744,816 分）与净实付（1,768,627,573 分）逐分守恒。",
+      "LinkML 可执行对象模型（customer/w05/member.linkml.yaml）：完成 Member、SourceAccount、Store 三类字段与多值关系定义，经 gen-sqla 生成 ORM 与对象库 objects.duckdb 并通过校验与查询验证。",
+      "会员属性冲突与多门店关系适配（member_attributes）：过滤 CRM 姓名缺失标记（''/'-'/'NULL'/'无'），严格区分正常值、来源冲突与真实缺失；保留多来源注册门店集合，旧 POS 注册门店保持未知不反填购买门店。",
+      "分渠道联系限制与运营排除适配（contact_constraints）：区分员工会员级排除（307 条，scope=member）与异常身份账户级排除（12,001 条，scope=account），合并 CRM 备注（443 行）、小林勿扰名单与补充确认表（95 条已确认 + 26 条待核 unknown）及回访拒联记录（26 条）；明确禁止绝不降级，未知不视为许可，actual_contact_authorized 恒为 false。",
+      "共享会员业务能力多入口复用：完成 prepare -> bind -> init，门店直接入口（service-call）与运营 Agent（tools/product.py run）绑定同一份 prepared-2 产物与 4 个共享业务工具；本轮只读分析与给建议，不执行自动触达、发券或写标签。"
+    ],
+    "business_model_file": "docs/w05/business_model.md",
+    "model_and_metric_changes": [
+      "对象模型接续：docs/w05/business_model.md 完整保留 W02–W04 原文，新增 W05 七节业务说明与两场真实访谈记录（老周 MSG-06711~06717、小林 MSG-06718~06722）；可执行结构由 customer/w05/member.linkml.yaml 定义并生成 objects/generated/orm.py。",
+      "指标粒度修订：work/library/catalog.json 将 buyer_count 的 name 改为“购买财务实体数”；work/library/metrics.yml 为 buyer_count 添加 label 与财务实体粒度及自然人数待核说明，并同步修订其余 16 个受身份粒度影响的指标 description（refund_buyer_count、avg_buyer_value、purchase_frequency、new_member_count、first_*、repeat_order_count、monthly_*）；work/library/scope.json 更新统计口径并指向 docs/w05/business_model.md 与 artifacts/w05/mvp_v1_report.json。",
+      "未修改部分的核对范围：38 项指标的 ID、SQL 计算公式（expr/measure）、时间窗口规则、catalog.json 历史 sources 引用原文，以及 W04 核定的付费会员卡产品范围（悦享年卡含旧名、家庭季卡，员工卡 299 张隔离）与月末端点判定口径均已核对未受本轮逻辑破坏，保持原样沿用。"
+    ],
+    "material_and_data_sources": [
+      "客户材料（course-materials/w05/客户材料/）：01_第一次demo纪要.md (v0.2)、02_W05新需求说明.md (v0.3)、03_身份关联与数据使用说明.md (v0.1)、04_运营对象核验说明.md (v0.1)、05_联系限制与建议说明.md (v0.1)",
+      "W05 数据候选：data/w05-v2/（数据版本 qinghe-w05-v2.0-candidate.2，规则版本 qinghe-w05-rules-20261008.1，固定参考日 2026-09-01，覆盖 2024-09-01 至 2026-09-01 不含；含 coverage.json、manifest.json、CRM/POS 会员与订单、migration_records.csv、account_review_records.csv、operational_verification.csv、contact_scope_confirmation.csv、business_basis.csv、两份小林工作账及 knowledge/ 目录）",
+      "前序 W04 成果：artifacts/w04/cleaned/（qinghe-w04-v1.1 c3 清洗结果）、artifacts/w04/library/（原件保留未动）、docs/w04/business_model.md（原件保留未动）"
+    ],
+    "interview_sources": [
+      {
+        "role": "老周（IT 负责人）",
+        "date": "2026-11-26",
+        "session_ref": "W5 学员 023 正式访谈 1（MSG-06711 至 MSG-06717，会话保持开放；完整记录见 work/interviews/laozhou-w05.md）",
+        "topics_and_results": [
+          "导出外历史引用（11 条，如 CRM:QH10073317 关联 CRM:QH10031411）：确认不动原数据、缺失引用留痕、左端按导出内有效迁移记录处理且不补造资料稳妥；补证留档方案由项目组定（MSG-06713）。",
+          "员工与异常身份核验边界：纠偏并明确区分“运营核验确认结论”与“登记人身份查清”——员工与异常身份均按核验结论处理，仅疑似/缺证据/冲突才保留运营待核，账户级异常不无条件传播给整个人；确认全公司精确自然人数本轮定不下来、保留待核（MSG-06715）。",
+          "旧 POS 注册门店与卡务：确认本次导出确无这两项，保持未知且不以购买门店反填正确，报告注明“旧 POS 注册关系和卡务待补”即可（MSG-06717）。"
+        ]
+      },
+      {
+        "role": "小林（会员运营经理）",
+        "date": "2026-11-26",
+        "session_ref": "W5 学员 023 正式访谈 1（MSG-06718 至 MSG-06722，会话保持开放；完整记录见 work/interviews/xiaolin-w05.md）",
+        "topics_and_results": [
+          "26 条渠道待核勿扰记录（如 CRM:QH10012924）：确认运营侧目前无对应记录逐条确认渠道，本轮按双渠道均待核（unknown）、暂不推荐联系处理，且明确区分待核与已确认禁止，已确认禁止绝不降级为待核（MSG-06720）。",
+          "多来源姓名与等级冲突展示：确认运营侧目前无固定优先级，本轮保持代表值留空（None）并原样显式列出冲突值，不自动挑第一条；重申等级与付费资格分开（MSG-06722）。"
+        ]
+      }
+    ],
+    "inferences": [
+      "在 A2 与 B-1203 故障定位过程中，先通过原始运行 JSON 核查发现 glm-5.3-flash / glm-5.4 分别出现省略嵌套 null 键、省略空数组键和将 page 对象序列化为字符串的问题；随后不改任何客户代码与题目，换用 deepseek-chat 同题回归即全部以 completed / GROUNDED 通过，证实失败根因在原模型输出契约遵循能力而非客户实现或数据。"
+    ],
+    "unresolved_impacts": [
+      {
+        "unresolved_objects": "12,001 个经 operational_verification.csv 确认异常登记授权的 CRM 来源账户（保留为独立财务桶 X...，identity_status=unresolved）",
+        "missing_evidence": "有效开户登记人归属核查留档",
+        "affected_conclusions": "全公司精确自然人数（precise_person_total）、buyer_count/monthly_buyer_count/复购率等所有涉及人数或人数分母的指标（当前仅统计购买财务实体数，不可验收为精确自然人数）",
+        "owner": "老周（IT 负责人）",
+        "recompute_after_evidence": "补录有效账户核查记录后，重跑 prepare（重建 mapping、财务桶与 DuckDB 查询库）、重新对账并重算全部人数类与复购类指标。"
+      },
+      {
+        "unresolved_objects": "11 条 account_review_records.csv（第 35928–35938 行）引用的右端导出外 CRM 账户（对应左端 11 个在导出内 CRM 账户，其中 5 个另有 POS 迁移边）",
+        "missing_evidence": "缺失右端账户的会员主档与历史订单导出及留档去向说明",
+        "affected_conclusions": "对应 11 名左端会员在历史全周期的完整消费合计、最近有效购买日期与跨账户属性核对",
+        "owner": "老周 / 项目组",
+        "recompute_after_evidence": "补齐导出或确认归档范围后，重跑 prepare、核对 identity_findings.json 与订单金额对账，并重跑受影响会员的圈选与详情。"
+      },
+      {
+        "unresolved_objects": "43,912 个旧 POS 来源账户（其中 3,995 名已核实 POS 独有会员无任何已知注册门店）",
+        "missing_evidence": "旧 POS 注册门店档案与旧 POS 历史会员卡务导出",
+        "affected_conclusions": "单店按注册门店圈选的覆盖完整性（3,995 名注册门店未知会员不能确定属于或不属于单店，未重复列入单店待核）；跨系统付费会员持卡资格与 new_member_count 注册日期覆盖",
+        "owner": "老周（IT 负责人）",
+        "recompute_after_evidence": "若历史系统可补导 POS 注册门店或卡档，重跑 prepare、重建对象库与单店圈选名单，并重算 new_member_count 与月度付费会员指标。"
+      },
+      {
+        "unresolved_objects": "26 条 contact_scope_confirmation.csv 中 status=pending、channel_scope=unknown 的勿扰记录（对应小林勿扰工作账 26 个 CRM 账户）",
+        "missing_evidence": "原勿扰诉求究竟限制电话、短信还是全渠道的补充确认依据",
+        "affected_conclusions": "对应 26 名会员在电话和短信渠道的推荐资格（当前双渠道均保持 unknown，不推荐联系）",
+        "owner": "小林（会员运营经理）",
+        "recompute_after_evidence": "补出 status=current 且依据可定位的确认记录后，重跑 prepare 更新 state/policies.jsonl 并重新圈选对应门店名单。"
+      },
+      {
+        "unresolved_objects": "2024-09-01 之前的更早订单历史",
+        "missing_evidence": "2024-09-01 以前的历史交易导出",
+        "affected_conclusions": "覆盖窗口内无有效购买记录的会员不能判定为终身从未购买或已沉睡，first_buyer_count 仅代表观测期内首购",
+        "owner": "老周（IT 负责人）",
+        "recompute_after_evidence": "如需全生命周期首购与沉睡判断，补导更早订单后重建查询库并重算最近有效购买日期与首购指标。"
+      }
+    ],
+    "reuse_and_scope_explanation": "共享会员业务能力必须独立于运营 Agent 聊天入口：第一，门店（陈姐）需要确定性、低延迟、可重复核对的直接查询入口（service-call），不能每次依赖自然语言对话；第二，身份关联、属性冲突、注册门店关系与分渠道禁止/待核属于硬业务规则，必须在 prepare 阶段固化并由共享 MemberService 统一向直接入口和运营 Agent 暴露（老周要求同条件同数据版本下双入口结果严格一致），避免大模型临场猜测或绕过禁联规则；第三，独立模块使业务定义变更（如 D 组）可以脱离大模型不确定性做确定性回归验证。本轮接续策略：完整保留 W04 清洗目录（artifacts/w04/cleaned）、原指标库（artifacts/w04/library）与原业务模型（docs/w04/business_model.md），在副本 work/library 上仅修订受身份粒度影响的描述并在 customer/w05/ 隔离扩展点完成 YAML 与 3 个客户函数，零修改平台核心引擎。继续推进条件：1）老周与小林按上述待核清单分批补证未决身份、26 条渠道待核与历史导出范围；2）切换或验证严格遵循复杂 JSON Schema（保留 null 键、空数组键与对象类型参数）的模型配置，复验 A2 与 B-1203 的 Agent 终态提交；3）经业务人员人工复核建议名单并对照已签 SOW 确认后续变更与正式验收标准。",
+    "checkpoint_and_ai_usage": "前序接续完全采用本人已完成的 W04 成果（artifacts/w04/cleaned、artifacts/w04/library、docs/w04/business_model.md），未使用课程 W04_checkpoint。开发与验证过程使用 AI 编程助手（Antigravity + PyCharm MCP）辅助进行数据剖析脚本编写、customer/w05/member.linkml.yaml 与 solution.py 实现、单元测试（work/tests/test_step2_solution.py、test_step3_contact.py、test_boundaries.py）及文档整理，并由本人在 PyCharm 中核对规则依据、监督并把关老周/小林两场真实访谈提问语气与核实结论、要求独立核查原始运行 JSON 而非凭猜测下结论。"
+  },
+  "verification_cases": [
+    {
+      "id": "A",
+      "inputs": {
+        "turn_1_metric_question": "查询 2025-09-01 到 2026-09-01（不含）全公司净销售额（net_sales_cents）和有效订单数（valid_order_count）",
+        "turn_2_member_question": "查询已核实会员 U00f6526bd6cb87ec6ffc0514 的基本信息（短信渠道限制视角）以及全部来源账户、注册门店和订单关联记录",
+        "member_id": "U00f6526bd6cb87ec6ffc0514",
+        "same_session_required": true,
+        "sessions": {
+          "run1_glm53flash": "00b02cb9-cc36-4c48-81ad-628128be5ad6",
+          "run2_glm53flash": "0c2f999a-c87e-4943-902d-50109c8e930d",
+          "run3_glm53flash": "9cedb2c8-476c-4dfb-b48c-46603db4c898",
+          "run4_glm54": "9f4332bc-8d30-4698-9477-2a79b010eb05",
+          "run5_deepseek": "c16a10c5-14b2-458a-9777-fb61e31c5fb6",
+          "run6_deepseek_passed": "3f32d0a5-ea3d-4fdd-a77f-cbc4550519a2"
+        }
+      },
+      "expected_from_public_evidence": "独立查询 DuckDB raw_orders 与 state/mapping.json 预期：第 1 问返回全公司 2025-09-01 至 2026-09-01（不含）net_sales_cents=977933726 分、valid_order_count=85371 笔，旧指标查询链路可用；第 2 问在同一 session_id 下查询 U00f6526bd6cb87ec6ffc0514，不混入上一轮指标证据，能追溯 3 个来源账户（CRM:QH10031934、CRM:QH10075436、POS:POS13153）、注册门店 ['5391'] 及 2 笔订单，并明确表达姓名冲突（['徐雅雯', '徐雯']，display_name=None）与等级冲突（['银卡', '普通']，tier=None），不把冲突写成来源缺失。",
+      "evidence_files": [
+        "evidence/a/00b02cb9-cc36-4c48-81ad-628128be5ad6-10187c15.json",
+        "evidence/a/00b02cb9-cc36-4c48-81ad-628128be5ad6-79735962.json",
+        "evidence/a/0c2f999a-c87e-4943-902d-50109c8e930d-a6bbd711.json",
+        "evidence/a/0c2f999a-c87e-4943-902d-50109c8e930d-fd4453df.json",
+        "evidence/a/9cedb2c8-476c-4dfb-b48c-46603db4c898-e15669cd.json",
+        "evidence/a/9cedb2c8-476c-4dfb-b48c-46603db4c898-55e84406.json",
+        "evidence/a/9f4332bc-8d30-4698-9477-2a79b010eb05-b72a9ad1.json",
+        "evidence/a/9f4332bc-8d30-4698-9477-2a79b010eb05-732f224f.json",
+        "evidence/a/c16a10c5-14b2-458a-9777-fb61e31c5fb6-9b28bd8d.json",
+        "evidence/a/c16a10c5-14b2-458a-9777-fb61e31c5fb6-c0ff5f8f.json",
+        "evidence/a/3f32d0a5-ea3d-4fdd-a77f-cbc4550519a2-bca06f55.json",
+        "evidence/a/3f32d0a5-ea3d-4fdd-a77f-cbc4550519a2-54b0ffd7.json"
+      ],
+      "result": "passed",
+      "findings": "完整通过（含失败定位与同题回归全证据）：前期使用 glm-5.3-flash（3 次）与 glm-5.4（1 次）时，Turn 1 均以 completed/GROUNDED 通过，Turn 2 工具调用与数据全对但均省略了 critical_facts.cards[0].stop_date.value: null 导致 FINAL_TYPED_CONTRACT；不改客户代码与原题，换用 deepseek-chat 同题回归（会话 3f32d0a5-ea3d-4fdd-a77f-cbc4550519a2，两问同 session_id）：Turn 1（bca06f55）返回 completed/GROUNDED，net_sales_cents=977,933,726 分、valid_order_count=85,371 笔，与独立 SQL 完全一致；Turn 2（54b0ffd7）返回 completed/GROUNDED，evidence_ids 仅含本轮 get_member 与 member_relations 证据（零混入上一轮指标证据），准确追溯 3 个来源账户、注册门店 ['5391']、2 笔订单及体验卡，明确区分姓名冲突 ['徐雅雯','徐雯'] 与等级冲突 ['银卡','普通']（当前未选定统一值）而非来源缺失。"
+    },
+    {
+      "id": "B",
+      "inputs": {
+        "stores": [
+          "1203",
+          "1004"
+        ],
+        "reference_date": "2026-09-01",
+        "start": "2025-09-01",
+        "end": "2026-09-01",
+        "dormant_days": 60,
+        "metric_filters": [
+          {
+            "metric": "net_sales_cents",
+            "op": "gte",
+            "value": 300000
+          }
+        ],
+        "channel": "sms",
+        "sessions": {
+          "store_1004_glm53flash_passed": "0d91388f-3816-412c-a8d2-d2c564ae71d5",
+          "store_1203_run1_glm53flash": "d7e9327a-d5b2-40fc-9457-b852379bc9b7",
+          "store_1203_run2_glm53flash": "61b726ba-f32b-40b8-9fc9-22e7fa6a385f",
+          "store_1203_run3_glm53flash": "f685d2e1-18dc-4d95-843e-69b1ae7c65b2",
+          "store_1203_run4_glm54": "f0f1db51-81f1-493d-827c-58b1bf903eae",
+          "store_1203_run5_glm54": "75b4e121-7403-499f-ae60-234809ee835a",
+          "store_1203_run6_deepseek": "3e525f3f-7f7e-4671-821b-6d79b1e771e8",
+          "store_1203_run7_deepseek_passed": "a1b03ddf-d3fe-4a18-b720-cf5b0a109b56"
+        }
+      },
+      "expected_from_public_evidence": "独立 SQL 核对 raw_orders 与来源注册门店预期：门店 1203（上海豫园邻里店）有 183 名注册已核实会员，满足近 12 个月净消费>=300000 分且距 2026-09-01 最近有效购买满 60 天的有 1 名——U485c6c17e0d34702cba0c2ca（net_sales_cents=473756，last_effective_purchase=2026-06-25，dormant_days=68，sms=no_known_restriction，无运营排除），直接入口与 Agent 名单/条件/分页/范围说明一致，且 Agent 为其给出绑定详情、关联记录与适用知识片段的复核候选建议；门店 1004（天津南市食品街步行街店）有 173 名注册已核实会员，条件命中 0 名，直接入口与 Agent 均返回空名单并说明不给建议的原因、不编造营销动作，且均说明全公司 3995 名注册门店未知会员不能确定属于或不属于本店。",
+      "evidence_files": [
+        "evidence/b/direct-1203.json",
+        "evidence/b/direct-1004.json",
+        "evidence/b/0d91388f-3816-412c-a8d2-d2c564ae71d5-da2f4b5a.json",
+        "evidence/b/d7e9327a-d5b2-40fc-9457-b852379bc9b7-445e095c.json",
+        "evidence/b/61b726ba-f32b-40b8-9fc9-22e7fa6a385f-f13d7db0.json",
+        "evidence/b/f685d2e1-18dc-4d95-843e-69b1ae7c65b2-452491ef.json",
+        "evidence/b/f0f1db51-81f1-493d-827c-58b1bf903eae-26d56518.json",
+        "evidence/b/75b4e121-7403-499f-ae60-234809ee835a-6c3b9409.json",
+        "evidence/b/3e525f3f-7f7e-4671-821b-6d79b1e771e8-9401a2c7.json",
+        "evidence/b/a1b03ddf-d3fe-4a18-b720-cf5b0a109b56-caf064c6.json"
+      ],
+      "result": "passed",
+      "findings": "两家门店的直接入口与运营 Agent 全部验证通过且逐项一致：1）门店 1004：direct-1004 与 Agent（0d91388f，completed/GROUNDED）均返回空名单 []（total=0、complete=True）、0 条建议、明确说明空名单原因与全公司 3,995 名注册门店未知会员范围，未编造营销动作；2）门店 1203：前期 glm-5.3-flash 跑通 4 个工具并给出正确建议但漏传空数组 blocked_member_ids，glm-5.4 将 page 传成字符串失败；换用 deepseek-chat 同题回归（a1b03ddf-d3fe-4a18-b720-cf5b0a109b56）以 completed/GROUNDED 全部通过，4 个工具均 ok，名单 ['U485c6c17e0d34702cba0c2ca']、消费 473,756 分、最近有效购买 2026-06-25（68 天）、分页与范围说明与 direct-1203 100% 一致，并输出带详情、关联记录与适用知识片段（operations-10/6/9/11/13）引用的 1 条复核候选建议，含 POS:POS35884 注册门店补证提醒（找老周）及不执行触达边界。全部失败与回归原输出均完整保留。"
+    },
+    {
+      "id": "C",
+      "inputs": {
+        "telephone_blocked_member": {
+          "source_id": "CRM:QH10010871",
+          "member_id": "U713cf89fe10ead5e5c8bd949",
+          "confirmation_record": "CS-efc94a2242174a2595f4",
+          "channel": "telephone",
+          "agent_session": "3a9e1684-bb73-42bd-92b8-931ccb0e8de7"
+        },
+        "channel_unknown_member": {
+          "source_id": "CRM:QH10040567",
+          "member_id": "U36941781f8348657f0470215",
+          "confirmation_record": "CS-b08316283eab98593c58",
+          "channel": "sms",
+          "agent_session_initial_failed": "63291724-f891-4fd6-b936-aad97cc7af99",
+          "agent_session_regression_passed": "bf09d001-5b72-4750-8240-365c0b99ffc0"
+        },
+        "knowledge_query": "联系限制 勿打电话 渠道待核 建议",
+        "knowledge_level": "usage"
+      },
+      "expected_from_public_evidence": "独立核对 contact_scope_confirmation.csv（第 19 行、第 42 行）与 CRM/POS 源表预期：1）U713cf89fe10ead5e5c8bd949（来源含 CRM:QH10010871，4 个来源账户）电话渠道 blocked、短信渠道 no_known_restriction，保留补充确认记录 CS-efc94a2242174a2595f4，同时存在姓名冲突 ['韦骏畅', '韦畅'] 与等级冲突 ['银卡', '普通']，程序与 Agent 均明确冲突而非来源缺失，拒绝推荐电话联系且不编造绕行营销动作；2）U36941781f8348657f0470215（来源含 CRM:QH10040567，4 个来源账户）确认记录 CS-b08316283eab98593c58 为 pending/unknown，电话与短信均 unknown，同时存在等级冲突 ['普通', '银卡']，程序与 Agent 均保留待核及补充确认来源，不将待核或未发现限制表述为联系授权；3）usage 层级检索可命中 05_联系限制与建议说明.md 相关条款。",
+      "evidence_files": [
+        "evidence/c/detail-tel-blocked.json",
+        "evidence/c/relations-tel-blocked.json",
+        "evidence/c/detail-channel-unknown.json",
+        "evidence/c/relations-channel-unknown.json",
+        "evidence/c/knowledge-contact.json",
+        "evidence/c/3a9e1684-bb73-42bd-92b8-931ccb0e8de7-d2748c89.json",
+        "evidence/c/63291724-f891-4fd6-b936-aad97cc7af99-49f46ea6.json",
+        "evidence/c/bf09d001-5b72-4750-8240-365c0b99ffc0-ff4e8de2.json"
+      ],
+      "result": "passed",
+      "findings": "直接入口、知识检索（usage 层命中 contact-6/1/10/8/7 共 5 条）与 Agent 全部验证通过：1）电话禁联对象 U713cf89fe10ead5e5c8bd949 直接入口与 Agent（completed / GROUNDED）均保留 telephone=blocked、recommendation_allowed=False、补充确认 CS-efc94a2242174a2595f4，并显式表达姓名冲突 ['韦骏畅','韦畅'] 与等级冲突 ['银卡','普通']，未编造绕行营销动作；2）渠道待核对象 U36941781f8348657f0470215 首轮 Agent 因提交 status=completed 触发 PARTIAL_RESULT_CANNOT_COMPLETE，定位为输出状态约束后同题回归（bf09d001）以 incomplete / GROUNDED 通过，完整保留双渠道 unknown、CS-b08316283eab98593c58 补充确认来源、等级冲突 ['普通','银卡'] 及向小林核实渠道的补证事项，未把待核或未发现限制说成授权。"
+    },
+    {
+      "id": "D",
+      "inputs": {
+        "isolated_code": "work/d/customer/w05/solution.py",
+        "change_description": "在隔离副本的 member_attributes 中，将多来源姓名冲突时的 display_name 从 None 调整为按 source_id 排序取首个非空姓名作为候选呈现值（同时完整保留 conflicts 数组与全部来源/限制/身份逻辑不变）",
+        "target_member_id": "U00f6526bd6cb87ec6ffc0514",
+        "channel": "sms"
+      },
+      "expected_from_public_evidence": "独立核对 U00f6526bd6cb87ec6ffc0514（来源 CRM:QH10031934 姓名 '徐雅雯'、CRM:QH10075436 姓名 '徐雯'、POS:POS13153 姓名 '徐雅雯'）预期：正式版（work/home-1）返回 display_name=None、conflicts 含 name:['徐雅雯','徐雯'] 与 tier:['银卡','普通']；隔离副本版（work/home-d）返回 display_name='徐雅雯'，而 conflicts、names、masked_mobiles、tier(None)、source_ids、registered_stores(['5391'])、policy 通道与排除状态、以及 reconciliation.json（源账户数 163666、已核实 75821、未决 12001、订单 195336、实付 2000744816 分、净实付 1768627573 分）全部完全不变。验证完成后提交仍使用正式版本。",
+      "evidence_files": [
+        "evidence/d/before.json",
+        "evidence/d/after.json"
+      ],
+      "result": "passed",
+      "findings": "完全符合预期：隔离副本经 prepare-d -> bind-d -> init 后，直接入口查询 U00f6526bd6cb87ec6ffc0514 的 display_name 由 None 变为 '徐雅雯'，证明客户业务定义变更实际进入 LinkML 对象生成与运行查询；同时 conflicts、source_ids、registered_stores、policy（渠道与排除）及 prepared-2 vs prepared-d 两份 reconciliation.json 逐项完全一致，未影响任何源记录、金额与旧能力；正式提交仍采用未改动的 customer/w05/solution.py。"
+    },
+    {
+      "id": "E",
+      "inputs": {
+        "recency_switch_requests": [
+          "work/e-dormant.json (dormant_days=60, store_id=null, channel=null)",
+          "work/e-active.json (active_within_days=60, store_id=null, channel=null)",
+          "work/e-none.json (无购买间隔限制, store_id=null, channel=null)"
+        ],
+        "boundary_members": {
+          "days_59": "Uc370b1412fe1e21995358b1c",
+          "days_60": "U6d1250ac13e3edec828f7b5f",
+          "days_61": "U3fecc81cc52f18987e256bef",
+          "recent_non_effective_order": "U8cb61fd07235ea5d8a21f97c"
+        },
+        "small_sample_tests": "evidence/e/test_boundaries.py",
+        "buyer_count_question": "查询 2025-09-01 到 2026-09-01（不含）全公司未分组的购买人数（buyer_count）",
+        "buyer_count_session": "0a5f8b58-9529-49eb-b490-fd2c65672f12"
+      },
+      "expected_from_public_evidence": "独立 SQL 预期：1）换条件三查询中，dormant_days=60 条件命中 54 人、active_within_days=60 命中 69 人、不设间隔命中 123 人，前两组 condition_hit_member_ids 交集为空且并集严格等于第三组（54+69=123），每次 recency_condition 与请求一致；2）边界 get_member 核对：59 天 matches=false，60 天与 61 天 matches=true；U8cb61fd07235ea5d8a21f97c 最近非有效单在 2026-08-10 但最近有效单为 2026-06-29（dormant_days=64，matches=true）；test_boundaries.py 人工小样本覆盖弱线索不合并、有效依据冲突、全额退款/取消不算有效购买；3）全公司未分组 buyer_count（2025-09-01..2026-09-01）=46058，Agent 回答首句直接说明「购买财务实体数」并保留自然人数待核。",
+      "evidence_files": [
+        "evidence/e/dormant.json",
+        "evidence/e/active.json",
+        "evidence/e/none.json",
+        "evidence/e/boundary-59d.json",
+        "evidence/e/boundary-60d.json",
+        "evidence/e/boundary-61d.json",
+        "evidence/e/boundary-refund.json",
+        "evidence/e/test_boundaries.py",
+        "evidence/e/0a5f8b58-9529-49eb-b490-fd2c65672f12-de34941e.json"
+      ],
+      "result": "passed",
+      "findings": "全部三块检查 100% 通过：1）换条件三连：dormant_days=60 命中 54、active_within_days=60 命中 69、不设间隔命中 123，前两者交集 0、并集严格等于 123，recency_condition 与请求完全一致；2）边界核对：真实会员 59 天（2026-07-04，matches=False）、60 天（2026-07-03，matches=True）、61 天（2026-07-02，matches=True）、近期非有效单后最近有效单 2026-06-29（64 天，matches=True）全对，人工小样本单测 test_boundaries.py 3/3 全部通过（覆盖弱线索、有效依据冲突、全额退款/取消与无有效购买 unknown!=0）；3）Agent 查询全公司未分组 buyer_count 返回 incomplete / GROUNDED，结果 46,058 与独立 SQL 一致，且首句直接写明“本轮购买财务实体数（buyer_count）为 46058。”并保留 precise_person_total_acceptance=pending。"
+    }
+  ],
+  "time_log": [
+    {
+      "stage": "阅读材料与数据剖析（第 0–1 步）",
+      "start": "2026-11-26T19:39:00+08:00",
+      "end": "2026-11-26T21:58:00+08:00",
+      "minutes": 50,
+      "waiting": false
+    },
+    {
+      "stage": "YAML 与客户函数开发、单元测试（第 2–3 步）",
+      "start": "2026-11-26T22:00:00+08:00",
+      "end": "2026-11-26T22:18:00+08:00",
+      "minutes": 18,
+      "waiting": false
+    },
+    {
+      "stage": "prepare-1 运行等待与对账追溯（第 3 步）",
+      "start": "2026-11-26T22:18:00+08:00",
+      "end": "2026-11-26T22:27:00+08:00",
+      "minutes": 9,
+      "waiting": true
+    },
+    {
+      "stage": "指标库粒度更新、prepare-2 等待与 bind/init/试调（第 4 步）",
+      "start": "2026-11-26T22:35:00+08:00",
+      "end": "2026-11-26T22:45:00+08:00",
+      "minutes": 10,
+      "waiting": true
+    },
+    {
+      "stage": "真实客户访谈（老周与小林定向核查并更新业务模型）",
+      "start": "2026-11-26T22:57:00+08:00",
+      "end": "2026-11-26T23:10:00+08:00",
+      "minutes": 13,
+      "waiting": false
+    },
+    {
+      "stage": "A–E 独立预期计算、直接入口、D 组构建与 Agent 验证及同题回归（第 5 步）",
+      "start": "2026-11-26T23:11:00+08:00",
+      "end": "2026-11-27T00:18:00+08:00",
+      "minutes": 35,
+      "waiting": true
+    },
+    {
+      "stage": "报告整理、导出补齐、官方自检与打包（第 6–8 步）",
+      "start": "2026-11-27T00:18:00+08:00",
+      "end": "2026-11-27T00:25:00+08:00",
+      "minutes": 7,
+      "waiting": false
+    }
+  ]
+}
